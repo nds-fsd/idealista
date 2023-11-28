@@ -1,13 +1,13 @@
 const { model, Schema } = require('mongoose');
 
-const realestateSchema = new Schema({
-    realtytype: {type: String, required: true},
-    realtysubtype: {type: String, required: true},
+const realEstateSchema = new Schema({
+    realEstateType: {type: String, required: true},
+    realEstateSubtype: {type: String, required: true},
     operation: {type: String, required: true},
-    shortdescription: {type: String, required: true},
+    shortDescription: {type: String, required: true},
     location: {type: String, required: true},
-    roadname: {type: String, required: true},
-    roadnumber: {type: String, required: false},
+    roadName: {type: String, required: true},
+    roadNumber: {type: String, required: false},
     block: {type: String, required: false},
     portal: {type: String, required: false},
     floor: {type: String, required: false},
@@ -15,13 +15,13 @@ const realestateSchema = new Schema({
     urbanization: {type: String, required: false},
     district: {type: String, required: false},
     state: {type: String, required: true},
-    metersbuilt: {type: Number, required: true},
-    usefulmeter: {type: Number, required: true},
+    metersBuilt: {type: Number, required: true},
+    usefulMeter: {type: Number, required: true},
     properties: {type: String, required: false},
     price: {type: Number, required: true},
-    realstate: {type: String, required: true},
-})
+    realtor: {type: String, required: true}
+});
 
-const RealEstate = model('realestate', realestateSchema);
+const RealEstate = model('realestate', realEstateSchema);
 
-module.exports = RealState;
+module.exports = RealEstate;
