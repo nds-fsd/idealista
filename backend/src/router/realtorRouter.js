@@ -1,11 +1,11 @@
 const express = require("express");
-const controller = require("../controller/realtor.js");
+const realtorController = require("../controller/realtor.js");
 const realtorRouter = express.Router();
 
-realtorRouter.get("/realtor", controller.getRealtor);
-realtorRouter.get("/realtor/:id", controller.getRealtor);
-realtorRouter.post("/realtor", controller.postRealtor);
-realtorRouter.patch("/realtor/:id", controller.patchRealtor);
-realtorRouter.delete("/realtor/:id", controller.deleteRealtor);
+realtorRouter.get("/", realtorController.getRealtor);
+realtorRouter.get("/:id", realtorController.getRealtor);
+realtorRouter.post("/", realtorController.postRealtor);
+realtorRouter.patch("/:id", realtorController.patchRealtor);
+realtorRouter.delete("/:id", realtorController.deleteRealtor);
 
 module.exports = realtorRouter;

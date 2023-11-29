@@ -3,7 +3,9 @@ const realtorRouter = require("./realtorRouter")
 const router = express.Router();
 
 
-router.use("/",realtorRouter);
+router.use("/", realtorRouter);
 
 
 module.exports = router;
+
+// probablamente obsoleto

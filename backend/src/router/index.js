@@ -1,10 +1,10 @@
 const express = require('express');
-const todoRouter = require('./realtorRouter');
-const userRouter = require('./');
+const realtorRouter = require('./realtorRouter');
 
 const router = express.Router();
 
-router.use('/todo', todoRouter);
-router.use('/user', userRouter);
+router.use('/realtor', realtorRouter);
 
 module.exports = router;
+
+// añadido un index.js desde donde irán todos los demás enrutadores de entidades (probablemente haciendo obsoleto el archivo realtor.js)
