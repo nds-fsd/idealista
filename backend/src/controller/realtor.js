@@ -4,57 +4,69 @@ const getRealtor = async (req, res) => {
   const queryStrings = req.query || {};
   try {
     const allRealtors = await Realtor.find(queryStrings);
-    res.status(200).json(allRealtors)
+    res.status(200).json(allRealtors);
   } catch (error) {
-    console.log('Hay una error.')
-    return res.status(404).json({error: 'Realtor not found'})
+    console.log("Hay una error.");
+    return res.status(404).json({ error: "Realtor not found." });
   }
 };
 
-const getRealtorId = async (req,res) => {
- 
+const getRealtorId = async (req, res) => {
   try {
-  const allRealtors = await Realtor.findById(req.params.id);
-  res.status(200).json(allRealtors);
-    
+    const allRealtors = await Realtor.findById(req.params.id);
+    res.status(200).json(allRealtors);
   } catch (error) {
-    res.status(404).json({error:"ID not found"})
-    
+    res.status(404).json({ error: "ID not found" });
   }
 };
 
-const postRealtor = async (req,res) => {
+const postRealtor = async (req, res) => {
   const body = req.body;
-  console.log ("Datos recibidos en postRealtor", body);
+  console.log("Datos recibidos en postRealtor", body);
   try {
-    const data ={
+    const data = {
       realtorName: body.realtorName,
       realtorPhone: body.realtorPhone,
       realtorEmail: body.realtorEmail,
       realtorLocation: body.realtorLocation,
       realtorRanking: body.realtorRanking,
-    }
+    };
     const newRealtor = new Realtor(data);
     await newRealtor.save();
     console.log("Datos Realtor guardados");
     res.status(200).json(newRealtor);
-    
   } catch (error) {
-    res.status(404).json({error:"The data is essential"})
+    res.status(404).json({ error: "Failed to update realtor" });
   }
+};
 
+const patchRealtor = async (req, res) => {
+  const { id } = req.params;
+  const body = req.body;
+  try {
+    const patchedRealtor = await Realtor.findByIdAndUpdate(id, body, {
+      new: true,
+    });
+    res.status(200).json(patchedRealtor);
+  } catch (error) {
+    res.status(404).json({ error: "Failed to patch realtor" });
+  }
+};
 
-
-}
-
-// Filip solo faltaría hacer un UPDATE, PATCH Y DELETE//
-
-
-
+const deleteRealtor = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Realtor.findByIdAndDelete(id);
+    res.status(200).json({ message: "Realtor deleted successfully" });
+  } catch (error) {
+    res.status(404).json({ error: "Failed to delete realtor" });
+  }
+};
 
 module.exports = {
-    getRealtor,
-    getRealtorId,
-    postRealtor,
-}
-
+  getRealtor,
+  getRealtorId,
+  postRealtor,
+  patchRealtor,
+  deleteRealtor,
+};
