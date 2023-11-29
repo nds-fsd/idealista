@@ -1,8 +1,10 @@
 const express = require('express');
+/* AQUI VIENE import de router de realty */
 const realtorRouter = require('./realtorRouter');
 
 const router = express.Router();
 
+/* AQUI VIENE router.use de realty */
 router.use('/realtor', realtorRouter);
 
 module.exports = router;
