@@ -1,8 +1,6 @@
 const mongoose =  require('mongoose');
 
 let dbUrl = process.env.MONGO_URL;
-// console.log("dburl:", dbUrl);
-// cdddbUrl = "mongodb+srv://admin:DC9vyWwS1UzYIp9u@realstatedatabasecluste.kdgc8uj.mongodb.net/"
 
 let mongodb;
 
