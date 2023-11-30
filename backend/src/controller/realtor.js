@@ -1,8 +1,8 @@
 const Realtor = require("../mongo/schemas/realtor");
 
-const getRealtor = async (req, res) => {
-  const queryStrings = req.query || {};
+const getRealtors = async (req, res) => {
   try {
+    const queryStrings = req.query || {};
     const allRealtors = await Realtor.find(queryStrings);
     res.status(200).json(allRealtors);
   } catch (error) {
@@ -32,7 +32,6 @@ const postRealtor = async (req, res) => {
   }
 };
 
-
 const patchRealtor = async (req, res) => {
   try {
     const { id } = req.params;
@@ -47,6 +46,7 @@ const patchRealtor = async (req, res) => {
 };
 
 const deleteRealtor = async (req, res) => {
+
   try {
     const { id } = req.params;
     await Realtor.findByIdAndDelete(id);
@@ -57,7 +57,7 @@ const deleteRealtor = async (req, res) => {
 };
 
 module.exports = {
-  getRealtor,
+  getRealtors,
   getRealtorId,
   postRealtor,
   patchRealtor,
