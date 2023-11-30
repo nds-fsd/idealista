@@ -27,7 +27,7 @@ const getId = async(req, res) => {
 
 const create = async(req, res) => {
     try {
-        const response = await realestateData.create(req.params.id, req.body);
+        const response = await realestateData.create(req.body);
         if (response) res.status(201).json(response) 
         else res.status(404).send()
     } catch (error) {
