@@ -14,9 +14,14 @@ const getRealtors = async (req, res) => {
 const getRealtorId = async (req, res) => {
   try {
     const allRealtors = await Realtor.findById(req.params.id);
-    res.status(200).json(allRealtors);
+    if (allRealtors) {
+      res.status(200).json(allRealtors);
+    } else {
+      res.status(404).json({ error: "ID not found" })
+    }
+    
   } catch (error) {
-    res.status(404).json({ error: "ID not found" });
+    res.status(500).json({ error: "Failed" });
   }
 };
 
@@ -37,11 +42,15 @@ const patchRealtor = async (req, res) => {
     const { id } = req.params;
     const body = req.body;
     const patchedRealtor = await Realtor.findByIdAndUpdate(id, body, {
-      new: true,
+    new: true,
     });
-    res.status(200).json(patchedRealtor);
+    if (patchedRealtor) {
+      res.status(200).json(patchedRealtor);
+    } else {
+      res.status(404).json({ error: "Error to patch realtor" })
+    }
   } catch (error) {
-    res.status(404).json({ error: "Failed to patch realtor" });
+    res.status(500).json({ error: "Failed to patch realtor" });
   }
 };
 
@@ -49,10 +58,15 @@ const deleteRealtor = async (req, res) => {
 
   try {
     const { id } = req.params;
-    await Realtor.findByIdAndDelete(id);
-    res.status(200).json({ message: "Realtor deleted successfully" });
+    const realtorDelete = await Realtor.findByIdAndDelete(id);
+    if (realtorDelete) {
+      res.status(200).json({ message: "Realtor deleted successfully" });
+    } else {
+      res.status(404).json({ error: "Realtor not found" });
+    }
+    
   } catch (error) {
-    res.status(404).json({ error: "Failed to delete realtor" });
+    res.status(500).json({ error: "Failed to delete realtor" });
   }
 };
 
