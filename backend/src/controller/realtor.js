@@ -40,6 +40,18 @@ const postRealtor = async (req, res) => {
   }
 };
 
+const postRealtor = async (req, res) => {
+  console.log("Datos recibidos en postRealtor", req.body);
+  try {
+    const newRealtor = new Realtor(req.body);
+    await newRealtor.save();
+    console.log("Datos Realtor guardados");
+    res.status(200).json(newRealtor);
+  } catch (error) {
+    res.status(404).json({ error: "Failed to create realtor" });
+  }
+};
+
 const patchRealtor = async (req, res) => {
   try {
     const { id } = req.params;
