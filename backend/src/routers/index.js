@@ -1,8 +1,8 @@
 const express = require('express')
-const realestateRouter = require('../controllers/realestate');
+const realestateRouter = require('./realestate');
 
 const router = express.Router();
 
-router.use('/realstates', realestateRouter);
+router.use('/realestates', realestateRouter);
 
 module.exports = router;

@@ -10,7 +10,7 @@ const getAll = async(req, res) => {
         else response.status(400).send()
     } catch (error) {
         console.log("Error in realstate.js getAll():", error);
-        res.status(500).send();
+        res.status(500).send(error.message);
     }
 }
 
@@ -21,18 +21,18 @@ const getId = async(req, res) => {
         else response.status(400).send()
     } catch (error) {
         console.log("Error in realstate.js getId():", error);
-        res.status(500).send();
+        res.status(500).send(error.message);
     }
 }
 
 const create = async(req, res) => {
     try {
         const response = await realestateData.create(req.params.id, req.body);
-        if (response) res.status(201).json(response)
+        if (response) res.status(201).json(response) 
         else res.status(404).send()
     } catch (error) {
         console.log("Error in realstate.js create():", error);
-        res.status(500).send();
+        res.status(500).send(error.message);
     }
 }
 
@@ -43,7 +43,7 @@ const update = async(req, res) => {
         else res.status(404).send()
     } catch (error) {
         console.log("Error in realstate.js update():", error);
-        res.status(500).send();
+        res.status(500).send(error.message);
     }
 }
 
@@ -53,7 +53,9 @@ const remove = async(req, res) => {
         if (response) res.status(201).json(response)
         else res.status(400).send()
     } catch (error) {
-        console.log("Error in realstate.js getAll():", error);
+        console.log("Error in realstate.js remove():", error);
         res.status(500).send();
     }
 }
+
+module.exports = { getAll, getId, create, update, remove };
