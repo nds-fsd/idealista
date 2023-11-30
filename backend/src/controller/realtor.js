@@ -21,26 +21,6 @@ const getRealtorId = async (req, res) => {
 };
 
 const postRealtor = async (req, res) => {
-  console.log("Datos recibidos en postRealtor", body);
-  try {
-    const body = req.body;
-    const data = {
-      realtorName: body.realtorName,
-      realtorPhone: body.realtorPhone,
-      realtorEmail: body.realtorEmail,
-      realtorLocation: body.realtorLocation,
-      realtorRanking: body.realtorRanking,
-    };
-    const newRealtor = new Realtor(data);
-    await newRealtor.save();
-    console.log("Datos Realtor guardados");
-    res.status(200).json(newRealtor);
-  } catch (error) {
-    res.status(404).json({ error: "Failed to update realtor" });
-  }
-};
-
-const postRealtor = async (req, res) => {
   console.log("Datos recibidos en postRealtor", req.body);
   try {
     const newRealtor = new Realtor(req.body);
@@ -51,6 +31,7 @@ const postRealtor = async (req, res) => {
     res.status(404).json({ error: "Failed to create realtor" });
   }
 };
+
 
 const patchRealtor = async (req, res) => {
   try {
