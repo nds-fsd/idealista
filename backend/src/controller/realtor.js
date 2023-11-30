@@ -21,9 +21,9 @@ const getRealtorId = async (req, res) => {
 };
 
 const postRealtor = async (req, res) => {
-  const body = req.body;
   console.log("Datos recibidos en postRealtor", body);
   try {
+    const body = req.body;
     const data = {
       realtorName: body.realtorName,
       realtorPhone: body.realtorPhone,
@@ -41,9 +41,9 @@ const postRealtor = async (req, res) => {
 };
 
 const patchRealtor = async (req, res) => {
-  const { id } = req.params;
-  const body = req.body;
   try {
+    const { id } = req.params;
+    const body = req.body;
     const patchedRealtor = await Realtor.findByIdAndUpdate(id, body, {
       new: true,
     });
@@ -54,8 +54,8 @@ const patchRealtor = async (req, res) => {
 };
 
 const deleteRealtor = async (req, res) => {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     await Realtor.findByIdAndDelete(id);
     res.status(200).json({ message: "Realtor deleted successfully" });
   } catch (error) {
