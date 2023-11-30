@@ -8,6 +8,6 @@ app.use(express.json());
 
 connectDB().then(() => console.log("Connected to database!"))
 
-const server = app.listen(3001, () => {
+const server = app.listen(3999, () => {
     console.log('Server is up and running ⚡')
 });
