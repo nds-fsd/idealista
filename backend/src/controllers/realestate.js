@@ -1,13 +1,13 @@
 const express = require('express');
-const realestateData = require('../mongo/schemas/realestate');
+const RealState  = require('../mongo/schemas/realestate');
 
 
 const getAll = async(req, res) => {
     try {
         const queryStrings = req.query || {};
-        const response = await realestateData.find(queryStrings);
+        const response = await RealState.find(queryStrings);
         if (response) res.status(200).json(response)
-        else response.status(400).send()
+        else res.status(400).send()
     } catch (error) {
         console.log("Error in realstate.js getAll():", error);
         res.status(500).send(error.message);
@@ -16,9 +16,9 @@ const getAll = async(req, res) => {
 
 const getId = async(req, res) => {
     try {
-        const response = await realestateData.findById(req.params.id);
-        if (response) res.status(200).json(response)
-        else response.status(400).send()
+        const response = await RealState.findById(req.params.id);
+        if (response) res.status(200).json(response) 
+        else res.status(404).send()
     } catch (error) {
         console.log("Error in realstate.js getId():", error);
         res.status(500).send(error.message);
@@ -27,9 +27,9 @@ const getId = async(req, res) => {
 
 const create = async(req, res) => {
     try {
-        const response = await realestateData.create(req.body);
+        const response = await RealState.create(req.body);
         if (response) res.status(201).json(response) 
-        else res.status(404).send()
+        else res.status(400).send()
     } catch (error) {
         console.log("Error in realstate.js create():", error);
         res.status(500).send(error.message);
@@ -38,8 +38,8 @@ const create = async(req, res) => {
 
 const update = async(req, res) => {
     try {
-        const response = await realestateData.findByIdAndUpdate(req.params.id, req.body, {new: true, upsert: true});
-        if (response) res.status(201).json(response)
+        const response = await RealState.findByIdAndUpdate(req.params.id, req.body, {new: true, upsert: false});
+        if (response) res.status(200).json(response)
         else res.status(404).send()
     } catch (error) {
         console.log("Error in realstate.js update():", error);
@@ -49,9 +49,9 @@ const update = async(req, res) => {
 
 const remove = async(req, res) => {
     try {
-        const response = await realestateData.findByIdAndDelete(req.params.id);
+        const response = await RealState.findByIdAndDelete(req.params.id);
         if (response) res.status(201).json(response)
-        else res.status(400).send()
+        else res.status(404).send()
     } catch (error) {
         console.log("Error in realstate.js remove():", error);
         res.status(500).send();
