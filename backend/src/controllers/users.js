@@ -1,4 +1,5 @@
-const User = require("../mongo/schemas/user");
+const express = require('express');
+const User = require("../mongo/schemas/users");
 
 const getAll = async (req, res) => {
 
@@ -47,27 +48,14 @@ const remove = async (req, res) => {
 };
 
 const create = async (req, res) => {
-
-    const body = req.body;
-
-    const data = {
-        name: body.name,
-        email: body.email,
-        lasName: body.lastName,
-        password: body.password,
-        location: body.location,
-    };
-    const newUser = new User(data); //para crear una nueva instancia del user en la BD
-
     try {
-        await newUser.save()  //aquí se guarda en mongo esa esa nueva instancia 
-        res.json(newUser); //se devuelve la respuesta
+        const response = await User.create(req.body);
+        if (response) res.status(201).json(response)
+        else res.status(400).send()
     } catch (error) {
-        console.log(error);
-        res.status(500).json(error);
-
+        console.log("Error in users.js create():", error);
+        res.status(500).send(error.message);
     }
-
 
 
 }

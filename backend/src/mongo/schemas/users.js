@@ -6,7 +6,7 @@ const userSchema = new Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
     location: { type: String, required: true },
-    isValidated { type: String, default: true }
+    isValidated: { type: Boolean, default: true }
 });
 
 const User = model('user', userSchema);
