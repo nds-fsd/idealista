@@ -3,7 +3,7 @@ const realtorRouter = require('./realtor');
 
 const router = express.Router();
 
-router.use('/realtor', realtorRouter);
+router.use('/realtors', realtorRouter);
 
 module.exports = router;
 
