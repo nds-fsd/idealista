@@ -1,12 +1,12 @@
 const express = require('express');
-const realstateController = require('../controllers/realestate');
+const realestateController = require('../controllers/realestate');
 
-const realstateRouter = express.Router();
+const realestateRouter = express.Router();
 
-realstateRouter.get('/', realstateController.getAll)
-realstateRouter.get('/:id', realstateController.getId);
-realstateRouter.post('/', realstateController.create);
-realstateRouter.patch('/:id', realstateController.update);
-realstateRouter.delete('/:id', realstateController.remove);
+realestateRouter.get('/', realestateController.getAll)
+realestateRouter.get('/:id', realestateController.getId);
+realestateRouter.post('/', realestateController.create);
+realestateRouter.patch('/:id', realestateController.update);
+realestateRouter.delete('/:id', realestateController.remove);
 
-module.exports = realstateRouter;
+module.exports = realestateRouter;
