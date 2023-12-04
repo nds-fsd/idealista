@@ -11,7 +11,7 @@ const getAll = async (req, res) => {
             res.status(404).send()
         }
     } catch (error) {
-        console.log("Error in users.js getAll():", error)
+        console.log("Error in users.js getAll():", error.message)
         res.status(500).send(error.message)
     }
 };
@@ -25,7 +25,7 @@ const getById = async (req, res) => {
             res.status(404).send()
         }
     } catch (error) {
-        console.log("Error in users.js getById():", error)
+        console.log("Error in users.js getById():", error.message)
         res.status(500).send(error.message)
     }
 };
@@ -42,7 +42,7 @@ const update = async (req, res) => {
             res.status(404).send();
         }
     } catch (error) {
-        console.log("Error in users.js update():", error)
+        console.log("Error in users.js update():", error.message)
         res.status(500).send(error.message)
     }
 };
@@ -56,7 +56,7 @@ const remove = async (req, res) => {
             res.status(404).send();
         }
     } catch (error) {
-        console.log("Error in users.js remove():", error)
+        console.log("Error in users.js remove():", error.message)
         res.status(500).send(error.message)
     }
 };
@@ -67,10 +67,11 @@ const create = async (req, res) => {
         if (response) {
             res.status(201).json(response);
 
-        } else res.status(400).send();
-
+        } else {
+            res.status(400).send();
+        }
     } catch (error) {
-        console.log("Error in users.js create():", error);
+        console.log("Error in users.js create():", error.message);
         res.status(500).send(error.message);
     }
 }
