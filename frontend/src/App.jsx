@@ -1,12 +1,18 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import RealEstateList from './RealEstateList';
+import RealEstateCard from './RealEstateCard';
 
 function App() {
-    return (
+  return (
     <div>
-        Your App here
+      <RealEstateList>
+        <RealEstateCard />
+      </RealEstateList>
     </div>
-
-
-  )
+  );
 }
 
-export default App
+ReactDOM.render(<App />, document.getElementById('root'));
+
+export default App;

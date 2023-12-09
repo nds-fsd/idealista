@@ -6,17 +6,14 @@ const RealEstateList = ({ getAll, searchParams }) => {
     const [realEstates, setRealEstates] = useState([]);
 
     useEffect(() => {
-        // Fetch real estates based on getAll or searchParams from MongoDB schema
-        // Replace the API endpoint and query logic with our implementation
         const fetchRealEstates = async () => {
             try {
                 let url = '/realestates';
                 if (!getAll) {
                     url += `?searchParams=${JSON.stringify(searchParams)}`;
                 }
-                const response = await fetch(url);
-                const data = await response.json();
-                setRealEstates(data);
+                const response = await getRealEstates(url); // Llamamos getRealEstates funcion desde api.js
+                setRealEstates(response);
             } catch (error) {
                 console.error('Error fetching real estates:', error);
             }
@@ -26,7 +23,7 @@ const RealEstateList = ({ getAll, searchParams }) => {
     }, [getAll, searchParams]);
 
     return (
-        <div>
+        <div className={styles.container}>
             {realEstates.map((realEstate) => (
                 <RealEstateCard key={realEstate.id} realEstate={realEstate} />
             ))}
