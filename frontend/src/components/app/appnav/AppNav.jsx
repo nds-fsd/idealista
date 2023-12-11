@@ -1,7 +1,6 @@
 import styles from "./AppNav.module.css";
 import imageLogo from "../../../assets/logo.svg";
 import imageLogin from "../../../assets/usuario.svg";
-import imageBanner from "../../../assets/buscador-banner";
 
 function AppNav() {
 
