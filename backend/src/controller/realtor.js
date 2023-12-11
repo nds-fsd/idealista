@@ -17,7 +17,7 @@ const getId = async (req, res) => {
     if (realtor) {
       res.status(200).json(realtor);
     } else {
-      res.status(404).json(error.message)
+      res.status(404).json();
     }
   } catch (error) {
     res.status(500).json(error.message);
@@ -31,7 +31,7 @@ const create = async (req, res) => {
     if (newRealtor) {
       res.status(201).json(newRealtor);
     } else {
-      res.status(400).json(error.message);
+      res.status(400).json();
     }
     
   } catch (error) {
@@ -49,10 +49,10 @@ const update = async (req, res) => {
     if (patchedRealtor) {
       res.status(200).json(patchedRealtor);
     } else {
-      res.status(404).json({ error: "Error to patch realtor" })
+      res.status(404).json()
     }
   } catch (error) {
-    res.status(500).json({ error: "Failed to patch realtor" });
+    res.status(500).json(error.message);
   }
 };
 
@@ -62,13 +62,13 @@ const remove = async (req, res) => {
     const { id } = req.params;
     const realtorDelete = await Realtor.findByIdAndDelete(id);
     if (realtorDelete) {
-      res.status(200).json({ message: "Realtor deleted successfully" });
+      res.status(201).json();
     } else {
-      res.status(404).json({ error: "Realtor not found" });
+      res.status(404).json();
     }
     
   } catch (error) {
-    res.status(500).json({ error: "Failed to delete realtor" });
+    res.status(500).json(error.message);
   }
 };
 
