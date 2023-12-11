@@ -1,8 +1,10 @@
+import AppNav from "./components/app/appnav/AppNav";
+
 
 function App() {
     return (
     <div>
-        Your App here
+        <AppNav />
     </div>
 
 
