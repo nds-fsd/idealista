@@ -1,5 +1,5 @@
 const express = require("express");
-const realtorController = require("../controller/realtor.js");
+const realtorController = require("../controllers/realtor.js");
 const realtorRouter = express.Router();
 
 realtorRouter.get("/", realtorController.getAll);
