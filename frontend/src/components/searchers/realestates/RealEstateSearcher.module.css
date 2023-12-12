@@ -1,0 +1,13 @@
+.root {
+    width: 100%;
+}
+
+.container {
+    margin: auto;
+    width: 1140px;
+}
+
+.banner {
+    top: 135px;
+    
+}
