@@ -1,18 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import RealEstateList from './RealEstateList';
 import RealEstateCard from './RealEstateCard';
 
 function App() {
   return (
-    <div>
-      <RealEstateList>
-        <RealEstateCard />
-      </RealEstateList>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/realestates/:id">
+          <RealEstateCard />
+        </Route>
+        <Route path="/">
+          <RealEstateList />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
-
-ReactDOM.render(<App />, document.getElementById('root'));
 
 export default App;
