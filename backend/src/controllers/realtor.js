@@ -44,8 +44,7 @@ const update = async (req, res) => {
     const { id } = req.params;
     const body = req.body;
     const patchedRealtor = await Realtor.findByIdAndUpdate(id, body, {
-    new: true,
-    });
+    new: true, upsert:false});
     if (patchedRealtor) {
       res.status(200).json(patchedRealtor);
     } else {
