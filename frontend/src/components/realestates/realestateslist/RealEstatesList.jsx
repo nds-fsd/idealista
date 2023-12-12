@@ -7,10 +7,10 @@ function RealEstateList() {
     return (
         <>
             <div className={styles.card}>
-                <RealEstateListElement key="6568b79a074d7de557301999"/>
+                <RealEstateListElement />
             </div>
             <div className={styles.card}>
-                <RealEstateListElement key="6568b79a074d7de557301998"/>
+                <RealEstateListElement />
             </div>
         </>
     )
