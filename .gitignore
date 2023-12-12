@@ -2,3 +2,5 @@ node_modules/
 desing/
 .idea
 .env
+package-lock.json
+docker-compose.yaml
