@@ -14,10 +14,10 @@ function AppNav() {
                 <div className={styles.navcontent}>
                     <div><button className={styles.buttonad}>Publica gratis tu anuncio</button></div>
                     <nav className={styles.nav}>
-                        <lu className={styles.navlu}>
+                        <ul className={styles.navlu}>
                             <li className={styles.li}>Mis favoritos</li>
                             <li className={styles.li}>Mis búsquedas</li>
-                        </lu>    
+                        </ul>    
                     </nav>
                 </div>
                 <div className={styles.logincontent}>
