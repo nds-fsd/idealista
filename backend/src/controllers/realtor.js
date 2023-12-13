@@ -6,7 +6,7 @@ const getAll = async (req, res) => {
     const allRealtors = await Realtor.find(queryStrings);
     res.status(200).json(allRealtors);
   } catch (error) {
-    console.log("Error in realtor.js getAll");
+    console.log("Error in realtor.js getAll", error.message);
     return res.status(500).json(error.message);
   }
 };
@@ -20,6 +20,7 @@ const getId = async (req, res) => {
       res.status(404).json();
     }
   } catch (error) {
+    console.log("Error in realtor.js getId", error.message);
     res.status(500).json(error.message);
   }
 };
@@ -35,6 +36,7 @@ const create = async (req, res) => {
     }
     
   } catch (error) {
+    console.log("Error in realtor.js create", error.message);
     res.status(500).json(error.message);
   }
 };
@@ -51,12 +53,12 @@ const update = async (req, res) => {
       res.status(404).json()
     }
   } catch (error) {
+    console.log("Error in realtor.js update", error.message);
     res.status(500).json(error.message);
   }
 };
 
 const remove = async (req, res) => {
-
   try {
     const { id } = req.params;
     const realtorDelete = await Realtor.findByIdAndDelete(id);
@@ -67,6 +69,7 @@ const remove = async (req, res) => {
     }
     
   } catch (error) {
+    console.log("Error in realtor.js remove", error.message);
     res.status(500).json(error.message);
   }
 };
