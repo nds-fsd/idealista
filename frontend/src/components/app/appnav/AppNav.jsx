@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import styles from "./AppNav.module.css";
 import imageLogo from "../../../assets/logo.svg";
 import imageLogin from "../../../assets/usuario.svg";
@@ -7,10 +9,10 @@ function AppNav() {
     return (
         <header className={styles.header}> 
             <div className={styles.headernav}>
-                <div className={styles.logocontent}>
+                <Link to="/" className={styles.logocontent}>
                     <div><img className={styles.logo} src={imageLogo} alt="Logo Realista"/></div>
                     <div>Realista</div>
-                </div>
+                </Link>
                 <div className={styles.navcontent}>
                     <div><button className={styles.buttonad}>Publica gratis tu anuncio</button></div>
                     <nav className={styles.nav}>

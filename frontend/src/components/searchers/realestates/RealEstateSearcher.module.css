@@ -9,14 +9,13 @@
 }
 
 .searchcontainer {
-    top: 250px;
+    top: 420px;
     left: 75px;
     position: absolute;
     border-radius: 15px;
     padding: 20px;
     height: 268px;
     width: 80%;
-    background-color:red;
 }
 
 .searchheader {
@@ -44,5 +43,33 @@
 .searchbody {
     background-color: #CFE2FF;
     border-radius: 0px 15px 15px 15px;
-    height: 232px;
+    height: 100px;
+}
+
+.location {
+    border: 1px;
+    border-radius: 8px;
+    color: #ACACAC;
+    margin-left: 30px;
+    margin-top: 30px;
+    height: 35px;
+    width: 440px;
+}
+
+.realestatestype {
+    border: 1px;
+    border-radius: 8px;
+    color: #ACACAC;
+    margin-left: 15px;
+    height: 35px;
+    width: 120px;
+}
+
+.search {
+    background-color: #EEEFA7;
+    border: 1px;
+    border-radius: 8px;
+    margin-left: 15px;
+    height: 35px;
+    width: 130px;
 }
