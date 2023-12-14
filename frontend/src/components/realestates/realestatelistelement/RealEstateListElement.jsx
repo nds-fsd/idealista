@@ -1,6 +1,8 @@
 import styles from "./realestatelistelement.module.css"
 
-const RealEstateListElement = ({ shortDescription, metersBuilt, price, location, realEstateType }) => {
+const RealEstateListElement = (realEstate) => {
+  const { realEstate: data } = realEstate
+  const {shortDescription, realEstateType, location, metersBuilt, price} = data
   return (
     <div className={styles.container}>
       <h2>{shortDescription}</h2>
@@ -13,3 +15,4 @@ const RealEstateListElement = ({ shortDescription, metersBuilt, price, location,
 };
 
 export default RealEstateListElement;
+
