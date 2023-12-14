@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import RealEstateListElement from "../realestatelistelement/RealEstateListElement";
+import { useQuery } from "react-query";
 
 import styles from "./RealEstatesList.module.css";
+import RealEstateListElement from "../realEstateListElement/RealEstateListElement";
+import realEstateApi from "../../../utils/realEstateApi";
 
 
 function RealEstateList() {
@@ -12,9 +14,15 @@ function RealEstateList() {
     const localization = queryParams.get("location");
     const realEstateType = queryParams.get("realestatetype");
 
+    const { data, isLoading } = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType }))
+
     useEffect(() => {
         console.log("operation, location, realestatetype", operation, localization, realEstateType);
     }, [])
+
+    if (isLoading) return <div> Loading... </div>
+
+    if (!data) return <div> Something went wrong </div>
 
     return (
         <>
@@ -22,12 +30,7 @@ function RealEstateList() {
             <div>Operation: {operation}</div>
             <div>Location: {localization}</div>
             <div>Real Estate Type: {realEstateType}</div>
-            <div className={styles.card}>
-                <RealEstateListElement />
-            </div>
-            <div className={styles.card}>
-                <RealEstateListElement />
-            </div>
+            {data.map(e => <div key={e._id} className={styles.card}><RealEstateListElement realEstate={e}></RealEstateListElement></div>)}
         </>
     )
 }
