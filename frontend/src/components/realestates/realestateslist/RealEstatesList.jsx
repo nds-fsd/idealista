@@ -21,12 +21,14 @@ const RealEstateList = ({ getAll, searchParams }) => {
 
     console.log("Estos son los datos que nos llega de la peticion", realEstates)
     return (
-        <h1>Real State List</h1>
-        <div className={styles.container}>
-            {realEstates.map((realEstate) => (
-                <RealEstateListElement key={realEstate._id} realEstate={realEstate} />
-            ))}
-        </div>
+        <>
+            <h1>Real State List</h1>
+            <div className={styles.container}>
+                {realEstates.map((realEstate) => (
+                    <RealEstateListElement key={realEstate._id} realEstate={realEstate} />
+                ))}
+            </div>
+        </>
     );
 };
 
