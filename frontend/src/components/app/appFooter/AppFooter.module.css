@@ -1,0 +1,36 @@
+
+:root{
+--color-footer:#CFE2FF;
+}
+
+.principal{
+    display: flex;
+    justify-content: center;
+    padding-left: 190px;
+    padding-top: 20px;
+
+}
+.container{
+    background-color:var(--color-footer);
+    width: 1250px;
+    padding: 40px;
+
+}
+
+.list{
+    width: 50%;
+
+}
+
+
+ul{
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+li{
+    box-sizing: border-box;
+    width: 50%;
+    padding: 5px;
+}
