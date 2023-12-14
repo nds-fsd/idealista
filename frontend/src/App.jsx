@@ -14,15 +14,13 @@ import style from "./App.module.css";
 function App() {
     return (
       <BrowserRouter>
-        <div>          
-          <Routes>
-              <Route path="/" element={<AppLayout/>}>
-                <Route path="/" element={<Searcher />}></Route>
-                <Route path="/realestates" element={<RealEstateList/>}></Route>
-                <Route path="/realestates/:id" element={<RealEstateListElement/>}></Route>
-              </Route>
-          </Routes>
-        </div>
+        <Routes>
+            <Route path="/" element={<AppLayout/>}>
+              <Route path="/" element={<Searcher />}></Route>
+              <Route path="/realestates" element={<RealEstateList/>}></Route>
+              <Route path="/realestates/:id" element={<RealEstateListElement/>}></Route>
+            </Route>
+        </Routes>
       </BrowserRouter>
   )
 }
