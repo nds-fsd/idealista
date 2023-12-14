@@ -1,0 +1,74 @@
+.header {
+    width: 100%;
+}
+
+.headernav {
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: auto;
+    width: 1140px;
+}
+
+.logocontent {
+    padding: 5px;
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 20%;
+    text-decoration: none;
+}
+
+.logo {
+    height: 32px;
+    width: 32px;
+    padding-right: 5px;
+}
+
+.navcontent {
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.nav {
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style: none;
+    visibility: hidden;
+}
+
+.navlu {
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.buttonad {
+    background-color: #D9D9D9;
+    border: 1px solid #000000;
+    font-weight: 700px;
+    border-radius: 15px;
+    height: 24px;
+    width: 220px;
+}
+
+.li {
+    padding: 10px;
+}
+
+.logincontent {
+    width: 130px;
+}
+
+.user {
+    height: 16px;
+    width: 16px;
+    padding-right: 5px;
+}
