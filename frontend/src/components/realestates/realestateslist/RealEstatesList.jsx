@@ -16,22 +16,15 @@ function RealEstateList() {
 
     const { data, isLoading } = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType }))
 
-    useEffect(() => {
-        console.log("operation, location, realestatetype", operation, localization, realEstateType);
-    }, [])
-
     if (isLoading) return <div> Loading... </div>
 
     if (!data) return <div> Something went wrong </div>
 
     return (
-        <>
-            <div>Parámetros:</div>
-            <div>Operation: {operation}</div>
-            <div>Location: {localization}</div>
-            <div>Real Estate Type: {realEstateType}</div>
-            {data.map(e => <div key={e._id} className={styles.card}><RealEstateListElement realEstate={e}></RealEstateListElement></div>)}
-        </>
+        <div className={styles.list}>
+            <h2>{operation + " > " + localization + " > " + realEstateType}</h2>
+            {data.map(e => <RealEstateListElement key={e._id} realEstate={e}></RealEstateListElement>)}
+        </div>
     )
 }
 
