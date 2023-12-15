@@ -1,0 +1,75 @@
+.root {
+    width: 100%;
+}
+
+.container {
+    position: relative;
+    margin: auto;
+    width: 1140px;
+}
+
+.searchcontainer {
+    top: 420px;
+    left: 75px;
+    position: absolute;
+    border-radius: 15px;
+    padding: 20px;
+    height: 268px;
+    width: 80%;
+}
+
+.searchheader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.tabselected {
+    background-color: #CFE2FF;
+    border-radius: 15px 15px 0 0;
+    text-align: center;
+    width: 145px;
+    margin-right: 5px;
+}
+
+.tabunselected {
+    background-color: #D9D9D9;
+    border-radius: 15px 15px 0 0;
+    text-align: center;
+    width: 145px;
+    margin-right: 5px;
+}
+
+.searchbody {
+    background-color: #CFE2FF;
+    border-radius: 0px 15px 15px 15px;
+    height: 100px;
+}
+
+.location {
+    border: 1px;
+    border-radius: 8px;
+    color: #ACACAC;
+    margin-left: 30px;
+    margin-top: 30px;
+    height: 35px;
+    width: 440px;
+}
+
+.realestatestype {
+    border: 1px;
+    border-radius: 8px;
+    color: #ACACAC;
+    margin-left: 15px;
+    height: 35px;
+    width: 120px;
+}
+
+.search {
+    background-color: #EEEFA7;
+    border: 1px;
+    border-radius: 8px;
+    margin-left: 15px;
+    height: 35px;
+    width: 130px;
+}
