@@ -65,5 +65,6 @@
 }
 
 .details_container {
-    margin-left: 300px;
+    margin: auto;
+    width: 1140px;
 }

@@ -59,13 +59,15 @@ const RealEstateDetails = () => {
 
             </div>
             <div className={`${styles.flex} ${styles.flex_column} ${styles.details_container}`}>
-                <h1 >Características básicas</h1>
-                <ul>
-                    <li> {data?.operation}</li>
-                    <li> {data?.floor}</li>
-                    <li> {data?.properties}</li>
-                    <li> {data?.realtor}</li>
-                </ul>
+                <h2>Características básicas</h2>
+                <div>
+                    <div>{data?.realEstateType + ": " + data?.realEstateSubtype}</div>
+                    <div>{data?.properties}</div>
+                    <div>{data?.metersBuilt + " m2"}</div>
+                    <div>{data?.state}</div>
+                    <br></br>
+                    <div>{data?.realtor}</div>
+                </div>
             </div>
         </div >
     )
