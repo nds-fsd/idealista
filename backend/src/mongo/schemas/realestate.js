@@ -1,5 +1,6 @@
 const { model, Schema } = require('mongoose');
 
+
 const realEstateSchema = new Schema({
     realEstateType: {type: String, required: true},
     realEstateSubtype: {type: String, required: true},
