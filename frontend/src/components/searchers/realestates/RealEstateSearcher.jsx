@@ -12,7 +12,7 @@ function RealEstateSearcher() {
     const [realEstateType, setRealEstateType] = useState("");
 
     useEffect(() => {
-        setOperation("Compra");
+        setOperation("Comprar");
         setLocation("");
         setRealEstateType("Vivienda");
     }, [])
@@ -28,7 +28,7 @@ function RealEstateSearcher() {
                 <div className={styles.searchcontainer}>
                     <div className={styles.searchheader}>
                         <div className={(operation === "Comprar") ? styles.tabselected : styles.tabunselected}
-                            onClick={() => setOperation("Compra")}>Comprar</div>
+                            onClick={() => setOperation("Comprar")}>Comprar</div>
                         <div className={(operation === "Alquiler") ? styles.tabselected : styles.tabunselected}
                             onClick={() => setOperation("Alquiler")}>Alquiler</div>
                         <div className={(operation === "Compartir") ? styles.tabselected : styles.tabunselected}
