@@ -2,29 +2,40 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./AppFooter.module.css";
 import imageLogo from "../../../assets/logo.svg";
+import imageFacebook from "../../../assets/socialLogos/facebook.svg";
+import imageInstagram from "../../../assets/socialLogos/instagram.svg";
+import imageTwitter from "../../../assets/socialLogos/x.svg";
 
 function AppFooter(){
     return(
         
         <div className={styles.principal}>
             <div className={styles.container}>
-                <div><img className={styles.logo} src={imageLogo} alt="Logo Realista"/></div>
+
+                <div className={styles.logo}>
+                    <Link to="/">
+                    <img className={styles.logo} src={imageLogo} alt="Logo Realista"/>
+                    </Link>
+                </div>
                 <div className={styles.list}>
                     <ul>
-                        <li>Sobre Nosotros</li>
-                        <li>Publica tu inmueble</li>
-                        <li>Buscador de agencias</li>
-                        <li>Tasación de inmuebles</li>
-                        <li>Buscador de hipotecas</li>
-                        <li>Preguntas frecuentes (FAQs)</li>
-                        <li>Contacta con Realista</li>
-                        <li>Política de privacidad</li>
-                        <li>Políticas de cookies</li>
-                        <li>Condiciones generales</li>
-                        
+                        <Link><li>Sobre Nosotros</li></Link>
+                        <Link> <li>Publica tu inmueble</li></Link>
+                        <Link><li>Buscador de agencias</li></Link>
+                        <Link><li>Tasación de inmuebles</li></Link>
+                        <Link><li>Buscador de hipotecas</li></Link>
+                        <Link> <li>Preguntas frecuentes (FAQs)</li></Link>
+                        <Link><li>Contacta con Realista</li></Link>
+                        <Link><li>Política de privacidad</li></Link>
+                        <Link><li>Políticas de cookies</li></Link>
+                        <Link><li>Condiciones generales</li></Link>
                     </ul>
                 </div> 
-                       
+                <div className={styles.social}>
+                    <Link><img src={imageFacebook} alt="logo facebook" /></Link>
+                    <Link><img src={imageInstagram} alt="logo instagram" /></Link>
+                    <Link><img src={imageTwitter} alt="logo X" /></Link>
+                </div>
             </div>            
 
                 
