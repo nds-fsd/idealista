@@ -1,10 +1,12 @@
 const { model, Schema } = require('mongoose');
 
+
 const realEstateSchema = new Schema({
     realEstateType: {type: String, required: true},
     realEstateSubtype: {type: String, required: true},
     operation: {type: String, required: true},
     shortDescription: {type: String, required: true},
+    description: {type: String, required: false},
     location: {type: String, required: true},
     roadName: {type: String, required: true},
     roadNumber: {type: String, required: false},
