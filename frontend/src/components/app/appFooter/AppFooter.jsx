@@ -4,7 +4,7 @@ import styles from "./AppFooter.module.css";
 import imageLogo from "../../../assets/logo.svg";
 import imageFacebook from "../../../assets/socialLogos/facebook.svg";
 import imageInstagram from "../../../assets/socialLogos/instagram.svg";
-import imageTwitter from "../../../assets/socialLogos/x.svg";
+import imageX from "../../../assets/socialLogos/x.svg";
 
 function AppFooter(){
     return(
@@ -34,7 +34,7 @@ function AppFooter(){
                 <div className={styles.social}>
                     <Link><img src={imageFacebook} alt="logo facebook" /></Link>
                     <Link><img src={imageInstagram} alt="logo instagram" /></Link>
-                    <Link><img src={imageTwitter} alt="logo X" /></Link>
+                    <Link><img src={imageX} alt="logo X" /></Link>
                 </div>
             </div>            
 
