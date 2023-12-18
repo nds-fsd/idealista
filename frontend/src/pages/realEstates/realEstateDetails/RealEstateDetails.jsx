@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
-import realEstateApi from "../../../utils/realEstateApi";
+import realEstateApi from "../../../utils/apis/realEstateApi";
 import TextArea from "./TextArea";
 import Carousel from "./RealEstateDetailsCarousel";
 

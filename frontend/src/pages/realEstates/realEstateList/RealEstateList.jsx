@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useQuery } from "react-query";
 
 import RealEstateListElement from "./RealEstateListElement";
-import realEstateApi from "../../../utils/realEstateApi";
+import realEstateApi from "../../../utils/apis/realEstateApi";
 
 import styles from "./RealEstateList.module.css";
 
