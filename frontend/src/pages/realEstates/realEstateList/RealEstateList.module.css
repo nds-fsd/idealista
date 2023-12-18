@@ -1,0 +1,23 @@
+.list {
+    width: 1140px;
+    margin: auto;
+}
+
+.card {
+    border: 3px solid #CFE2FF;
+    border-radius: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.image {
+    height: 150px;
+    width: 240px;
+    padding: 10px;
+}
+
+.link {
+    text-decoration: none;
+}

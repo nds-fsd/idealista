@@ -6,10 +6,11 @@ import "slick-carousel/slick/slick-theme.css";
 import AppNav from "./components/app/appnav/AppNav";
 import AppLayout from "./components/app/appLayout/AppLayout";
 import Searcher from "./components/searchers/realestates/RealEstateSearcher";
-import RealEstateList from "./components/realestates/realestateslist/RealEstatesList";
+import RealEstateDetails from "./pages/realEstates/realEstateDetails/RealEstateDetails";
+import RealEstateList from "./pages/realEstates/realEstateList/RealEstateList";
 
 import style from "./App.module.css";
-import RealEstateDetails from "./components/realEstates/realEstateDetails/RealEstateDetails";
+
 
 
 

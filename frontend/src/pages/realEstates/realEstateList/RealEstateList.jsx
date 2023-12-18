@@ -2,9 +2,10 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useQuery } from "react-query";
 
-import styles from "./RealEstatesList.module.css";
-import RealEstateListElement from "../realEstateListElement/RealEstateListElement";
+import RealEstateListElement from "./RealEstateListElement";
 import realEstateApi from "../../../utils/realEstateApi";
+
+import styles from "./RealEstateList.module.css";
 
 
 function RealEstateList() {
