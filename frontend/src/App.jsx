@@ -5,13 +5,11 @@ import "slick-carousel/slick/slick-theme.css";
 
 import AppNav from "./components/app/appnav/AppNav";
 import AppLayout from "./components/app/appLayout/AppLayout";
-import Searcher from "./components/searchers/realestates/RealEstateSearcher";
+import RealEstateSearcher from "./pages/realEstates/realEstateSearcher/RealEstateSearcher";
 import RealEstateDetails from "./pages/realEstates/realEstateDetails/RealEstateDetails";
 import RealEstateList from "./pages/realEstates/realEstateList/RealEstateList";
 
 import style from "./App.module.css";
-
-
 
 
 function App() {
@@ -19,7 +17,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AppLayout />}>
-          <Route path="/" element={<Searcher />}></Route>
+          <Route path="/" element={<RealEstateSearcher />}></Route>
           <Route path="/realestates" element={<RealEstateList />}></Route>
           <Route path="/realestates/:id" element={<RealEstateDetails />}></Route>
         </Route>
