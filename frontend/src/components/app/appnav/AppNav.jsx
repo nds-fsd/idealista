@@ -4,6 +4,7 @@ import styles from "./AppNav.module.css";
 import imageLogo from "../../../assets/logo.svg";
 import imageLogin from "../../../assets/usuario.svg";
 
+
 function AppNav() {
 
     return (
@@ -25,8 +26,7 @@ function AppNav() {
                 <div className={styles.logincontent}>
                     <img className={styles.user} src={imageLogin} alt="Iniciar sesión"/>
                     <span>Iniciar sesión</span>
-                </div>
-                
+                </div>                
             </div>            
         </header>
     )
