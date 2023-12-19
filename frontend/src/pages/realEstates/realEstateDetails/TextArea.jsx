@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./RealEstateDetails.module.css"
 
+
 const TextArea = ({ contactar }) => {
     const [input, setInput] = useState("");
 
@@ -17,7 +18,6 @@ const TextArea = ({ contactar }) => {
                 setInput("");
             }}>Contactar con anunciante</button>
         </div>
-
     )
 }
 

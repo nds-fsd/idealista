@@ -2,15 +2,14 @@ import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
+import realEstateApi from "../../../utils/apis/realEstateApi";
+import TextArea from "./TextArea";
+import Carousel from "./RealEstateDetailsCarousel";
+
+import styles from "./RealEstateDetails.module.css"
 import compartir from "../../../assets/compartir.png"
 import likeImag from "../../../assets/me-gusta.png"
 import demoMap from "../../../assets/map.png"
-
-import styles from "./RealEstateDetails.module.css"
-import realEstateApi from "../../../utils/realEstateApi";
-
-import TextArea from "./TextArea";
-import Carousel from "./RealEstateDetailsCarousel";
 
 
 const RealEstateDetails = () => {
@@ -30,7 +29,6 @@ const RealEstateDetails = () => {
             <div className={styles.carousel_container}>
                 <Carousel height={500} width={1082} />
             </div>
-
             <div className={`${styles.flex} ${styles.gap} ${styles.justify_center}`}>
                 <div>
                     <div className={styles.buttons}>
@@ -50,13 +48,10 @@ const RealEstateDetails = () => {
                         <small>{data?.description}</small>
                     </div>
                 </div>
-
-
                 <div>
                     <TextArea contactar={sendMessageToAdvisor}> </TextArea>
                     <img className={styles.map_image} src={demoMap} />
                 </div>
-
             </div>
             <div className={`${styles.flex} ${styles.flex_column} ${styles.details_container}`}>
                 <h2>Características básicas</h2>
@@ -75,5 +70,3 @@ const RealEstateDetails = () => {
 }
 
 export default RealEstateDetails;
-
-
