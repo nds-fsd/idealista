@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-import AppNav from "../../components/app/appnav/AppNav";
-import AppLayout from "../../components/app/appLayout/AppLayout";
-import RealEstateSearcher from "../realEstates/realEstateSearcher/RealEstateSearcher";
-import RealEstateDetails from "../realEstates/realEstateDetails/RealEstateDetails";
-import RealEstateList from "../realEstates/realEstateList/RealEstateList";
+import AppNav from "./components/app/appnav/AppNav";
+import AppLayout from "./components/app/appLayout/AppLayout";
+import RealEstateSearcher from "./pages/realEstates/realEstateSearcher/RealEstateSearcher";
+import RealEstateDetails from "./pages/realEstates/realEstateDetails/RealEstateDetails";
+import RealEstateList from "./pages/realEstates/realEstateList/RealEstateList";
 
 import style from "./App.module.css";
 import "slick-carousel/slick/slick.css";
