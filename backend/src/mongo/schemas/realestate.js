@@ -21,7 +21,9 @@ const realEstateSchema = new Schema({
     usefulMeter: {type: Number, required: true},
     properties: {type: String, required: false},
     price: {type: Number, required: true},
-    realtor: {type: String, required: true}
+    realtor: {type: String, required: true},
+    realposition: {type: Object, require: false},
+    publicposition: {type: Object, require: false}
 });
 
 const RealEstate = model('realestate', realEstateSchema);
