@@ -7,7 +7,7 @@ function GoogleMapsReactWrapper(props) {
 
     const apiKey = process.env.GOOGLE_APIKEY;
     // const apiKey = "MY_APY_KEY";
-
+    
     const render = (status) => (<div>{status}</div>);
 
     if (!apiKey) {
