@@ -3,7 +3,6 @@ import { useEffect, useRef } from "react";
 
 function GoogleMaps() {
     const ref = useRef(null);
-    console.log("GoogleMaps:", ref);
 
     useEffect(() => {
         if (ref.current) {
