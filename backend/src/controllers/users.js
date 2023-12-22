@@ -62,19 +62,51 @@ const remove = async (req, res) => {
 };
 
 const create = async (req, res) => {
-    try {
-        const response = await User.create(req.body);
-        if (response) {
-            res.status(201).json(response);
+    const data = req.body;
+    const { email, password, name, location } = data;
 
-        } else {
-            res.status(400).send();
-        }
-    } catch (error) {
-        console.log("Error in users.js create():", error.message);
-        res.status(500).send(error.message);
+    if (!name) {
+        return res.status(400).json({ error: { name: "Your name is required" } });
     }
-}
+
+    if (!email) {
+        return res.status(400).json({ error: { email: "Email field is required" } });
+    }
+
+    const emailFormat = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+
+    if (!emailFormat.test(email)) {
+        return res.status(400).json({ email: "This is not a valid email address" })
+    }
+
+    const user = await User.findOne({ email: email });
+
+    if (user)
+        return res.status(400).json({ error: { email: "Email already registered" } });
+
+    const newUser = new User({
+        email: email,
+        password: password,
+        name: name,
+        location: location
+    })
+
+    try {
+        const createdUser = await newUser.save()
+
+        return res.status(201).json({
+            message: "User Created Successfully",
+            user: {
+                email: createdUser.email,
+                name: createdUser.name,
+                location: createdUser.location,
+            }
+        })
+    } catch {
+        return res.status(500).json({ error: "Error creating new user" })
+    }
+};
+
 
 module.exports = {
     getAll,
