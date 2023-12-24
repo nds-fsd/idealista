@@ -15,7 +15,7 @@ function AppNav() {
                     <div>Realista</div>
                 </Link>
                 <div className={styles.navcontent}>
-                    <div><button className={styles.buttonad}>Publica gratis tu anuncio</button></div>
+                    <div><Link to="/create-ad" className={styles.buttonad}>Publica gratis tu anuncio</Link></div>
                     <nav className={styles.nav}>
                         <ul className={styles.navlu}>
                             <li className={styles.li}>Mis favoritos</li>

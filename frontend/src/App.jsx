@@ -18,13 +18,14 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AppLayout />}>
-          <Route path="/" element={<RealEstateSearcher />}></Route>
-          <Route path="/realestates" element={<RealEstateList />}></Route>
-          <Route path="/realestates/:id" element={<RealEstateDetails />}></Route>
+          <Route path="/" element={<RealEstateSearcher />} />
+          <Route path="/realestates" element={<RealEstateList />} />
+          <Route path="/realestates/:id" element={<RealEstateDetails />} />
+          <Route path="/create-ad" element={<CreateAd />} />
         </Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
 export default App;
