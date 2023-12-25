@@ -40,7 +40,7 @@ const RealEstateForm = () => {
       {errors.realEstateType && <p>This field is required</p>}
 
       <select {...register("operation", { required: true })}>
-        <option value="Vender">Vender</option>
+        <option value="Comprar">Vender</option>
         <option value="Alquiler">Alquiler</option>
         <option value="Compartir">Compartir</option>
       </select>
