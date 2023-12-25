@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 const RealEstateForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -14,20 +15,36 @@ const RealEstateForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register("shortDescription", { required: true })} placeholder="Short Description" />
+      <input {...register("shortDescription", { required: true })} placeholder="Descripcion corta" />
       {errors.shortDescription && <p>This field is required</p>}
 
-      <input {...register("squareMeters", { required: true })} placeholder="Square Meters" />
+      <input {...register("squareMeters", { required: true })} placeholder="Metros cuadrados" />
       {errors.squareMeters && <p>This field is required</p>}
 
-      <input {...register("price", { required: true })} placeholder="Price" />
+      <input {...register("price", { required: true })} placeholder="Precio" />
       {errors.price && <p>This field is required</p>}
 
-      <input {...register("location", { required: true })} placeholder="Location" />
+      <input {...register("location", { required: true })} placeholder="Población" />
       {errors.location && <p>This field is required</p>}
 
-      <input {...register("realEstateType", { required: true })} placeholder="Real Estate Type" />
+      <select {...register("realEstateType", { required: true })}>
+        <option value="Vivienda">Viviendas</option>
+        <option value="Promocion">Promoción</option>
+        <option value="Oficinas">Oficinas</option>
+        <option value="Local-Nave">Local o nave</option>
+        <option value="Garaje">Plaza de garaje</option>
+        <option value="Terreno">Terreno</option>
+        <option value="Trastero">Trastero</option>
+        <option value="Edificio">Edificio</option>
+      </select>
       {errors.realEstateType && <p>This field is required</p>}
+
+      <select {...register("operation", { required: true })}>
+        <option value="Vender">Vender</option>
+        <option value="Alquiler">Alquiler</option>
+        <option value="Compartir">Compartir</option>
+      </select>
+      {errors.operation && <p>This field is required</p>}
 
       <input type="submit" />
     </form>
