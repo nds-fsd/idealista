@@ -9,8 +9,8 @@ function GoogleMaps(props) {
         if (ref.current && !map) {
             setMap(
                   new window.google.maps.Map(ref.current, {
-                    center: { lat: 48.8566, lng: 2.3522 },
-                    zoom: 13,}
+                    center: props.center,
+                    zoom: props.zoom}
                 ));
         }
     }, [ref, map]);
