@@ -3,10 +3,8 @@ import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
 
 function GoogleMapsReactWrapper(props) {
-    // const api = process.env.GOOGLE_APIKEY;
+    const apiKey = process.env.GOOGLE_APIKEY;
     
-    const apiKey = "AIzaSyCsmJe63tTXsQLbl48DP6anAFtZtfNRUo8";
-
     const render = (status) => (<div>{status}</div>);
 
     if (!apiKey) {
