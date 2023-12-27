@@ -66,23 +66,39 @@ const create = async (req, res) => {
     const { email, password, name, location } = data;
 
     if (!name) {
-        return res.status(400).json({ error: { name: "Your name is required" } });
+        return res.status(400).json({ error: { name: "Tu nombre es requerido" } });
+    }
+
+    const validName = /^.{3,}$/
+
+    if (!validName.test(name)) {
+        return res.status(400).json({ name: "El nombre debe tener al menos 3 caracteres" })
     }
 
     if (!email) {
-        return res.status(400).json({ error: { email: "Email field is required" } });
+        return res.status(400).json({ error: { email: "Tu email es requerido" } });
     }
 
     const emailFormat = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
     if (!emailFormat.test(email)) {
-        return res.status(400).json({ email: "This is not a valid email address" })
+        return res.status(400).json({ email: "Este no es un email válido" })
     }
+
+    if (!password) {
+        return res.status(400).json({ error: { password: "Es requerida una contraseña" } });
+    }
+    const validatePassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/
+
+    if (!validatePassword.test(password)) {
+        return res.status(400).json({ password: 'La contraseña debe tener al menos: 8 caracteres, una letra mayúscula, una letra minúscula y un número' })
+    }
+
 
     const user = await User.findOne({ email: email });
 
     if (user)
-        return res.status(400).json({ error: { email: "Email already registered" } });
+        return res.status(400).json({ error: { email: "Este email ya está registrado" } });
 
     const newUser = new User({
         email: email,
@@ -95,7 +111,7 @@ const create = async (req, res) => {
         const createdUser = await newUser.save()
 
         return res.status(201).json({
-            message: "User Created Successfully",
+            message: "Tu usuario ha sido creado con éxito 🚀",
             user: {
                 email: createdUser.email,
                 name: createdUser.name,
@@ -103,9 +119,11 @@ const create = async (req, res) => {
             }
         })
     } catch {
-        return res.status(500).json({ error: "Error creating new user" })
+        return res.status(500).json({ error: "Ha habido un error creando tu usuario" })
     }
-};
+
+}
+
 
 
 module.exports = {
