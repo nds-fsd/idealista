@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useQuery } from "react-query";
 
 import RealEstateListElement from "./RealEstateListElement";
@@ -16,14 +15,28 @@ function RealEstateList() {
     const realEstateType = queryParams.get("realestatetype");
 
     const { data, isLoading } = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType }))
-
     if (isLoading) return <div> Loading... </div>
-
     if (!data) return <div> Something went wrong </div>
+
+    const urlQueryString = () => {
+        return "/realestates/map?operation=" + operation + "&location=" + localization + "&realestatetype=" + realEstateType;
+    }
 
     return (
         <div className={styles.list}>
-            <h2>{operation + " > " + localization + " > " + realEstateType}</h2>
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+                <div>
+                    <h2>{operation + " > " + localization + " > " + realEstateType}</h2>
+                </div>
+                <div>
+                    <ul>
+                        <li className={styles.buttonblue}>Listado</li>
+                        <li className={styles.buttongray}>
+                            <Link className={styles.link} to={urlQueryString()} >Mapa</Link>
+                        </li>
+                    </ul>
+                </div>
+            </div>            
             {data.map(e => <RealEstateListElement key={e._id} realEstate={e}></RealEstateListElement>)}
         </div>
     )

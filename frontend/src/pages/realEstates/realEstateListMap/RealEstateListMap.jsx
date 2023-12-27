@@ -1,12 +1,14 @@
 import React from "react";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useQuery } from "react-query";
 
 import GoogleMapsReactWrapper from "../../../components/googleMaps/reactWrapper/GoogleMapsReactWrapper";
 import GoogleMaps from "../../../components/googleMaps/map/GoogleMaps";
 import GoogleMapsMarker from "../../../components/googleMaps/marker/GoogleMapsMarker";
 import realEstateApi from "../../../utils/apis/realEstateApi";
+
+import styles from "./RealEstateListMap.module.css";
 
 function RealEstateListMap(){
     const location = useLocation();
@@ -16,16 +18,30 @@ function RealEstateListMap(){
     const realEstateType = queryParams.get("realestatetype");
 
     const { data, isLoading } = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType }))
-
     if (isLoading) return <div> Loading... </div>
-
     if (!data) return <div> Something went wrong </div>
 
+    const urlQueryString = () => {
+        return "/realestates?operation=" + operation + "&location=" + localization + "&realestatetype=" + realEstateType;
+    }
+
     return (
-        <div>
-            <h2>{operation + " > " + localization + " > " + realEstateType}</h2>
+        <div style={{ margin: "auto", width: "1140px", height: "100vh"}}>
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+                <div>
+                    <h2>{operation + " > " + localization + " > " + realEstateType}</h2>
+                </div>
+                <div>
+                    <ul>
+                        <li className={styles.buttongray}>
+                            <Link style={{textDecoration: "none"}} to={urlQueryString()} >Listado</Link>
+                        </li>
+                        <li className={styles.buttonblue}>Mapa</li>
+                    </ul>
+                </div>
+            </div>
             <GoogleMapsReactWrapper>
-                <GoogleMaps center={data[0].publicposition} zoom={11} >
+                <GoogleMaps center={data[0].publicposition} zoom={13} >
                     {data.map(e => <GoogleMapsMarker key={e._id} position={e.publicposition} ></GoogleMapsMarker> )}
                 </GoogleMaps>
             </GoogleMapsReactWrapper>

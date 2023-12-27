@@ -17,11 +17,11 @@ function GoogleMaps(props) {
 
     return (
         <>
-            <div ref={ref} style={{ margin: "auto", width: "1140px", height: "600px" }} />
+            <div ref={ref} style={{ margin: "auto", width: "1140px", height: "92.5%" }} />
             {                
                 props.children.map((child) => {
                     return React.cloneElement(child, {map});
-            }
+                }
             )}
         </>
     )
