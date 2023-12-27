@@ -5,6 +5,8 @@ import RealEstateListElement from "./RealEstateListElement";
 import realEstateApi from "../../../utils/apis/realEstateApi";
 
 import styles from "./RealEstateList.module.css";
+import imageList from "../../../assets/lista.svg";
+import imageMap from "../../../assets/marcador.svg";
 
 
 function RealEstateList() {
@@ -26,12 +28,16 @@ function RealEstateList() {
         <div className={styles.list}>
             <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                 <div>
-                    <h2>{operation + " > " + localization + " > " + realEstateType}</h2>
+                    <h2>{operation + " > " + realEstateType + " > " + localization}</h2>
                 </div>
                 <div>
                     <ul>
-                        <li className={styles.buttonblue}>Listado</li>
+                        <li className={styles.buttonblue}>
+                            <img style={{width: "16px", height: "16px", paddingRight: "10px"}} src={imageList} alt="Listado inmuebles"/>
+                            <span>Listado</span>
+                        </li>
                         <li className={styles.buttongray}>
+                            <img style={{width: "16px", height: "16px", paddingRight: "10px"}} src={imageMap} alt="Mapa inmuebles"/>
                             <Link className={styles.link} to={urlQueryString()} >Mapa</Link>
                         </li>
                     </ul>

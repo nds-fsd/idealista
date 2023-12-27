@@ -9,6 +9,9 @@ import GoogleMapsMarker from "../../../components/googleMaps/marker/GoogleMapsMa
 import realEstateApi from "../../../utils/apis/realEstateApi";
 
 import styles from "./RealEstateListMap.module.css";
+import imageList from "../../../assets/lista.svg";
+import imageMap from "../../../assets/marcador.svg";
+
 
 function RealEstateListMap(){
     const location = useLocation();
@@ -29,14 +32,18 @@ function RealEstateListMap(){
         <div style={{ margin: "auto", width: "1140px", height: "100vh"}}>
             <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                 <div>
-                    <h2>{operation + " > " + localization + " > " + realEstateType}</h2>
+                    <h2>{operation + " > " + realEstateType + " > " + localization}</h2>
                 </div>
                 <div>
                     <ul>
                         <li className={styles.buttongray}>
+                            <img style={{width: "16px", height: "16px", paddingRight: "10px"}} src={imageList} alt="Listado inmuebles"/>
                             <Link style={{textDecoration: "none"}} to={urlQueryString()} >Listado</Link>
                         </li>
-                        <li className={styles.buttonblue}>Mapa</li>
+                        <li className={styles.buttonblue}>
+                            <img style={{width: "16px", height: "16px", paddingRight: "10px"}} src={imageMap} alt="Mapa inmuebles"/>
+                            <span>Mapa</span>
+                        </li>
                     </ul>
                 </div>
             </div>
