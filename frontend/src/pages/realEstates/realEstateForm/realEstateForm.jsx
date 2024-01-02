@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
+
 const RealEstateForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -15,17 +16,9 @@ const RealEstateForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register("shortDescription", { required: true })} placeholder="Descripcion corta" />
+
+      <input {...register("shortDescription", { required: true })} placeholder="Descripción corta" />
       {errors.shortDescription && <p>This field is required</p>}
-
-      <input {...register("squareMeters", { required: true })} placeholder="Metros cuadrados" />
-      {errors.squareMeters && <p>This field is required</p>}
-
-      <input {...register("price", { required: true })} placeholder="Precio" />
-      {errors.price && <p>This field is required</p>}
-
-      <input {...register("location", { required: true })} placeholder="Población" />
-      {errors.location && <p>This field is required</p>}
 
       <select {...register("realEstateType", { required: true })}>
         <option value="Vivienda">Viviendas</option>
@@ -39,12 +32,26 @@ const RealEstateForm = () => {
       </select>
       {errors.realEstateType && <p>This field is required</p>}
 
+      <input {...register("realEstateSubtype", { required: true })} placeholder="Subtipo de inmueble" />
+      {errors.realEstateSubtype && <p>This field is required</p>}
+
+      <input type="number" {...register("metersBuilt", { required: true })} placeholder="Metros cuadrados (m²)" />
+      {errors.squareMeters && <p>This field is required</p>}
+
+      <input type="number" {...register("price", { required: true })} placeholder="Precio" />
+      {errors.price && <p>This field is required</p>}
+
+      <input {...register("location", { required: true })} placeholder="Población" />
+      {errors.location && <p>This field is required</p>}
+
       <select {...register("operation", { required: true })}>
-        <option value="Comprar">Vender</option>
+        <option value="Vender">Vender</option>
         <option value="Alquiler">Alquiler</option>
         <option value="Compartir">Compartir</option>
       </select>
       {errors.operation && <p>This field is required</p>}
+
+      <textarea {...register("description", { required: false })} placeholder="Descripción" />
 
       <input type="submit" />
     </form>
