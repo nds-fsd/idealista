@@ -19,4 +19,16 @@ const ListRealState = (query) => {
         .catch(e => console.log(e));
 }
 
-export default { GetRealEstate, ListRealState }
+const GetRealEstateTypes = () => {
+    try {
+        return api.get(`masterdata/realestate/types`)
+            .then(response => response.data)
+            .catch((error) => console.log(error.message));
+    } catch(error) {
+        console.log("Error in realEstateApi.js:", error.message);
+    }
+}
+
+
+
+export default { GetRealEstate, ListRealState, GetRealEstateTypes }

@@ -6,6 +6,8 @@ import AppLayout from "./components/app/appLayout/AppLayout";
 import RealEstateSearcher from "./pages/realEstates/realEstateSearcher/RealEstateSearcher";
 import RealEstateDetails from "./pages/realEstates/realEstateDetails/RealEstateDetails";
 import RealEstateList from "./pages/realEstates/realEstateList/RealEstateList";
+import { ReactQueryDevtools } from 'react-query/devtools'
+
 
 import style from "./App.module.css";
 import "slick-carousel/slick/slick.css";
