@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useQuery, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import realEstateApi from "../../../utils/apis/realEstateApi";
 import RealEstateListElement from "./RealEstateListElement";
@@ -23,16 +23,28 @@ function RealEstateList() {
         setRealEstateTypeValue(realEstateType);
     }, [])
 
-    const { data, isLoading } = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType }))
-    if (isLoading) return <div> Loading... </div>
-    if (!data) return <div> Something went wrong </div>
+    const query = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType }))
+    if (query.isLoading || query.isFetching) return <div> Loading... </div>
+    if (!query.data) return <div> Something went wrong </div>
 
     const getQueryString = () => {
         return `?operation=${operation}&location=${localization}&realestatetype=${realEstateTypeValue}`;
     }
 
     const handlerSearchOnClick = () => {
-        queryClient.invalidateQueries("realEstateList");
+        // al hacer click en el boton buscar queryClient.invalidateQueries no se actualiza la lista, se recarga la misma lista
+        //queryClient.invalidateQueries("realEstateList");
+
+        // al pulsar 1a vez el boton buscar no se actualiza la lista, al pulsar el 2a vez el boton se actualiza la lista con el nuevo filtro
+        // query.clear;
+        // query.refetch("realEstateList");
+
+        // al pulsar 1a vez el boton buscar no se actualiza la lista, al pulsar el 2a vez el boton se actualiza la lista con el nuevo filtro
+        // query.refetch("realEstateList");
+        
+        // Funcionalmente es correcto, pero si no cambia el filtro y pulso buscar hace una llamada innecesaria al backend
+        queryClient.clear();
+        queryClient.refetchQueries("realEstateList");
     }
 
     return (
@@ -40,14 +52,14 @@ function RealEstateList() {
             <h2>{operation + " > " + localization + " > " + realEstateType}</h2>
             <div style={{display: "flex", flexDirection: "row"}}>
                 <div style={{width: "210px"}}>                
-                    <div>Tipo vivienda:</div>
+                    <div>Tipo inmueble:</div>
                     <RealEstateType realEstateTypeValue={realEstateTypeValue} setRealEstateTypeValue={setRealEstateTypeValue}></RealEstateType>
                     <div>
                         <Link to={getQueryString()}><button className={styles.search} onClick={handlerSearchOnClick}>Buscar</button></Link>
                     </div>
                 </div>
                 <div className={styles.list}>
-                    {data && data.map(e => <RealEstateListElement key={e._id} realEstate={e}></RealEstateListElement>)}
+                    {query.data.map(e => <RealEstateListElement key={e._id} realEstate={e}></RealEstateListElement>)}
                 </div>                
             </div>
         </div>

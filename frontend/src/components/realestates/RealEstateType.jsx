@@ -17,7 +17,7 @@ function RealEstateType(props) {
     
     const handlerRealEstateOnChange = (event) => {
         setRealEstateType(event.target.value);
-        setRealEstateTypeValue(realEstateType);
+        setRealEstateTypeValue(event.target.value);
     }
 
     const { data, isLoading } = useQuery("realestateType", () => realEstateApi.GetRealEstateTypes());
@@ -26,7 +26,6 @@ function RealEstateType(props) {
 
     return (
         <>
-            {console.log("return.realestatetype:", realEstateType)}
             <select className={styles.realestatetype} value={realEstateType} onChange={handlerRealEstateOnChange}>
                 {data && data.map((element) => {
                     return <option key={element._id} value={element.value}>{element.description}</option>
