@@ -1,5 +1,5 @@
 
-const validateLoginInput = (req, res, next) => {
+const authLogin = (req, res, next) => {
     const { email, password } = req.body;
 
     if (email === "") {
@@ -13,4 +13,4 @@ const validateLoginInput = (req, res, next) => {
     next();
 };
 
-module.exports = validateLoginInput;
+module.exports = authLogin;
