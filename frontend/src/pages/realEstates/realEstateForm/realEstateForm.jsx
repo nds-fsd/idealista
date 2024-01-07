@@ -181,7 +181,7 @@ const RealEstateForm = () => {
           <label htmlFor="realtor" className={styles.label}>Agente inmobiliario</label>
           <input {...register("realtor", { required: false })} className={styles.input} />
 
-          <input type="submit" className={styles.button} />
+            <input type="submit" value="Enviar" className={styles.button} />
         </form>
       )}
     </div>
