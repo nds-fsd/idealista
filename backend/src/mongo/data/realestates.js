@@ -9,3 +9,9 @@ exports.realestateTypes = [
     { _id: "446dd29bc7b466eb17e1986b", description: "Trastero", value: "Trastero" }, 
     { _id: "8beb0a12213744b1959148a3", description: "Edificio", value: "Edificio" }
  ];
+
+ exports.realestateOperationsForBuyers = [
+    { _id: "a689b8732e441ae83ee33b28", description: "Comprar", value: "Comprar" },
+    { _id: "2e49db40de742cd859497e28", description: "Alquilar", value: "Alquilar" },
+    { _id: "606dddab2f95451cb922bb8a", description: "Compartir", value: "Compartir" }
+ ];

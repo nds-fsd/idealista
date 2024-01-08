@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import realEstateApi from "../../../utils/apis/realEstateApi";
 import RealEstateListElement from "./RealEstateListElement";
+import RealEstateOperation from "../../../components/realestates/RealEstateOperations";
 import RealEstateType from "../../../components/realestates/RealEstateType";
 
 
@@ -60,6 +61,10 @@ function RealEstateList() {
             <h2>{operation + " > " + localization + " > " + realEstateType}</h2>
             <div style={{display: "flex", flexDirection: "row"}}>
                 <div style={{width: "210px"}}>                
+                    <div>
+                        <span>Operación:</span>
+                        <RealEstateOperation realEstateOperationValue={realEstateOperationValue} setRealEstateOperationValue={setRealEstateOperationValue}></RealEstateOperation>
+                    </div>
                     <div>Tipo inmueble:</div>
                     <RealEstateType realEstateTypeValue={realEstateTypeValue} setRealEstateTypeValue={setRealEstateTypeValue}></RealEstateType>
                     <div>
