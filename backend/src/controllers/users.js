@@ -62,62 +62,31 @@ const remove = async (req, res) => {
 };
 
 const create = async (req, res) => {
-    const data = req.body;
-    const { email, password, name, location } = data;
 
-    if (!name) {
-        return res.status(400).json({ error: { name: "Tu nombre es requerido" } });
-    }
-
-    const validName = /^.{3,}$/
-
-    if (!validName.test(name)) {
-        return res.status(400).json({ name: "El nombre debe tener al menos 3 caracteres" })
-    }
-
-    if (!email) {
-        return res.status(400).json({ error: { email: "Tu email es requerido" } });
-    }
-
-    const emailFormat = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-
-    if (!emailFormat.test(email)) {
-        return res.status(400).json({ email: "Este no es un email válido" })
-    }
-
-    if (!password) {
-        return res.status(400).json({ error: { password: "Es requerida una contraseña" } });
-    }
-    const validatePassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/
-
-    if (!validatePassword.test(password)) {
-        return res.status(400).json({ password: 'La contraseña debe tener al menos: 8 caracteres, una letra mayúscula, una letra minúscula y un número' })
-    }
-
-
-    const user = await User.findOne({ email: email });
-
-    if (user)
-        return res.status(400).json({ error: { email: "Este email ya está registrado" } });
-
-    const newUser = new User({
-        email: email,
-        password: password,
-        name: name,
-        location: location
-    })
 
     try {
-        const createdUser = await newUser.save()
+        const data = req.body;
+        const { email, password, name, location } = data;
 
-        return res.status(201).json({
-            message: "Tu usuario ha sido creado con éxito 🚀",
-            user: {
-                email: createdUser.email,
-                name: createdUser.name,
-                location: createdUser.location,
-            }
+
+
+        const newUser = new User({
+            email: email,
+            password: password,
+            name: name,
+            location: location
         })
+        const createdUser = await newUser.save()
+        if (createdUser) {
+            return res.status(201).json({
+                message: "Tu usuario ha sido creado con éxito 🚀",
+                user: createdUser
+            }
+            )
+        } else {
+            res.status(400).send();
+        }
+
     } catch {
         return res.status(500).json({ error: "Ha habido un error creando tu usuario" })
     }
