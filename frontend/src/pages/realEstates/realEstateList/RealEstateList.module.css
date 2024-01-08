@@ -27,6 +27,15 @@
     text-decoration: none;
 }
 
+.location {
+    border: 2px solid #CFE2FF;
+    border-radius: 8px;
+    color: #000000;
+    font-size: 16px;
+    height: 30px;
+    width: 115px;
+}
+
 .search {
     background-color: #CFE2FF;
     border: 2px solid #CFE2FF;

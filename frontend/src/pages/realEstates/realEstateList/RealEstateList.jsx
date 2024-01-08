@@ -17,10 +17,14 @@ function RealEstateList() {
     const localization = queryParams.get("location");
     let realEstateType = queryParams.get("realestatetype");
     const queryClient = useQueryClient();
+    const [realEstateOperationValue, setRealEstateOperationValue] = useState("");
     const [realEstateTypeValue, setRealEstateTypeValue] = useState("");
+    const [realEstateLocationValue, setRealEstateLocationValue] = useState("");
 
     useEffect(() => {
+        setRealEstateOperationValue(operation);
         setRealEstateTypeValue(realEstateType);
+        setRealEstateLocationValue(localization);
     }, [])
 
     const query = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType }))
@@ -28,7 +32,11 @@ function RealEstateList() {
     if (!query.data) return <div> Something went wrong </div>
 
     const getQueryString = () => {
-        return `?operation=${operation}&location=${localization}&realestatetype=${realEstateTypeValue}`;
+        return `?operation=${realEstateOperationValue}&location=${realEstateLocationValue}&realestatetype=${realEstateTypeValue}`;
+    }
+
+    const handlerLocationOnChange = (event) => {
+        setRealEstateLocationValue(event.target.value);
     }
 
     const handlerSearchOnClick = () => {
@@ -54,6 +62,10 @@ function RealEstateList() {
                 <div style={{width: "210px"}}>                
                     <div>Tipo inmueble:</div>
                     <RealEstateType realEstateTypeValue={realEstateTypeValue} setRealEstateTypeValue={setRealEstateTypeValue}></RealEstateType>
+                    <div>
+                        <span>Población:</span>
+                        <input className={styles.location} type="text" value={realEstateLocationValue} onChange={handlerLocationOnChange}></input>
+                    </div>
                     <div>
                         <Link to={getQueryString()}><button className={styles.search} onClick={handlerSearchOnClick}>Buscar</button></Link>
                     </div>
