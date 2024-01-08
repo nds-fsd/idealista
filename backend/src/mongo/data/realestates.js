@@ -15,3 +15,9 @@ exports.realestateTypes = [
     { _id: "2e49db40de742cd859497e28", description: "Alquilar", value: "Alquilar" },
     { _id: "606dddab2f95451cb922bb8a", description: "Compartir", value: "Compartir" }
  ];
+
+ exports.realestateStates = [
+   { _id: "1368c187c6b84d88bec464c6", description: "Obra nueva", value: "Obra nueva" },
+   { _id: "14a0202aebd4b708e4704983", description: "Buen estado", value: "Buen estado" },
+   { _id: "589886e7814bb39b73b159c1", description: "A reformar", value: "A reformar" }
+];
