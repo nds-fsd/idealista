@@ -10,10 +10,14 @@ import { HttpStatusCode } from "axios";
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate()
+
     const onSubmit = async (data) => {
         if (isPrivacyChecked) {
             const response = await RegisterUser(data);
-            if (response.status == HttpStatusCode.Created) {
+            if (response.status == HttpStatusCode.Forbidden) {
+                alert("Este email ya esta registrado!!!")
+            }
+            else if (response.status == HttpStatusCode.Created) {
                 navigate("/")
             }
             // alert("Tu usuario ha sido creado con éxito 🚀")
@@ -21,7 +25,6 @@ const Register = () => {
         else {
             alert("Para registrarte debes aceptar las políticas de privacidad.");
         }
-
     };
 
     const [isInfoChecked, setInfoChecked] = useState(false);
@@ -73,8 +76,16 @@ const Register = () => {
                             Contraseña
                         </label>
                         <br />
-                        <input className={styles.input_text} {...register('password',
-                            { required: "La contraseña es requerida", pattern: { value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/, message: "La contraseña debe tener al menos: 8 caracteres, una letra mayúscula, una letra minúscula y un número" } })}
+                        <input className={styles.input_text}
+                            {...register('password',
+                                {
+                                    required: "La contraseña es requerida",
+                                    pattern: {
+                                        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+                                        message: "La contraseña debe tener al menos: 8 caracteres, una letra mayúscula, una letra minúscula y un número"
+                                    }
+                                }
+                            )}
                             type="password" />
 
                         {errors.password && <div className={styles.error_message}> {errors.password.message}</div>}

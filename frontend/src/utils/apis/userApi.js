@@ -9,9 +9,10 @@ const RegisterUser = async ({ email, password, name, location }) => {
             location: location
         });
         console.log("Registration successful", response.data);
-        return response;
+        return response.response;
     } catch (error) {
         console.error("Registration error", error);
+        return error.response;
     }
 };
 

@@ -1,3 +1,5 @@
+const User = require("../mongo/schemas/users");
+
 const validateRegister = async (req, res, next) => {
     const { email, password, name } = req.body;
 
@@ -35,7 +37,7 @@ const validateRegister = async (req, res, next) => {
     const user = await User.findOne({ email: email });
 
     if (user)
-        return res.status(400).json({ error: { email: "Este email ya está registrado" } });
+        return res.status(403).json({ error: { email: "Este email ya está registrado" } });
 
     next();
 };
