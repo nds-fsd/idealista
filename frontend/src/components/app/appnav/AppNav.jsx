@@ -15,7 +15,10 @@ function AppNav() {
                     <div>Realista</div>
                 </Link>
                 <div className={styles.navcontent}>
-                    <div><button className={styles.buttonad} onClick={() => window.location.href = "http://localhost:3000/realestates/create"}>Publica gratis tu anuncio</button></div>
+                        <Link to="/realestates/create">
+                            <button className={styles.buttonad}>Publica gratis tu anuncio</button>
+                        </Link>
+                    </div>
                     <nav className={styles.nav}>
                         <ul className={styles.navlu}>
                             <li className={styles.li}>Mis favoritos</li>

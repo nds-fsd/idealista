@@ -6,7 +6,6 @@ import RealEstateSearcher from "./pages/realEstates/realEstateSearcher/RealEstat
 import RealEstateDetails from "./pages/realEstates/realEstateDetails/RealEstateDetails";
 import RealEstateList from "./pages/realEstates/realEstateList/RealEstateList";
 
-import style from "./App.module.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import RealEstateForm from "./pages/realEstates/realEstateForm/realEstateForm";

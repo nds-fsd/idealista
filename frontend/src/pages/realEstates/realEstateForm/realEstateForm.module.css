@@ -76,12 +76,12 @@ textarea {
 }
 
 /* Responsive Styles */
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
     .container input,
     .container select {
         width: 100%;
     }
-}
+} */
 
 .checkbox {
     scale: 0.5;

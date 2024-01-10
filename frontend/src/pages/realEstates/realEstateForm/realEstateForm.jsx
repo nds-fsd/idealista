@@ -18,7 +18,7 @@ const RealEstateForm = () => {
         <div className={styles.container}>
           <p className={styles.successMessage}>¡Tu anuncio ha sido publicado exitosamente!</p>
           <a href="/" className={styles.link}>Volver a la página de inicio</a>
-          <a href="/create-ad" className={styles.link}>Crear otro anuncio</a>
+          <a href="/realestates/create" className={styles.link}>Crear otro anuncio</a>
         </div>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
