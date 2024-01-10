@@ -22,6 +22,7 @@ const Register = () => {
                 alert("Este email ya esta registrado!!!")
             }
             else if (response.status == HttpStatusCode.Created) {
+                alert("El registro se ha completado satisfactoriamente")
                 navigate("/")
             }
         }

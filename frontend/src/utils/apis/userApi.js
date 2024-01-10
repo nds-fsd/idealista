@@ -11,7 +11,7 @@ const RegisterUser = async ({ email, password, name, location }) => {
         return response;
     } catch (error) {
         console.error("Registration error", error.message);
-        return error.message;
+        return error.response;
     }
 };
 
