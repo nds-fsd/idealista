@@ -3,9 +3,12 @@ import { useForm } from "react-hook-form"
 import { useState } from "react"
 import { RegisterUser } from "../../utils/apis/userApi"
 import { useNavigate } from "react-router-dom";
+import { HttpStatusCode } from "axios";
+
 import styles from "../register/Register.module.css"
 import hand from "../../assets/hand.png"
-import { HttpStatusCode } from "axios";
+
+
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -14,13 +17,13 @@ const Register = () => {
     const onSubmit = async (data) => {
         if (isPrivacyChecked) {
             const response = await RegisterUser(data);
+            
             if (response.status == HttpStatusCode.Forbidden) {
                 alert("Este email ya esta registrado!!!")
             }
             else if (response.status == HttpStatusCode.Created) {
                 navigate("/")
             }
-            // alert("Tu usuario ha sido creado con éxito 🚀")
         }
         else {
             alert("Para registrarte debes aceptar las políticas de privacidad.");
@@ -35,7 +38,6 @@ const Register = () => {
             <div className={styles.image_container}>
                 <img style={{ overflow: "auto" }} src={hand} />
             </div>
-
 
             <div className={styles.form_container}>
                 <form style={{ width: "300px" }} onSubmit={handleSubmit(onSubmit)}>
@@ -116,9 +118,5 @@ const Register = () => {
         </div>
     );
 }
-
-
-
-
 
 export default Register;
