@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require("../mongo/schemas/users");
 
+
 const getAll = async (req, res) => {
     try {
         const queryStrings = req.query || {};
@@ -62,13 +63,9 @@ const remove = async (req, res) => {
 };
 
 const create = async (req, res) => {
-
-
     try {
         const data = req.body;
         const { email, password, name, location } = data;
-
-
 
         const newUser = new User({
             email: email,
@@ -76,24 +73,20 @@ const create = async (req, res) => {
             name: name,
             location: location
         })
+
         const createdUser = await newUser.save()
         if (createdUser) {
             return res.status(201).json({
                 message: "Tu usuario ha sido creado con éxito 🚀",
                 user: createdUser
-            }
-            )
+            })
         } else {
             res.status(400).send();
         }
-
     } catch {
         return res.status(500).json({ error: "Ha habido un error creando tu usuario" })
     }
-
 }
-
-
 
 module.exports = {
     getAll,
