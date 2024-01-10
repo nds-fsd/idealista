@@ -29,8 +29,7 @@ function AppNav() {
                 <div className={styles.logincontent}>
                     <img className={styles.user} src={imageLogin} alt="Iniciar sesión"/>
                     <span>Iniciar sesión</span>
-                </div>                
-            </div>            
+                </div>                         
         </header>
     )
 }
