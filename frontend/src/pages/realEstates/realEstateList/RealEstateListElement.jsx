@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import styles from "./RealEstateListElement.module.css"
+import styles from "./RealEstateList.module.css"
 import house_image from "../../../assets/pexels-aaron-cook-19277901 1.png"
 
 function RealEstateListElement({ realEstate }) {

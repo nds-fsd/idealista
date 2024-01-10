@@ -19,4 +19,4 @@ const ListRealState = (query) => {
         .catch(e => console.log(e));
 }
 
-export default { GetRealEstate, ListRealState }
+export { GetRealEstate, ListRealState }

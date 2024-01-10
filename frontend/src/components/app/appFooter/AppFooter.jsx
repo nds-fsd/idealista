@@ -1,17 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import styles from "./AppFooter.module.css";
 import imageLogo from "../../../assets/logo.svg";
 import imageFacebook from "../../../assets/socialLogos/facebook.svg";
 import imageInstagram from "../../../assets/socialLogos/instagram.svg";
 import imageX from "../../../assets/socialLogos/x.svg";
 
+
 function AppFooter(){
+
     return(
-        
         <div className={styles.principal}>
             <div className={styles.container}>
-
                 <div className={styles.logo}>
                     <Link to="/">
                     <img className={styles.logo} src={imageLogo} alt="Logo Realista"/>
@@ -37,12 +38,7 @@ function AppFooter(){
                     <Link><img src={imageX} alt="logo X" /></Link>
                 </div>
             </div>            
-
-                
-
-            
         </div>
-        
     )
 }
 
