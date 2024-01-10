@@ -21,7 +21,7 @@ function AppFooter(){
                 <div className={styles.list}>
                     <ul>
                         <Link><li>Sobre Nosotros</li></Link>
-                        <Link> <li>Publica tu inmueble</li></Link>
+                        <Link to="/realestates/create"> <li>Publica tu inmueble</li></Link>
                         <Link><li>Buscador de agencias</li></Link>
                         <Link><li>Tasación de inmuebles</li></Link>
                         <Link><li>Buscador de hipotecas</li></Link>
