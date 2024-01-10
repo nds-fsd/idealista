@@ -15,10 +15,7 @@ function AppNav() {
                     <div>Realista</div>
                 </Link>
                 <div className={styles.navcontent}>
-                        <Link to="/realestates/create">
-                            <button className={styles.buttonad}>Publica gratis tu anuncio</button>
-                        </Link>
-                    </div>
+                    <Link to="/realestates/create" className={styles.link}><button className={styles.buttonad} onClick={() => window.location.href = "http://localhost:3000/realestates/create"}>Publica gratis tu anuncio</button></Link>
                     <nav className={styles.nav}>
                         <ul className={styles.navlu}>
                             <li className={styles.li}>Mis favoritos</li>
@@ -29,7 +26,8 @@ function AppNav() {
                 <div className={styles.logincontent}>
                     <img className={styles.user} src={imageLogin} alt="Iniciar sesión"/>
                     <span>Iniciar sesión</span>
-                </div>                         
+                </div>                
+            </div>            
         </header>
     )
 }
