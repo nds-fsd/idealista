@@ -1,15 +1,19 @@
+import React from "react";
+import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useQuery } from "react-query";
 
-import RealEstateListElement from "./RealEstateListElement";
+import GoogleMapsReactWrapper from "../../../components/googleMaps/reactWrapper/GoogleMapsReactWrapper";
+import GoogleMaps from "../../../components/googleMaps/map/GoogleMaps";
+import GoogleMapsMarker from "../../../components/googleMaps/marker/GoogleMapsMarker";
 import realEstateApi from "../../../utils/apis/realEstateApi";
 
-import styles from "./RealEstateList.module.css";
+import styles from "./RealEstateListMap.module.css";
 import imageList from "../../../assets/lista.svg";
 import imageMap from "../../../assets/marcador.svg";
 
 
-function RealEstateList() {
+function RealEstateListMap(){
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const operation = queryParams.get("operation");
@@ -21,31 +25,35 @@ function RealEstateList() {
     if (!data) return <div> Something went wrong </div>
 
     const urlQueryString = () => {
-        return "/realestates/map?operation=" + operation + "&location=" + localization + "&realestatetype=" + realEstateType;
+        return "/realestates?operation=" + operation + "&location=" + localization + "&realestatetype=" + realEstateType;
     }
 
     return (
-        <div className={styles.list}>
+        <div style={{ margin: "auto", width: "1140px", height: "100vh"}}>
             <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                 <div>
                     <h2>{operation + " > " + realEstateType + " > " + localization}</h2>
                 </div>
                 <div>
                     <ul>
-                        <li className={styles.buttonblue}>
-                            <img style={{width: "16px", height: "16px", paddingRight: "10px"}} src={imageList} alt="Listado inmuebles"/>
-                            <span>Listado</span>
-                        </li>
                         <li className={styles.buttongray}>
+                            <img style={{width: "16px", height: "16px", paddingRight: "10px"}} src={imageList} alt="Listado inmuebles"/>
+                            <Link style={{textDecoration: "none"}} to={urlQueryString()} >Listado</Link>
+                        </li>
+                        <li className={styles.buttonblue}>
                             <img style={{width: "16px", height: "16px", paddingRight: "10px"}} src={imageMap} alt="Mapa inmuebles"/>
-                            <Link className={styles.link} to={urlQueryString()} >Mapa</Link>
+                            <span>Mapa</span>
                         </li>
                     </ul>
                 </div>
-            </div>            
-            {data.map(e => <RealEstateListElement key={e._id} realEstate={e}></RealEstateListElement>)}
+            </div>
+            <GoogleMapsReactWrapper>
+                <GoogleMaps center={data[0]?.publicposition} zoom={13} >
+                    {data.map(e => <GoogleMapsMarker key={e._id} position={e?.publicposition} ></GoogleMapsMarker> )}
+                </GoogleMaps>
+            </GoogleMapsReactWrapper>
         </div>
     )
 }
-
-export default RealEstateList;
+  
+export default RealEstateListMap;
