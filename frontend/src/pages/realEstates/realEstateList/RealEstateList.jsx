@@ -10,6 +10,8 @@ import RealEstateType from "../../../components/realestates/RealEstateType";
 
 
 import styles from "./RealEstateList.module.css";
+import imageList from "../../../assets/lista.svg";
+import imageMap from "../../../assets/marcador.svg";
 
 
 function RealEstateList() {
@@ -33,8 +35,12 @@ function RealEstateList() {
     if (query.isLoading || query.isFetching) return <div> Loading... </div>
     if (!query.data) return <div> Something went wrong </div>
 
-    const getQueryString = () => {
+    const getListQueryString = () => {
         return `?operation=${realEstateOperationValue}&location=${realEstateLocationValue}&realestatetype=${realEstateTypeValue}`;
+    }
+
+    const getMapQueryString = () => {
+        return `/realestates/map?operation=${realEstateOperationValue}&location=${realEstateLocationValue}&realestatetype=${realEstateTypeValue}`;
     }
 
     const handlerLocationOnChange = (event) => {
@@ -59,7 +65,25 @@ function RealEstateList() {
 
     return (
         <div className={styles.root}>
-            <h2>{operation + " > " + localization + " > " + realEstateType}</h2>
+
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+                <div>
+                    <h2>{operation + " > " + realEstateType + " > " + localization}</h2>
+                </div>
+                <div>
+                    <ul>
+                        <li className={styles.buttonblue}>
+                            <img style={{width: "16px", height: "16px", paddingRight: "10px"}} src={imageList} alt="Listado inmuebles"/>
+                            <span>Listado</span>
+                        </li>
+                        <li className={styles.buttongray}>
+                            <img style={{width: "16px", height: "16px", paddingRight: "10px"}} src={imageMap} alt="Mapa inmuebles"/>
+                            <Link className={styles.link} to={getMapQueryString()} >Mapa</Link>
+                        </li>
+                    </ul>
+                </div>
+            </div>   
+            
             <div style={{display: "flex", flexDirection: "row"}}>
                 <div style={{width: "210px"}}>                
                     <div>
@@ -74,7 +98,7 @@ function RealEstateList() {
                     </div>
 
                     <div>
-                        <Link to={getQueryString()}><button className={styles.search} onClick={handlerSearchOnClick}>Buscar</button></Link>
+                        <Link to={getListQueryString()}><button className={styles.search} onClick={handlerSearchOnClick}>Buscar</button></Link>
                     </div>
                 </div>
                 <div className={styles.list}>

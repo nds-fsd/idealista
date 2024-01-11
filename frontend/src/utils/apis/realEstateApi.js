@@ -19,6 +19,16 @@ const ListRealState = (query) => {
         .catch(e => console.log(e));
 }
 
+export const CreateRealEstate = (data) => {
+    try {
+        return api.post(`/realestates`, data)
+            .then((res) => res.data)
+            .catch((e) => console.log(e));
+    } catch(e) {
+        console.log(e);
+    }
+}
+
 const GetRealEstateBuyOperations = () => {
     try {
         return api.get(`masterdata/realestate/buyoperations`)
@@ -51,4 +61,11 @@ const GetRealEstateTypes = () => {
 
 
 
-export default { GetRealEstate, ListRealState, GetRealEstateBuyOperations, GetRealEstateStatus, GetRealEstateTypes }
+export default { 
+    CreateRealEstate, 
+    GetRealEstate, 
+    ListRealState, 
+    GetRealEstateBuyOperations, 
+    GetRealEstateStatus, 
+    GetRealEstateTypes 
+};
