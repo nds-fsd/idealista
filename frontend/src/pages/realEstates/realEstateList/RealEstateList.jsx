@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
-import realEstateApi from "../../../utils/apis/realEstateApi";
+import { ListRealState } from "../../../utils/apis/realEstateApi";
 import RealEstateListElement from "./RealEstateListElement";
 import RealEstateOperation from "../../../components/realestates/RealEstateOperations";
 import RealEstateStatus from "../../../components/realestates/RealEstateStatus";
