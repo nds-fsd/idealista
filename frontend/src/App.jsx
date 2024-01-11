@@ -7,7 +7,7 @@ import RealEstateDetails from "./pages/realEstates/realEstateDetails/RealEstateD
 import RealEstateForm from "./pages/realEstates/realEstateForm/realEstateForm";
 import RealEstateList from "./pages/realEstates/realEstateList/RealEstateList";
 import RealEstateListMap from "./pages/realEstates/realEstateListMap/RealEstateListMap";
-
+import Register from "./pages/register/Register";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -23,6 +23,7 @@ function App() {
           <Route path="/realestates/:id" element={<RealEstateDetails />} />
           <Route path="/realestates/create" element={<RealEstateForm />} />
           <Route path="/realestates/map" element={<RealEstateListMap />}></Route>
+          <Route path="/register" element={<Register />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
