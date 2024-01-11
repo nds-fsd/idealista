@@ -72,10 +72,7 @@ function RealEstateList() {
                         <span>Población:</span>
                         <input className={styles.location} type="text" value={realEstateLocationValue} onChange={handlerLocationOnChange}></input>
                     </div>
-                    <div>
-                        <span>Estado:</span>
-                        <RealEstateStatus></RealEstateStatus>
-                    </div>
+
                     <div>
                         <Link to={getQueryString()}><button className={styles.search} onClick={handlerSearchOnClick}>Buscar</button></Link>
                     </div>
