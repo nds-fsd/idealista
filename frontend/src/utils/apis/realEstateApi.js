@@ -59,8 +59,6 @@ const GetRealEstateTypes = () => {
     }
 }
 
-
-
 export default { 
     CreateRealEstate, 
     GetRealEstate, 
