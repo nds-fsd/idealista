@@ -1,8 +1,13 @@
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
-import RealEstateListElement from "./RealEstateListElement";
 import realEstateApi from "../../../utils/apis/realEstateApi";
+import RealEstateListElement from "./RealEstateListElement";
+import RealEstateOperation from "../../../components/realestates/RealEstateOperations";
+import RealEstateStatus from "../../../components/realestates/RealEstateStatus";
+import RealEstateType from "../../../components/realestates/RealEstateType";
+
 
 import styles from "./RealEstateList.module.css";
 import imageList from "../../../assets/lista.svg";
@@ -14,18 +19,53 @@ function RealEstateList() {
     const queryParams = new URLSearchParams(location.search);
     const operation = queryParams.get("operation");
     const localization = queryParams.get("location");
-    const realEstateType = queryParams.get("realestatetype");
+    let realEstateType = queryParams.get("realestatetype");
+    const queryClient = useQueryClient();
+    const [realEstateOperationValue, setRealEstateOperationValue] = useState("");
+    const [realEstateTypeValue, setRealEstateTypeValue] = useState("");
+    const [realEstateLocationValue, setRealEstateLocationValue] = useState("");
 
-    const { data, isLoading } = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType }))
-    if (isLoading) return <div> Loading... </div>
-    if (!data) return <div> Something went wrong </div>
+    useEffect(() => {
+        setRealEstateOperationValue(operation);
+        setRealEstateTypeValue(realEstateType);
+        setRealEstateLocationValue(localization);
+    }, [])
 
-    const urlQueryString = () => {
-        return "/realestates/map?operation=" + operation + "&location=" + localization + "&realestatetype=" + realEstateType;
+    const query = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType }))
+    if (query.isLoading || query.isFetching) return <div> Loading... </div>
+    if (!query.data) return <div> Something went wrong </div>
+
+    const getListQueryString = () => {
+        return `?operation=${realEstateOperationValue}&location=${realEstateLocationValue}&realestatetype=${realEstateTypeValue}`;
+    }
+
+    const getMapQueryString = () => {
+        return `/realestates/map?operation=${realEstateOperationValue}&location=${realEstateLocationValue}&realestatetype=${realEstateTypeValue}`;
+    }
+
+    const handlerLocationOnChange = (event) => {
+        setRealEstateLocationValue(event.target.value);
+    }
+
+    const handlerSearchOnClick = () => {
+        // al hacer click en el boton buscar queryClient.invalidateQueries no se actualiza la lista, se recarga la misma lista
+        //queryClient.invalidateQueries("realEstateList");
+
+        // al pulsar 1a vez el boton buscar no se actualiza la lista, al pulsar el 2a vez el boton se actualiza la lista con el nuevo filtro
+        // query.clear;
+        // query.refetch("realEstateList");
+
+        // al pulsar 1a vez el boton buscar no se actualiza la lista, al pulsar el 2a vez el boton se actualiza la lista con el nuevo filtro
+        // query.refetch("realEstateList");
+        
+        // Funcionalmente es correcto, pero si no cambia el filtro y pulso buscar hace una llamada innecesaria al backend
+        queryClient.clear();
+        queryClient.refetchQueries("realEstateList");
     }
 
     return (
-        <div className={styles.list}>
+        <div className={styles.root}>
+
             <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                 <div>
                     <h2>{operation + " > " + realEstateType + " > " + localization}</h2>
@@ -38,13 +78,35 @@ function RealEstateList() {
                         </li>
                         <li className={styles.buttongray}>
                             <img style={{width: "16px", height: "16px", paddingRight: "10px"}} src={imageMap} alt="Mapa inmuebles"/>
-                            <Link className={styles.link} to={urlQueryString()} >Mapa</Link>
+                            <Link className={styles.link} to={getMapQueryString()} >Mapa</Link>
                         </li>
                     </ul>
                 </div>
-            </div>            
-            {data.map(e => <RealEstateListElement key={e._id} realEstate={e}></RealEstateListElement>)}
+            </div>   
+            
+            <div style={{display: "flex", flexDirection: "row"}}>
+                <div style={{width: "210px"}}>                
+                    <div>
+                        <span>Operación:</span>
+                        <RealEstateOperation realEstateOperationValue={realEstateOperationValue} setRealEstateOperationValue={setRealEstateOperationValue}></RealEstateOperation>
+                    </div>
+                    <div>Tipo inmueble:</div>
+                    <RealEstateType realEstateTypeValue={realEstateTypeValue} setRealEstateTypeValue={setRealEstateTypeValue}></RealEstateType>
+                    <div>
+                        <span>Población:</span>
+                        <input className={styles.location} type="text" value={realEstateLocationValue} onChange={handlerLocationOnChange}></input>
+                    </div>
+
+                    <div>
+                        <Link to={getListQueryString()}><button className={styles.search} onClick={handlerSearchOnClick}>Buscar</button></Link>
+                    </div>
+                </div>
+                <div className={styles.list}>
+                    {query.data.map(e => <RealEstateListElement key={e._id} realEstate={e}></RealEstateListElement>)}
+                </div>                
+            </div>
         </div>
+        
     )
 }
 

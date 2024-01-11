@@ -29,4 +29,43 @@ export const CreateRealEstate = (data) => {
     }
 }
 
-export default { GetRealEstate, ListRealState };
+const GetRealEstateBuyOperations = () => {
+    try {
+        return api.get(`masterdata/realestate/buyoperations`)
+            .then(response => response.data)
+            .catch((error) => console.log(error.message));
+    } catch(error) {
+        console.log("Error in realEstateApi.js:", error.message);
+    }
+}
+
+const GetRealEstateStatus = () => {
+    try {
+        return api.get(`masterdata/realestate/states`)
+            .then(response => response.data)
+            .catch((error) => console.log(error.message));
+    } catch(error) {
+        console.log("Error in realEstateApi.js:", error.message);
+    }
+}
+
+const GetRealEstateTypes = () => {
+    try {
+        return api.get(`masterdata/realestate/types`)
+            .then(response => response.data)
+            .catch((error) => console.log(error.message));
+    } catch(error) {
+        console.log("Error in realEstateApi.js:", error.message);
+    }
+}
+
+
+
+export default { 
+    CreateRealEstate, 
+    GetRealEstate, 
+    ListRealState, 
+    GetRealEstateBuyOperations, 
+    GetRealEstateStatus, 
+    GetRealEstateTypes 
+};
