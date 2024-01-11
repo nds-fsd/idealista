@@ -9,6 +9,8 @@ import RealEstateType from "../../../components/realestates/RealEstateType";
 
 
 import styles from "./RealEstateList.module.css";
+import imageList from "../../../assets/lista.svg";
+import imageMap from "../../../assets/marcador.svg";
 
 
 function RealEstateList() {

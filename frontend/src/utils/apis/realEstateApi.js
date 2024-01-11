@@ -19,13 +19,23 @@ const ListRealState = (query) => {
         .catch(e => console.log(e));
 }
 
+export const CreateRealEstate = (data) => {
+    try {
+        return api.post(`/realestates`, data)
+            .then((res) => res.data)
+            .catch((e) => console.log(e));
+    } catch(e) {
+        console.log("Error in realEstateApi.js CreateRealEstate:", error.message);
+    }
+}
+
 const GetRealEstateBuyOperations = () => {
     try {
         return api.get(`masterdata/realestate/buyoperations`)
             .then(response => response.data)
             .catch((error) => console.log(error.message));
     } catch(error) {
-        console.log("Error in realEstateApi.js:", error.message);
+        console.log("Error in realEstateApi.js GetRealEstateBuyOperations:", error.message);
     }
 }
 const GetRealEstateTypes = () => {
@@ -34,10 +44,14 @@ const GetRealEstateTypes = () => {
             .then(response => response.data)
             .catch((error) => console.log(error.message));
     } catch(error) {
-        console.log("Error in realEstateApi.js:", error.message);
+        console.log("Error in realEstateApi.js GetRealEstateTypes:", error.message);
     }
 }
 
-
-
-export default { GetRealEstate, ListRealState, GetRealEstateBuyOperations, GetRealEstateTypes }
+export default { 
+    CreateRealEstate, 
+    GetRealEstate, 
+    GetRealEstateBuyOperations, 
+    GetRealEstateTypes, 
+    ListRealState    
+};
