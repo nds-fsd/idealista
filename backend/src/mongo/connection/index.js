@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 let dbUrl = process.env.MONGO_URL;
-console.log (dbUrl);
 
 let mongodb;
 

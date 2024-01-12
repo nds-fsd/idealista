@@ -19,4 +19,51 @@ const ListRealState = (query) => {
         .catch(e => console.log(e));
 }
 
-export { GetRealEstate, ListRealState }
+export const CreateRealEstate = (data) => {
+    try {
+        return api.post(`/realestates`, data)
+            .then((res) => res.data)
+            .catch((e) => console.log(e));
+    } catch(e) {
+        console.log(e);
+    }
+}
+
+const GetRealEstateBuyOperations = () => {
+    try {
+        return api.get(`masterdata/realestate/buyoperations`)
+            .then(response => response.data)
+            .catch((error) => console.log(error.message));
+    } catch(error) {
+        console.log("Error in realEstateApi.js:", error.message);
+    }
+}
+
+const GetRealEstateStatus = () => {
+    try {
+        return api.get(`masterdata/realestate/states`)
+            .then(response => response.data)
+            .catch((error) => console.log(error.message));
+    } catch(error) {
+        console.log("Error in realEstateApi.js:", error.message);
+    }
+}
+
+const GetRealEstateTypes = () => {
+    try {
+        return api.get(`masterdata/realestate/types`)
+            .then(response => response.data)
+            .catch((error) => console.log(error.message));
+    } catch(error) {
+        console.log("Error in realEstateApi.js:", error.message);
+    }
+}
+
+export default { 
+    CreateRealEstate, 
+    GetRealEstate, 
+    ListRealState, 
+    GetRealEstateBuyOperations, 
+    GetRealEstateStatus, 
+    GetRealEstateTypes 
+};

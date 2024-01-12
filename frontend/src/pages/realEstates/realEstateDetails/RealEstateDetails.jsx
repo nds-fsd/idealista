@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
-import { GetRealEstate } from "../../../utils/apis/realEstateApi";
+import realEstateApi from "../../../utils/apis/realEstateApi";
 import TextArea from "./TextArea";
 import Carousel from "./RealEstateDetailsCarousel";
 
@@ -14,7 +14,7 @@ import demoMap from "../../../assets/map.png"
 
 const RealEstateDetails = () => {
     const { id } = useParams();
-    const { data, isLoading } = useQuery('realEstateDetail', () => GetRealEstate(id));
+    const { data, isLoading } = useQuery('realEstateDetail', () => realEstateApi.GetRealEstate(id));
 
     const sendMessageToAdvisor = (messageContent) => {
         alert("Mensaje enviado")

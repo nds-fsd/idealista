@@ -1,3 +1,8 @@
+.root {
+    width: 1140px;
+    margin: auto;    
+}
+
 .list {
     width: 1140px;
     margin: auto;
@@ -20,4 +25,52 @@
 
 .link {
     text-decoration: none;
+}
+
+.buttonblue {
+    background-color: #CFE2FF;
+    border: 1px;
+    border-radius: 8px;
+    color: #000000;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    margin: 1px;
+    padding-top: 10px; 
+    height: 35px;
+    width: 130px;
+}
+
+.buttongray {
+    background-color: #D9D9D9;
+    border: 1px;
+    border-radius: 8px;
+    color: #000000;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 10px; 
+    margin: 1px;
+    height: 35px;
+    width: 130px;
+}
+
+.location {
+    border: 2px solid #CFE2FF;
+    border-radius: 8px;
+    color: #000000;
+    font-size: 16px;
+    height: 30px;
+    width: 115px;
+}
+
+.search {
+    background-color: #CFE2FF;
+    border: 2px solid #CFE2FF;
+    border-radius: 8px;
+    color: #000000;
+    font-size: 16px;
+    margin-top: 10px;
+    height: 35px;
+    width: 120px;
 }
