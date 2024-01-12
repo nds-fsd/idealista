@@ -5,10 +5,11 @@ import AppLayout from "./components/app/appLayout/AppLayout";
 import RealEstateSearcher from "./pages/realEstates/realEstateSearcher/RealEstateSearcher";
 import RealEstateDetails from "./pages/realEstates/realEstateDetails/RealEstateDetails";
 import RealEstateList from "./pages/realEstates/realEstateList/RealEstateList";
+import RealEstateForm from "./pages/realEstates/realEstateForm/realEstateForm";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import RealEstateForm from "./pages/realEstates/realEstateForm/realEstateForm";
+
 
 
 
