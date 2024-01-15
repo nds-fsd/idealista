@@ -103,3 +103,9 @@ textarea {
     align-items: center;
 }
 
+.container .error {
+    color: red;
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+

@@ -12,7 +12,7 @@ function AppNav() {
             <div className={styles.headernav}>
                 <Link to="/" className={styles.logocontent}>
                     <div><img className={styles.logo} src={imageLogo} alt="Logo Realista"/></div>
-                    <div>Realista</div>
+                    <div className={styles.name}>Realista</div>
                 </Link>
                 <div className={styles.navcontent}>
                     <Link to="/realestates/create" className={styles.link}><button className={styles.buttonad} onClick={() => window.location.href = "http://localhost:3000/realestates/create"}>Publica gratis tu anuncio</button></Link>
