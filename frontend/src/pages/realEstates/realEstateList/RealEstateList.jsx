@@ -24,6 +24,7 @@ function RealEstateList() {
     const [realEstateOperationValue, setRealEstateOperationValue] = useState("");
     const [realEstateTypeValue, setRealEstateTypeValue] = useState("");
     const [realEstateLocationValue, setRealEstateLocationValue] = useState("");
+    const [realEstateStatus, setRealEstateStatus] = useState({"Obra-nueva": false,"Buen-estado": false,"A-reformar": false});
 
     useEffect(() => {
         setRealEstateOperationValue(operation);
@@ -44,10 +45,14 @@ function RealEstateList() {
     }
 
     const handlerLocationOnChange = (event) => {
+        console.log("event:", event.target.value)
         setRealEstateLocationValue(event.target.value);
     }
 
     const handlerSearchOnClick = () => {
+        console.log("realEstateStatus:", realEstateStatus)
+
+
         // al hacer click en el boton buscar queryClient.invalidateQueries no se actualiza la lista, se recarga la misma lista
         //queryClient.invalidateQueries("realEstateList");
 
@@ -61,6 +66,13 @@ function RealEstateList() {
         // Funcionalmente es correcto, pero si no cambia el filtro y pulso buscar hace una llamada innecesaria al backend
         queryClient.clear();
         queryClient.refetchQueries("realEstateList");
+    }
+
+    const handlerStatusOnChange = (event) => {
+        setRealEstateStatus((prevCheckboxes) => ({
+            ...prevCheckboxes,
+            [event.target.value]: !prevCheckboxes[event.target.value]
+          }));
     }
 
     return (
@@ -96,10 +108,13 @@ function RealEstateList() {
                         <span>Población:</span>
                         <input className={styles.location} type="text" value={realEstateLocationValue} onChange={handlerLocationOnChange}></input>
                     </div>
-
+                    <div>
+                        <span>Estado:</span>
+                        <RealEstateStatus realEstateStatus={realEstateStatus} setRealEstateStatus={handlerStatusOnChange}></RealEstateStatus>
+                    </div>
                     <div>
                         <Link to={getListQueryString()}><button className={styles.search} onClick={handlerSearchOnClick}>Buscar</button></Link>
-                    </div>
+                    </div>                    
                 </div>
                 <div className={styles.list}>
                     {query.data.map(e => <RealEstateListElement key={e._id} realEstate={e}></RealEstateListElement>)}
