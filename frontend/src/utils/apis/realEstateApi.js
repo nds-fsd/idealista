@@ -14,6 +14,9 @@ const ListRealState = (query) => {
         q += `&location=${query.location}`
     if (query.realestatetype)
         q += `&realEstateType=${query.realestatetype}`
+    if (query.states)
+        q += `&state=${query.states}`
+
     return api.get(`realestates${q}`)
         .then(res => res.data)
         .catch(e => console.log(e));
@@ -39,7 +42,7 @@ const GetRealEstateBuyOperations = () => {
     }
 }
 
-const GetRealEstateStatus = () => {
+const GetRealEstateStates = () => {
     try {
         return api.get(`masterdata/realestate/states`)
             .then(response => response.data)
@@ -64,6 +67,6 @@ export default {
     GetRealEstate, 
     ListRealState, 
     GetRealEstateBuyOperations, 
-    GetRealEstateStatus, 
+    GetRealEstateStates, 
     GetRealEstateTypes 
 };
