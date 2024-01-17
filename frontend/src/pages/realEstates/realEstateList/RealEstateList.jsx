@@ -131,7 +131,14 @@ function RealEstateList() {
                         <span>Estado:</span>
                         <RealEstateStates realEstateStates={realEstateStates} setRealEstateStates={setRealEstateStates}></RealEstateStates>
                     </div>
-
+                    <div>
+                        <span>Habitaciones:</span>
+                        <RealEstateNumber fields={5} number={rooms} setNumber={setRooms}></RealEstateNumber>
+                    </div>
+                    <div>
+                        <span>Baños:</span>
+                        <RealEstateNumber fields={5} number={bathrooms} setNumber={setBathrooms}></RealEstateNumber>
+                    </div>
                     <div>
                         <Link to={getListQueryString()}><button className={styles.search} onClick={handlerSearchOnClick}>Buscar</button></Link>
                     </div>                    
