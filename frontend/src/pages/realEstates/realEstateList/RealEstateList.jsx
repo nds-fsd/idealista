@@ -114,29 +114,29 @@ function RealEstateList() {
             <div style={{display: "flex", flexDirection: "row"}}>
                 <div style={{width: "210px"}}>                
                     <div>
-                        <span>Operación:</span>
+                        <span style={{fontWeight:"700"}}>Operación:</span>
                         <RealEstateOperation realEstateOperationValue={realEstateOperationValue} setRealEstateOperationValue={setRealEstateOperationValue}></RealEstateOperation>
                     </div>
-                    <div>Tipo inmueble:</div>
+                    <div style={{fontWeight:"700"}}>Tipo inmueble:</div>
                     <RealEstateType realEstateTypeValue={realEstateTypeValue} setRealEstateTypeValue={setRealEstateTypeValue}></RealEstateType>
                     <div>
-                        <span>Población:</span>
+                        <span style={{fontWeight:"700"}}>Población:</span>
                         <input className={styles.location} type="text" value={realEstateLocationValue} onChange={handlerLocationOnChange}></input>
                     </div>
                     <div>
-                        <span>Precio:</span>
+                        <span style={{fontWeight:"700"}}>Precio:</span>
                         <RealEstatePrices priceMin={priceMin} setPriceMin={setPriceMin} priceMax={priceMax} setPriceMax={setPriceMax}></RealEstatePrices>
                     </div>
                      <div>
-                        <span>Estado:</span>
+                        <span style={{fontWeight:"700"}}>Estado:</span>
                         <RealEstateStates realEstateStates={realEstateStates} setRealEstateStates={setRealEstateStates}></RealEstateStates>
                     </div>
                     <div>
-                        <span>Habitaciones:</span>
+                        <span style={{fontWeight:"700"}}>Habitaciones:</span>
                         <RealEstateNumber fields={5} number={rooms} setNumber={setRooms}></RealEstateNumber>
                     </div>
                     <div>
-                        <span>Baños:</span>
+                        <span style={{fontWeight:"700"}}>Baños:</span>
                         <RealEstateNumber fields={5} number={bathrooms} setNumber={setBathrooms}></RealEstateNumber>
                     </div>
                     <div>
