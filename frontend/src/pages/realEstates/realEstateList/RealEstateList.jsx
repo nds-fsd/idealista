@@ -5,6 +5,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import realEstateApi from "../../../utils/apis/realEstateApi";
 import RealEstateListElement from "./RealEstateListElement";
 import RealEstateOperation from "../../../components/realestates/RealEstateOperations";
+import RealEstatePrice from "../../../components/realestates/RealEstatePrices";
 import RealEstateStates from "../../../components/realestates/RealEstateStates";
 import RealEstateType from "../../../components/realestates/RealEstateType";
 
@@ -12,6 +13,7 @@ import RealEstateType from "../../../components/realestates/RealEstateType";
 import styles from "./RealEstateList.module.css";
 import imageList from "../../../assets/lista.svg";
 import imageMap from "../../../assets/marcador.svg";
+import RealEstatePrices from "../../../components/realestates/RealEstatePrices";
 
 
 function RealEstateList() {
@@ -25,14 +27,21 @@ function RealEstateList() {
     const [realEstateTypeValue, setRealEstateTypeValue] = useState("");
     const [realEstateLocationValue, setRealEstateLocationValue] = useState("");
     const [realEstateStates, setRealEstateStates] = useState({"Obra-nueva": false,"Buen-estado": false,"A-reformar": false});
-    const realestateCount = 0;
+    const [priceMin, setPriceMin] = useState(0)
+    const [priceMax, setPriceMax] = useState(999999999)
 
     useEffect(() => {
         setRealEstateOperationValue(operation);
         setRealEstateTypeValue(realEstateType);
         setRealEstateLocationValue(localization);
+        setPriceMin(0);
+        setPriceMax(999999999);
     }, [])
-    
+
+    const getPriceQueryString = () => {
+        return priceMin + "," + priceMax;
+    }
+
     const getStatesQueryString = () => {
         let states = "";
         if (realEstateStates["Obra-nueva"]) states = states.concat("Obra-nueva,");
@@ -42,18 +51,20 @@ function RealEstateList() {
         return states;
     }
 
-    const query = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType, states: getStatesQueryString() }))
+    const query = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType, price: getPriceQueryString(), states: getStatesQueryString() }))
     if (query.isLoading || query.isFetching) return <div> Loading... </div>
     if (!query.data) return <div> Something went wrong </div>
     
     const getListQueryString = () => {
         const states = getStatesQueryString();
-        return `?operation=${realEstateOperationValue}&location=${realEstateLocationValue}&realestatetype=${realEstateTypeValue}&state=${states}`;
+        const prices = getPriceQueryString();
+        return `?operation=${realEstateOperationValue}&location=${realEstateLocationValue}&realestatetype=${realEstateTypeValue}&price=${prices}&state=${states}`;
     }
 
     const getMapQueryString = () => {
         const states = getStatesQueryString();
-        return `/realestates/map?operation=${realEstateOperationValue}&location=${realEstateLocationValue}&realestatetype=${realEstateTypeValue}&state=${states}`;
+        const prices = getPriceQueryString();
+        return `/realestates/map?operation=${realEstateOperationValue}&location=${realEstateLocationValue}&realestatetype=${realEstateTypeValue}&price=${prices}&state=${states}`;
     }
 
     const handlerLocationOnChange = (event) => {
@@ -108,6 +119,10 @@ function RealEstateList() {
                     <div>
                         <span>Población:</span>
                         <input className={styles.location} type="text" value={realEstateLocationValue} onChange={handlerLocationOnChange}></input>
+                    </div>
+                    <div>
+                        <span>Precio:</span>
+                        <RealEstatePrices priceMin={priceMin} setPriceMin={setPriceMin} priceMax={priceMax} setPriceMax={setPriceMax}></RealEstatePrices>
                     </div>
                      <div>
                         <span>Estado:</span>
