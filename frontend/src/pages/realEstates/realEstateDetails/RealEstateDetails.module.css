@@ -1,9 +1,7 @@
 .container_text {
     display: flex;
     flex-direction: column;
-    width: 500px;
-    height: 142px;
-
+    width: 100%;
 }
 
 .justify_center {
@@ -12,6 +10,10 @@
 
 .gap {
     gap: 88px;
+}
+
+.width {
+    width: 100%;
 }
 
 .flex {
@@ -24,12 +26,20 @@
 }
 
 .map_image {
-    width: 380px;
-    height: 351px;
-    flex-shrink: 0;
+    width: 80%;
+    height: 80%;
+    flex-shrink: 2;
     border-radius: 29px;
     background: #CFE2FF;
     margin: 10px;
+}
+
+.columnContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: start;
+    justify-content: center;
 }
 
 .input_area {
@@ -37,7 +47,6 @@
     width: 380px;
     height: 227px;
     border-radius: 19px;
-    border: 1px solid #ACACAC;
     background: #FFF;
     margin: 20px;
 
@@ -57,14 +66,61 @@
     margin: auto;
 }
 
-.buttons {
+.leftColumn {
+    width: 100%;
+    max-width: 50%;
+    height: 100vh;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+    border: 1px solid #ACACAC;
+}
 
+.rightColumn {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .details_container {
     margin: auto;
     width: 1140px;
+}
+
+h4 {
+    margin: 0;
+    font-size: 33px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.caracteristicas {
+    display: flex;
+    flex-direction: column;
+}
+
+p {
+    margin: 0;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+h2, h3 {
+    line-height: 0.5;
+}
+
+h2 {
+    margin-top: 50px;
 }
