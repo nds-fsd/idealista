@@ -1,11 +1,16 @@
 .root {
     width: 100%;
+    font-family: Poppins;
 }
 
 .container {
+    display: flex;
     position: relative;
-    margin: auto;
     width: 1140px;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
 }
 
 .searchcontainer {
@@ -16,12 +21,15 @@
     padding: 20px;
     height: 268px;
     width: 80%;
+    font-family: Poppins;
+    font-style: normal;
 }
 
 .searchheader {
     display: flex;
     flex-direction: row;
     align-items: center;
+    font-weight: bold;
 }
 
 .tabselected {
@@ -30,6 +38,7 @@
     text-align: center;
     width: 145px;
     margin-right: 5px;
+    font-weight: bold;
 }
 
 .tabunselected {
@@ -55,6 +64,7 @@
     margin-top: 30px;
     height: 35px;
     width: 440px;
+    font-family: Poppins;
 }
 
 .realestatestype {
@@ -65,6 +75,7 @@
     margin-left: 15px;
     height: 35px;
     width: 120px;
+    font-family: Poppins;
 }
 
 .search {
@@ -76,4 +87,6 @@
     margin-left: 15px;
     height: 35px;
     width: 130px;
+    font-family: Poppins;
+    font-style: normal;
 }

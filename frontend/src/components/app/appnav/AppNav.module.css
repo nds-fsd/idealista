@@ -1,5 +1,6 @@
 .header {
     width: 100%;
+    margin-top: 20px;
 }
 
 .headernav {
@@ -17,6 +18,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+    gap: 10px;
     width: 20%;
     text-decoration: none;
 }
@@ -44,6 +46,7 @@
     justify-content: space-around;
     width: 35%;
     text-decoration: none;
+    font-family: Poppins;
 }
 
 .nav {
@@ -94,6 +97,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    font-family: Poppins;
 }
 
 .user {

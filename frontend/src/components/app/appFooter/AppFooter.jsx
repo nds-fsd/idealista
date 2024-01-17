@@ -13,9 +13,10 @@ function AppFooter(){
     return(
         <div className={styles.principal}>
             <div className={styles.container}>
-                <div className={styles.logo}>
-                    <Link to="/">
-                    <img className={styles.logo} src={imageLogo} alt="Logo Realista"/>
+                <div>
+                    <Link to="/" className={styles.logocontent}>
+                        <div><img className={styles.logo} src={imageLogo} alt="Logo Realista"/></div>
+                        <div className={styles.name}>Realista</div>
                     </Link>
                 </div>
                 <div className={styles.list}>

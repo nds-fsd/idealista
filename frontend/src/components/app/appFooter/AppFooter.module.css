@@ -6,8 +6,8 @@
 .principal{
     display: flex;
     justify-content: center;
-    padding-left: 190px;
-    padding-top: 20px
+    align-items: center;
+    width: 100%;
     ;
 
 }
@@ -21,6 +21,32 @@
 .list{
     width: 50%;
 
+}
+
+.logocontent {
+    padding: 5px;
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 20%;
+    text-decoration: none;
+    gap: 10px;
+}
+
+.logo {
+    width: 42px;
+    height: 31px;
+    padding-right: 5px;
+}
+
+.name {
+    color: #000;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
 .list a{
