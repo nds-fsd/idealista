@@ -6,23 +6,27 @@ import { loginUser } from "../../utils/apis/userApi";
 import {useNavigate} from "react-router-dom";
 
 import styles from "../../pages/login/Login.module.css"
-
-
 import login_foto from "../../assets/login_foto.jpg"
 
 
 const LoginForm = () =>{
     const {register, handleSubmit,setError,reset,formState:{errors}}= useForm();
     const navigate = useNavigate();
+
     const login = () => toast.success('Login exitoso');
-
-
 
     const onSubmit = async(data)=>{
         try{
             const response = await loginUser(data);
             
             if (response.status === 200) {
+                localStorage.setItem("token",response);
+
+                console.log("token recibido",response)
+
+                const userNameResponse = response.data.user.name;
+                console.log("nombre",userNameResponse)
+
                 await Promise.resolve(login());
                 setTimeout(() => {
                 navigate("/");}, 1000);
@@ -55,13 +59,11 @@ return (
                 <div className={styles.input}>
                     <label>Email</label>
                     <input {...register("email",{required:"El email es requerido"})} />
-                    {errors.email && <div className={styles.error_message}>{errors.email.message}</div>}
                 </div>
 
                 <div className={styles.input}>
                     <label>Contraseña</label>
                     <input type="password"{...register("password",{required:"La contraseña es requerida"})} />
-                    {errors.email && <div className={styles.error_message}>{errors.password.message}</div>}
                 </div>
 
                 <button className={styles.form_button} type="submit"><span>Iniciar sesión</span></button>
