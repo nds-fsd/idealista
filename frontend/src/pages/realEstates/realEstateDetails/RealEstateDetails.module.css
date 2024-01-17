@@ -12,10 +12,6 @@
     gap: 88px;
 }
 
-.width {
-    width: 100%;
-}
-
 .flex {
     display: flex;
     flex-direction: row;
@@ -32,6 +28,7 @@
     border-radius: 29px;
     background: #CFE2FF;
     margin: 10px;
+    margin-left: 20px;
 }
 
 .columnContainer {
@@ -49,15 +46,24 @@
     border-radius: 19px;
     background: #FFF;
     margin: 20px;
-
+    padding: 10px;
 }
 
 .contact_button {
-    border-radius: 15px;
-    background: #FEFFC4;
-    padding: 10px;
-    margin: 10px;
-    border: none
+    border-radius: 16px;
+    background: #eeefa7;
+    transition: ease 0.3s all;
+    width: 200px;
+    height: 47px;
+    border: thin;
+    font-family: "Poppins", sans-serif;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.contact_button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 .carousel_container {
@@ -73,7 +79,6 @@
     display: flex;
     flex-direction: column;
     margin-top: 50px;
-    border: 1px solid #ACACAC;
 }
 
 .rightColumn {
@@ -82,6 +87,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 50px;
+    align-items: center;
 }
 
 .buttons {
@@ -118,7 +124,7 @@ p {
 }
 
 h2, h3 {
-    line-height: 0.5;
+    line-height: 1.1;
 }
 
 h2 {

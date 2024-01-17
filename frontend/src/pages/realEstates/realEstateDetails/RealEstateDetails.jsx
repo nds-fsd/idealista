@@ -25,7 +25,7 @@ const RealEstateDetails = () => {
     if (!data) return <div> Something went wrong</div>;
 
     return (
-        <div className={`${styles.width}`}>
+        <div>
             <div className={styles.carousel_container}>
                 <Carousel height={500} width={1082} />
             </div>
@@ -53,7 +53,7 @@ const RealEstateDetails = () => {
 
                 <div className={styles.caracteristicas}>
                 <h2>Características básicas</h2>
-                <div style={{border: "1px solid blue"}} >
+                <div>
                     <p>{data?.realEstateType + ": " + data?.realEstateSubtype}</p>
                     <p>{data?.properties}</p>
                     <p>{data?.metersBuilt + " m2"}</p>
@@ -65,10 +65,9 @@ const RealEstateDetails = () => {
                 </div>
 
                 <div className={styles.rightColumn}>
-                    <TextArea contactar={sendMessageToAdvisor}> </TextArea>
-                    <img className={styles.map_image} src={demoMap} />
+                     <TextArea contactar={sendMessageToAdvisor}> </TextArea>
+                    <img className={styles.map_image} src={demoMap}/>
                 </div>
-            {/* </div> */}
             </div>
          </div>
     )
