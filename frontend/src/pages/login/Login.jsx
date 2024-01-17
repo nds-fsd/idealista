@@ -1,6 +1,7 @@
 import React from "react";
 import {useForm} from "react-hook-form";
 import axios from "axios";
+import toast, {Toaster} from "react-hot-toast"
 import { loginUser } from "../../utils/apis/userApi";
 import {useNavigate} from "react-router-dom";
 
@@ -13,15 +14,19 @@ import login_foto from "../../assets/login_foto.jpg"
 const LoginForm = () =>{
     const {register, handleSubmit,setError,reset,formState:{errors}}= useForm();
     const navigate = useNavigate();
+    const login = () => toast.success('Login exitoso');
+
+
 
     const onSubmit = async(data)=>{
         try{
             const response = await loginUser(data);
             
             if (response.status === 200) {
-                console.log("Login existoso");
-                alert("Login exitoso")
-                navigate("/")
+                await Promise.resolve(login());
+                setTimeout(() => {
+                navigate("/");}, 1000);
+
             } else {
                 setError("apiError",{
                     type:"manual",
@@ -32,11 +37,14 @@ const LoginForm = () =>{
             }
         } catch (error){
             console.error("Error al intentar iniciar sesión",error)
+            toast.error('Error al intentar iniciar sesión');
+            
         }
     };
 
 return (
     <div className={styles.container}>
+        <Toaster />
         <div className={styles.image_container}>
             <div className={styles.text_login}><span>Login</span></div>
             <img className={styles.img} src={login_foto} alt="login imagen"/>
