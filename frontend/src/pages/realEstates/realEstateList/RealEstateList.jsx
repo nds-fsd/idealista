@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import realEstateApi from "../../../utils/apis/realEstateApi";
 import RealEstateListElement from "./RealEstateListElement";
+import RealEstateNumber from "../../../components/realestates/RealEstateNumber";
 import RealEstateOperation from "../../../components/realestates/RealEstateOperations";
 import RealEstatePrice from "../../../components/realestates/RealEstatePrices";
 import RealEstateStates from "../../../components/realestates/RealEstateStates";
@@ -29,6 +30,8 @@ function RealEstateList() {
     const [realEstateStates, setRealEstateStates] = useState({"Obra-nueva": false,"Buen-estado": false,"A-reformar": false});
     const [priceMin, setPriceMin] = useState(0)
     const [priceMax, setPriceMax] = useState(999999999)
+    const [rooms, setRooms] = useState(1);
+    const [bathrooms, setBathrooms] = useState(1);
 
     useEffect(() => {
         setRealEstateOperationValue(operation);
@@ -128,6 +131,7 @@ function RealEstateList() {
                         <span>Estado:</span>
                         <RealEstateStates realEstateStates={realEstateStates} setRealEstateStates={setRealEstateStates}></RealEstateStates>
                     </div>
+
                     <div>
                         <Link to={getListQueryString()}><button className={styles.search} onClick={handlerSearchOnClick}>Buscar</button></Link>
                     </div>                    
