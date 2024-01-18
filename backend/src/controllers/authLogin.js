@@ -13,9 +13,8 @@ const login = async (req,res) => {
 
         const valPassword = bcrypt.compareSync(password,userFound.password);
         if (valPassword) {
-            const token = await createAccessToken ({id:userFound._id});
-            res.cookie('token', token)
-            return res.status(200).json({message:"Login sucessful"}) 
+            const token =  createAccessToken ({id:userFound._id,});
+            return res.status(200).json({user:userFound, token}) 
         } else {
             return res.status(400).json({message:"Incorrect password"})
         }

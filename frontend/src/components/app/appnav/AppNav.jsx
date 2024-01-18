@@ -35,10 +35,12 @@ function AppNav() {
                         </ul>    
                     </nav>
                 </div>
-                <div className={styles.logincontent}>
-                    <img className={styles.user} src={imageLogin} alt="Iniciar sesión"/>
-                    <span>Iniciar sesión</span>
-                </div>                
+                <Link to="/login">
+                    <div className={styles.logincontent}>
+                        <img className={styles.user} src={imageLogin} alt="Iniciar sesión"/>
+                        <span>Iniciar sesión</span>
+                    </div>   
+                </Link>          
             </div>            
         </header>
     )
