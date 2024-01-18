@@ -72,17 +72,6 @@ function RealEstateList() {
     }
 
     const handlerSearchOnClick = () => {
-        // al hacer click en el boton buscar queryClient.invalidateQueries no se actualiza la lista, se recarga la misma lista
-        //queryClient.invalidateQueries("realEstateList");
-
-        // al pulsar 1a vez el boton buscar no se actualiza la lista, al pulsar el 2a vez el boton se actualiza la lista con el nuevo filtro
-        // query.clear;
-        // query.refetch("realEstateList");
-
-        // al pulsar 1a vez el boton buscar no se actualiza la lista, al pulsar el 2a vez el boton se actualiza la lista con el nuevo filtro
-        // query.refetch("realEstateList");
-        
-        // Funcionalmente es correcto, pero si no cambia el filtro y pulso buscar hace una llamada innecesaria al backend
         queryClient.clear();
         queryClient.refetchQueries("realEstateList");
     }
