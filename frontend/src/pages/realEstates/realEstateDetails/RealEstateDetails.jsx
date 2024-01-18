@@ -35,10 +35,10 @@ const RealEstateDetails = () => {
 
                     <div className={styles.buttons}>
                         <div>
-                            <img src={likeImag} /> Me gusta
+                            <img style={{height:"16px", width:"16px"}} src={likeImag} /> Me gusta
                         </div>
                         <div>
-                            <img src={compartir} /> Compartir
+                            <img style={{height:"16px", width:"16px"}} src={compartir} /> Compartir
                         </div>
                         <h4 style={{ color: "#6D96FF" }} >
                             {data?.price} €
@@ -51,27 +51,29 @@ const RealEstateDetails = () => {
                         <small>{data?.description}</small>
                     </div>
 
-                <div className={styles.caracteristicas}>
-                <h2>Características básicas</h2>
-                <div>
-                    <p>{data?.realEstateType + ": " + data?.realEstateSubtype}</p>
-                    <p>{data?.properties}</p>
-                    <p>{data?.metersBuilt + " m2"}</p>
-                    <p>{data?.state}</p>
-                    <br></br>
-                    <p>{data?.realtor}</p>
-                </div>
-                </div>
+                    <div className={styles.caracteristicas}>
+                    <h2>Características básicas</h2>
+                    <div>
+                        <p>{data?.realEstateType + ": " + data?.realEstateSubtype}</p>
+                        <p>{data?.properties}</p>
+                        <p>{data?.metersBuilt + " m2"}</p>
+                        <p>{data?.state}</p>
+                        <br></br>
+                        <p>{data?.realtor}</p>
+                    </div>
+
                 </div>
 
-                <div className={styles.rightColumn}>
-                     <TextArea contactar={sendMessageToAdvisor}> </TextArea>
-                    <img className={styles.map_image} src={demoMap}/>
-                </div>
             </div>
-         </div>
-    )
 
+            <div className={styles.rightColumn}>
+                    <TextArea contactar={sendMessageToAdvisor}> </TextArea>
+                <img className={styles.map_image} src={demoMap}/>
+            </div>
+
+        </div>
+     </div>
+    )
 }
 
 export default RealEstateDetails;

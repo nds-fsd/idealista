@@ -70,12 +70,13 @@
     width: 1082px;
     height: 500px;
     margin: auto;
+    margin-top: 30px;
 }
 
 .leftColumn {
     width: 100%;
     max-width: 50%;
-    height: 100vh;
+    margin-bottom: 60px;
     display: flex;
     flex-direction: column;
     margin-top: 50px;
