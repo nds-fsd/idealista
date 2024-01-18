@@ -29,44 +29,51 @@ const RealEstateDetails = () => {
             <div className={styles.carousel_container}>
                 <Carousel height={500} width={1082} />
             </div>
-            <div className={`${styles.flex} ${styles.gap} ${styles.justify_center}`}>
-                <div>
+            <div className={styles.columnContainer}>
+
+                <div className={styles.leftColumn}>
+
                     <div className={styles.buttons}>
                         <div>
-                            <img src={likeImag} /> Me gusta
+                            <img style={{height:"16px", width:"16px"}} src={likeImag} /> Me gusta
                         </div>
                         <div>
-                            <img src={compartir} /> Compartir
+                            <img style={{height:"16px", width:"16px"}} src={compartir} /> Compartir
                         </div>
                         <h4 style={{ color: "#6D96FF" }} >
-                            {data?.price}
+                            {data?.price} €
                         </h4>
                     </div>
+                    
                     <div className={styles.container_text}>
                         <h2> {data?.shortDescription} </h2>
                         <h3> {data?.location}</h3>
                         <small>{data?.description}</small>
                     </div>
-                </div>
-                <div>
-                    <TextArea contactar={sendMessageToAdvisor}> </TextArea>
-                    <img className={styles.map_image} src={demoMap} />
-                </div>
-            </div>
-            <div className={`${styles.flex} ${styles.flex_column} ${styles.details_container}`}>
-                <h2>Características básicas</h2>
-                <div>
-                    <div>{data?.realEstateType + ": " + data?.realEstateSubtype}</div>
-                    <div>{data?.properties}</div>
-                    <div>{data?.metersBuilt + " m2"}</div>
-                    <div>{data?.state}</div>
-                    <br></br>
-                    <div>{data?.realtor}</div>
-                </div>
-            </div>
-        </div >
-    )
 
+                    <div className={styles.caracteristicas}>
+                    <h2>Características básicas</h2>
+                    <div>
+                        <p>{data?.realEstateType + ": " + data?.realEstateSubtype}</p>
+                        <p>{data?.properties}</p>
+                        <p>{data?.metersBuilt + " m2"}</p>
+                        <p>{data?.state}</p>
+                        <br></br>
+                        <p>{data?.realtor}</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div className={styles.rightColumn}>
+                    <TextArea contactar={sendMessageToAdvisor}> </TextArea>
+                <img className={styles.map_image} src={demoMap}/>
+            </div>
+
+        </div>
+     </div>
+    )
 }
 
 export default RealEstateDetails;

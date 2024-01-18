@@ -1,14 +1,14 @@
 .header {
     width: 100%;
+    margin-top: 20px;
 }
 
 .headernav {
     display: flex; 
     flex-direction: row;
-    flex-wrap: wrap;
     align-items: center;
     margin: auto;
-    width: 1140px;
+    width: 1300px;
 }
 
 .logocontent {
@@ -17,14 +17,23 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+    gap: 10px;
     width: 20%;
     text-decoration: none;
 }
 
 .logo {
-    height: 32px;
-    width: 32px;
+    width: 62px;
+    height: 41px;
     padding-right: 5px;
+}
+
+.name {
+    color: #000;
+    font-size: 33px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
 .navcontent {
@@ -33,7 +42,8 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    width: 50%;
+    width: 35%;
+    text-decoration: none;
 }
 
 .nav {
@@ -41,31 +51,49 @@
     flex-direction: row;
     flex-wrap: wrap;
     list-style: none;
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 
 .navlu {
     display: flex; 
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 20px;
+}
+
+.navli {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .buttonad {
-    background-color: #D9D9D9;
-    border: 1px solid #000000;
-    font-weight: 700px;
+    color: #000;
+    font-family: Poppins;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    width: 320px;
+    height: 43px;
+    flex-shrink: 0;
     border-radius: 15px;
-    height: 24px;
-    width: 220px;
-    font: 16px Inter, sans-serif;
-}
+    border: 1px solid #000;
+    background: #D9D9D9;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
 
 .li {
     padding: 10px;
+    
 }
 
 .logincontent {
     width: 130px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .user {
