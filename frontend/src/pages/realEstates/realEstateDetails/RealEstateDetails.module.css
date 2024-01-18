@@ -76,7 +76,6 @@
 .leftColumn {
     width: 100%;
     max-width: 50%;
-    margin-bottom: 60px;
     display: flex;
     flex-direction: column;
     margin-top: 50px;
