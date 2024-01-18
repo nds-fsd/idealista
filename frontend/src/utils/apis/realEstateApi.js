@@ -14,9 +14,61 @@ const ListRealState = (query) => {
         q += `&location=${query.location}`
     if (query.realestatetype)
         q += `&realEstateType=${query.realestatetype}`
+    if (query.price)
+        q += `&price=${query.price}`
+    if (query.states)
+        q += `&state=${query.states}`
+
     return api.get(`realestates${q}`)
         .then(res => res.data)
         .catch(e => console.log(e));
 }
 
-export default { GetRealEstate, ListRealState }
+export const CreateRealEstate = (data) => {
+    try {
+        return api.post(`/realestates`, data)
+            .then((res) => res.data)
+            .catch((e) => console.log(e));
+    } catch(e) {
+        console.log(e);
+    }
+}
+
+const GetRealEstateBuyOperations = () => {
+    try {
+        return api.get(`masterdata/realestate/buyoperations`)
+            .then(response => response.data)
+            .catch((error) => console.log(error.message));
+    } catch(error) {
+        console.log("Error in realEstateApi.js:", error.message);
+    }
+}
+
+const GetRealEstateStates = () => {
+    try {
+        return api.get(`masterdata/realestate/states`)
+            .then(response => response.data)
+            .catch((error) => console.log(error.message));
+    } catch(error) {
+        console.log("Error in realEstateApi.js:", error.message);
+    }
+}
+
+const GetRealEstateTypes = () => {
+    try {
+        return api.get(`masterdata/realestate/types`)
+            .then(response => response.data)
+            .catch((error) => console.log(error.message));
+    } catch(error) {
+        console.log("Error in realEstateApi.js:", error.message);
+    }
+}
+
+export default { 
+    CreateRealEstate, 
+    GetRealEstate, 
+    ListRealState, 
+    GetRealEstateBuyOperations, 
+    GetRealEstateStates, 
+    GetRealEstateTypes 
+};

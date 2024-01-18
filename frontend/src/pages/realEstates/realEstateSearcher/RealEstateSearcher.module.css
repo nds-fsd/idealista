@@ -1,11 +1,16 @@
 .root {
     width: 100%;
+    font-family: Poppins;
 }
 
 .container {
+    display: flex;
     position: relative;
-    margin: auto;
     width: 1140px;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
 }
 
 .searchcontainer {
@@ -22,22 +27,28 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    font-weight: bold;
 }
 
 .tabselected {
     background-color: #CFE2FF;
     border-radius: 15px 15px 0 0;
     text-align: center;
+    height: 30px;
     width: 145px;
     margin-right: 5px;
+    font-weight: bold;
+    padding-top: 5px;
 }
 
 .tabunselected {
     background-color: #D9D9D9;
     border-radius: 15px 15px 0 0;
     text-align: center;
+    height: 30px;
     width: 145px;
     margin-right: 5px;
+    padding-top: 5px;
 }
 
 .searchbody {
@@ -50,6 +61,7 @@
     border: 1px;
     border-radius: 8px;
     color: #000000;
+    font-family: Poppins;
     font-size: 16px;
     margin-left: 30px;
     margin-top: 30px;
@@ -65,6 +77,11 @@
     margin-left: 15px;
     height: 35px;
     width: 120px;
+    font-family: Poppins;
+}
+
+::placeholder {
+    font-family: Poppins;
 }
 
 .search {
@@ -76,4 +93,6 @@
     margin-left: 15px;
     height: 35px;
     width: 130px;
+    font-family: Poppins;
+    font-style: normal;
 }
