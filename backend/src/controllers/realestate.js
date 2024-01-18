@@ -26,6 +26,11 @@ const formatQuery = (queryParams) => {
         query.$or = state
     }
 
+    if (queryParams.hasOwnProperty("rooms")) query.rooms = {"$gte": rooms}
+    if (queryParams.hasOwnProperty("bathrooms")) query.bathrooms = {"$gte": bathrooms}
+
+    console.log("filtros:", query)
+
     return query;
 }
 
