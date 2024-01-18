@@ -34,9 +34,9 @@ function AppFooter(){
                     </ul>
                 </div> 
                 <div className={styles.social}>
-                    <Link><img src={imageFacebook} alt="logo facebook" /></Link>
-                    <Link><img src={imageInstagram} alt="logo instagram" /></Link>
-                    <Link><img src={imageX} alt="logo X" /></Link>
+                    <Link to="/"><img src={imageFacebook} alt="logo facebook" /></Link>
+                    <Link to="/"><img src={imageInstagram} alt="logo instagram" /></Link>
+                    <Link to="/"><img src={imageX} alt="logo X" /></Link>
                 </div>
             </div>            
         </div>
