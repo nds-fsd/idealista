@@ -9,6 +9,14 @@ const formatQuery = (queryParams) => {
     if (queryParams.hasOwnProperty("operation")) query.operation = queryParams.operation;
     if (queryParams.hasOwnProperty("location")) query.location = queryParams.location;
     if (queryParams.hasOwnProperty("realEstateType")) query.realEstateType = queryParams.realEstateType;
+    
+    if (queryParams.hasOwnProperty("price")) {
+        const priceValues = queryParams.price.split(",");
+        const priceMin = priceValues[0];
+        const priceMax = priceValues[1];
+        query.price = {"$gte": priceMin, "$lte": priceMax}
+    }
+
     if (queryParams.hasOwnProperty("state")) {
         const stateValues = queryParams.state.split(",");
         const state = [];

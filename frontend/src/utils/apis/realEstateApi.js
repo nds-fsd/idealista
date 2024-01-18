@@ -14,6 +14,8 @@ const ListRealState = (query) => {
         q += `&location=${query.location}`
     if (query.realestatetype)
         q += `&realEstateType=${query.realestatetype}`
+    if (query.price)
+        q += `&price=${query.price}`
     if (query.states)
         q += `&state=${query.states}`
 
