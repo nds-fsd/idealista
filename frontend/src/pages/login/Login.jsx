@@ -23,7 +23,7 @@ const LoginForm = () =>{
             if (response.status === 200) {
                 localStorage.setItem("token",response);
 
-                console.log("token recibido",response)
+                
 
                 const userNameResponse = response.data.user.name;
                 console.log("nombre",userNameResponse)
