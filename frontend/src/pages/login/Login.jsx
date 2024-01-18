@@ -4,6 +4,7 @@ import axios from "axios";
 import toast, {Toaster} from "react-hot-toast"
 import { loginUser } from "../../utils/apis/userApi";
 import {useNavigate} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import styles from "../../pages/login/Login.module.css"
 import login_foto from "../../assets/login_foto.jpg"
@@ -67,6 +68,14 @@ return (
                 </div>
 
                 <button className={styles.form_button} type="submit"><span>Iniciar sesión</span></button>
+
+                <Link to="/register">
+                <div className={styles.register}>
+                    <button className={styles.register_button}><span>¿Nuevo aquí? ¡Regístrate ahora!</span></button>
+                </div>
+                </Link>
+                
+
             </form>
         </div>
     </div>
