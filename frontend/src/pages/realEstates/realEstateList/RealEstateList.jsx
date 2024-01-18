@@ -5,13 +5,15 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import realEstateApi from "../../../utils/apis/realEstateApi";
 import RealEstateListElement from "./RealEstateListElement";
 import RealEstateOperation from "../../../components/realestates/RealEstateOperations";
-import RealEstateStatus from "../../../components/realestates/RealEstateStatus";
+import RealEstatePrice from "../../../components/realestates/RealEstatePrices";
+import RealEstateStates from "../../../components/realestates/RealEstateStates";
 import RealEstateType from "../../../components/realestates/RealEstateType";
 
 
 import styles from "./RealEstateList.module.css";
 import imageList from "../../../assets/lista.svg";
 import imageMap from "../../../assets/marcador.svg";
+import RealEstatePrices from "../../../components/realestates/RealEstatePrices";
 
 
 function RealEstateList() {
@@ -24,23 +26,45 @@ function RealEstateList() {
     const [realEstateOperationValue, setRealEstateOperationValue] = useState("");
     const [realEstateTypeValue, setRealEstateTypeValue] = useState("");
     const [realEstateLocationValue, setRealEstateLocationValue] = useState("");
+    const [realEstateStates, setRealEstateStates] = useState({"Obra-nueva": false,"Buen-estado": false,"A-reformar": false});
+    const [priceMin, setPriceMin] = useState(0)
+    const [priceMax, setPriceMax] = useState(999999999)
 
     useEffect(() => {
         setRealEstateOperationValue(operation);
         setRealEstateTypeValue(realEstateType);
         setRealEstateLocationValue(localization);
+        setPriceMin(0);
+        setPriceMax(999999999);
     }, [])
 
-    const query = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType }))
+    const getPriceQueryString = () => {
+        return priceMin + "," + priceMax;
+    }
+
+    const getStatesQueryString = () => {
+        let states = "";
+        if (realEstateStates["Obra-nueva"]) states = states.concat("Obra-nueva,");
+        if (realEstateStates["Buen-estado"]) states = states.concat("Buen-estado,");
+        if (realEstateStates["A-reformar"]) states = states.concat("A-reformar,");
+        states = states.substring(0, states.length-1);
+        return states;
+    }
+
+    const query = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType, price: getPriceQueryString(), states: getStatesQueryString() }))
     if (query.isLoading || query.isFetching) return <div> Loading... </div>
     if (!query.data) return <div> Something went wrong </div>
-
+    
     const getListQueryString = () => {
-        return `?operation=${realEstateOperationValue}&location=${realEstateLocationValue}&realestatetype=${realEstateTypeValue}`;
+        const states = getStatesQueryString();
+        const prices = getPriceQueryString();
+        return `?operation=${realEstateOperationValue}&location=${realEstateLocationValue}&realestatetype=${realEstateTypeValue}&price=${prices}&state=${states}`;
     }
 
     const getMapQueryString = () => {
-        return `/realestates/map?operation=${realEstateOperationValue}&location=${realEstateLocationValue}&realestatetype=${realEstateTypeValue}`;
+        const states = getStatesQueryString();
+        const prices = getPriceQueryString();
+        return `/realestates/map?operation=${realEstateOperationValue}&location=${realEstateLocationValue}&realestatetype=${realEstateTypeValue}&price=${prices}&state=${states}`;
     }
 
     const handlerLocationOnChange = (event) => {
@@ -48,17 +72,6 @@ function RealEstateList() {
     }
 
     const handlerSearchOnClick = () => {
-        // al hacer click en el boton buscar queryClient.invalidateQueries no se actualiza la lista, se recarga la misma lista
-        //queryClient.invalidateQueries("realEstateList");
-
-        // al pulsar 1a vez el boton buscar no se actualiza la lista, al pulsar el 2a vez el boton se actualiza la lista con el nuevo filtro
-        // query.clear;
-        // query.refetch("realEstateList");
-
-        // al pulsar 1a vez el boton buscar no se actualiza la lista, al pulsar el 2a vez el boton se actualiza la lista con el nuevo filtro
-        // query.refetch("realEstateList");
-        
-        // Funcionalmente es correcto, pero si no cambia el filtro y pulso buscar hace una llamada innecesaria al backend
         queryClient.clear();
         queryClient.refetchQueries("realEstateList");
     }
@@ -68,7 +81,7 @@ function RealEstateList() {
 
             <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                 <div>
-                    <h2>{operation + " > " + realEstateType + " > " + localization}</h2>
+                    <h2>{operation + " > " + realEstateType + " > " + localization + " (" + query.data.length + ")"}</h2>
                 </div>
                 <div>
                     <ul>
@@ -87,19 +100,28 @@ function RealEstateList() {
             <div style={{display: "flex", flexDirection: "row"}}>
                 <div style={{width: "210px"}}>                
                     <div>
-                        <span>Operación:</span>
+                        <span style={{fontWeight:"700"}}>Operación:</span>
                         <RealEstateOperation realEstateOperationValue={realEstateOperationValue} setRealEstateOperationValue={setRealEstateOperationValue}></RealEstateOperation>
                     </div>
-                    <div>Tipo inmueble:</div>
-                    <RealEstateType realEstateTypeValue={realEstateTypeValue} setRealEstateTypeValue={setRealEstateTypeValue}></RealEstateType>
                     <div>
-                        <span>Población:</span>
+                        <span style={{fontWeight:"700"}}>Tipo inmueble:</span>
+                        <RealEstateType realEstateTypeValue={realEstateTypeValue} setRealEstateTypeValue={setRealEstateTypeValue}></RealEstateType>
+                    </div>
+                    <div>
+                        <span style={{fontWeight:"700"}}>Población:</span>
                         <input className={styles.location} type="text" value={realEstateLocationValue} onChange={handlerLocationOnChange}></input>
                     </div>
-
+                    <div>
+                        <span style={{fontWeight:"700"}}>Precio:</span>
+                        <RealEstatePrices priceMin={priceMin} setPriceMin={setPriceMin} priceMax={priceMax} setPriceMax={setPriceMax}></RealEstatePrices>
+                    </div>
+                     <div>
+                        <span style={{fontWeight:"700"}}>Estado:</span>
+                        <RealEstateStates realEstateStates={realEstateStates} setRealEstateStates={setRealEstateStates}></RealEstateStates>
+                    </div>
                     <div>
                         <Link to={getListQueryString()}><button className={styles.search} onClick={handlerSearchOnClick}>Buscar</button></Link>
-                    </div>
+                    </div>                    
                 </div>
                 <div className={styles.list}>
                     {query.data.map(e => <RealEstateListElement key={e._id} realEstate={e}></RealEstateListElement>)}

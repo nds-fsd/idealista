@@ -26,7 +26,7 @@ function RealEstateOperation(props) {
 
     return (
         <>
-            <select className={styles.realestatetype} value={realEstateOperation} onChange={handlerRealEstateOnChange}>
+            <select className={styles.select} value={realEstateOperation} onChange={handlerRealEstateOnChange}>
                 {data && data.map((element) => {
                     return <option key={element._id} value={element.value}>{element.description}</option>
                 })}
