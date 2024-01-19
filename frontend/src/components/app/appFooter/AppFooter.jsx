@@ -13,15 +13,16 @@ function AppFooter(){
     return(
         <div className={styles.principal}>
             <div className={styles.container}>
-                <div className={styles.logo}>
-                    <Link to="/">
-                    <img className={styles.logo} src={imageLogo} alt="Logo Realista"/>
+                <div>
+                    <Link to="/" className={styles.logocontent}>
+                        <div><img className={styles.logo} src={imageLogo} alt="Logo Realista"/></div>
+                        <div className={styles.name}>Realista</div>
                     </Link>
                 </div>
                 <div className={styles.list}>
                     <ul>
                         <Link><li>Sobre Nosotros</li></Link>
-                        <Link> <li>Publica tu inmueble</li></Link>
+                        <Link to="/realestates/create"> <li>Publica tu inmueble</li></Link>
                         <Link><li>Buscador de agencias</li></Link>
                         <Link><li>Tasación de inmuebles</li></Link>
                         <Link><li>Buscador de hipotecas</li></Link>
@@ -33,9 +34,9 @@ function AppFooter(){
                     </ul>
                 </div> 
                 <div className={styles.social}>
-                    <Link><img src={imageFacebook} alt="logo facebook" /></Link>
-                    <Link><img src={imageInstagram} alt="logo instagram" /></Link>
-                    <Link><img src={imageX} alt="logo X" /></Link>
+                    <Link to="/"><img src={imageFacebook} alt="logo facebook" /></Link>
+                    <Link to="/"><img src={imageInstagram} alt="logo instagram" /></Link>
+                    <Link to="/"><img src={imageX} alt="logo X" /></Link>
                 </div>
             </div>            
         </div>

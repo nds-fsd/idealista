@@ -15,7 +15,7 @@ function RealEstateListElement({ realEstate }) {
             </div>
             <div>
                 <Link className={styles.link} to={`/realestates/${realEstate._id}`}>
-                    <h2>{realEstate.shortDescription}</h2>
+                    <h3>{realEstate.shortDescription}</h3>
                 </Link>
                 <div>{realEstate.properties}</div>
                 <div>{realEstate.state}</div>

@@ -2,34 +2,26 @@ const express = require('express');
 const User = require("../mongo/schemas/users");
 const bcrypt = require('bcrypt');
 
+const createAccessToken = require('../security/jwToken')
+
 const login = async (req,res) => {
     const {email,password}= req.body;
-    console.log(email,password)
     try {
         const userFound = await User.findOne({email})
         if (!userFound) {
-        return res.status(400).json({message:"User not found"});}
-
-        if (email === "") {
-            return res.status(400).json({message:"Email is empty"})
-            
-        }
-
-        if (password === "") {
-            return res.status(400).json({message:"Password is empty"})
-            
-        }
+            return res.status(400).json({message:"User not found"});}
 
         const valPassword = bcrypt.compareSync(password,userFound.password);
         if (valPassword) {
-            return res.status(200).json({message:"Login sucessful"}) 
+            const token =  createAccessToken ({id:userFound._id,});
+            return res.status(200).json({user:userFound, token}) 
         } else {
             return res.status(400).json({message:"Incorrect password"})
         }
         
     } catch (error) {
-        console.log(error)
-        return res.status(500).json(error);
+        console.log("Error in authLogin.js: " + error.message)
+        res.status(500).send(error.message);
         
     }
 

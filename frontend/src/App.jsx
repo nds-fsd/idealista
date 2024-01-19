@@ -1,13 +1,16 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-import AppNav from "./components/app/appnav/AppNav";
 import AppLayout from "./components/app/appLayout/AppLayout";
 import RealEstateSearcher from "./pages/realEstates/realEstateSearcher/RealEstateSearcher";
 import RealEstateDetails from "./pages/realEstates/realEstateDetails/RealEstateDetails";
+import RealEstateForm from "./pages/realEstates/realEstateForm/realEstateForm";
 import RealEstateList from "./pages/realEstates/realEstateList/RealEstateList";
+import RealEstateListMap from "./pages/realEstates/realEstateListMap/RealEstateListMap";
 import Register from "./pages/register/Register";
-import style from "./App.module.css";
+import Login from "./pages/login/Login";
+
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -18,14 +21,17 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AppLayout />}>
-          <Route path="/" element={<RealEstateSearcher />}></Route>
-          <Route path="/realestates" element={<RealEstateList />}></Route>
-          <Route path="/realestates/:id" element={<RealEstateDetails />}></Route>
+          <Route path="/" element={<RealEstateSearcher />} />
+          <Route path="/realestates" element={<RealEstateList />} />
+          <Route path="/realestates/:id" element={<RealEstateDetails />} />
+          <Route path="/realestates/create" element={<RealEstateForm />} />
+          <Route path="/realestates/map" element={<RealEstateListMap />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route path="/login" element={<Login />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
 export default App;
