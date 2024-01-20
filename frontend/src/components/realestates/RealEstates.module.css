@@ -6,6 +6,7 @@
     margin: 1px;
     height: 35px;
     width: 120px;
+    font-family: Poppins;
 }
 
 .boxnumber {
@@ -18,4 +19,5 @@
     margin: 1px;
     height: 32px;
     width: 32px;
+    font-family: Poppins;
 }
