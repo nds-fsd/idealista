@@ -9,7 +9,7 @@ const formatQuery = (queryParams) => {
     if (queryParams.hasOwnProperty("operation")) query.operation = queryParams.operation;
     if (queryParams.hasOwnProperty("location")) query.location = queryParams.location;
     if (queryParams.hasOwnProperty("realEstateType")) query.realEstateType = queryParams.realEstateType;
-    
+
     if (queryParams.hasOwnProperty("price")) {
         const priceValues = queryParams.price.split(",");
         const priceMin = priceValues[0];
@@ -26,10 +26,8 @@ const formatQuery = (queryParams) => {
         query.$or = state
     }
 
-    if (queryParams.hasOwnProperty("rooms")) query.rooms = {"$gte": rooms}
-    if (queryParams.hasOwnProperty("bathrooms")) query.bathrooms = {"$gte": bathrooms}
-
-    console.log("filtros:", query)
+    if (queryParams.hasOwnProperty("rooms")) query.rooms = {"$gte": Number(queryParams.rooms)}
+    if (queryParams.hasOwnProperty("bathrooms")) query.bathrooms = {"$gte": Number(queryParams.bathrooms)}
 
     return query;
 }

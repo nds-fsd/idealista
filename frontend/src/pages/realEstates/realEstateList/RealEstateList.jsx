@@ -39,6 +39,8 @@ function RealEstateList() {
         setRealEstateLocationValue(localization);
         setPriceMin(0);
         setPriceMax(999999999);
+        setRooms(1);
+        setBathrooms(1);
     }, [])
 
     const getPriceQueryString = () => {
@@ -54,14 +56,16 @@ function RealEstateList() {
         return states;
     }
 
-    const query = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType, price: getPriceQueryString(), states: getStatesQueryString() }))
-    if (query.isLoading || query.isFetching) return <div> Loading... </div>
-    if (!query.data) return <div> Something went wrong </div>
+    const query = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType, price: getPriceQueryString(), states: getStatesQueryString(), rooms: rooms, bathrooms: bathrooms }))
+    if (query.isLoading || query.isFetching) return <div className={styles.errormessage}> Loading... </div>
+    if (!query.data) return <div className={styles.errormessage}> Something went wrong </div>
+    const mensajeerror = (query.data.length <= 0) ? "No se ha encontrado inmuebles" : "";
+
     
     const getListQueryString = () => {
         const states = getStatesQueryString();
-        const prices = getPriceQueryString();
-        return `?operation=${realEstateOperationValue}&location=${realEstateLocationValue}&realestatetype=${realEstateTypeValue}&price=${prices}&state=${states}`;
+        const prices = getPriceQueryString();        
+        return `?operation=${realEstateOperationValue}&location=${realEstateLocationValue}&realestatetype=${realEstateTypeValue}&price=${prices}&state=${states}&rooms=${rooms}&bathrooms=${bathrooms}`;
     }
 
     const getMapQueryString = () => {
@@ -99,8 +103,9 @@ function RealEstateList() {
                     </ul>
                 </div>
             </div>   
+            <div className={styles.errormessage}>{mensajeerror}</div>
             
-            <div style={{display: "flex", flexDirection: "row"}}>
+            <div style={{display: "flex", flexDirection:"row", alignItems:"flex-start"}}>
                 <div style={{width: "210px"}}>                
                     <div>
                         <span style={{fontWeight:"700"}}>Operación:</span>
@@ -124,18 +129,18 @@ function RealEstateList() {
                     </div>
                     <div>
                         <span style={{fontWeight:"700"}}>Habitaciones:</span>
-                        <RealEstateNumber fields={5} number={rooms} setNumber={setRooms}></RealEstateNumber>
+                        <RealEstateNumber fields={4} number={rooms} setNumber={setRooms}></RealEstateNumber>
                     </div>
                     <div>
                         <span style={{fontWeight:"700"}}>Baños:</span>
-                        <RealEstateNumber fields={5} number={bathrooms} setNumber={setBathrooms}></RealEstateNumber>
+                        <RealEstateNumber fields={4} number={bathrooms} setNumber={setBathrooms}></RealEstateNumber>
                     </div>
                     <div>
                         <Link to={getListQueryString()}><button className={styles.search} onClick={handlerSearchOnClick}>Buscar</button></Link>
                     </div>                    
                 </div>
                 <div className={styles.list}>
-                    {query.data.map(e => <RealEstateListElement key={e._id} realEstate={e}></RealEstateListElement>)}
+                    { query.data.map(e => <RealEstateListElement key={e._id} realEstate={e}></RealEstateListElement>)}
                 </div>                
             </div>
         </div>
