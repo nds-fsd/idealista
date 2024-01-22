@@ -68,6 +68,7 @@ textarea {
     margin: 4px 2px;
     cursor: pointer;
     transition-duration: 0.4s;
+    margin-bottom: 40px;
 }
 
 .container input[type="submit"]:hover {

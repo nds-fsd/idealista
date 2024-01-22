@@ -47,14 +47,17 @@ const RealEstateForm = () => {
 
 
           <label htmlFor="realEstateSubtype" className={styles.label}>Subtipo de inmueble*</label>
-          <input {...register("realEstateSubtype", { required: true })} className={styles.input} />
+          <select {...register("realEstateSubtype", { required: true })} className={styles.select}>
+            <option value="casa">Casa</option>
+            <option value="piso">Piso</option>
+          </select>
           {errors.realEstateSubtype && <p className={styles.error}>Este campo es obligatorio</p>}
 
           <label htmlFor="metersBuilt" className={styles.label}>Metros construidos (m²)*</label>
           <input {...register("metersBuilt", { pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
           {errors.metersBuilt && errors.metersBuilt.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
 
-          <label htmlFor="price" className={styles.label}>Precio</label>
+          <label htmlFor="price" className={styles.label}>Precio*</label>
           <input {...register("price", { pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
           {errors.price && errors.price.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
 
