@@ -19,11 +19,13 @@ const realEstateSchema = new Schema({
     state: {type: String, required: false},
     metersBuilt: {type: Number, required: true},
     usefulMeter: {type: Number, required: false},
+    numberOfRooms: {type: Number, required: false},
+    numberOfBathrooms: {type: Number, required: false},
     properties: [{type: String, required: false}],
     price: {type: Number, required: true},
     realtor: {type: String, required: false},
-    realposition: {type: Object, require: false},
-    publicposition: {type: Object, require: false}
+    realposition: {type: Object, required: false},
+    publicposition: {type: Object, required: false}
 });
 
 const RealEstate = model('realestate', realEstateSchema);
