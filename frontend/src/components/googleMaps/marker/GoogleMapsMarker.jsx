@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 
 
-function GoogleMapsMarker (options) {
+function GoogleMapsMarker (options, contentInfoMarker) {
     const [marker, setMarker] = useState();
-  
+      
     useEffect(() => {
       if (!marker) {
         setMarker(new google.maps.Marker());
       }
-  
+
       return () => {
         if (marker) {
           marker.setMap(null);
@@ -21,6 +21,7 @@ function GoogleMapsMarker (options) {
         marker.setOptions(options);
       }
     }, [marker, options]);
+  
     
     return null;
   };

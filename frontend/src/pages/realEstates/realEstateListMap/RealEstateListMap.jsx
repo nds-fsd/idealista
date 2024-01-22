@@ -49,7 +49,7 @@ function RealEstateListMap(){
             </div>
             <GoogleMapsReactWrapper>
                 <GoogleMaps center={data[0]?.publicposition} zoom={13} >
-                    {data.map(e => <GoogleMapsMarker key={e._id} position={e?.publicposition} ></GoogleMapsMarker> )}
+                    {data.map(realestate => <GoogleMapsMarker key={realestate._id} position={realestate?.publicposition} ></GoogleMapsMarker> )}
                 </GoogleMaps>
             </GoogleMapsReactWrapper>
         </div>
