@@ -87,7 +87,7 @@ textarea {
     scale: 0.5;
 }
 
-.properties .floor {
+.properties {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -97,11 +97,13 @@ textarea {
     margin-bottom: 20px;
 }
 
-.properties .floorOptions label {
+.properties label {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: 14px;
 }
+
 
 .container .error {
     color: red;
@@ -119,3 +121,4 @@ h3 {
     font-size: 14px;
     text-align: center;
 }
+
