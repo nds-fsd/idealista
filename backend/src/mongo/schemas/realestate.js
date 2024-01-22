@@ -13,6 +13,7 @@ const realEstateSchema = new Schema({
     block: {type: String, required: false},
     portal: {type: String, required: false},
     floor: {type: String, required: false},
+    floorNumber: {type: String, required: false},
     door: {type: String, required: false},
     urbanization: {type: String, required: false},
     district: {type: String, required: false},
