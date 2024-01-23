@@ -10,7 +10,8 @@ app.use('/', router);
 
 connectDB().then(() => console.log("Connected to database!"))
 
-app.listen(3001, () => {
-    console.log('Server is up and running ⚡')
-});
+const port = process.env.PORT || 3001;
 
+app.listen(port, () => {
+    console.log(`Server is up and running on port ${port} ⚡`);
+});
