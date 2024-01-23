@@ -151,13 +151,13 @@ const RealEstateForm = () => {
             <input {...register("usefulMeter", { required: false, pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
             {errors.usefulMeter && errors.usefulMeter.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
 
-            <label htmlFor="numberOfRooms" className={styles.label}>Número de habitaciones</label>
-            <input {...register("numberOfRooms", { required: false, pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
-            {errors.numberOfRooms && errors.numberOfRooms.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
+            <label htmlFor="rooms" className={styles.label}>Número de habitaciones</label>
+            <input {...register("rooms", { required: false, pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
+            {errors.rooms && errors.rooms.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
 
-            <label htmlFor="numberOfBathrooms" className={styles.label}>Número de baños</label>
-            <input {...register("numberOfBathrooms", { required: false, pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
-            {errors.numberOfBathrooms && errors.numberOfBathrooms.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
+            <label htmlFor="bathrooms" className={styles.label}>Número de baños</label>
+            <input {...register("bathrooms", { required: false, pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
+            {errors.bathrooms && errors.bathrooms.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
 
           <label htmlFor="properties" className={styles.label}>Propiedades</label>
           <ul className={styles.properties}>
