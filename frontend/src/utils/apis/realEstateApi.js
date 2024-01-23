@@ -18,6 +18,10 @@ const ListRealState = (query) => {
         q += `&price=${query.price}`
     if (query.states)
         q += `&state=${query.states}`
+    if (query.rooms)
+        q += `&rooms=${query.rooms}`
+    if (query.bathrooms)
+        q += `&bathrooms=${query.bathrooms}`
 
     return api.get(`realestates${q}`)
         .then(res => res.data)
