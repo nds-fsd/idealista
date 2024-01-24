@@ -49,12 +49,40 @@ const getCoordinates = async (address) => {
     }
 }
 
+const getPublicCoordinates = async (publicAddress) => {
+    try {
+        const response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+            params: {
+                address: publicAddress,
+                key: process.env.GOOGLE_APIKEY
+            }
+        });
+
+        if (response.data.status === 'OK') {
+            const location = response.data.results[0].geometry.location;
+            return [location.lng, location.lat];
+        } else {
+            throw new Error('Unable to find coordinates for the provided public address.');
+        }
+    } catch (error) {
+        console.log("Error in getPublicCoordinates:", error.message);
+        throw error;
+    }
+}
+
 export const CreateRealEstate = async (data) => {
     try {
         const coordinates = await getCoordinates(data.address);
+        const publicCoordinates = await getPublicCoordinates(data.publicAddress);
+
         data.mapLocation = {
             type: 'Point',
             coordinates: coordinates
+        };
+
+        data.publicMapLocation = {
+            type: 'Point',
+            coordinates: publicCoordinates
         };
 
         return api.post(`/realestates`, data)
