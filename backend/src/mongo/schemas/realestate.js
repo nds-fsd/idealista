@@ -18,6 +18,7 @@ const realEstateSchema = new Schema({
     urbanization: {type: String, required: false},
     district: {type: String, required: false},
     state: {type: String, required: false},
+    address: {type: String, required: true},
     metersBuilt: {type: Number, required: true},
     usefulMeter: {type: Number, required: false},
     rooms: {type: Number, required: false},
