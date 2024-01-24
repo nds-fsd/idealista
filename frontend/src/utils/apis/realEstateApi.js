@@ -1,5 +1,5 @@
 import api from "./apiWrapper";
-const axios = require('axios');
+import axios from 'axios';
 
 const GetRealEstate = (id) => {
     return api.get(`realestates/${id}`)
@@ -86,7 +86,7 @@ export const CreateRealEstate = async (data) => {
             coordinates: publicCoordinates
         };
 
-        return api.post(`/realestates`, data)
+        return api.post(`/`)
             .then((res) => res.data)
             .catch((e) => console.log(e));
     } catch(e) {
