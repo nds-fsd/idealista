@@ -40,7 +40,7 @@ const realEstateSchema = new Schema({
                 required: true
             }
         },
-    publicMapLocation = {
+    publicMapLocation : {
             type: {
                 type: String,
                 enum: ['Point'],
