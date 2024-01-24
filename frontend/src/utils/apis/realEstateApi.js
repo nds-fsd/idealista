@@ -28,8 +28,35 @@ const ListRealState = (query) => {
         .catch(e => console.log(e));
 }
 
-export const CreateRealEstate = (data) => {
+const getCoordinates = async (address) => {
     try {
+        const response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+            params: {
+                address: address,
+                key: process.env.GOOGLE_APIKEY
+            }
+        });
+
+        if (response.data.status === 'OK') {
+            const location = response.data.results[0].geometry.location;
+            return [location.lng, location.lat]; // longitude and latitude
+        } else {
+            throw new Error('Unable to find coordinates for the provided address.');
+        }
+    } catch (error) {
+        console.log("Error in getCoordinates:", error.message);
+        throw error;
+    }
+}
+
+export const CreateRealEstate = async (data) => {
+    try {
+        const coordinates = await getCoordinates(data.address);
+        data.mapLocation = {
+            type: 'Point',
+            coordinates: coordinates
+        };
+
         return api.post(`/realestates`, data)
             .then((res) => res.data)
             .catch((e) => console.log(e));
@@ -73,5 +100,6 @@ export default {
     ListRealState, 
     GetRealEstateBuyOperations, 
     GetRealEstateStates, 
-    GetRealEstateTypes 
+    GetRealEstateTypes,
+    getCoordinates
 };

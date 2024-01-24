@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect } from "react"; // quitalo si no lo usas
 import { Link, useLocation } from "react-router-dom";
 import { useQuery } from "react-query";
 

@@ -26,8 +26,19 @@ const realEstateSchema = new Schema({
     price: {type: Number, required: true},
     realtor: {type: String, required: false},
     realposition: {type: Object, required: false},
-    publicposition: {type: Object, required: false}
-});
+    publicposition: {type: Object, required: false},
+    mapLocation: {
+            type: {
+                type: String, // Don't do `{ location: { type: String } }`
+                enum: ['Point'], // 'location.type' must be 'Point'
+                required: true
+            },
+            coordinates: {
+                type: [Number],
+                required: true
+            }
+        }
+    });
 
 const RealEstate = model('realestate', realEstateSchema);
 
