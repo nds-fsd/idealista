@@ -1,4 +1,5 @@
 import api from "./apiWrapper";
+const axios = require('axios');
 
 const GetRealEstate = (id) => {
     return api.get(`realestates/${id}`)
