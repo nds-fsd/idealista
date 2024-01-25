@@ -11,15 +11,16 @@ function GoogleMapsMarker (options) {
     const {map, realestate} = options;
     const markerOptions = {map: map, position: realestate.publicposition, optimized: false}
     const [marker, setMarker] = useState();
+    const realEstateLink = "/realestates/"+realestate._id;
 
     const contentString =
       '<div>'+
         '<div>'+
-          '<Link to={`/realestates/${realEstate._id}`}>'+
+          '<a style="text-decoration:none" href='+realEstateLink+' target="_blank">'+
             '<img style="height:170px; width=170px" src="https://img3.idealista.com/blur/WEB_DETAIL_TOP-L-L/0/id.pro.es.image.master/fd/b9/4c/1044663570.jpg" alt="Imagen inmueble"/>'+
-          '</Link>'+
+            '<div style="margin-top:10px; font-size:16px; font-weight:400">'+realestate.roadName+", "+realestate.roadNumber+" ("+realestate.location+')'+'</div>'+
+          '</a>'+
         '</div>'+
-        '<div style="margin-top:10px; font-size:16px; font-weight:400">'+realestate.roadName+", "+realestate.roadNumber+" ("+realestate.location+')'+'</div>'+
         '<div style="margin-top:10px; font-size:16px; font-weight:700">'+realestate.price+' €</div>'+
         '<div style="margin-top:10px; display:flex; flex-direction:row; align-items:center; height:30px">'+
           '<img style="margin-right:5px; height:24px; width:24px" src='+imageRooms+' alt="Número de habitaciones" />'+
