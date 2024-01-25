@@ -1,10 +1,12 @@
 import React from "react";
-import {useForm} from "react-hook-form";
 import axios from "axios";
+import UserContext from "../../context/UserContext";
+import {useForm} from "react-hook-form";
 import toast, {Toaster} from "react-hot-toast"
 import { loginUser } from "../../utils/apis/userApi";
 import {useNavigate} from "react-router-dom";
 import { Link } from "react-router-dom";
+import {useContext} from "react";
 
 import styles from "../../pages/login/Login.module.css"
 import login_foto from "../../assets/login_foto.jpg"
@@ -13,20 +15,22 @@ import login_foto from "../../assets/login_foto.jpg"
 const LoginForm = () =>{
     const {register, handleSubmit,setError,reset,formState:{errors}}= useForm();
     const navigate = useNavigate();
+    const {user,setUser} = useContext(UserContext);
 
-    const login = () => toast.success('Login exitoso');
+    const login = () => toast.success("Login exitoso");
 
-    const onSubmit = async(data)=>{
+    const onLogin = async(data)=>{
         try{
             const response = await loginUser(data);
             
             if (response.status === 200) {
-                localStorage.setItem("token",response);
+                localStorage.setItem("token",response.data.token);
+                localStorage.setItem("user",JSON.stringify(response.data.user))
+                setUser(response.data.user);
 
-                
-
-                const userNameResponse = response.data.user.name;
-                console.log("nombre",userNameResponse)
+                console.log("token",response.data.token);
+                const user= response.data.user.name;
+                console.log("nombre",user)
 
                 await Promise.resolve(login());
                 setTimeout(() => {
@@ -56,7 +60,7 @@ return (
         </div>
 
         <div className={styles.form_container}>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onLogin)}>
                 <div className={styles.input}>
                     <label>Email</label>
                     <input {...register("email",{required:"El email es requerido"})} />
@@ -68,10 +72,11 @@ return (
                 </div>
 
                 <button className={styles.form_button} type="submit"><span>Iniciar sesión</span></button>
+                
 
                 <Link to="/register">
                 <div className={styles.register}>
-                    <button className={styles.register_button}><span>¿Nuevo aquí? ¡Regístrate ahora!</span></button>
+                    <button className={styles.register_button}><span>{`¿Nuevo aquí? ¡Regístrate ahora!`}</span></button>
                 </div>
                 </Link>
                 

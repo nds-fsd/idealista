@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 
+
+import UserContextProvider from "../../../context/UserContext";
 import styles from "./AppNav.module.css";
 import imageLogo from "../../../assets/logo.svg";
 import imageLogin from "../../../assets/usuario.svg";
 import imageFavoritos from "../../../assets/me-gusta.png";
+import UserContext from "../../../context/UserContext";
 // import imageLupa from "../../../assets/xxxx.svg"; no tenemos esta imagen
-
 
 function AppNav() {
 
+    const{isLoggedIn} = useContext(UserContext)
     return (
         <header className={styles.header}> 
             <div className={styles.headernav}>
@@ -36,6 +40,10 @@ function AppNav() {
                     </nav>
                 </div>
                 <Link to="/login">
+                    <div>{isLoggedIn}
+
+
+                    </div>
                     <div className={styles.logincontent}>
                         <img className={styles.user} src={imageLogin} alt="Iniciar sesión"/>
                         <span>Iniciar sesión</span>
