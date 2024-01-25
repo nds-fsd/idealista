@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import styles from "./GoogleMapsMarker.module.css";
-import house_image from "../../../assets/pexels-aaron-cook-19277901 1.png"
 import imageBathrooms from "../../../assets/bano.svg"
 import imageM2 from "../../../assets/m2.svg"
 import imageRooms from "../../../assets/cama.svg"
