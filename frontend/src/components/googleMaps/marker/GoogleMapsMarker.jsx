@@ -8,7 +8,7 @@ import imageRooms from "../../../assets/cama.svg"
 
 
 function GoogleMapsMarker (options) {
-    const {map, realestate} = options;
+    const {map, realestate, markerRef} = options;
     const markerOptions = {map: map, position: realestate.publicposition, optimized: false}
     const [marker, setMarker] = useState();
     const realEstateLink = "/realestates/"+realestate._id;
@@ -40,12 +40,12 @@ function GoogleMapsMarker (options) {
       maxWidth: "200px",
       ariaLabel: "Label"
     })
- 
+
     useEffect(() => {
       if (!marker) {
         setMarker(new google.maps.Marker());
       }
-  
+
       return () => {
         if (marker) {
           marker.setMap(null);
@@ -57,16 +57,17 @@ function GoogleMapsMarker (options) {
       if (marker) {
         marker.setOptions(markerOptions);
         marker.addListener("click", () => {
-          infowindow.close();
-          infowindow.setContent(contentString);
-          infowindow.setOptions({maxWidth: "200px"})
-          infowindow.open(marker.getMap(), marker);
+          if (!markerRef?.current) markerRef.current = infowindow;
+          markerRef.current.close();
+          markerRef.current.setContent(contentString);
+          markerRef.current.setOptions({maxWidth: "200px"})
+          markerRef.current.open(marker.getMap(), marker);
         })
       }
     }, [marker, markerOptions]);
 
-    
- 
+
+
     return null;
   };
 
