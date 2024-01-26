@@ -6,16 +6,16 @@ const getAll = async (req, res) => {
     try {
         const queryStrings = req.query || {};
         const allFavorites = await Favorite.find(queryStrings);
-        if (allFavorites) {
+        if (allFavorites.length > 0) {
             res.status(200).json(allFavorites);
         } else {
-            res.status(404).send()
+            res.status(404).json({ message: "Favorites not found" });
         }
     } catch (error) {
-        console.log("Error in favorite.js getAll():", error.message)
-        res.status(500).send(error.message)
+        console.log("Error in favorite.js getAll():", error.message);
+
     }
-};
+}
 
 const getById = async (req, res) => {
     try {
@@ -69,21 +69,20 @@ const create = async (req, res) => {
         const { userId, realestateId } = data;
 
         const newFavorite = new Favorite({
-            userId,
-            realestateId
+            user: userId,
+            realEstate: realestateId
         })
 
         const createdFavorite = await newFavorite.save()
         if (createdFavorite) {
             return res.status(201).json({
-                message: "Este inmueble se ha añadido a tus favoritos 🚀",
-                user: createdFavorite
+                message: "Este inmueble se ha añadido a tus favoritos",
             })
         } else {
             res.status(400).send();
         }
     } catch {
-        return res.status(500).json({ error: "Ha habido un error añadiendo favorito" })
+        return res.status(500).json({ error: "Ha habido un error añadiendo a favoritos" })
     }
 }
 
