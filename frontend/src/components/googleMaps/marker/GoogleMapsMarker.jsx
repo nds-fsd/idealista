@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 import imageBathrooms from "../../../assets/bano.svg"
 import imageM2 from "../../../assets/m2.svg"
@@ -34,11 +33,9 @@ function GoogleMapsMarker (options) {
         '<div style="margin-top:10px; font-size:16px; font-weight:700">'+realestate.state+'</div>'
       '</div>'
 
-
     const infowindow = new google.maps.InfoWindow({
       content: contentString,
       maxWidth: "200px",
-      ariaLabel: "Label"
     })
 
     useEffect(() => {
@@ -65,8 +62,6 @@ function GoogleMapsMarker (options) {
         })
       }
     }, [marker, markerOptions]);
-
-
 
     return null;
   };
