@@ -72,6 +72,7 @@ const getPublicCoordinates = async (publicAddress) => {
 }
 
 export const CreateRealEstate = async (data) => {
+
     try {
         const coordinates = await getCoordinates(data.address);
         const publicCoordinates = await getPublicCoordinates(data.publicAddress);
@@ -85,8 +86,8 @@ export const CreateRealEstate = async (data) => {
             type: 'Point',
             coordinates: publicCoordinates
         };
-
-        return api.post(`/`)
+        
+        return api.post(`/realestates`, data)
             .then((res) => res.data)
             .catch((e) => console.log(e));
     } catch(e) {

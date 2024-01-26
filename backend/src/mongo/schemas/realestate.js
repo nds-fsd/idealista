@@ -53,6 +53,6 @@ const realEstateSchema = new Schema({
         },
     });
 
-const RealEstate = model('realestate', realEstateSchema);
 
+const RealEstate = model("realestate", realEstateSchema);
 module.exports = RealEstate;
