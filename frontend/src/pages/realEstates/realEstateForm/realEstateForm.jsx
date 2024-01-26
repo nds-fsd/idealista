@@ -8,9 +8,10 @@ const RealEstateForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const onSubmit = async (data) => {
-    const address = `${data.location || ''}, ${data.roadName || ''} ${data.roadNumber || ''}, ${data.floor || ''}, ${data.door || ''}, ${data.urbanization} || '', ${data.district || ''}`;
-    const publicAddress = `${data.location}, ${data.urbanization || ''}, ${data.district || ''}`;
-    await CreateRealEstate({ ...data, address, publicAddress });
+    // const address = `${data.location || ''}, ${data.roadName || ''} ${data.roadNumber || ''}, ${data.floor || ''}, ${data.door || ''}, ${data.urbanization} || '', ${data.district || ''}`;
+    // // const publicAddress = `${data.location}, ${data.urbanization || ''}, ${data.district || ''}`;
+    // await CreateRealEstate({ ...data, address, publicAddress });
+    await CreateRealEstate({ ...data});
     setIsSubmitted(true);
   };
 
