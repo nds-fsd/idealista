@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useQuery } from "react-query";
@@ -19,6 +19,7 @@ function RealEstateListMap(){
     const operation = queryParams.get("operation");
     const localization = queryParams.get("location");
     const realEstateType = queryParams.get("realestatetype");
+    const markerRef = useRef(null);
 
     const { data, isLoading } = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType }))
     if (isLoading) return <div> Loading... </div>
@@ -49,11 +50,11 @@ function RealEstateListMap(){
             </div>
             <GoogleMapsReactWrapper>
                 <GoogleMaps center={data[0]?.publicposition} zoom={13} >
-                    {data.map(e => <GoogleMapsMarker key={e._id} position={e?.publicposition} realestate={e}></GoogleMapsMarker> )}
+                    {data.map(e => <GoogleMapsMarker key={e._id} position={e?.publicposition} realestate={e} markerRef={markerRef} /> )}
                 </GoogleMaps>
             </GoogleMapsReactWrapper>
         </div>
     )
 }
-  
+
 export default RealEstateListMap;
