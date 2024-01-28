@@ -19,7 +19,7 @@ const realEstateSchema = new Schema({
     district: {type: String, required: false},
     state: {type: String, required: false},
     address: {type: String, required: true},
-    // publicAddress: {type: String, required: false},
+    publicAddress: {type: String, required: false},
     metersBuilt: {type: Number, required: true},
     usefulMeter: {type: Number, required: false},
     rooms: {type: Number, required: false},
@@ -40,17 +40,17 @@ const realEstateSchema = new Schema({
                 required: true
             }
         },
-    // publicMapLocation : {
-    //         type: {
-    //             type: String,
-    //             enum: ['Point'],
-    //             required: true
-    //         },
-    //         coordinates: {
-    //             type: [Number],
-    //             required: true
-    //         }
-    //     },
+    publicMapLocation : {
+            type: {
+                type: String,
+                enum: ['Point'],
+                required: true
+            },
+            coordinates: {
+                type: [Number],
+                required: true
+            }
+        },
     });
 
 
