@@ -11,7 +11,8 @@ export default defineConfig(({command, mode}) => {
       port: 3000
     },
     define: {
-      'process.env.GOOGLE_APIKEY': JSON.stringify(env.GOOGLE_APIKEY)
+      'process.env.GOOGLE_APIKEY': JSON.stringify(env.GOOGLE_APIKEY),
+      'process.env.REACT_APP_BACKEND_URL': JSON.stringify(env.REACT_APP_BACKEND_URL)
     }
   }
   
