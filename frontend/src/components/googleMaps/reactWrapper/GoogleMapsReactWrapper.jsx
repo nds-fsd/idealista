@@ -8,7 +8,7 @@ function GoogleMapsReactWrapper(props) {
     const render = (status) => (<div>{status}</div>);
 
     if (!apiKey) {
-      return <div>Cannot display the map: google maps api key missing</div>;
+      return <div>Cannot display the map: Google Maps API key missing</div>;
     }
   
     return <Wrapper apiKey={apiKey} render={render}>{props.children}</Wrapper>;

@@ -6,6 +6,9 @@ import realEstateApi from "../../../utils/apis/realEstateApi";
 import TextArea from "./TextArea";
 import Carousel from "./RealEstateDetailsCarousel";
 
+import GoogleMapsReactWrapper from "../../../components/googleMaps/reactWrapper/GoogleMapsReactWrapper";
+import GoogleMaps from "../../../components/googleMaps/map/GoogleMaps";
+
 import styles from "./RealEstateDetails.module.css"
 import compartir from "../../../assets/compartir.png"
 import likeImag from "../../../assets/me-gusta.png"
@@ -68,7 +71,19 @@ const RealEstateDetails = () => {
 
             <div className={styles.rightColumn}>
                     <TextArea contactar={sendMessageToAdvisor}> </TextArea>
-                <img className={styles.map_image} src={demoMap}/>
+                    <GoogleMapsReactWrapper>
+          <GoogleMaps
+                center={data[0]?.publicAddress}
+                zoom={13}
+                style={{ margin: "auto", width: "200px", height: "92.5%" }}>
+            {/* {data.map((e) => (
+              <GoogleMapsMarker
+                key={e._id}
+                position={e?.publicposition}
+              ></GoogleMapsMarker>
+            ))} */}
+          </GoogleMaps>
+        </GoogleMapsReactWrapper>
             </div>
 
         </div>
