@@ -17,7 +17,7 @@ function GoogleMaps(props) {
 
     return (
         <>
-            <div ref={ref} style={{ margin: "auto", width: "1140px", height: "92.5%" }} />
+            <div ref={ref} style={{ margin: "auto", width: "1140px", height: "90%" }} />
             {                
                 props.children.map((child) => {
                     return React.cloneElement(child, {map});
