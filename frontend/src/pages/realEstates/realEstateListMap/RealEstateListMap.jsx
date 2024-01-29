@@ -24,6 +24,9 @@ function RealEstateListMap(){
     const { data, isLoading } = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType }))
     if (isLoading) return <div> Loading... </div>
     if (!data) return <div> Something went wrong </div>
+    const mensajeerror = (data.length <= 0) ? "No se ha encontrado inmuebles" : "";
+    const initMapPosition = (data.length > 0) ? data[0]?.publicposition : { lat: 39.54671316857557, lng: -3.3729938758247497}
+    const initZoom = (data.length > 0) ? 13 : 6
 
     const urlQueryString = () => {
         return "/realestates?operation=" + operation + "&location=" + localization + "&realestatetype=" + realEstateType;
@@ -48,8 +51,10 @@ function RealEstateListMap(){
                     </ul>
                 </div>
             </div>
+            <div className={styles.errormessage}>{mensajeerror}</div>
+
             <GoogleMapsReactWrapper>
-                <GoogleMaps center={data[0]?.publicposition} zoom={13} >
+                <GoogleMaps center={initMapPosition} zoom={initZoom} >
                     {data.map(e => <GoogleMapsMarker key={e._id} position={e?.publicposition} realestate={e} markerRef={markerRef} /> )}
                 </GoogleMaps>
             </GoogleMapsReactWrapper>
