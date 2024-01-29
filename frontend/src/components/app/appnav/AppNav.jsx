@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 
 
@@ -12,7 +12,8 @@ import UserContext from "../../../context/UserContext";
 
 function AppNav() {
 
-    const{isLoggedIn} = useContext(UserContext)
+    const{user} = useContext(UserContext)
+    const navigate = useNavigate();
     return (
         <header className={styles.header}> 
             <div className={styles.headernav}>
@@ -21,7 +22,7 @@ function AppNav() {
                     <div className={styles.name}>Realista</div>
                 </Link>
                 <Link to="/realestates/create" className={styles.navcontent}>
-                    <button className={styles.buttonad} onClick={() => window.location.href = "http://localhost:3000/realestates/create"}>
+                    <button className={styles.buttonad} onClick={() =>navigate("http://localhost:3000/realestates/create")}>
                     Publica gratis tu anuncio
                     </button>
                 </Link>
@@ -39,16 +40,20 @@ function AppNav() {
                         </ul>    
                     </nav>
                 </div>
-                <Link to="/login">
-                    <div>{isLoggedIn}
-
-
-                    </div>
+                {user ? (
+                    <div className={styles.logincontent}>
+                    <img className={styles.user} src={imageLogin} alt="Iniciar sesión"/>
+                    <span>Hola,{user.name}</span>
+                </div>  
+                ):
+                
+                (<Link to="/login">
                     <div className={styles.logincontent}>
                         <img className={styles.user} src={imageLogin} alt="Iniciar sesión"/>
                         <span>Iniciar sesión</span>
                     </div>   
-                </Link>          
+                </Link>   )}
+            
             </div>            
         </header>
     )

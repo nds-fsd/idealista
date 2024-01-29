@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import {Routes, Route, Link } from "react-router-dom";
+import { useContext } from "react";
 
 import AppLayout from "./components/app/appLayout/AppLayout";
 import RealEstateSearcher from "./pages/realEstates/realEstateSearcher/RealEstateSearcher";
@@ -9,6 +10,7 @@ import RealEstateList from "./pages/realEstates/realEstateList/RealEstateList";
 import RealEstateListMap from "./pages/realEstates/realEstateListMap/RealEstateListMap";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
+import UserContext from "./context/UserContext";
 
 
 import "slick-carousel/slick/slick.css";
@@ -17,8 +19,26 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 function App() {
+
+  const{user} = useContext(UserContext)
+
+  if (!user) {
+    <>
+    <Route path="/register" element={<Register />}></Route>
+      
+    </>
+  }
+  /*const currentUser = JSON.parse(localStorage.getItem("user")) || null;
+
+  if(!currentUser) return(
+    <>  
+    </>
+  
+  )*/
+
+
   return (
-    <BrowserRouter>
+    
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route path="/" element={<RealEstateSearcher />} />
@@ -26,11 +46,12 @@ function App() {
           <Route path="/realestates/:id" element={<RealEstateDetails />} />
           <Route path="/realestates/create" element={<RealEstateForm />} />
           <Route path="/realestates/map" element={<RealEstateListMap />}></Route>
-          <Route path="/register" element={<Register />}></Route>
+          {/*<Route path="/register" element={<Register />}></Route>*/}
           <Route path="/login" element={<Login />}></Route>
+         
         </Route>
       </Routes>
-    </BrowserRouter>
+  
   );
 }
 

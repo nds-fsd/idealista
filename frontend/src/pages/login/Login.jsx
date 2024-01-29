@@ -3,10 +3,10 @@ import axios from "axios";
 import UserContext from "../../context/UserContext";
 import {useForm} from "react-hook-form";
 import toast, {Toaster} from "react-hot-toast"
-import { loginUser } from "../../utils/apis/userApi";
 import {useNavigate} from "react-router-dom";
 import { Link } from "react-router-dom";
 import {useContext} from "react";
+
 
 import styles from "../../pages/login/Login.module.css"
 import login_foto from "../../assets/login_foto.jpg"
@@ -14,42 +14,8 @@ import login_foto from "../../assets/login_foto.jpg"
 
 const LoginForm = () =>{
     const {register, handleSubmit,setError,reset,formState:{errors}}= useForm();
-    const navigate = useNavigate();
-    const {user,setUser} = useContext(UserContext);
 
-    const login = () => toast.success("Login exitoso");
-
-    const onLogin = async(data)=>{
-        try{
-            const response = await loginUser(data);
-            
-            if (response.status === 200) {
-                localStorage.setItem("token",response.data.token);
-                localStorage.setItem("user",JSON.stringify(response.data.user))
-                setUser(response.data.user);
-
-                console.log("token",response.data.token);
-                const user= response.data.user.name;
-                console.log("nombre",user)
-
-                await Promise.resolve(login());
-                setTimeout(() => {
-                navigate("/");}, 1000);
-
-            } else {
-                setError("apiError",{
-                    type:"manual",
-                    message:"Email o password incorrectos"
-                });
-                alert ("Email o password incorrectos")
-                reset();
-            }
-        } catch (error){
-            console.error("Error al intentar iniciar sesión",error)
-            toast.error('Error al intentar iniciar sesión');
-            
-        }
-    };
+    const {user,onLogin} = useContext(UserContext);
 
 return (
     <div className={styles.container}>
