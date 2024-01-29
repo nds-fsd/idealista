@@ -24,7 +24,7 @@ const deleteStorageObject = (key) => {
 export const getUserToken = () => {
     const session = getStorageObject("user");
     if (session) {
-    return session.token;
+    return session.user;
     }
     return null;
 };

@@ -17,7 +17,6 @@ const authenticateUser = async (setIsLoggedIn,setLoading,setUser) => {
         setUser(response.data.token);
 
         setUserSession(response.data.token)
-        
     } catch (error) {
         setIsLoggedIn(false);
         setLoading(false);
