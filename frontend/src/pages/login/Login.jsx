@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import UserContext from "../../context/UserContext";
+
 import {useForm} from "react-hook-form";
 import { Link } from "react-router-dom";
 import {useContext} from "react";
@@ -12,7 +13,6 @@ import login_foto from "../../assets/login_foto.jpg"
 
 const LoginForm = () =>{
     const {register, handleSubmit,setError,reset,formState:{errors}}= useForm();
-
     const {user,onLogin} = useContext(UserContext);
 
 return (
@@ -44,7 +44,6 @@ return (
                 </div>
                 </Link>
                 
-
             </form>
         </div>
     </div>

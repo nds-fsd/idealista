@@ -1,17 +1,25 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext,useState } from "react";
 
 import DropDownNav from "../dropDownNav/dropDownNav";
 import styles from "./AppNav.module.css";
-import imageLogo from "../../../assets/logo.svg";
-import imageLogin from "../../../assets/usuario.svg";
-import imageFavoritos from "../../../assets/me-gusta.png";
+import imageLogo from "../../../assets/Realista_logo.svg";
+import logOutimg from "../../../assets/iconsSVG/logout-svgrepo-com.svg"
+import menuVertical from "../../../assets/iconsSVG/menu-vertical-svgrepo-com.svg"
+import userProfile from "../../../assets/iconsSVG/user-2-svgrepo-com.svg"
+import settings from "../../../assets/iconsSVG/options-svgrepo-com.svg"
+import imageBuscar from "../../../assets/iconsSVG/search-svgrepo-com.svg"
+import imageLogin from "../../../assets/iconsSVG/house-chimney-user-svgrepo-com.svg";
+import imageFavoritos from "../../../assets/iconsSVG/heart-svgrepo-com.svg";
+import imageSession from "../../../assets/iconsSVG/house-chimney-blank-svgrepo-com.svg";
 import UserContext from "../../../context/UserContext";
 // import imageLupa from "../../../assets/xxxx.svg"; no tenemos esta imagen
 
 const AppNav=() => {
 const{user,logOut} = useContext(UserContext)
 const navigate = useNavigate();
+const [open,setOpen] = useState(false);
+
 
 if (user) {
 
@@ -20,7 +28,6 @@ if (user) {
             <div className={styles.headernav}>
                 <Link to="/" className={styles.logocontent}>
                     <div><img className={styles.logo} src={imageLogo} alt="Logo Realista"/></div>
-                    <div className={styles.name}>Realista</div>
                 </Link>
                 <Link to="/realestates/create" className={styles.navcontent}>
                     <button className={styles.buttonad} onClick={() =>navigate("http://localhost:3000/realestates/create")}>
@@ -35,14 +42,27 @@ if (user) {
                             <li className={styles.li}>Mis favoritos</li>
                         </div>
                         <div className={styles.navli}>
-                                <button onClick={logOut}>LogOut</button>
+                            <img className={styles.user} src={imageBuscar} alt="Mis busquedas"/>
+                            <li className={styles.li}>Mis búsquedas</li>
                         </div>
                         </ul>    
                     </nav>
                 </div>
-                <div className={styles.logincontent}>
-                        <img className={styles.user} src={imageLogin} alt="Iniciar sesión"/>
-                        <span>Hola,{user.name}</span>
+                <div className={styles.userlog}>
+                    <div className={styles.logincontent}>
+                        <img className={styles.user} src={imageLogin} alt="Usuario Logeado"/>
+                        <span>Hola,<span className={styles.nameuser}>{user.name}</span></span>
+                    </div>
+                    <img onClick={()=>{setOpen(!open)}}className={styles.userimg} src={menuVertical}/>
+                        
+                    <div className={`${styles.dropdown} ${styles[open ? 'inactive' : 'active']}`}>
+                        <ul>
+                            <DropDownNav img={userProfile} text={"Mi perfil"}/>
+                            <DropDownNav img={settings} text={"Mis ajustes"}/>
+                            <DropDownNav onClick={logOut} img={logOutimg} text={"Cerrar sesión"}/>
+                        </ul>
+                    </div>
+            
                 </div>
             </div>            
         </header>
@@ -55,7 +75,6 @@ if (user) {
             <div className={styles.headernav}>
                 <Link to="/" className={styles.logocontent}>
                     <div><img className={styles.logo} src={imageLogo} alt="Logo Realista"/></div>
-                    <div className={styles.name}>Realista</div>
                 </Link>
                 <Link to="/realestates/create" className={styles.navcontent}>
                     <button className={styles.buttonad} onClick={() =>navigate("http://localhost:3000/realestates/create")}>
@@ -73,8 +92,8 @@ if (user) {
                     </nav>
                 </div>
                 <Link to="/login">
-                    <div className={styles.logincontent}>
-                        <img className={styles.user} src={imageLogin} alt="Iniciar sesión"/>
+                    <div className={styles.iniciasession}>
+                        <img className={styles.user} src={imageSession} alt="Iniciar sesión"/>
                         <span>Iniciar sesión</span>
                     </div>
                 </Link>

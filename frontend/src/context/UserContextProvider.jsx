@@ -1,4 +1,5 @@
 import UserContext from "./UserContext";
+import toast from "react-hot-toast"
 import { useState,useEffect } from "react";
 import { loginUser } from "../utils/apis/userApi";
 import {useNavigate} from "react-router-dom";
@@ -20,13 +21,15 @@ function UserContextProvider({children}) {
                 setUser(response.data.user);
                 setIsLoggedIn(true)
                 setLoading(false)
-
                 navigate("/")
+                toast.success("Inicio de sesión exitoso");
+                
         } catch (error){
             console.error("Error al intentar iniciar sesión",error)
             setError(error);
             setIsLoggedIn(false);
             setLoading(false);
+            toast.error("Error al intentar iniciar sesión");
             
         }
     };
