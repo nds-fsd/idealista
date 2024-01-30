@@ -25,18 +25,8 @@ function App() {
   if (!user) {
     <>
     <Route path="/register" element={<Register />}></Route>
-      
     </>
   }
-  /*const currentUser = JSON.parse(localStorage.getItem("user")) || null;
-
-  if(!currentUser) return(
-    <>  
-    </>
-  
-  )*/
-
-
   return (
     
       <Routes>
@@ -48,7 +38,6 @@ function App() {
           <Route path="/realestates/map" element={<RealEstateListMap />}></Route>
           {/*<Route path="/register" element={<Register />}></Route>*/}
           <Route path="/login" element={<Login />}></Route>
-         
         </Route>
       </Routes>
   
