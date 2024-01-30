@@ -26,3 +26,12 @@
     height: 35px;
     width: 130px;
 }
+
+.errormessage {
+    background-color: #CFE2FF;
+    font-family: Poppins;
+    font-size: 22px;
+    margin: auto;
+    width: 1140px;
+    margin: 20px auto;
+}
