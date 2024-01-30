@@ -1,3 +1,4 @@
+const { MongoMemoryServer } = require('mongodb-memory-server');
 const mongoose = require('mongoose');
 
 let dbUrl = process.env.MONGO_URL;
@@ -8,8 +9,13 @@ exports.connectDB = async () => {
     mongoose.set("strictQuery", false);
 
     try {
-        await mongoose.connect(dbUrl);
+        if (process.env.NODE_ENV === "test") {
+            mongodb = await MongoMemoryServer.create();
+            dbUrl = mongodb.getUri();
+            console.log("MongoDB-Test:", dbUrl);
+        }
 
+        await mongoose.connect(dbUrl);
         const mongo = mongoose.connection;
         mongo.on("error", (error) => console.error(error));
     } catch (e) {
