@@ -73,28 +73,28 @@ const getPublicCoordinates = async (publicAddress) => {
 }
 
 export const CreateRealEstate = async (data) => {
+  try {
+    const coordinates = await getCoordinates(data.address);
+    const publicCoordinates = await getPublicCoordinates(data.publicAddress);
 
-    try {
-        const coordinates = await getCoordinates(data.address);
-        const publicCoordinates = await getPublicCoordinates(data.publicAddress);
+    data.mapLocation = {
+      type: "Point",
+      coordinates: coordinates,
+    };
 
-        data.mapLocation = {
-            type: 'Point',
-            coordinates: coordinates
-        };
+    data.publicMapLocation = {
+      type: "Point",
+      coordinates: publicCoordinates,
+    };
 
-        data.publicMapLocation = {
-            type: 'Point',
-            coordinates: publicCoordinates
-        };
-
-        return api.post(`/realestates`, data)
-            .then((res) => res.data)
-            .catch((e) => console.log(e));
-    } catch(e) {
-        console.log(e);
-    }
-}
+    return api
+      .post(`/realestates`, data)
+      .then((res) => res.data)
+      .catch((e) => console.log(e));
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 const GetRealEstateBuyOperations = () => {
     try {
