@@ -2,8 +2,6 @@ import React from "react";
 import axios from "axios";
 import UserContext from "../../context/UserContext";
 import {useForm} from "react-hook-form";
-import toast, {Toaster} from "react-hot-toast"
-import {useNavigate} from "react-router-dom";
 import { Link } from "react-router-dom";
 import {useContext} from "react";
 
@@ -19,7 +17,7 @@ const LoginForm = () =>{
 
 return (
     <div className={styles.container}>
-        <Toaster />
+
         <div className={styles.image_container}>
             <div className={styles.text_login}><span>Login</span></div>
             <img className={styles.img} src={login_foto} alt="login imagen"/>
@@ -42,7 +40,7 @@ return (
 
                 <Link to="/register">
                 <div className={styles.register}>
-                    <button className={styles.register_button}><span>{`¿Nuevo aquí? ¡Regístrate ahora!`}</span></button>
+                <button className={styles.register_button}><span>{`¿Nuevo aquí? ¡Regístrate ahora!`}</span></button>
                 </div>
                 </Link>
                 

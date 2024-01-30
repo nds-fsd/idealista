@@ -1,9 +1,9 @@
 import UserContext from "./UserContext";
-import authenticateUser from "../utils/apis/authenUser";
 import { useState,useEffect } from "react";
 import { loginUser } from "../utils/apis/userApi";
 import {useNavigate} from "react-router-dom";
-import { setUserSession } from "../utils/apis/localStorage";
+import { getUserSession, setUserSession,removeSession } from "../utils/apis/localStorage";
+
 
 function UserContextProvider({children}) {
     const currentUser = JSON.parse(localStorage.getItem("user")) || null;
@@ -21,13 +21,6 @@ function UserContextProvider({children}) {
                 setIsLoggedIn(true)
                 setLoading(false)
 
-                /*localStorage.setItem("token",response.data.token);
-                localStorage.setItem("user",JSON.stringify(response.data.user))
-                ;*/
-                console.log("token",response.data.token);
-                const user= response.data.user.name;
-                console.log("nombre",user)
-
                 navigate("/")
         } catch (error){
             console.error("Error al intentar iniciar sesión",error)
@@ -38,19 +31,25 @@ function UserContextProvider({children}) {
         }
     };
 
+    const logOut = () => {
+        removeSession();
+        setUser(null);
+        setIsLoggedIn(false);
+        navigate("/");
+    };
+    
+    
 
     useEffect(() => {
-    try {
-            authenticateUser(setIsLoggedIn,setLoading,setUser)
-            
-        } catch (error) {
-            console.log(error)
-            return
-        }
+
+        const session = getUserSession();
+        if(session){
+        console.log("Hay usuario",session.user)
+        setUser({...session.user});}
     }, [])
     
     return (
-        <UserContext.Provider value={{user,onLogin,isLoggedIn,loading,error}}>
+        <UserContext.Provider value={{user,onLogin,logOut,isLoggedIn,loading,error}}>
             {children}
         </UserContext.Provider>
     )

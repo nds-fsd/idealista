@@ -22,25 +22,21 @@ const deleteStorageObject = (key) => {
 };
 
 export const getUserToken = () => {
-    const session = getStorageObject("user");
+    const session = getUserSession();
     if (session) {
-    return session.user;
+    return session.token;
     }
     return null;
 };
 
 export const getUserSession = () => {
-    const session = getStorageObject("user");
-    if (session) {
-    return session.user;
-    }
-    return null;
+    return getStorageObject("session");
 };
 
 export const setUserSession = (sessionData) => {
-    setStorageObject("token", sessionData);
+    setStorageObject("session", sessionData);
 };
 
 export const removeSession = () => {
-    deleteStorageObject("token");
+    deleteStorageObject("session");
 };
