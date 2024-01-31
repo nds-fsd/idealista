@@ -70,22 +70,19 @@ const RealEstateDetails = () => {
             </div>
 
             <div className={styles.rightColumn}>
-                    <TextArea contactar={sendMessageToAdvisor}> </TextArea>
-                    <GoogleMapsReactWrapper>
-          <GoogleMaps
-                center={data[0]?.publicAddress}
-                zoom={13}
-                style={{ margin: "auto", width: "200px", height: "92.5%" }}>
-            {/* {data.map((e) => (
-              <GoogleMapsMarker
-                key={e._id}
-                position={e?.publicposition}
-              ></GoogleMapsMarker>
-            ))} */}
-          </GoogleMaps>
-        </GoogleMapsReactWrapper>
+                <TextArea contactar={sendMessageToAdvisor}> </TextArea>
+                <GoogleMapsReactWrapper>
+                    <GoogleMaps
+                    center={{
+                        lat: data?.publicMapLocation?.coordinates[0],
+                        lng: data?.publicMapLocation?.coordinates[1]
+                    }}
+                    zoom={13}
+                    style={{ margin: "auto", width: "200px", height: "100%" }}
+                    >
+                    </GoogleMaps>
+                </GoogleMapsReactWrapper>
             </div>
-
         </div>
      </div>
     )
