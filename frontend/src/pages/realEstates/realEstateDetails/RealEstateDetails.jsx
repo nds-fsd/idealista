@@ -82,7 +82,7 @@ const RealEstateDetails = () => {
                         lng: data?.publicMapLocation?.coordinates[1]
                     }}
                     zoom={15}
-                    style={{ margin: "auto", width: "500px", height: "500px" }}
+                    style={{ margin: "auto", width: "300px", height: "300px" }}
                     >
                     </GoogleMapsIndividual>
                 </GoogleMapsReactWrapper>
