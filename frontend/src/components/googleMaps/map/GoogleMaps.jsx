@@ -8,22 +8,21 @@ function GoogleMaps(props) {
     useEffect(() => {
         if (ref.current && !map) {
             setMap(
-                new window.google.maps.Map(ref.current, {
+                  new window.google.maps.Map(ref.current, {
                     center: props.center,
-                    zoom: props.zoom
-                })
-            );
+                    zoom: props.zoom}
+                ));
         }
     }, [ref, map]);
 
     return (
         <>
-            <div ref={ref} style={props.style} />
+            <div ref={ref} style={{ margin: "auto", width: "1140px", height: "92.5%" }} />
             {                
-                React.Children.map(props.children, child => {
+                props.children.map((child) => {
                     return React.cloneElement(child, {map});
-                })
-            }
+                }
+            )}
         </>
     )
 }

@@ -2,17 +2,18 @@ import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
+
 import realEstateApi from "../../../utils/apis/realEstateApi";
 import TextArea from "./TextArea";
 import Carousel from "./RealEstateDetailsCarousel";
 
 import GoogleMapsReactWrapper from "../../../components/googleMaps/reactWrapper/GoogleMapsReactWrapper";
-import GoogleMaps from "../../../components/googleMaps/map/GoogleMaps";
+import GoogleMapsIndividual from "../../../components/googleMaps/map/GoogleMapsIndividual";
 
 import styles from "./RealEstateDetails.module.css"
 import compartir from "../../../assets/compartir.png"
 import likeImag from "../../../assets/me-gusta.png"
-import demoMap from "../../../assets/map.png"
+// import demoMap from "../../../assets/map.png"
 
 
 const RealEstateDetails = () => {
@@ -26,6 +27,9 @@ const RealEstateDetails = () => {
     if (isLoading) return <div>Is Loading...</div>;
 
     if (!data) return <div> Something went wrong</div>;
+
+    
+
 
     return (
         <div>
@@ -72,15 +76,15 @@ const RealEstateDetails = () => {
             <div className={styles.rightColumn}>
                 <TextArea contactar={sendMessageToAdvisor}> </TextArea>
                 <GoogleMapsReactWrapper>
-                    <GoogleMaps
+                    <GoogleMapsIndividual
                     center={{
                         lat: data?.publicMapLocation?.coordinates[0],
                         lng: data?.publicMapLocation?.coordinates[1]
                     }}
-                    zoom={13}
-                    style={{ margin: "auto", width: "200px", height: "100%" }}
+                    zoom={15}
+                    style={{ margin: "auto", width: "500px", height: "500px" }}
                     >
-                    </GoogleMaps>
+                    </GoogleMapsIndividual>
                 </GoogleMapsReactWrapper>
             </div>
         </div>

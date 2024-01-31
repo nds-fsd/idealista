@@ -1,5 +1,5 @@
 import React from "react";
-import { Wrapper } from "@googlemaps/react-wrapper"; // Remove the unused 'Status' import
+import { Wrapper } from "@googlemaps/react-wrapper";// Remove the unused 'Status' import
 
 
 function GoogleMapsReactWrapper(props) {
