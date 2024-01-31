@@ -19,6 +19,8 @@ const realEstateSchema = new Schema({
     state: {type: String, required: false},
     metersBuilt: {type: Number, required: true},
     usefulMeter: {type: Number, required: false},
+    rooms: {type: Number, required: false},
+    bathrooms: {type: Number, required: false},
     properties: [{type: String, required: false}],
     price: {type: Number, required: true},
     realtor: {type: String, required: false},

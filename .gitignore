@@ -4,3 +4,4 @@ desing/
 .env
 package-lock.json
 docker-compose.yaml
+coverage

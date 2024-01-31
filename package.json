@@ -3,7 +3,8 @@
   "private": true,
   "workspaces": [
     "backend",
-    "frontend"
+    "frontend",
+    "e2e"
   ],
   "jest": {
     "testEnvironment": "node",
@@ -28,6 +29,7 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cross-env": "^7.0.3",
+    "cypress": "^13.6.3",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.1",
     "react-hook-form": "^7.49.2"
