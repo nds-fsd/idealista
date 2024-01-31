@@ -39,6 +39,7 @@ function UserContextProvider({children}) {
         setUser(null);
         setIsLoggedIn(false);
         navigate("/");
+        toast("Sesión cerrada con éxito")
     };
     
     
