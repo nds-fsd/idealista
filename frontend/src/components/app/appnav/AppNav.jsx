@@ -39,7 +39,9 @@ const AppNav = () => {
                             <ul className={styles.navlu}>
                                 <div className={styles.navli}>
                                     <img className={styles.user} src={imageFavoritos} alt="Me gusta" />
-                                    <li className={styles.li}>Mis favoritos</li>
+                                    <Link to="/favorite" style={{ textDecoration: "none" }}>
+                                        <li className={styles.li}>Mis favoritos</li>
+                                    </Link>
                                 </div>
                                 <div className={styles.navli}>
                                     <img className={styles.user} src={imageBuscar} alt="Mis busquedas" />
@@ -55,7 +57,7 @@ const AppNav = () => {
                         </div>
                         <img onClick={() => { setOpen(!open) }} className={styles.userimg} src={menuVertical} />
 
-                        <div className={`${styles.dropdown} ${styles[open ? 'inactive' : 'active']}`}>
+                        <div className={`${styles.dropdown} ${styles[!open ? 'inactive' : 'active']}`}>
                             <ul>
                                 <DropDownNav img={userProfile} text={"Mi perfil"} />
                                 <DropDownNav img={settings} text={"Mis ajustes"} />
