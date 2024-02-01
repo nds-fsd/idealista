@@ -1,0 +1,13 @@
+.dropdown{
+    display: flex;
+    flex-direction: column;
+}
+
+.item img{
+    width: 25px;
+}
+
+.item{
+    display: flex;
+    gap: 10px;
+}
