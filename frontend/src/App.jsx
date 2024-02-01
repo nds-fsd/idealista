@@ -22,11 +22,12 @@ function App() {
 
   const{user} = useContext(UserContext)
 
-  if (!user) {
+  /*if (user) {
     <>
-    <Route path="/register" element={<Register />}></Route>
+    <Route path="/register" element={<Register/>}></Route>
     </>
-  }
+  }*/
+
   return (
     
       <Routes>
@@ -36,7 +37,7 @@ function App() {
           <Route path="/realestates/:id" element={<RealEstateDetails />} />
           <Route path="/realestates/create" element={<RealEstateForm />} />
           <Route path="/realestates/map" element={<RealEstateListMap />}></Route>
-          {/*<Route path="/register" element={<Register />}></Route>*/}
+          <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
         </Route>
       </Routes>

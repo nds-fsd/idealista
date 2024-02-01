@@ -50,6 +50,7 @@ function UserContextProvider({children}) {
         if(session){
         console.log("Hay usuario",session.user)
         setUser({...session.user});}
+        
     }, [])
     
     return (
