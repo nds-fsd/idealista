@@ -60,7 +60,7 @@ const getPublicCoordinates = async (publicAddress) => {
             }
         });
 
-        if (response.data.status === 'OK') {
+        if (response.status === 200) {
             const location = response.data.results[0].geometry.location;
             return [location.lat, location.lng];
         } else {
