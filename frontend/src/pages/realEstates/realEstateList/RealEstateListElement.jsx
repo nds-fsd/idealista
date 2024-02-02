@@ -39,7 +39,7 @@ function RealEstateListElement({ realEstate, onFavorite }) {
                 <div style={{ marginTop: "5px", fontWeight: "700" }}>{realEstate.state}</div>
             </div>
             <div>
-                <UseAnimation animation={heart} reverse={realEstate.fav} fillColor="pink" size={35} onClick={() => onFavorite && onFavorite(realEstate)} />
+                <UseAnimation animation={heart} reverse={realEstate.fav} fillColor="#CFE2FF" size={35} onClick={() => onFavorite && onFavorite(realEstate)} />
             </div>
         </div>
     )

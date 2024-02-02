@@ -19,7 +19,7 @@ const Favorite = () => {
     }
 
     return (
-        <div>
+        <div style={{ marginLeft: "175px" }}>
             {data.map(e => {
                 const realEstate = e.realEstate;
                 realEstate.fav = true;
