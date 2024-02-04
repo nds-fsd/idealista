@@ -4,13 +4,16 @@ import { CreateRealEstate } from '../../../utils/apis/realEstateApi.js';
 import styles from './realEstateForm.module.css';
 
 const RealEstateForm = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const onSubmit = async (data) => {
-    const response = await CreateRealEstate(data);
+    const address = `${data.location || ''}, ${data.roadName || ''}, ${data.roadNumber || ''}, ${data.floor || ''}, ${data.door || ''}, ${data.urbanization || ''}, ${data.district || ''}`;
+    const publicAddress = `${data.location}, ${data.urbanization || ''}, ${data.district || ''}`;
+    await CreateRealEstate({ ...data, address, publicAddress });
     setIsSubmitted(true);
   };
+
 
   return (
     <div>
@@ -24,11 +27,15 @@ const RealEstateForm = () => {
         <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
           <h1 className={styles.title}>Llena este formulario y publica tu anuncio en un instante</h1>
 
-          <label htmlFor="shortDescription" className={styles.label}>Descripción corta</label>
+          <small>*Campos requiridos</small>
+          <br/>
+          <br/>
+
+          <label htmlFor="shortDescription" className={styles.label}>Descripción corta*</label>
           <input {...register("shortDescription", { required: true })} className={styles.input} />
           {errors.shortDescription && <p className={styles.error}>Este campo es obligatorio</p>}
 
-          <label htmlFor="realEstateType" className={styles.label}>Tipo de inmueble</label>
+          <label htmlFor="realEstateType" className={styles.label}>Tipo de inmueble*</label>
           <select {...register("realEstateType", { required: true })} className={styles.select}>
             <option value="Vivienda">Viviendas</option>
             <option value="Promocion">Promoción</option>
@@ -41,23 +48,27 @@ const RealEstateForm = () => {
           </select>
           {errors.realEstateType && <p className={styles.error}>Este campo es obligatorio</p>}
 
-          <label htmlFor="realEstateSubtype" className={styles.label}>Subtipo de inmueble</label>
-          <input {...register("realEstateSubtype", { required: true })} className={styles.input} />
+
+          <label htmlFor="realEstateSubtype" className={styles.label}>Subtipo de inmueble*</label>
+          <select {...register("realEstateSubtype", { required: true })} className={styles.select}>
+            <option value="casa">Casa</option>
+            <option value="piso">Piso</option>
+          </select>
           {errors.realEstateSubtype && <p className={styles.error}>Este campo es obligatorio</p>}
 
-          <label htmlFor="metersBuilt" className={styles.label}>Metros construidos (m²)</label>
-          <input type="number" {...register("metersBuilt", { required: true })} className={styles.input} />
-          {errors.metersBuilt && <p className={styles.error}>Este campo es obligatorio</p>}
+          <label htmlFor="metersBuilt" className={styles.label}>Metros construidos (m²)*</label>
+          <input {...register("metersBuilt", { pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
+          {errors.metersBuilt && errors.metersBuilt.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
 
-          <label htmlFor="price" className={styles.label}>Precio</label>
-          <input type="number" {...register("price", { required: true })} className={styles.input} />
-          {errors.price && <p className={styles.error}>Este campo es obligatorio</p>}
+          <label htmlFor="price" className={styles.label}>Precio*</label>
+          <input {...register("price", { pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
+          {errors.price && errors.price.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
 
-          <label htmlFor="location" className={styles.label}>Población</label>
+          <label htmlFor="location" className={styles.label}>Población*</label>
           <input {...register("location", { required: true })} className={styles.input} />
           {errors.location && <p className={styles.error}>Este campo es obligatorio</p>}
 
-          <label htmlFor="operation" className={styles.label}>Operación</label>
+          <label htmlFor="operation" className={styles.label}>Operación*</label>
           <select {...register("operation", { required: true })} className={styles.select}>
             <option value="Vender">Vender</option>
             <option value="Alquiler">Alquiler</option>
@@ -69,10 +80,12 @@ const RealEstateForm = () => {
           <textarea {...register("description", { required: false })} className={styles.textarea} />
 
           <label htmlFor="roadName" className={styles.label}>Nombre de la calle</label>
-          <input {...register("roadName", { required: false })} className={styles.input} />
+          <input {...register("roadName", { required: false, pattern: /^[^\d]+$/ })} className={styles.input} />
+          {errors.roadName && <p className={styles.error}>No se permiten números en el nombre de la calle</p>}
 
           <label htmlFor="roadNumber" className={styles.label}>Número de la calle</label>
-          <input {...register("roadNumber", { required: false })} className={styles.input} />
+          <input {...register("roadNumber", { pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
+          {errors.roadNumber && errors.roadNumber.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
 
           <label htmlFor="block" className={styles.label}>Bloque</label>
           <input {...register("block", { required: false })} className={styles.input} />
@@ -81,10 +94,48 @@ const RealEstateForm = () => {
           <input {...register("portal", { required: false })} className={styles.input} />
 
           <label htmlFor="floor" className={styles.label}>Piso</label>
-          <input {...register("floor", { required: false })} className={styles.input} />
+          <ul className={styles.floor}>
+            <div>
+            <li>
+              <h3>Bajo</h3>
+              <label>
+                <input type="radio" value="Bajo" {...register("floor")} className={styles.floorOptions} />
+              </label>
+            </li>
+            <li>
+              <h3>Entresuelo</h3>
+              <label>
+                <input type="radio" value="Entresuelo" {...register("floor")} className={styles.floorOptions} />
+              </label>
+            </li>
+            </div>
+            <div>
+            <li>
+              <h3>Ático</h3>
+              <label>
+                <input type="radio" value="Ático" {...register("floor")} className={styles.floorOptions} />
+              </label>
+            </li>
+            <li>
+              <h3>Otros (escribe el número de piso abajo)</h3>
+              <label>
+                <input type="radio" value="Otros" {...register("floor")} className={styles.radioOptions} />
+              </label>
+            </li>
+            </div>
+          </ul>
+          
+          {watch("floor") === "Otros" && (
+            <>
+              <label htmlFor="floorNumber" className={styles.label}>Número de piso*</label>
+              <input type="number" {...register("floorNumber", { required: true, pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
+              {errors.floorNumber && errors.floorNumber.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
+            </>
+          )}
 
           <label htmlFor="door" className={styles.label}>Puerta</label>
-          <input {...register("door", { required: false })} className={styles.input} />
+          <input {...register("door", { pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
+          {errors.door && errors.door.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
 
           <label htmlFor="urbanization" className={styles.label}>Urbanización</label>
           <input {...register("urbanization", { required: false })} className={styles.input} />
@@ -99,8 +150,17 @@ const RealEstateForm = () => {
             <option value="A reformar">A reformar</option>
           </select>
 
-          <label htmlFor="usefulMeter" className={styles.label}>Metros útiles (m²)</label>
-          <input type="number" {...register("usefulMeter", { required: false })} className={styles.input} />
+            <label htmlFor="usefulMeter" className={styles.label}>Metros útiles (m²)</label>
+            <input {...register("usefulMeter", { required: false, pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
+            {errors.usefulMeter && errors.usefulMeter.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
+
+            <label htmlFor="rooms" className={styles.label}>Número de habitaciones</label>
+            <input {...register("rooms", { required: false, pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
+            {errors.rooms && errors.rooms.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
+
+            <label htmlFor="bathrooms" className={styles.label}>Número de baños</label>
+            <input {...register("bathrooms", { required: false, pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
+            {errors.bathrooms && errors.bathrooms.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
 
           <label htmlFor="properties" className={styles.label}>Propiedades</label>
           <ul className={styles.properties}>
@@ -177,9 +237,6 @@ const RealEstateForm = () => {
               </label>
             </li>
           </ul>
-          
-          <label htmlFor="realtor" className={styles.label}>Agente inmobiliario</label>
-          <input {...register("realtor", { required: false })} className={styles.input} />
 
             <input type="submit" value="Enviar" className={styles.button} />
         </form>
