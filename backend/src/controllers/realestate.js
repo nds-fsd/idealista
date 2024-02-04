@@ -9,7 +9,7 @@ const formatQuery = (queryParams) => {
     if (queryParams.hasOwnProperty("operation")) query.operation = queryParams.operation;
     if (queryParams.hasOwnProperty("location")) query.location = queryParams.location;
     if (queryParams.hasOwnProperty("realEstateType")) query.realEstateType = queryParams.realEstateType;
-    
+
     if (queryParams.hasOwnProperty("price")) {
         const priceValues = queryParams.price.split(",");
         const priceMin = priceValues[0];
@@ -25,6 +25,9 @@ const formatQuery = (queryParams) => {
         }
         query.$or = state
     }
+
+    if (queryParams.hasOwnProperty("rooms")) query.rooms = {"$gte": Number(queryParams.rooms)}
+    if (queryParams.hasOwnProperty("bathrooms")) query.bathrooms = {"$gte": Number(queryParams.bathrooms)}
 
     return query;
 }
@@ -54,9 +57,10 @@ const getId = async(req, res) => {
 
 const create = async(req, res) => {
     try {
-        const response = await RealEstate.create(req.body);
-        if (response) res.status(201).json(response) 
-        else res.status(400).send()
+        const newRealEstate = new RealEstate(req.body);
+        await newRealEstate.save()
+        return res.status(201).json("RealEstate successfully created")
+
     } catch (error) {
         console.log("Error in realestate.js create():", error.message);
         res.status(500).send(error.message);

@@ -3,7 +3,8 @@
   "private": true,
   "workspaces": [
     "backend",
-    "frontend"
+    "frontend",
+    "e2e"
   ],
   "jest": {
     "testEnvironment": "node",
@@ -26,8 +27,11 @@
     "turbo": "^1.10.16"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.2",
+    "@googlemaps/react-wrapper": "^1.1.35",
     "bcrypt": "^5.1.1",
     "cross-env": "^7.0.3",
+    "cypress": "^13.6.3",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.1",
     "react-hook-form": "^7.49.2"
