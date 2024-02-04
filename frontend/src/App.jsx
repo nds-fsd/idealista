@@ -10,6 +10,7 @@ import RealEstateList from "./pages/realEstates/realEstateList/RealEstateList";
 import RealEstateListMap from "./pages/realEstates/realEstateListMap/RealEstateListMap";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
+import UserProfile from "./pages/profile/UserProfile";
 import UserContext from "./context/UserContext";
 
 import "slick-carousel/slick/slick.css";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/realestates/map" element={<RealEstateListMap />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/profile" element={<UserProfile />} />
         </Route>
       </Routes>
   );

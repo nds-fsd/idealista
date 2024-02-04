@@ -28,7 +28,25 @@ const loginUser = async ({email,password}) =>{
         console.error("Login error", error.message);
         return error.response;
     }
-
 };
 
-export { RegisterUser, loginUser }
+const UpdateUser = async ({ id, email, name, location }) => {
+    try {
+        const response = await api.put(`users/${id}`, {
+            email: email,
+            name: name,
+            location: location,
+            street: street,
+            streetNumber: streetNumber,
+            postalCode: postalCode,
+            province: province,
+            aboutMe: aboutMe
+        });
+        return response;
+    } catch (error) {
+        console.error("Update user error", error.message);
+        return error.response;
+    }
+};
+
+export { RegisterUser, loginUser, UpdateUser };
