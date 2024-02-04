@@ -12,7 +12,6 @@ import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import UserContext from "./context/UserContext";
 
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -22,14 +21,7 @@ function App() {
 
   const{user} = useContext(UserContext)
 
-  /*if (user) {
-    <>
-    <Route path="/register" element={<Register/>}></Route>
-    </>
-  }*/
-
   return (
-    
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route path="/" element={<RealEstateSearcher />} />
@@ -41,7 +33,6 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
         </Route>
       </Routes>
-  
   );
 }
 
