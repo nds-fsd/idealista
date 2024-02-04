@@ -39,6 +39,7 @@ function UserContextProvider({children}) {
         setUser(null);
         setIsLoggedIn(false);
         navigate("/");
+        toast("Sesión cerrada con éxito")
     };
     
     
@@ -49,6 +50,7 @@ function UserContextProvider({children}) {
         if(session){
         console.log("Hay usuario",session.user)
         setUser({...session.user});}
+        
     }, [])
     
     return (

@@ -12,7 +12,6 @@ import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import UserContext from "./context/UserContext";
 
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Favorite from "./pages/favoritos/favorite";
@@ -23,28 +22,21 @@ function App() {
 
   const { user } = useContext(UserContext)
 
-  if (!user) {
-    <>
-      <Route path="/register" element={<Register />}></Route>
-    </>
-  }
   return (
-    <div>
-      <Routes>
+    <Routes>
 
-        <Route path="/" element={<AppLayout />}>
-          <Route path="/" element={<RealEstateSearcher />} />
-          <Route path="/realestates" element={<RealEstateList />} />
-          <Route path="/realestates/:id" element={<RealEstateDetails />} />
-          <Route path="/realestates/create" element={<RealEstateForm />} />
-          <Route path="/realestates/map" element={<RealEstateListMap />}></Route>
-          <Route path="/register" element={<Register />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/favorite" element={<Favorite />}></Route>
+      <Route path="/" element={<AppLayout />}>
+        <Route path="/" element={<RealEstateSearcher />} />
+        <Route path="/realestates" element={<RealEstateList />} />
+        <Route path="/realestates/:id" element={<RealEstateDetails />} />
+        <Route path="/realestates/create" element={<RealEstateForm />} />
+        <Route path="/realestates/map" element={<RealEstateListMap />}></Route>
+        <Route path="/register" element={<Register />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/favorite" element={<Favorite />}></Route>
 
-        </Route>
-      </Routes>
-    </div>
+      </Route>
+    </Routes>
   );
 }
 

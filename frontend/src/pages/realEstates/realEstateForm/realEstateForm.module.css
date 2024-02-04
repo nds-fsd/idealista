@@ -68,6 +68,7 @@ textarea {
     margin: 4px 2px;
     cursor: pointer;
     transition-duration: 0.4s;
+    margin-bottom: 40px;
 }
 
 .container input[type="submit"]:hover {
@@ -101,11 +102,24 @@ textarea {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: 14px;
 }
+
 
 .container .error {
     color: red;
     margin-top: -10px;
     margin-bottom: 15px;
+}
+
+
+input[type="radio"] {
+    transform: scale(0.5);
+}
+
+h3 {
+    font-weight: normal;
+    font-size: 14px;
+    text-align: center;
 }
 
