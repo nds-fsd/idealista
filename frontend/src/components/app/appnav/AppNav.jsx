@@ -51,13 +51,16 @@ if (user) {
                 <div className={styles.userlog}>
                     <div className={styles.logincontent}>
                         <img className={styles.user} src={imageLogin} alt="Usuario Logeado"/>
-                        <span>Hola,<span className={styles.nameuser}>{user.name}</span></span>
+                        <span style={{width:"168px"}}>¡Hola! <br /> <span className={styles.nameuser}>{user.name}</span></span>
                     </div>
-                    <img onClick={()=>{setOpen(!open)}}className={styles.userimg} src={menuVertical}/>
+                    <div className={styles.menuvertical}>
+                        <img onClick={()=>{setOpen(!open)}}className={styles.userimg} src={menuVertical}/>  
+                    </div>
+                    
                         
-                    <div className={`${styles.dropdown} ${styles[open ? 'inactive' : 'active']}`}>
+                    <div className={`${styles.dropdown} ${styles[!open ? 'inactive' : 'active']}`}>
                         <ul>
-                            <DropDownNav img={userProfile} text={"Mi perfil"}/>
+                            <DropDownNav  img={userProfile} text={"Mi perfil"}/>
                             <DropDownNav img={settings} text={"Mis ajustes"}/>
                             <DropDownNav onClick={logOut} img={logOutimg} text={"Cerrar sesión"}/>
                         </ul>
@@ -83,15 +86,15 @@ if (user) {
                 </Link>
                 <div className={styles.navcontent}>
                     <nav className={styles.nav}>
-                        <ul className={styles.navlu}>
-                        <div className={styles.navli}>
+                        <ul className={styles.lunav}>
+                        <div className={styles.linav}>
                         </div>
-                        <div className={styles.navli}>
+                        <div className={styles.linav}>
                         </div>
                         </ul>    
                     </nav>
                 </div>
-                <Link to="/login">
+                <Link className={styles.loginsession} to="/login">
                     <div className={styles.iniciasession}>
                         <img className={styles.user} src={imageSession} alt="Iniciar sesión"/>
                         <span>Iniciar sesión</span>
