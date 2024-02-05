@@ -30,7 +30,7 @@ const AppNav = () => {
                         <div><img className={styles.logo} src={imageLogo} alt="Logo Realista" /></div>
                     </Link>
                     <Link to="/realestates/create" className={styles.navcontent}>
-                        <button className={styles.buttonad} onClick={() => navigate("http://localhost:3000/realestates/create")}>
+                        <button className={styles.buttonad}>
                             Publica gratis tu anuncio
                         </button>
                     </Link>
@@ -62,7 +62,9 @@ const AppNav = () => {
 
                         <div className={`${styles.dropdown} ${styles[!open ? 'inactive' : 'active']}`}>
                             <ul>
-                                <DropDownNav img={userProfile} text={"Mi perfil"} />
+                                <Link to="/profile">
+                                    <DropDownNav img={userProfile} text={"Mi perfil"} />
+                                </Link>
                                 <DropDownNav img={settings} text={"Mis ajustes"} />
                                 <DropDownNav onClick={logOut} img={logOutimg} text={"Cerrar sesión"} />
                             </ul>
@@ -82,7 +84,7 @@ const AppNav = () => {
                         <div><img className={styles.logo} src={imageLogo} alt="Logo Realista" /></div>
                     </Link>
                     <Link to="/realestates/create" className={styles.navcontent}>
-                        <button className={styles.buttonad} onClick={() => navigate("http://localhost:3000/realestates/create")}>
+                        <button className={styles.buttonad}>
                             Publica gratis tu anuncio
                         </button>
                     </Link>
