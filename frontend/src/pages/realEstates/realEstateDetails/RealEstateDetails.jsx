@@ -28,7 +28,7 @@ const RealEstateDetails = () => {
 
     if (!data) return <div> Something went wrong</div>;
 
-    
+
 
 
     return (
@@ -42,16 +42,16 @@ const RealEstateDetails = () => {
 
                     <div className={styles.buttons}>
                         <div>
-                            <img style={{height:"16px", width:"16px"}} src={likeImag} /> Me gusta
+                            <img style={{ height: "16px", width: "16px" }} src={likeImag} /> Me gusta
                         </div>
                         <div>
-                            <img style={{height:"16px", width:"16px"}} src={compartir} /> Compartir
+                            <img style={{ height: "16px", width: "16px" }} src={compartir} /> Compartir
                         </div>
                         <h4 style={{ color: "#6D96FF" }} >
                             {data?.price} €
                         </h4>
                     </div>
-                    
+
                     <div className={styles.container_text}>
                         <h2> {data?.shortDescription} </h2>
                         <h3> {data?.location}</h3>
@@ -59,14 +59,16 @@ const RealEstateDetails = () => {
                     </div>
 
                     <div className={styles.caracteristicas}>
-                    <h2>Características básicas</h2>
-                    <div>
-                        <p>{data?.realEstateType + ": " + data?.realEstateSubtype}</p>
-                        <p>{data?.properties}</p>
-                        <p>{data?.metersBuilt + " m2"}</p>
-                        <p>{data?.state}</p>
-                        <br></br>
-                        <p>{data?.realtor}</p>
+                        <h2>Características básicas</h2>
+                        <div>
+                            <p>{data?.realEstateType + ": " + data?.realEstateSubtype}</p>
+                            <p>{data?.properties}</p>
+                            <p>{data?.metersBuilt + " m2"}</p>
+                            <p>{data?.state}</p>
+                            <br></br>
+                            <p>{data?.realtor}</p>
+                        </div>
+
                     </div>
 
                 </div>
@@ -77,18 +79,17 @@ const RealEstateDetails = () => {
                 <TextArea contactar={sendMessageToAdvisor}> </TextArea>
                 <GoogleMapsReactWrapper>
                     <GoogleMapsIndividual
-                    center={{
-                        lat: data?.publicMapLocation?.coordinates[0],
-                        lng: data?.publicMapLocation?.coordinates[1]
-                    }}
-                    zoom={15}
-                    style={{ margin: "auto", width: "300px", height: "300px" }}
+                        center={{
+                            lat: data?.publicMapLocation?.coordinates[0],
+                            lng: data?.publicMapLocation?.coordinates[1]
+                        }}
+                        zoom={15}
+                        style={{ margin: "auto", width: "300px", height: "300px" }}
                     >
                     </GoogleMapsIndividual>
                 </GoogleMapsReactWrapper>
             </div>
         </div>
-     </div>
     )
 }
 
