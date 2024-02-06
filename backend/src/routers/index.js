@@ -14,4 +14,12 @@ router.use('/realtors', realtorRouter);
 router.use('/users', userRouter);
 router.use('/login', authLoginRouter);
 router.use('/favorite', favoriteRouter);
+// router.get("/ws", (req, res) => {
+//   res.send(`
+//     <script src = "/socket.io/socket.io.js"></script>
+//     <script>
+//       const socket = io();
+//    </script>
+//     `);
+// })
 module.exports = router;
