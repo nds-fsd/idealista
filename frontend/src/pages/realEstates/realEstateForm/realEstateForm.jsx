@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+
+import FileUploader from '../../../components/fileSystem/fileUploader/FileUploader.jsx';
 import { CreateRealEstate } from '../../../utils/apis/realEstateApi.js';
 import styles from './realEstateForm.module.css';
 
@@ -30,6 +32,10 @@ const RealEstateForm = () => {
           <small>*Campos requiridos</small>
           <br/>
           <br/>
+
+          <input type="file"/>
+          <FileUploader />
+
 
           <label htmlFor="shortDescription" className={styles.label}>Descripción corta*</label>
           <input {...register("shortDescription", { required: true })} className={styles.input} />
