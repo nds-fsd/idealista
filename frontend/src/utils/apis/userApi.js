@@ -1,4 +1,16 @@
 import api from "./apiWrapper";
+import axios from "axios";
+
+export const getUser = async (id) => {
+    try {
+        const response = await axios.get(`users/${id}`);
+        console.log("Get user response", response);
+        return response;
+    } catch (error) {
+        console.error("Get user error", error.message);
+        return error.response;
+    }
+};
 
 const RegisterUser = async ({ email, password, name, location }) => {
     try {
@@ -30,33 +42,4 @@ const loginUser = async ({email,password}) =>{
     }
 };
 
-const GetUser = async (id) => {
-    if (!id) {
-        console.error("Invalid user ID");
-        return;
-    }
-    try {
-        const response = await api.get(`users/${id}`);
-        const { email, name, location } = response.data;
-        return { email, name, location };
-    } catch (error) {
-        console.error("Get user error", error.message);
-        return error.response;
-    }
-}
-
-const UpdateUser = async ({ id, email, name, location }) => {
-    try {
-        const response = await api.put(`users/${id}`, {
-            email: email,
-            name: name,
-            location: location,
-        });
-        return response;
-    } catch (error) {
-        console.error("Update user error", error.message);
-        return error.response;
-    }
-};
-
-export { RegisterUser, loginUser, GetUser, UpdateUser };
+export { RegisterUser, loginUser }
