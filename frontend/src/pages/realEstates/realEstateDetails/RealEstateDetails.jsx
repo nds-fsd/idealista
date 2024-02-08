@@ -13,7 +13,6 @@ import GoogleMapsIndividual from "../../../components/googleMaps/map/GoogleMapsI
 import styles from "./RealEstateDetails.module.css"
 import compartir from "../../../assets/compartir.png"
 import likeImag from "../../../assets/me-gusta.png"
-// import demoMap from "../../../assets/map.png"
 
 
 const RealEstateDetails = () => {

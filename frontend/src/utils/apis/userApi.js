@@ -30,17 +30,27 @@ const loginUser = async ({email,password}) =>{
     }
 };
 
+const GetUser = async (id) => {
+    if (!id) {
+        console.error("Invalid user ID");
+        return;
+    }
+    try {
+        const response = await api.get(`users/${id}`);
+        const { email, name, location } = response.data;
+        return { email, name, location };
+    } catch (error) {
+        console.error("Get user error", error.message);
+        return error.response;
+    }
+}
+
 const UpdateUser = async ({ id, email, name, location }) => {
     try {
         const response = await api.put(`users/${id}`, {
             email: email,
             name: name,
             location: location,
-            street: street,
-            streetNumber: streetNumber,
-            postalCode: postalCode,
-            province: province,
-            aboutMe: aboutMe
         });
         return response;
     } catch (error) {
@@ -49,4 +59,4 @@ const UpdateUser = async ({ id, email, name, location }) => {
     }
 };
 
-export { RegisterUser, loginUser, UpdateUser };
+export { RegisterUser, loginUser, GetUser, UpdateUser };
