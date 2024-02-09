@@ -1,9 +1,8 @@
 import api from "./apiWrapper";
-import axios from "axios";
 
 export const getUser = async (id) => {
     try {
-        const response = await axios.get(`users/${id}`);
+        const response = await api.get(`users/${id}`);
         console.log("Get user response", response);
         return response;
     } catch (error) {

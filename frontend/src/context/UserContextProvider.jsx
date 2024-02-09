@@ -13,7 +13,7 @@ function UserContextProvider({children}) {
     const [isLoggedIn,setIsLoggedIn] = useState(false);
     const [loading,setLoading] = useState(false);
     const navigate = useNavigate();
-
+    console.log("User Context user", user)
     const onLogin = async(data)=>{
         try{
             const response = await loginUser(data);

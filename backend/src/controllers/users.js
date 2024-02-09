@@ -22,7 +22,6 @@ const getById = async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
         if (user) {
-            res.setHeader('Content-Type', 'application/json');
             res.status(200).json(user);
         } else {
             res.status(404).send()
