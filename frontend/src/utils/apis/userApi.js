@@ -30,12 +30,10 @@ const loginUser = async ({email,password}) =>{
     try{
         const response = await api.post("login",{
             email: email,
-            password:password,
+            password:password
         });
         return response;
-        
-    }
-    catch(error){
+    } catch(error){
         console.error("Login error", error.message);
         return error.response;
     }
