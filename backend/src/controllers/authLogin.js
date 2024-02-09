@@ -11,11 +11,11 @@ const login = async (req, res) => {
         if (!userFound) {
             return res.status(400).json({ message: "User not found" });
         }
-
         console.log(password, userFound.password);
         const valPassword = bcrypt.compareSync(password, userFound.password);
+        console.log(valPassword)
         if (valPassword) {
-            const token = createAccessToken({ id: userFound._id, });
+            const token = createAccessToken({ id: userFound._id });
             return res.status(200).json({ user: userFound, token })
         } else {
             return res.status(400).json({ message: "Incorrect password" })
