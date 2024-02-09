@@ -3,6 +3,8 @@ const { connectDB } = require("./mongo/connection");
 const router = require('./routers/index.js');
 const cors = require('cors');
 
+const socketMiddleware = require('../src/middleware/socket.js');
+
 const app = express();
 
 app.use(express.json());
@@ -23,18 +25,24 @@ const io = require("socket.io")(httpServer, {
     cors: { origins: ["*"] }
 })
 
-io.on("connection", (socket) => {
-    console.log("User connected:", socket.id);
-    socket.emit("welcome")
+io.use(socketMiddleware);
 
-    socket.on("disconnect", () => {
-        console.log("User disconnected:", socket.id);
+
+io.on('connection', (socket) => {
+    console.log('User connected:', socket.id);
+    socket.broadcast.emit('msg', { user: socket.id, text: 'Ha entrado en el chat!' });
+
+    socket.on('disconnect', () => {
+        console.log('User disconnected:', socket.id);
+        socket.broadcast.emit('msg', { user: socket.id, text: 'Ha salido del chat.' });
+    });
+
+    socket.on('msg', (message) => {
+        console.log('Message received:', message);
+        io.emit('msg', message);
     })
-    socket.on("msg", (msg, to) => {
-        console.log(socket.id, ":", msg);
-        socket.to(to, "msg")
-    })
-})
+});
+
 httpServer.listen(8080, () => {
     console.log(`WS Server is up and running on port 8080 ⚡`);
 })
