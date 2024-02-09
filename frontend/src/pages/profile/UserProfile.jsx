@@ -29,11 +29,16 @@ const UserProfile = () => {
                 <>
                     <h1>{userData.name}</h1>
                     <h2>{userData.email}</h2>
-                    <p>{userData.location}</p>
+                    <p>Ubicación: {userData.location}</p>
+                    <p>Calle: {userData.street || ""}</p>
+                    <p>Número de Calle: {userData.streetNumber || ""}</p>
+                    <p>Código Postal: {userData.postalCode || ""}</p>
+                    <p>Provincia: {userData.province || ""}</p>
+                    <p>Sobre mí: {userData.aboutMe || ""}</p>
                 </>
             )}
         </div>
     );
-}
+    }
 
 export default UserProfile;
