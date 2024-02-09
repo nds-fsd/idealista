@@ -18,6 +18,21 @@ const getAll = async (req, res) => {
     }
 };
 
+const getById = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        if (user) {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json(user);
+        } else {
+            res.status(404).send()
+        }
+    } catch (error) {
+        console.log("Error in users.js getById():", error.message)
+        res.status(500).send(error.message)
+    }
+};
+
 const getFavorite = async (req, res) => {
     try {
         const userId = req.params.id;
@@ -30,7 +45,7 @@ const getFavorite = async (req, res) => {
     } catch (error) {
         res.status(500).send(error.message);
     }
-}
+};
 
 const deleteFavorite = async (req, res) => {
     try {
@@ -40,21 +55,8 @@ const deleteFavorite = async (req, res) => {
     } catch (error) {
         res.status(500).send(error.message);
     }
-}
-
-const getById = async (req, res) => {
-    try {
-        const user = await User.findById(req.params.id);
-        if (user) {
-            res.status(200).json(user);
-        } else {
-            res.status(404).send()
-        }
-    } catch (error) {
-        console.log("Error in users.js getById():", error.message)
-        res.status(500).send(error.message)
-    }
 };
+
 
 const update = async (req, res) => {
     try {
