@@ -7,9 +7,7 @@ import UserContext from "../../context/UserContext";
 const UserProfile = () => {
     const [userData, setUserData] = useState(null);
 
-    const {user} = useContext(UserContext) // Esto tiene que funcionar
-    console.log("User", user)
-    // const id = '659e8ca8b95a7cb7353b6ddd';
+    const {user} = useContext(UserContext)
 
     useEffect(() => {
         const fetchUserData = async () => {
