@@ -7,7 +7,7 @@ import { getUserSession, setUserSession,removeSession } from "../utils/apis/loca
 
 
 function UserContextProvider({children}) {
-    const currentUser = JSON.parse(localStorage.getItem("user")) || null;
+    const currentUser = JSON.parse(localStorage.getItem("user"));
     const [user,setUser] = useState(currentUser)
     const [error, setError] = useState(null)
     const [isLoggedIn,setIsLoggedIn] = useState(false);
@@ -24,15 +24,13 @@ function UserContextProvider({children}) {
             setIsLoggedIn(true)
             setLoading(false)
             navigate("/")
-            console.log(response.data)
-            toast.success("Inicio de sesión exitoso");
+            toast.success("Registro exitoso");
+
     } catch (error){
-        console.error("Error al intentar iniciar sesión",error)
+        console.error("Error al intentar registrarse",error)
         setError(error);
         setIsLoggedIn(false);
         setLoading(false);
-        toast.error("Error al intentar iniciar sesión");
-        
     }
 };
 
@@ -42,21 +40,22 @@ function UserContextProvider({children}) {
             const response = await loginUser(data);
                 setUserSession(response.data);
                 setUser(response.data.user);
+                console.log("Hola",setUser)
                 setIsLoggedIn(true)
                 setLoading(false)
                 navigate("/")
                 console.log(response.data)
-            toast.success("Inicio de sesión exitoso");
+                toast.success("Inicio de sesión exitoso");
                 
         } catch (error){
             console.error("Error al intentar iniciar sesión",error)
             setError(error);
             setIsLoggedIn(false);
             setLoading(false);
-            toast.error("Error al intentar iniciar sesión");
-            
         }
     };
+
+
 
     const logOut = () => {
         removeSession();
@@ -72,7 +71,6 @@ function UserContextProvider({children}) {
 
         const session = getUserSession();
         if(session){
-        console.log("Hay usuario",session.user)
         setUser({...session.user});}
         
     }, [])
