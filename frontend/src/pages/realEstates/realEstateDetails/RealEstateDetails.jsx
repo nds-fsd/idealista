@@ -13,6 +13,7 @@ import GoogleMapsIndividual from "../../../components/googleMaps/map/GoogleMapsI
 import styles from "./RealEstateDetails.module.css"
 import compartir from "../../../assets/compartir.png"
 import likeImag from "../../../assets/me-gusta.png"
+import { text } from "@cloudinary/url-gen/qualifiers/source";
 
 
 
@@ -26,8 +27,6 @@ const RealEstateDetails = () => {
 
     if (isLoading) return <div>Is Loading...</div>;
     if (!data) return <div> Something went wrong</div>;
-
-    console.log("data:", data)
 
     return (
         <div>
@@ -53,7 +52,11 @@ const RealEstateDetails = () => {
                     <div className={styles.container_text}>
                         <h2> {data?.shortDescription} </h2>
                         <h3> {data?.location}</h3>
-                        <small>{data?.description}</small>
+                        <textarea style={{fontSize:"16px", border:"none", outline:"none",
+                                          minHeight:"300px", 
+                                          minWidth:"650px", maxWidth:"650px"}}
+                                readOnly
+                                value={data?.description}/>
                     </div>
 
                     <div className={styles.caracteristicas}>
