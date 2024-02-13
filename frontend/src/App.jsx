@@ -10,7 +10,7 @@ import RealEstateList from "./pages/realEstates/realEstateList/RealEstateList";
 import RealEstateListMap from "./pages/realEstates/realEstateListMap/RealEstateListMap";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
-import UserProfile from "./pages/profile/UserProfile";
+import UserProfile from "./pages/profile/UserProfile/UserProfile";
 import UserContext from "./context/UserContext";
 
 import "slick-carousel/slick/slick.css";

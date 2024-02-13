@@ -1,8 +1,8 @@
 import { useEffect, useState, useContext } from "react";
 
 import styles from "./userProfile.module.css";
-import { getUser } from "../../utils/apis/userApi";
-import UserContext from "../../context/UserContext";
+import { getUser } from "../../../utils/apis/userApi";
+import UserContext from "../../../context/UserContext";
 
 const UserProfile = () => {
     const [userData, setUserData] = useState(null);
@@ -28,19 +28,19 @@ const UserProfile = () => {
         <h2>{userData?.email}</h2>
         </>
         {/* Tab nav */}
-        <ul className = "nav nav-tabs">
-            <li className = "nav-item">
-                <a className = "nav-link active" href = "#">Datos personales</a>
+        <ul className={styles.tabnav}>
+            <li className={styles.navitemselected}>
+                <a className={styles.navlinkactive} href="#">Datos personales</a>
             </li>
-            <li className = "nav-item">
-                <a className = "nav-link" href = "#">Mis publicaciones</a>
+            <li className={styles.navitem}>
+                <a className={styles.navlink} href="#">Mis publicaciones</a>
             </li>
-            <li className = "nav-item">
-                <a className = "nav-link" href = "#">Mis favoritos</a>
+            <li className={styles.navitem}>
+                <a className={styles.navlink} href="#">Mis favoritos</a>
             </li>
         </ul>
         {/* Tab content */}
-        <div className = "tab-content"> 
+        <div className={styles.tabcontent}>
             {userData && (
                 <>
                     <p>Nombre: {userData.name}</p>
