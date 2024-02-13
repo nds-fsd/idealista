@@ -6,12 +6,12 @@ import {useNavigate} from "react-router-dom";
 import { getUserSession, setUserSession,removeSession } from "../utils/apis/localStorage";
 
 
-function UserContextProvider({children}) {
-    const currentUser = JSON.parse(localStorage.getItem("user")) || null;
+const UserContextProvider = ({children}) => {
+    const currentUser = JSON.parse(localStorage.getItem("userData")) || null;
     const [user,setUser] = useState(currentUser)
     const [error, setError] = useState(null)
-    const [isLoggedIn,setIsLoggedIn] = useState(false);
-    const [loading,setLoading] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     console.log("User Context user", user)
 
