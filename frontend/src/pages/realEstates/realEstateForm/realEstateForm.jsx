@@ -5,8 +5,6 @@ import FileUploader from '../../../components/fileSystem/fileUploader/FileUpload
 import { CreateRealEstate } from '../../../utils/apis/realEstateApi.js';
 
 import styles from './realEstateForm.module.css';
-import imgCurrentProcess from "../../../../src/assets/process-current.png"
-import imgNoCurrentProcess from "../../../../src/assets/process-nocurrent.png"
 
 
 
@@ -74,12 +72,6 @@ const RealEstateForm = () => {
               </select>
               {errors.operation && <p className={styles.error}>Este campo es obligatorio</p>}
             </div>
-          </div>
-
-          <div style={{marginTop: "30px"}}>
-              <label htmlFor="location" className={styles.label}>Buscar dirección</label>
-              <input className={styles.input} type='text' />
-              {errors.location && <p className={styles.error}>Este campo es obligatorio</p>}
           </div>
 
           <div style={{marginTop: "10px", display: "flex"}}>
