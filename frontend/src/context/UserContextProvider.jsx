@@ -7,13 +7,12 @@ import { getUserSession, setUserSession,removeSession } from "../utils/apis/loca
 
 
 function UserContextProvider({children}) {
-    const currentUser = JSON.parse(localStorage.getItem("user"));
+    const currentUser = JSON.parse(localStorage.getItem("user"))||null;
     const [user,setUser] = useState(currentUser)
     const [error, setError] = useState(null)
     const [isLoggedIn,setIsLoggedIn] = useState(false);
     const [loading,setLoading] = useState(false);
     const navigate = useNavigate();
-
 
     const onRegister = async(data) =>{
         try{
@@ -35,17 +34,22 @@ function UserContextProvider({children}) {
 };
 
     const onLogin = async (data) => {
-        console.log(data)
         try{
             const response = await loginUser(data);
+            if (response.data) {
                 setUserSession(response.data);
                 setUser(response.data.user);
-                console.log("Hola",setUser)
                 setIsLoggedIn(true)
                 setLoading(false)
                 navigate("/")
-                console.log(response.data)
                 toast.success("Inicio de sesión exitoso");
+            } else {
+                setError(error);
+                setIsLoggedIn(false);
+                setLoading(false);
+                toast.error("Error al intentar iniciar sesión")
+            }
+    
                 
         } catch (error){
             console.error("Error al intentar iniciar sesión",error)
@@ -53,9 +57,7 @@ function UserContextProvider({children}) {
             setIsLoggedIn(false);
             setLoading(false);
         }
-    };
-
-
+    }
 
     const logOut = () => {
         removeSession();

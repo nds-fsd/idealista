@@ -26,7 +26,6 @@ const loginUser = async ({email,password}) =>{
         console.error("Login error", error.message);
         return error.message;
     }
-
 };
 
 export { RegisterUser, loginUser }
