@@ -44,7 +44,7 @@ const UserProfile = () => {
             {userData && (
                 <>
                     <p>Nombre: {userData.name}</p>
-                    <p>Correo elextr: {userData.email}</p>
+                    <p>Correo electronico: {userData.email}</p>
                     <p>Ubicación: {userData.location}</p>
                     <p>Calle: {userData?.street || ""}</p>
                     <p>Número de Calle: {userData?.streetNumber || ""}</p>
