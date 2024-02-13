@@ -13,7 +13,7 @@ import GoogleMapsIndividual from "../../../components/googleMaps/map/GoogleMapsI
 import styles from "./RealEstateDetails.module.css"
 import compartir from "../../../assets/compartir.png"
 import likeImag from "../../../assets/me-gusta.png"
-// import demoMap from "../../../assets/map.png"
+
 
 
 const RealEstateDetails = () => {
@@ -25,11 +25,9 @@ const RealEstateDetails = () => {
     }
 
     if (isLoading) return <div>Is Loading...</div>;
-
     if (!data) return <div> Something went wrong</div>;
 
-    
-
+    console.log("data:", data)
 
     return (
         <div>
@@ -62,7 +60,9 @@ const RealEstateDetails = () => {
                     <h2>Características básicas</h2>
                     <div>
                         <p>{data?.realEstateType + ": " + data?.realEstateSubtype}</p>
-                        <p>{data?.properties}</p>
+                        <p>{data?.properties.map((element) => {
+                            return <span>{element+" "}</span>
+                        })}</p>
                         <p>{data?.metersBuilt + " m2"}</p>
                         <p>{data?.state}</p>
                         <br></br>
