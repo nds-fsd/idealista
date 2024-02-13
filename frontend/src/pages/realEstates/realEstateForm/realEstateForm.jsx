@@ -76,19 +76,19 @@ const RealEstateForm = () => {
 
           <div style={{marginTop: "10px", display: "flex"}}>
             <div style={{width: "33%"}}>
-              <label htmlFor="location" className={styles.label}>Población *</label>
+              <label type="text" htmlFor="location" className={styles.label}>Población *</label>
               <input {...register("location", { required: true })} className={styles.input} />
               {errors.location && <p className={styles.error}>Este campo es obligatorio</p>}
             </div>
             <div style={{width: "33%"}}>
               <label htmlFor="roadName" className={styles.label}>Nombre de la calle *</label>
-              <input {...register("roadName", { required: false, pattern: /^[^\d]+$/ })} className={styles.input} />
-              {errors.roadName && <p className={styles.error}>No se permiten números en el nombre de la calle</p>}
+              <input type="text" {...register("roadName", { required: true })} className={styles.input} />
+              {errors.roadName && <p className={styles.error}>Este campo es oblicatorio</p>}
             </div>
             <div style={{width: "33%"}}>
               <label htmlFor="roadNumber" className={styles.label}>Número *</label>
-              <input {...register("roadNumber", { pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
-              {errors.roadNumber && errors.roadNumber.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
+              <input type="text" {...register("roadNumber", { required: true })} className={styles.input} />
+              {errors.roadNumber && <p className={styles.error}>Este campo es obligatorio</p>}
             </div>
           </div>
 
@@ -98,14 +98,14 @@ const RealEstateForm = () => {
               <input {...register("block", { required: false })} className={styles.input} />
             </div>
             <div style={{width: "33%"}}>
-              <label htmlFor="floorNumber" className={styles.label}>Número de piso*</label>
-              <input type="number" {...register("floorNumber", { required: true, pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
-              {errors.floorNumber && errors.floorNumber.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
+              <label htmlFor="floor" className={styles.label}>Número de piso</label>
+              <input type="text" {...register("floor", { required: true})} className={styles.input} />
+              {errors.floor && <p className={styles.error}>Este campo es obligatorio</p>}
             </div>
             <div style={{width: "33%"}}>
-              <label htmlFor="roadNumber" className={styles.label}>Puerta</label>
-              <input {...register("roadNumber", { pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
-              {errors.roadNumber && errors.roadNumber.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
+              <label htmlFor="door" className={styles.label}>Puerta</label>
+              <input {...register("door", { pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
+              {errors.door && errors.door.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
             </div>
           </div>
 
@@ -143,8 +143,8 @@ const RealEstateForm = () => {
           <div style={{marginTop: "20px", display: "flex"}}>
             <div style={{width: "33%"}}>
               <label htmlFor="price" className={styles.label}>Precio*</label>
-              <input {...register("price", { pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
-              {errors.price && errors.price.type === "pattern" && <p className={styles.error}>El valor debe ser un número mayor a 0</p>}
+              <input {...register("price", { required: true, pattern: /^[1-9][0-9]*$/ })} className={styles.input} />
+              {errors.price && errors.price.type === "pattern" && <p className={styles.error}>El campo es obligatorio y debe ser un número mayor a 0</p>}
             </div>
             <div style={{width: "33%"}}>
               <label htmlFor="metersBuilt" className={styles.label}>Metros construidos (m²)*</label>
@@ -172,9 +172,9 @@ const RealEstateForm = () => {
             <div style={{width: "33%"}}>
               <label htmlFor="state" className={styles.label}>Estado</label>
               <select {...register("state", { required: false })} className={styles.select}>
-                <option value="Obra nueva">Obra nueva</option>
                 <option value="Buen estado">Buen estado</option>
                 <option value="A reformar">A reformar</option>
+                <option value="Obra nueva">Obra nueva</option>                                
               </select>
             </div>
           </div>
