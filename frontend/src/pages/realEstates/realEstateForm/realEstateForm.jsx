@@ -11,8 +11,40 @@ import styles from './realEstateForm.module.css';
 const RealEstateForm = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [files, setFiles] = useState([]);
+  
+  const uploadFiles = (newFiles) => {
+    const formData = new FormData();
+    const url = "https://api.cloudinary.com/v1_1/dlrq6unnd/image/upload";
+  
+    for (let i = 0; i < newFiles.length; i++) {
+        let file = newFiles[i];
+        formData.append("file", file);
+        formData.append("upload_preset", "realista");
+
+        fetch(url, {
+            method: "POST",
+            header: {
+                'Content-Type': 'multipart/form-data'
+            },
+            body: formData
+        })
+        .then((response) => {
+            console.log(response);
+            return response.text();
+        })
+        .catch((data) => {
+            debugger;
+            addPhoto(JSON.parse(data));
+            console.log(data);
+        });
+    }
+  };
 
   const onSubmit = async (data) => {
+    console.log("RealEstateForm.files:", files)
+    uploadFiles(files);
+
     const address = `${data.location || ''}, ${data.roadName || ''}, ${data.roadNumber || ''}, ${data.floor || ''}, ${data.door || ''}, ${data.urbanization || ''}, ${data.district || ''}`;
     const publicAddress = `${data.location}, ${data.urbanization || ''}, ${data.district || ''}`;
     await CreateRealEstate({ ...data, address, publicAddress });
@@ -265,7 +297,7 @@ const RealEstateForm = () => {
 
           <div className={styles.tabselected}>Fotos</div>
           <div style={{marginTop: "20px"}}>
-            <FileUploader />
+            <FileUploader files={files} setFiles={setFiles}/>
           </div>
 
           <div style={{marginTop: "20px", width:"97%"}}>
