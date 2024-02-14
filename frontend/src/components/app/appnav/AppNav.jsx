@@ -62,7 +62,7 @@ const AppNav = () => {
 
                         <div className={`${styles.dropdown} ${styles[!open ? 'inactive' : 'active']}`}>
                             <ul>
-                                <Link to="/profile">
+                                <Link to="/profile" className={styles.profilelink}>
                                     <DropDownNav img={userProfile} text={"Mi perfil"} />
                                 </Link>
                                 <DropDownNav img={settings} text={"Mis ajustes"} />

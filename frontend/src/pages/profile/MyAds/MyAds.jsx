@@ -4,7 +4,7 @@ const MyAds = ({ads}) => {
     return (
         <div className={styles.myAds}>
             {/* <h1>Mis publicaciones</h1> */}
-            <ul>
+            {/* <ul>
                 {ads.map(ad => (
                     <li key={ad._id}>
                         <h2>{ad.title}</h2>
@@ -13,7 +13,11 @@ const MyAds = ({ads}) => {
                         <p>{ad.location}</p>
                     </li>
                 ))}
-            </ul>
+            </ul> */}
+            Funcionalidad en construcción
         </div>
     );
 }
+
+
+export default MyAds;

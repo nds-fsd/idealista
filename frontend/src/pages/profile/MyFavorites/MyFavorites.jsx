@@ -4,7 +4,7 @@ const MyFavorites = ({favorites}) => {
     return (
         <div className={styles.myFavorites}>
             {/* <h1>Mis favoritos</h1> */}
-            <ul>
+            {/* <ul>
                 {favorites.map(favorite => (
                     <li key={favorite._id}>
                         <h2>{favorite.title}</h2>
@@ -13,7 +13,10 @@ const MyFavorites = ({favorites}) => {
                         <p>{favorite.location}</p>
                     </li>
                 ))}
-            </ul>
+            </ul> */}
+            Funcionalidad en construcción
         </div>
     );
 }
+
+export default MyFavorites;

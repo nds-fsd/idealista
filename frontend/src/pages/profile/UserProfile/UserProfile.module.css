@@ -39,14 +39,15 @@ ul {
     border-bottom: none;
     border-radius: 1.25rem 1.25rem 0 0;
     margin-bottom: 0;
+    font-weight: bold;
 }
 
 li.navitemselected {
-    background-color: #fff;
-    border: 1px solid #3e3e3e;
+    background-color: #d1d1d1;
     border-bottom: 0;
     border-radius: 1.25rem 1.25rem 0 0;
     margin-bottom: 0;
+    font-weight: bold;
 }
 
 .navlink {
@@ -66,9 +67,10 @@ a {
 }
 
 .tabcontent {
-    border: 1px solid #3e3e3e;
+    background-color: #d1d1d1;
     border-top: 0;
     padding: 1rem;
+    border-radius: 0 0 0.5rem 0.5rem;
 }
 
 h1 {
