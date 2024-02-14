@@ -13,16 +13,17 @@ const RealEstateForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [files, setFiles] = useState([]);
   
-  const uploadFiles = (newFiles) => {
+  const uploadFiles = async (images) => {
     const formData = new FormData();
     const url = "https://api.cloudinary.com/v1_1/dlrq6unnd/image/upload";
+    const uploadImages = [];
   
-    for (let i = 0; i < newFiles.length; i++) {
-        let file = newFiles[i];
+    for (let i = 0; i < images.length; i++) {
+        let file = images[i];
         formData.append("file", file);
         formData.append("upload_preset", "realista");
 
-        fetch(url, {
+/*         fetch(url, {
             method: "POST",
             header: {
                 'Content-Type': 'multipart/form-data'
@@ -30,22 +31,32 @@ const RealEstateForm = () => {
             body: formData
         })
         .then((response) => {
-            console.log(response);
-            return response.text();
+            console.log(response.json());
+            return response.json();
         })
         .catch((data) => {
             debugger;
             addPhoto(JSON.parse(data));
             console.log(data);
-        });
+        }); */
+
+      const options = { method: "POST", 
+                        header: {'Content-Type': 'multipart/form-data' },
+                        body: formData }
+      const response = await fetch(url, options);
+      const responseJSON = await response.json();
+      uploadImages.push(responseJSON.secure_url);
     }
+
+    console.log("uploadImages:", uploadImages)
+    return uploadImages;
   };
 
   const onSubmit = async (data) => {
     console.log("RealEstateForm.files:", files)
-    uploadFiles(files);
+    const images = uploadFiles(files);
 
-    const address = `${data.location || ''}, ${data.roadName || ''}, ${data.roadNumber || ''}, ${data.floor || ''}, ${data.door || ''}, ${data.urbanization || ''}, ${data.district || ''}`;
+    const address = `${data.location || ''}, ${data.roadName || ''}, ${data.roadNumber || ''}, ${data.floor || ''}, ${data.door || ''}, ${data.urbanization || ''}, ${data.district || ''}, ${images || []}`;
     const publicAddress = `${data.location}, ${data.urbanization || ''}, ${data.district || ''}`;
     await CreateRealEstate({ ...data, address, publicAddress });
     setIsSubmitted(true);

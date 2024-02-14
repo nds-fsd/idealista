@@ -28,6 +28,7 @@ const realEstateSchema = new Schema({
     properties: [{type: String, required: false}],
     price: {type: Number, required: true},
     realtor: {type: String, required: false},
+    images: {type: String, required: false},
     realposition: {type: Object, required: false},
     publicposition: {type: Object, required: false},
     mapLocation: {
