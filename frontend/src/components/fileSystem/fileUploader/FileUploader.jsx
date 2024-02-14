@@ -5,60 +5,55 @@ import imageDelete from "../../../assets/basura.svg"
 
 
 
-const FileUploader = () => {
-    const [files, setFiles] = useState([]);
+const FileUploader = (props) => {
+    //const {files, setFiles} = useState([]);
+    const {files, setFiles} = props;
     const [Loading, setLoading] = useState("");
-
-    // const inputFile = useRef(null);
 
     const handleDrop = (e) => {
         e.preventDefault();
         const newFiles = [...e.dataTransfer.files];
         setFiles((prevFiles) => [...prevFiles, ...newFiles]);
-        uploadFiles(newFiles)
+        //uploadFiles(newFiles)
     }
 
     const handleFileChange = (e) => {
-        console.log("event.target.files:", e.target.files)
         const newFiles = [...e.target.files];
         setFiles((prevFiles) => [...prevFiles, ...newFiles]);
-        uploadFiles(newFiles)
+        //uploadFiles(newFiles)
     }
 
     const handleRemoveFile = (e) => {
         
     }
 
-    const uploadFiles = (newFiles) => {
-        console.log("uploadFiles", newFiles)
-        //const files = inputFile.current.files;
+    /* const uploadFiles = (newFiles) => {
         const formData = new FormData();
-        //const url = "https://api.cloudinary.com/v1_1/dhgx6mcd8/image/upload";
         const url = "https://api.cloudinary.com/v1_1/dlrq6unnd/image/upload";
       
         for (let i = 0; i < newFiles.length; i++) {
-          let file = newFiles[i];
-          console.log("file transfer:", newFiles)
-          formData.append("file", file);
-          formData.append("upload_preset", "realista");
-          fetch(url, {
-            method: "POST",
-            header: {
-                'Content-Type': 'multipart/form-data'
-            },
-            body: formData
-          })
+            let file = newFiles[i];
+            formData.append("file", file);
+            formData.append("upload_preset", "realista");
+
+            fetch(url, {
+                method: "POST",
+                header: {
+                    'Content-Type': 'multipart/form-data'
+                },
+                body: formData
+            })
             .then((response) => {
                 console.log(response);
-              return response.text();
+                return response.text();
             })
             .catch((data) => {
-              debugger;
-              addPhoto(JSON.parse(data));
-              console.log(data);
+                debugger;
+                addPhoto(JSON.parse(data));
+                console.log(data);
             });
         }
-    };
+    }; */
 
     return (
         <div style={{width: "97%"}}>    
