@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import styles from "./userProfile.module.css";
-import { getUser } from "../../../utils/apis/userApi";
+import { getUser, updateUser } from "../../../utils/apis/userApi";
 import UserContext from "../../../context/UserContext";
 import PersonalData from '../PersonalData/PersonalData';
 import MyAds from '../MyAds/MyAds';
