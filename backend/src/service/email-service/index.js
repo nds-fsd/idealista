@@ -9,8 +9,9 @@ const mailgun = new Mailgun(formData);
 const mg = mailgun.client({username: 'api', key: process.env.MAILGUN_API_KEY});
 
 exports.sendWelcomeEmail = async(user) =>{
+    const DOMAIN = 'sandbox9bcd9537a0034901868a674f1bdd3b57.mailgun.org';
     const emailData = {
-        from:"Realista <sandbox9bcd9537a0034901868a674f1bdd3b57.mailgun.org>",
+        from:'Realista <mailgun@sandbox9bcd9537a0034901868a674f1bdd3b57.mailgun.org>',
         to: user,
         subject: "Bienvenido a Realista"
     };
@@ -20,10 +21,11 @@ exports.sendWelcomeEmail = async(user) =>{
     const template = Handlebars.compile(testEmailTemplate);
     emailData.html= template({user});
 
-    await mg.message.create("sandbox9bcd9537a0034901868a674f1bdd3b57.mailgun.org",emailData);
+    await mg.messages.create(DOMAIN,emailData);
     console.log("Correo enviado con éxito");
     } catch (error) {
         console.log(emailData)
         console.log("Error al enviar mail")
+        console.error(error)
     }
 }

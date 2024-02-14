@@ -9,7 +9,8 @@ const login = async (req, res) => {
     const { email, password } = req.body;
     try {
         const userFound = await User.findOne({ email })
-        const user = userFound.email;
+        const user = "haroldpozo9018@gmail.com"
+        //userFound.email;
         if (!userFound) {
             return res.status(400).json({ message: "User not found" });
         }
