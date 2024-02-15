@@ -12,7 +12,7 @@ exports.sendWelcomeEmail = async(user) =>{
     const DOMAIN = 'sandbox9bcd9537a0034901868a674f1bdd3b57.mailgun.org';
     const emailData = {
         from:'Realista <mailgun@sandbox9bcd9537a0034901868a674f1bdd3b57.mailgun.org>',
-        to: user,
+        to: user.email,
         subject: "Bienvenido a Realista"
     };
 
@@ -24,7 +24,7 @@ exports.sendWelcomeEmail = async(user) =>{
     await mg.messages.create(DOMAIN,emailData);
     console.log("Correo enviado con éxito");
     } catch (error) {
-        console.log(emailData)
+
         console.log("Error al enviar mail")
         console.error(error)
     }

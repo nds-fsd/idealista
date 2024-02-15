@@ -1,5 +1,4 @@
 const express = require('express');
-const { sendWelcomeEmail } = require('../service/email-service/index');
 const User = require("../mongo/schemas/users");
 const bcrypt = require('bcrypt');
 
@@ -8,15 +7,13 @@ const createAccessToken = require('../security/jwToken')
 const login = async (req, res) => {
     const { email, password } = req.body;
     try {
-        const userFound = await User.findOne({ email })
-        const user = "haroldpozo9018@gmail.com"
-        //userFound.email;
+        const userFound = await User.findOne({ email})
+
         if (!userFound) {
             return res.status(400).json({ message: "User not found" });
         }
         const valPassword = bcrypt.compareSync(password, userFound.password);
-        if (valPassword) {
-            await sendWelcomeEmail(user);
+        if (valPassword) {;
             const token = createAccessToken({ id: userFound._id });
             return res.status(200).json({ user: userFound, token });
 
