@@ -10,6 +10,10 @@ const PersonalData = ({ userData, updatedUserData }) => {
         setEditMode(true);
     };
 
+    const handleCancel = () => {
+        setEditMode(false);
+    };
+
     const onSubmit = (data) => {
         console.log(data);	
         setEditMode(false);
@@ -49,7 +53,7 @@ const PersonalData = ({ userData, updatedUserData }) => {
                     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
                         <div className={styles.container}>
                             <div className={styles.input}>
-                                <label htmlFor="name" className={styles.label}>Name:</label>
+                                <label htmlFor="name" className={styles.label}>Nombre:</label>
                                 <input {...register("name")} id="name" className={styles.field} />
                             </div>
                             <div className={styles.input}>
@@ -57,36 +61,39 @@ const PersonalData = ({ userData, updatedUserData }) => {
                                 <input {...register("email")} id="email" className={styles.field} />
                             </div>
                             <div className={styles.input}>
-                                <label htmlFor="location" className={styles.label}>Location:</label>
+                                <label htmlFor="location" className={styles.label}>Ubicación:</label>
                                 <input {...register("location")} id="location" className={styles.field} />
                             </div>
                             <div className={styles.input}>
-                                <label htmlFor="street" className={styles.label}>Street:</label>
+                                <label htmlFor="street" className={styles.label}>Calle:</label>
                                 <input {...register("street")} id="street" className={styles.field} />
                             </div>
                             <div className={styles.input}>
-                                <label htmlFor="streetNumber" className={styles.label}>Street Number:</label>
+                                <label htmlFor="streetNumber" className={styles.label}>Número de Calle:</label>
                                 <input {...register("streetNumber")} id="streetNumber" className={styles.field} />
                             </div>
                             <div className={styles.input}>
-                                <label htmlFor="postalCode" className={styles.label}>Postal Code:</label>
+                                <label htmlFor="postalCode" className={styles.label}>Código Postal:</label>
                                 <input {...register("postalCode")} id="postalCode" className={styles.field} />
                             </div>
                             <div className={styles.input}>
-                                <label htmlFor="province" className={styles.label}>Province:</label>
+                                <label htmlFor="province" className={styles.label}>Provincia:</label>
                                 <input {...register("province")} id="province" className={styles.field} />
                             </div>
                             <div className={styles.input}>
-                                <label htmlFor="aboutMe" className={styles.label}>About Me:</label>
+                                <label htmlFor="aboutMe" className={styles.label}>Sobre mí:</label>
                                 <input {...register("aboutMe")} id="aboutMe" className={styles.field} />
                             </div>
-                            <button className={styles.btn} type="submit">Save</button>
+                            <div className={styles.buttoncontainer}>
+                            <button className={styles.btn} type="submit">Guardar</button>
+                            <button className={styles.btn} onClick={handleCancel}>Cancelar</button>
+                            </div>
                         </div>
                     </form>
                 ) : (
-                    <>
+                    <div className={styles.data}>
                         <p>Nombre: {userData.name}</p>
-                        <p>Correo electronico: {userData.email}</p>
+                        <p>Correo electrónico: {userData.email}</p>
                         <p>Ubicación: {userData.location}</p>
                         <p>Calle: {userData?.street || ""}</p>
                         <p>Número de Calle: {userData?.streetNumber || ""}</p>
@@ -94,9 +101,9 @@ const PersonalData = ({ userData, updatedUserData }) => {
                         <p>Provincia: {userData?.province || ""}</p>
                         <p>Sobre mí: {userData?.aboutMe || ""}</p>
                         <button className={styles.btn} onClick={handleEdit}>
-                            Edit
+                            Editar
                         </button>
-                    </>
+                    </div>
                 )}
             </>
         )

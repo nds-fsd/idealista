@@ -25,6 +25,14 @@
     border-radius: 5px;
 }
 
+.buttoncontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 10px;
+    margin-top: 20px;
+}
+
 .btn {
     background-color: #EEEFA7;
     color: rgb(0, 0, 0);
@@ -42,4 +50,10 @@
     display: inline-block;
     transition: 0.3s;
     font-family: inherit;
+}
+
+.data   {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
