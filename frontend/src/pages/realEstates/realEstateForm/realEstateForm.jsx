@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import FileUploader from '../../../components/fileSystem/fileUploader/FileUploader.jsx';
 import { CreateRealEstate } from '../../../utils/apis/realEstateApi.js';
+import ClaudinaryApi from '../../../utils/apis/claudinaryApi.js';
+import FileUploader from '../../../components/fileSystem/fileUploader/FileUploader.jsx';
+
 
 import styles from './realEstateForm.module.css';
 
@@ -12,76 +14,14 @@ const RealEstateForm = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [files, setFiles] = useState([]);
-  
-  const uploadFiles = async (images) => {
-    const formData = new FormData();
-    const url = "https://api.cloudinary.com/v1_1/dlrq6unnd/image/upload";
-    const uploadImages = [];
-  
-    for (let i = 0; i < images.length; i++) {
-        let file = images[i];
-        formData.append("file", file);
-        formData.append("upload_preset", "realista");
-
-/*         fetch(url, {
-            method: "POST",
-            header: {
-                'Content-Type': 'multipart/form-data'
-            },
-            body: formData
-        })
-        .then((response) => {
-            console.log(response.json());
-            return response.json();
-        })
-        .catch((data) => {
-            debugger;
-            addPhoto(JSON.parse(data));
-            console.log(data);
-        }); */
-
-      const options = { method: "POST", 
-                        header: {'Content-Type': 'multipart/form-data' },
-                        body: formData }
-      const response = await fetch(url, options);
-      const responseJSON = await response.json();
-      uploadImages.push(responseJSON.secure_url);
-      
-      fetch(url, {
-        method: "POST",
-        header: {
-          'Content-Type': 'multipart/form-data'
-        },
-        body: formData
-      })
-      .then((response) => {
-          console.log(response);
-          //return response.text();
-      })
-      .catch((data) => {
-        debugger;
-        //addPhoto(JSON.parse(data));
-        console.log(data);
-      });
-    }
-
-    console.log("uploadImages:", uploadImages)
-    return uploadImages;
-  };
 
   const onSubmit = async (data) => {
-    console.log("onSubmit:", data)
-
-    const images = await uploadFiles(files);
-    console.log("RealEstateForm.files:", files)
-    console.log("onSubmit.images", images)
-
+    const images = await ClaudinaryApi.uploadFiles(files);
     const address = `${data.location || ''}, ${data.roadName || ''}, ${data.roadNumber || ''}, ${data.floor || ''}, ${data.door || ''}, ${data.urbanization || ''}, ${data.district || ''}}`;
     const publicAddress = `${data.location}, ${data.urbanization || ''}, ${data.district || ''}`;
     await CreateRealEstate({ ...data, images, address, publicAddress });
     setIsSubmitted(true);
   };
-
 
   return (
     <div>
