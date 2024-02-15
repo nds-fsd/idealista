@@ -7,6 +7,10 @@ import imageDelete from "../../../assets/basura.svg"
 
 const FileUploader = (props) => {
     const {files, setFiles} = props;
+    const [reload, setReload] = useState(false);
+
+    useEffect(() => {
+    }, [reload])
 
     const handleDrop = (e) => {
         e.preventDefault();
@@ -19,8 +23,12 @@ const FileUploader = (props) => {
         setFiles((prevFiles) => [...prevFiles, ...newFiles]);
     }
 
-    const handleRemoveFile = (e) => {
-        /* ToDo: eliminar fotos de la lista*/        
+    const handleRemoveFile = (index) => {
+        let images = files;
+        images.splice(index, 1);
+        document.getElementById("fileSelector").value = "";
+        setFiles(images);
+        setReload(!reload);
     }
 
     return (
@@ -28,7 +36,7 @@ const FileUploader = (props) => {
             <div onDrop={handleDrop}
                 onDragOver={(e) => e.preventDefault()}
                 style={{ border: '1px dashed black', padding: '20px', marginBottom: '20px' }}>
-                <input type="file" onChange={handleFileChange} multiple />
+                <input id="fileSelector" type="file" onChange={handleFileChange} multiple />
                 <p>Arrastra y suelta archivos aquí, o haz clic para seleccionar archivos</p>
             </div>
             <div>
@@ -38,7 +46,7 @@ const FileUploader = (props) => {
                         <li key={index} style={{display:"flex", flexDirection:"column"}}>
                             <img src={URL.createObjectURL(file)} alt="Imagen inmueble" 
                                  style={{height:"137px", width:"137px"}}/>
-                            <button onClick={() => handleRemoveFile(index)} 
+                            <button type="button" onClick={() => handleRemoveFile(index)} 
                                     style={{marginTop:"5px", backgroundColor:"#EEEFA7", border:"none", display:"flex"}}>
                                     <div style={{width:"35%"}}>
                                         <img src={imageDelete} alt="Eliminar imagen" style={{height:"16px", width:"16px"}} />
