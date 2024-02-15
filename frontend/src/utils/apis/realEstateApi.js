@@ -73,6 +73,8 @@ const getPublicCoordinates = async (publicAddress) => {
 }
 
 export const CreateRealEstate = async (data) => {
+    console.log("CreateRealEstate:", data)
+
   try {
     const coordinates = await getCoordinates(data.address);
     const publicCoordinates = await getPublicCoordinates(data.publicAddress);

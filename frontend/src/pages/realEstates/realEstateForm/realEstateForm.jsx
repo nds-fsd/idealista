@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import FileUploader from '../../../components/fileSystem/fileUploader/FileUploader.jsx';
@@ -46,6 +46,23 @@ const RealEstateForm = () => {
       const response = await fetch(url, options);
       const responseJSON = await response.json();
       uploadImages.push(responseJSON.secure_url);
+      
+      fetch(url, {
+        method: "POST",
+        header: {
+          'Content-Type': 'multipart/form-data'
+        },
+        body: formData
+      })
+      .then((response) => {
+          console.log(response);
+          //return response.text();
+      })
+      .catch((data) => {
+        debugger;
+        //addPhoto(JSON.parse(data));
+        console.log(data);
+      });
     }
 
     console.log("uploadImages:", uploadImages)
@@ -53,12 +70,15 @@ const RealEstateForm = () => {
   };
 
   const onSubmit = async (data) => {
-    console.log("RealEstateForm.files:", files)
-    const images = uploadFiles(files);
+    console.log("onSubmit:", data)
 
-    const address = `${data.location || ''}, ${data.roadName || ''}, ${data.roadNumber || ''}, ${data.floor || ''}, ${data.door || ''}, ${data.urbanization || ''}, ${data.district || ''}, ${images || []}`;
+    const images = await uploadFiles(files);
+    console.log("RealEstateForm.files:", files)
+    console.log("onSubmit.images", images)
+
+    const address = `${data.location || ''}, ${data.roadName || ''}, ${data.roadNumber || ''}, ${data.floor || ''}, ${data.door || ''}, ${data.urbanization || ''}, ${data.district || ''}}`;
     const publicAddress = `${data.location}, ${data.urbanization || ''}, ${data.district || ''}`;
-    await CreateRealEstate({ ...data, address, publicAddress });
+    await CreateRealEstate({ ...data, images, address, publicAddress });
     setIsSubmitted(true);
   };
 
