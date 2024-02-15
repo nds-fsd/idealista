@@ -3,7 +3,8 @@ const { connectDB } = require("./mongo/connection");
 const router = require('./routers/index.js');
 const cors = require('cors');
 
-const socketMiddleware = require('../src/middleware/socket.js');
+const socketMiddleware = require('./middleware/socket.js');
+const { messageEventHandler } = require("./controllers/chat.js")
 
 const app = express();
 
@@ -29,18 +30,17 @@ io.use(socketMiddleware);
 
 
 io.on('connection', (socket) => {
+    const userInfo = socket.auth
+    socket.join(userInfo._id.toString())
     console.log('User connected:', socket.id);
-    socket.broadcast.emit('msg', { user: socket.id, text: 'Ha entrado en el chat!' });
+    // socket.broadcast.emit('msg', { user: socket.id, text: 'Ha entrado en el chat!' });
 
     socket.on('disconnect', () => {
         console.log('User disconnected:', socket.id);
         socket.broadcast.emit('msg', { user: socket.id, text: 'Ha salido del chat.' });
     });
 
-    socket.on('msg', (message) => {
-        console.log('Message received:', message);
-        io.emit('msg', message);
-    })
+    socket.on('msg', (message) => messageEventHandler(message, io, userInfo))
 });
 
 httpServer.listen(8080, () => {
