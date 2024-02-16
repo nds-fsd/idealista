@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./personalData.module.css";
 
-const PersonalData = ({ userData, updatedUserData }) => {
+const PersonalData = ({ userData, handleUpdateUser }) => {
     const [editMode, setEditMode] = useState(false);
+    const [editedData, setEditedData] = useState(userData);
     const { register, handleSubmit, setValue } = useForm();
 
     const handleEdit = () => {
@@ -14,10 +15,18 @@ const PersonalData = ({ userData, updatedUserData }) => {
         setEditMode(false);
     };
 
+    const handleInputChange = (event) => {
+        setEditedData({
+            ...editedData,
+            [event.target.name]: event.target.value
+        });
+    };
+
     const onSubmit = (data) => {
-        console.log(data);	
+        handleUpdateUser(data);
         setEditMode(false);
     };
+    
 
     // Set initial values for the form fields
     useEffect(() => {
@@ -34,17 +43,17 @@ const PersonalData = ({ userData, updatedUserData }) => {
     }, [userData, setValue]);
 
     useEffect(() => {
-        if (updatedUserData) {
-            setValue("name", updatedUserData.name);
-            setValue("email", updatedUserData.email);
-            setValue("location", updatedUserData.location);
-            setValue("street", updatedUserData.street || "");
-            setValue("streetNumber", updatedUserData.streetNumber || "");
-            setValue("postalCode", updatedUserData.postalCode || "");
-            setValue("province", updatedUserData.province || "");
-            setValue("aboutMe", updatedUserData.aboutMe || "");
+        if (editedData) {
+            setValue("name", editedData.name);
+            setValue("email", editedData.email);
+            setValue("location", editedData.location);
+            setValue("street", editedData.street || "");
+            setValue("streetNumber", editedData.streetNumber || "");
+            setValue("postalCode", editedData.postalCode || "");
+            setValue("province", editedData.province || "");
+            setValue("aboutMe", editedData.aboutMe || "");
         }
-    }, [updatedUserData, setValue]);
+    }, [editedData, setValue]);
 
     return (
         userData && (

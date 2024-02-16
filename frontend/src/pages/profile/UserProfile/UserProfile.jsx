@@ -28,10 +28,15 @@ const UserProfile = () => {
         setActiveTab(tab);
     };
 
-    const handleUpdateUser = async (updatedUserData) => {
+    const handleUpdateUser = async (data) => {
+        console.log("ESTA ES LA DATA DEL USUARIO0", data)
         try {
-            const response = await updateUser(user._id, updatedUserData);
-            setUserData(response.data);
+            const response = await updateUser(user._id, data);
+            if (response) {
+                setUserData(response.data);
+            } else {
+                console.error("No response from updateUser");
+            }
         } catch (error) {
             console.error("Error updating user data:", error);
         }
@@ -75,7 +80,7 @@ const UserProfile = () => {
             </ul>
             {/* Tab content */}
             <div className={styles.tabcontent}>
-                {activeTab === "personalData" && <PersonalData userData={userData} onSave={handleUpdateUser} />}
+                {activeTab === "personalData" && <PersonalData userData={userData} handleUpdateUser={handleUpdateUser} />}
                 {activeTab === "publications" && (
                     <MyAds ads={userData?.ads} emptyMessage="No tienes ningún anuncio" />
                 )}
