@@ -9,9 +9,9 @@ const mailgun = new Mailgun(formData);
 const mg = mailgun.client({username: 'api', key: process.env.MAILGUN_API_KEY});
 
 exports.sendWelcomeEmail = async(user) =>{
-    const DOMAIN = 'sandbox9bcd9537a0034901868a674f1bdd3b57.mailgun.org';
+    const DOMAIN = 'sandboxad17a001759242bd833b9e4deb78f067.mailgun.org';
     const emailData = {
-        from:'Realista <mailgun@sandbox9bcd9537a0034901868a674f1bdd3b57.mailgun.org>',
+        from:'Realista <mailgun@sandboxad17a001759242bd833b9e4deb78f067.mailgun.org>',
         to: user.email,
         subject: "Bienvenido a Realista"
     };

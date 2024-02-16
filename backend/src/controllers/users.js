@@ -103,7 +103,7 @@ const create = async (req, res) => {
 
         const createdUser = await newUser.save()
         if (createdUser) {
-            const user = { email: createdUser.email, name: createdUser.name };
+            const user = { email: "realista.nuclio.digital.school@gmail.com", name: createdUser.name };
             await sendWelcomeEmail(user);
             return res.status(201).json({
                 message: "Tu usuario ha sido creado con éxito 🚀",
