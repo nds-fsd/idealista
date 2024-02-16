@@ -14,7 +14,7 @@ import UserContext from "./context/UserContext";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Favorite from "./pages/favoritos/favorite";
+import Favorite from "./pages/favoritos/Favorite";
 
 
 
