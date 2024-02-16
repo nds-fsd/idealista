@@ -1,0 +1,36 @@
+.select {
+    border: 2px solid #CFE2FF;
+    border-radius: 8px;
+    color: #000000;
+    font-size: 16px;
+    margin: 1px;
+    height: 35px;
+    width: 120px;
+    font-family: Poppins;
+}
+
+.boxnumberselected {
+    background-color: #CFE2FF;
+    border: 2px solid #CFE2FF;
+    border-radius: 8px;
+    color: #000000;
+    font-size: 16px;
+    text-align: center;
+    margin: 1px;
+    height: 32px;
+    width: 32px;
+    font-family: Poppins;
+}
+
+.boxnumberunselected {
+    background-color: #FFFFFF;
+    border: 2px solid #CFE2FF;
+    border-radius: 8px;
+    color: #000000;
+    font-size: 16px;
+    text-align: center;
+    margin: 1px;
+    height: 32px;
+    width: 32px;
+    font-family: Poppins;
+}

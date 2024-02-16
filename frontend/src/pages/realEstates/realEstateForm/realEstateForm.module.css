@@ -1,0 +1,105 @@
+.container {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1140px;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.tabselected {
+    margin-top: 20px;
+    background-color: #CFE2FF;
+    border: 2px solid #CFE2FF;
+    border-radius: 15px 15px 15px 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;  
+    height: 35px;
+    width: 97%;
+    margin-right: 3px;
+    padding-top: 5px;      
+}
+
+.select {
+    width: 95%;
+    height: 35px;
+    font-family: inherit;
+    font-size: inherit;
+    border-radius: 3px;
+    border: 2px solid #CFE2FF;
+}
+
+.label {
+    margin-bottom: 2px;
+    font-weight: bold;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.input {
+    width: 90%;
+    height: 35px;
+    font-family: inherit;
+    font-size: inherit;
+    border-radius: 3px;
+    border: 2px solid #CFE2FF;
+}
+
+textarea {
+    height: 150px;
+    width: 95%;
+    min-height: 150px;
+    min-width: 95%;
+    border: 2px solid #CFE2FF;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.checkbox {
+    scale: 0.75; 
+}
+
+
+
+
+.container .successMessage {
+    color: rgb(32, 32, 32);
+    font-weight: bold;
+}
+
+.container .link {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.container input[type="submit"] {
+    background-color: #CFE2FF;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;    
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition-duration: 0.1s;
+    margin-bottom: 40px;
+    width: 100%;
+    height: 35px;
+}
+
+.container input[type="submit"]:hover {
+    background-color: #EEEFA7;
+    border: 2px solid #ffffff;
+}
+
+.container .error {
+    color: red;
+}

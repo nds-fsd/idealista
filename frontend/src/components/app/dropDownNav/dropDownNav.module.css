@@ -1,0 +1,30 @@
+
+.listanav{
+
+    width: 200px;
+}
+
+.dropdown{
+    display: flex;
+    flex-direction: column;
+}
+
+.item img{
+    width: 25px;
+}
+
+.item{
+    display: flex;
+    gap: 10px;
+}
+
+li{
+    padding: 10px;
+}
+
+/*Hover*/
+
+.listanav:hover{
+    background-color: #dde9f7;
+    cursor: pointer;
+}
