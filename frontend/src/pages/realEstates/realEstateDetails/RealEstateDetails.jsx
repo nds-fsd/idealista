@@ -13,7 +13,8 @@ import GoogleMapsIndividual from "../../../components/googleMaps/map/GoogleMapsI
 import styles from "./RealEstateDetails.module.css"
 import compartir from "../../../assets/compartir.png"
 import likeImag from "../../../assets/me-gusta.png"
-// import demoMap from "../../../assets/map.png"
+import { text } from "@cloudinary/url-gen/qualifiers/source";
+
 
 
 const RealEstateDetails = () => {
@@ -25,11 +26,7 @@ const RealEstateDetails = () => {
     }
 
     if (isLoading) return <div>Is Loading...</div>;
-
     if (!data) return <div> Something went wrong</div>;
-
-
-
 
     return (
         <div>
@@ -55,20 +52,24 @@ const RealEstateDetails = () => {
                     <div className={styles.container_text}>
                         <h2> {data?.shortDescription} </h2>
                         <h3> {data?.location}</h3>
-                        <small>{data?.description}</small>
+                        <textarea style={{fontSize:"16px", border:"none", outline:"none",
+                                          minHeight:"300px", 
+                                          minWidth:"650px", maxWidth:"650px"}}
+                                readOnly
+                                value={data?.description}/>
                     </div>
 
                     <div className={styles.caracteristicas}>
-                        <h2>Características básicas</h2>
-                        <div>
-                            <p>{data?.realEstateType + ": " + data?.realEstateSubtype}</p>
-                            <p>{data?.properties}</p>
-                            <p>{data?.metersBuilt + " m2"}</p>
-                            <p>{data?.state}</p>
-                            <br></br>
-                            <p>{data?.realtor}</p>
-                        </div>
-
+                    <h2>Características básicas</h2>
+                    <div>
+                        <p>{data?.realEstateType + ": " + data?.realEstateSubtype}</p>
+                        <p>{data?.properties.map((element) => {
+                            return <span>{element+" "}</span>
+                        })}</p>
+                        <p>{data?.metersBuilt + " m2"}</p>
+                        <p>{data?.state}</p>
+                        <br></br>
+                        <p>{data?.realtor}</p>
                     </div>
 
                 </div>

@@ -14,7 +14,7 @@ const realEstateSchema = new Schema({
     block: {type: String, required: false},
     portal: {type: String, required: false},
     floor: {type: String, required: false},
-    floorNumber: {type: String, required: false},
+    floorNumber: {type: String, required: false}, // quitar
     door: {type: String, required: false},
     urbanization: {type: String, required: false},
     district: {type: String, required: false},
@@ -28,6 +28,7 @@ const realEstateSchema = new Schema({
     properties: [{type: String, required: false}],
     price: {type: Number, required: true},
     realtor: {type: String, required: false},
+    images: {type: Array, required: false},
     realposition: {type: Object, required: false},
     publicposition: {type: Object, required: false},
     mapLocation: {
