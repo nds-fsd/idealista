@@ -13,7 +13,6 @@ import GoogleMapsIndividual from "../../../components/googleMaps/map/GoogleMapsI
 import styles from "./RealEstateDetails.module.css"
 import compartir from "../../../assets/compartir.png"
 import likeImag from "../../../assets/me-gusta.png"
-import { text } from "@cloudinary/url-gen/qualifiers/source";
 
 
 
@@ -33,10 +32,9 @@ const RealEstateDetails = () => {
             <div className={styles.carousel_container}>
                 <Carousel height={500} width={1082} />
             </div>
+
             <div className={styles.columnContainer}>
-
                 <div className={styles.leftColumn}>
-
                     <div className={styles.buttons}>
                         <div>
                             <img style={{ height: "16px", width: "16px" }} src={likeImag} /> Me gusta
@@ -60,37 +58,36 @@ const RealEstateDetails = () => {
                     </div>
 
                     <div className={styles.caracteristicas}>
-                    <h2>Características básicas</h2>
-                    <div>
-                        <p>{data?.realEstateType + ": " + data?.realEstateSubtype}</p>
-                        <p>{data?.properties.map((element) => {
-                            return <span>{element+" "}</span>
-                        })}</p>
-                        <p>{data?.metersBuilt + " m2"}</p>
-                        <p>{data?.state}</p>
-                        <br></br>
-                        <p>{data?.realtor}</p>
+                        <h2>Características básicas</h2>
+                        <div>
+                            <p>{data?.realEstateType + ": " + data?.realEstateSubtype}</p>
+                            <p>{data?.properties.map((element) => {
+                                return <span>{element+" "}</span>
+                            })}</p>
+                            <p>{data?.metersBuilt + " m2"}</p>
+                            <p>{data?.state}</p>
+                            <br></br>
+                            <p>{data?.realtor}</p>
+                        </div>
                     </div>
-
                 </div>
 
+                <div className={styles.rightColumn}>
+                    <TextArea contactar={sendMessageToAdvisor}> </TextArea>
+                    <GoogleMapsReactWrapper>
+                        <GoogleMapsIndividual
+                            center={{
+                                lat: data?.publicMapLocation?.coordinates[0],
+                                lng: data?.publicMapLocation?.coordinates[1]
+                            }}
+                            zoom={15}
+                            style={{ margin: "auto", width: "300px", height: "300px" }}
+                        >
+                        </GoogleMapsIndividual>
+                    </GoogleMapsReactWrapper>
+                </div>
             </div>
-
-            <div className={styles.rightColumn}>
-                <TextArea contactar={sendMessageToAdvisor}> </TextArea>
-                <GoogleMapsReactWrapper>
-                    <GoogleMapsIndividual
-                        center={{
-                            lat: data?.publicMapLocation?.coordinates[0],
-                            lng: data?.publicMapLocation?.coordinates[1]
-                        }}
-                        zoom={15}
-                        style={{ margin: "auto", width: "300px", height: "300px" }}
-                    >
-                    </GoogleMapsIndividual>
-                </GoogleMapsReactWrapper>
-            </div>
-        </div>
+        </div>        
     )
 }
 
