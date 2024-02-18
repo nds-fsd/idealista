@@ -1,5 +1,8 @@
 const express = require('express');
 const User = require("../mongo/schemas/users");
+const { sendWelcomeEmail } = require('../service/email-service/index');
+const Favorite = require('../mongo/schemas/favorite');
+
 
 
 const getAll = async (req, res) => {
@@ -16,6 +19,30 @@ const getAll = async (req, res) => {
         res.status(500).send(error.message)
     }
 };
+
+const getFavorite = async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const favorite = await Favorite.find({ user: userId })
+            .populate("realEstate")
+            .select("-_id")
+            .select("-user")
+            .select("-__v");
+        res.status(200).json(favorite);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+}
+
+const deleteFavorite = async (req, res) => {
+    try {
+        const { userId, realEstateId } = req.params;
+        await Favorite.deleteOne({ user: userId, realEstate: realEstateId });
+        res.status(200).json()
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+}
 
 const getById = async (req, res) => {
     try {
@@ -76,10 +103,13 @@ const create = async (req, res) => {
 
         const createdUser = await newUser.save()
         if (createdUser) {
+            const user = { email: "realista.nuclio.digital.school@gmail.com", name: createdUser.name };
+            await sendWelcomeEmail(user);
             return res.status(201).json({
                 message: "Tu usuario ha sido creado con éxito 🚀",
                 user: createdUser
             })
+
         } else {
             res.status(400).send();
         }
@@ -94,4 +124,6 @@ module.exports = {
     update,
     remove,
     create,
+    getFavorite,
+    deleteFavorite
 }

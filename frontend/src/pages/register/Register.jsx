@@ -1,9 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form"
-import { useState } from "react"
-import { RegisterUser } from "../../utils/apis/userApi"
+import { useState, useContext } from "react"
+import UserContext from "../../context/UserContext"
 import { useNavigate } from "react-router-dom";
-import { HttpStatusCode } from "axios";
 
 import styles from "../register/Register.module.css"
 import hand from "../../assets/hand.png"
@@ -12,19 +11,12 @@ import hand from "../../assets/hand.png"
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const {onRegister} = useContext(UserContext)
     const navigate = useNavigate()
 
     const onSubmit = async (data) => {
         if (isPrivacyChecked) {
-            const response = await RegisterUser(data);
-            
-            if (response.status == HttpStatusCode.Forbidden) {
-                alert("Este email ya esta registrado!!!")
-            }
-            else if (response.status == HttpStatusCode.Created) {
-                alert("El registro se ha completado satisfactoriamente")
-                navigate("/")
-            }
+            const response = await onRegister(data);
         }
         else {
             alert("Para registrarte debes aceptar las políticas de privacidad.");

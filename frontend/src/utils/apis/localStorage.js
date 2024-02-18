@@ -34,6 +34,7 @@ export const getUserSession = () => {
 };
 
 export const setUserSession = (sessionData) => {
+    delete sessionData.user.password;
     setStorageObject("session", sessionData);
 };
 
