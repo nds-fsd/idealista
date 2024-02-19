@@ -1,6 +1,8 @@
 const express = require('express');
 const User = require("../mongo/schemas/users");
+const { sendWelcomeEmail } = require('../service/email-service/index');
 const Favorite = require('../mongo/schemas/favorite');
+
 
 
 const getAll = async (req, res) => {
@@ -102,10 +104,13 @@ const create = async (req, res) => {
 
         const createdUser = await newUser.save()
         if (createdUser) {
+            const user = { email: "realista.nuclio.digital.school@gmail.com", name: createdUser.name };
+            await sendWelcomeEmail(user);
             return res.status(201).json({
                 message: "Tu usuario ha sido creado con éxito 🚀",
                 user: createdUser
             })
+
         } else {
             res.status(400).send();
         }

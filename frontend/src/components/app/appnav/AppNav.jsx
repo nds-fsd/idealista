@@ -13,13 +13,11 @@ import imageLogin from "../../../assets/iconsSVG/house-chimney-user-svgrepo-com.
 import imageFavoritos from "../../../assets/iconsSVG/heart-svgrepo-com.svg";
 import imageSession from "../../../assets/iconsSVG/house-chimney-blank-svgrepo-com.svg";
 import UserContext from "../../../context/UserContext";
-// import imageLupa from "../../../assets/xxxx.svg"; no tenemos esta imagen
 
 const AppNav = () => {
     const { user, logOut } = useContext(UserContext)
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
-
 
     if (user) {
 

@@ -6,14 +6,13 @@ import {useNavigate} from "react-router-dom";
 import { getUserSession, setUserSession,removeSession } from "../utils/apis/localStorage";
 
 
-const UserContextProvider = ({children}) => {
-    const currentUser = JSON.parse(localStorage.getItem("userData")) || null;
+function UserContextProvider({children}) {
+    const currentUser = JSON.parse(localStorage.getItem("user"))||null;
     const [user,setUser] = useState(currentUser)
     const [error, setError] = useState(null)
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    console.log("User Context user", user)
 
     const onRegister = async(data) =>{
         try{
@@ -24,39 +23,41 @@ const UserContextProvider = ({children}) => {
             setIsLoggedIn(true)
             setLoading(false)
             navigate("/")
-            console.log(response.data)
-            toast.success("Inicio de sesión exitoso");
+            toast.success("Registro exitoso");
+
     } catch (error){
-        console.error("Error al intentar iniciar sesión",error)
+        console.error("Error al intentar registrarse",error)
         setError(error);
         setIsLoggedIn(false);
         setLoading(false);
-        toast.error("Error al intentar iniciar sesión");
-        
     }
 };
 
     const onLogin = async (data) => {
-        console.log(data)
         try{
             const response = await loginUser(data);
+            if (response.data) {
                 setUserSession(response.data);
                 setUser(response.data.user);
                 setIsLoggedIn(true)
                 setLoading(false)
                 navigate("/")
-                console.log(response.data)
-            toast.success("Inicio de sesión exitoso");
+                toast.success("Inicio de sesión exitoso");
+            } else {
+                setError(error);
+                setIsLoggedIn(false);
+                setLoading(false);
+                toast.error("Error al intentar iniciar sesión")
+            }
+    
                 
         } catch (error){
             console.error("Error al intentar iniciar sesión",error)
             setError(error);
             setIsLoggedIn(false);
             setLoading(false);
-            toast.error("Error al intentar iniciar sesión");
-            
         }
-    };
+    }
 
     const logOut = () => {
         removeSession();
@@ -72,7 +73,6 @@ const UserContextProvider = ({children}) => {
 
         const session = getUserSession();
         if(session){
-        console.log("Hay usuario",session.user)
         setUser({...session.user});}
         
     }, [])

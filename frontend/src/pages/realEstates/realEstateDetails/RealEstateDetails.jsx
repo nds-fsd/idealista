@@ -15,6 +15,7 @@ import compartir from "../../../assets/compartir.png"
 import likeImag from "../../../assets/me-gusta.png"
 
 
+
 const RealEstateDetails = () => {
     const { id } = useParams();
     const { data, isLoading } = useQuery('realEstateDetail', () => realEstateApi.GetRealEstate(id));
@@ -24,21 +25,16 @@ const RealEstateDetails = () => {
     }
 
     if (isLoading) return <div>Is Loading...</div>;
-
     if (!data) return <div> Something went wrong</div>;
-
-
-
 
     return (
         <div>
             <div className={styles.carousel_container}>
                 <Carousel height={500} width={1082} />
             </div>
+
             <div className={styles.columnContainer}>
-
                 <div className={styles.leftColumn}>
-
                     <div className={styles.buttons}>
                         <div>
                             <img style={{ height: "16px", width: "16px" }} src={likeImag} /> Me gusta
@@ -54,41 +50,44 @@ const RealEstateDetails = () => {
                     <div className={styles.container_text}>
                         <h2> {data?.shortDescription} </h2>
                         <h3> {data?.location}</h3>
-                        <small>{data?.description}</small>
+                        <textarea style={{fontSize:"16px", border:"none", outline:"none",
+                                          minHeight:"300px", 
+                                          minWidth:"650px", maxWidth:"650px"}}
+                                readOnly
+                                value={data?.description}/>
                     </div>
 
                     <div className={styles.caracteristicas}>
                         <h2>Características básicas</h2>
                         <div>
                             <p>{data?.realEstateType + ": " + data?.realEstateSubtype}</p>
-                            <p>{data?.properties}</p>
+                            <p>{data?.properties.map((element) => {
+                                return <span>{element+" "}</span>
+                            })}</p>
                             <p>{data?.metersBuilt + " m2"}</p>
                             <p>{data?.state}</p>
                             <br></br>
                             <p>{data?.realtor}</p>
                         </div>
-
                     </div>
-
                 </div>
 
+                <div className={styles.rightColumn}>
+                    <TextArea contactar={sendMessageToAdvisor}> </TextArea>
+                    <GoogleMapsReactWrapper>
+                        <GoogleMapsIndividual
+                            center={{
+                                lat: data?.publicMapLocation?.coordinates[0],
+                                lng: data?.publicMapLocation?.coordinates[1]
+                            }}
+                            zoom={15}
+                            style={{ margin: "auto", width: "300px", height: "300px" }}
+                        >
+                        </GoogleMapsIndividual>
+                    </GoogleMapsReactWrapper>
+                </div>
             </div>
-
-            <div className={styles.rightColumn}>
-                <TextArea contactar={sendMessageToAdvisor}> </TextArea>
-                <GoogleMapsReactWrapper>
-                    <GoogleMapsIndividual
-                        center={{
-                            lat: data?.publicMapLocation?.coordinates[0],
-                            lng: data?.publicMapLocation?.coordinates[1]
-                        }}
-                        zoom={15}
-                        style={{ margin: "auto", width: "300px", height: "300px" }}
-                    >
-                    </GoogleMapsIndividual>
-                </GoogleMapsReactWrapper>
-            </div>
-        </div>
+        </div>        
     )
 }
 
