@@ -58,8 +58,9 @@ const getId = async(req, res) => {
 const create = async(req, res) => {
     try {
         const newRealEstate = new RealEstate(req.body);
-        await newRealEstate.save()
-        return res.status(201).json("RealEstate successfully created")
+        newRealEstate.user = req.user.id;
+        await newRealEstate.save();
+        return res.status(201).json("RealEstate successfully created");
 
     } catch (error) {
         console.log("Error in realestate.js create():", error.message);
