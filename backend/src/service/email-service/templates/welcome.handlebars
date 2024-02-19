@@ -1,14 +1,53 @@
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>¡Bienvenido a Realista!</title>
-    </head>
-    <body>
-    <p>¡Hola {{user.name}}!</p><br>
-    <p>¡Bienvenido a Realista! Estamos emocionados de tenerte con nosotros.Encuentra tu hogar ideal entre nuestra amplia
-        selección de propiedades y no dudes en contactarnos si necesitas ayuda.
-    </p><br>
-    <p>¡Estamos aquí para hacer tus sueños más...Realista!</p><br>
-    <p>El equipo de Realista</p>
-    </body>
+<head>
+    <title>¡Bienvenido a Realista!</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color:#cfe2ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            width: 150px;
+        }
+        .message {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .signature {
+            text-align: right;
+            font-style: italic;
+        }
+
+        span{
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="URL_DEL_LOGO" alt="Realista">
+        </div>
+        <p>¡Hola <span>{{user.name}}!</span></p>
+        <p class="message">¡Bienvenido a Realista! Estamos emocionados de tenerte con nosotros. Encuentra tu hogar ideal entre nuestra amplia selección de propiedades y no dudes en contactarnos si necesitas ayuda.</p>
+        <p>¡Estamos aquí para hacer tus sueños más... Realista!</p>
+        <p class="signature">El equipo de Realista</p>
+    </div>
+</body>
 </html>
