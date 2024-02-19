@@ -1,4 +1,4 @@
-import styles from "./myFavorites.module.css";
+import styles from "./MyFavorites.module.css";
 
 const MyFavorites = ({favorites}) => {
     return (

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import styles from "./personalData.module.css";
+import styles from "./PersonalData.module.css";
 
 const PersonalData = ({ userData, handleUpdateUser }) => {
     const [editMode, setEditMode] = useState(false);

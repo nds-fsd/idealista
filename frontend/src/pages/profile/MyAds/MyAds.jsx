@@ -1,4 +1,4 @@
-import styles from "./myAds.module.css";
+import styles from "./MyAds.module.css";
 
 const MyAds = ({ads}) => {
     return (

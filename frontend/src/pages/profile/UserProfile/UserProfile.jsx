@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import styles from "./userProfile.module.css";
+import styles from "./UserProfile.module.css";
 import { getUser, updateUser } from "../../../utils/apis/userApi";
 import UserContext from "../../../context/UserContext";
 import PersonalData from "../PersonalData/PersonalData";
