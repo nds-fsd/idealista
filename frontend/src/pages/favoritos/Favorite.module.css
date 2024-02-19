@@ -1,0 +1,16 @@
+.button {
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgb(35, 35, 35, 0.1);
+    color: #272323;
+    font-size: 20px;
+    height: 40px;
+    width: 80px;
+    cursor: pointer;
+    transition: all 0.5s;
+    background-color: #f79eff;
+}
+
+.real_container {
+    display: flex;
+    flex-direction: row;
+}

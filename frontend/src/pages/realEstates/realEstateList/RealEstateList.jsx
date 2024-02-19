@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import realEstateApi from "../../../utils/apis/realEstateApi";
+import favoriteApi from "../../../utils/apis/favoriteApi";
 import RealEstateListElement from "./RealEstateListElement";
 import RealEstateNumber from "../../../components/realestates/RealEstateNumber";
 import RealEstateOperation from "../../../components/realestates/RealEstateOperations";
@@ -15,6 +16,7 @@ import styles from "./RealEstateList.module.css";
 import imageList from "../../../assets/lista.svg";
 import imageMap from "../../../assets/marcador.svg";
 import RealEstatePrices from "../../../components/realestates/RealEstatePrices";
+import UserContext from "../../../context/UserContext";
 
 
 function RealEstateList() {
@@ -27,11 +29,13 @@ function RealEstateList() {
     const [realEstateOperationValue, setRealEstateOperationValue] = useState("");
     const [realEstateTypeValue, setRealEstateTypeValue] = useState("");
     const [realEstateLocationValue, setRealEstateLocationValue] = useState("");
-    const [realEstateStates, setRealEstateStates] = useState({"Obra-nueva": false,"Buen-estado": false,"A-reformar": false});
+    const [realEstateStates, setRealEstateStates] = useState({ "Obra-nueva": false, "Buen-estado": false, "A-reformar": false });
     const [priceMin, setPriceMin] = useState(0)
     const [priceMax, setPriceMax] = useState(999999999)
     const [rooms, setRooms] = useState(1);
     const [bathrooms, setBathrooms] = useState(1);
+
+    const { user } = useContext(UserContext)
 
     useEffect(() => {
         setRealEstateOperationValue(operation);
@@ -52,7 +56,7 @@ function RealEstateList() {
         if (realEstateStates["Obra-nueva"]) states = states.concat("Obra-nueva,");
         if (realEstateStates["Buen-estado"]) states = states.concat("Buen-estado,");
         if (realEstateStates["A-reformar"]) states = states.concat("A-reformar,");
-        states = states.substring(0, states.length-1);
+        states = states.substring(0, states.length - 1);
         return states;
     }
 
@@ -61,10 +65,10 @@ function RealEstateList() {
     if (!query.data) return <div className={styles.errormessage}> Something went wrong </div>
     const mensajeerror = (query.data.length <= 0) ? "No se ha encontrado inmuebles" : "";
 
-    
+
     const getListQueryString = () => {
         const states = getStatesQueryString();
-        const prices = getPriceQueryString();        
+        const prices = getPriceQueryString();
         return `?operation=${realEstateOperationValue}&location=${realEstateLocationValue}&realestatetype=${realEstateTypeValue}&price=${prices}&state=${states}&rooms=${rooms}&bathrooms=${bathrooms}`;
     }
 
@@ -83,6 +87,10 @@ function RealEstateList() {
         queryClient.refetchQueries("realEstateList");
     }
 
+    const setFavorite = async ({ _id }) => {
+        favoriteApi.addFavorite({ userId: user._id, realestateId: _id })
+    }
+
     return (
         <div className={styles.root}>
 
@@ -93,58 +101,58 @@ function RealEstateList() {
                 <div>
                     <ul>
                         <li className={styles.buttonblue}>
-                            <img style={{width: "16px", height: "16px", paddingRight: "10px"}} src={imageList} alt="Listado inmuebles"/>
+                            <img style={{ width: "16px", height: "16px", paddingRight: "10px" }} src={imageList} alt="Listado inmuebles" />
                             <span>Listado</span>
                         </li>
                         <li className={styles.buttongray}>
-                            <img style={{width: "16px", height: "16px", paddingRight: "10px"}} src={imageMap} alt="Mapa inmuebles"/>
+                            <img style={{ width: "16px", height: "16px", paddingRight: "10px" }} src={imageMap} alt="Mapa inmuebles" />
                             <Link className={styles.link} to={getMapQueryString()} >Mapa</Link>
                         </li>
                     </ul>
                 </div>
-            </div>   
+            </div>
             <div className={styles.errormessage}>{mensajeerror}</div>
-            
-            <div style={{display: "flex", flexDirection:"row", alignItems:"flex-start"}}>
-                <div style={{width: "210px"}}>                
+
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "flex-start" }}>
+                <div style={{ width: "210px" }}>
                     <div>
-                        <span style={{fontWeight:"700"}}>Operación:</span>
+                        <span style={{ fontWeight: "700" }}>Operación:</span>
                         <RealEstateOperation realEstateOperationValue={realEstateOperationValue} setRealEstateOperationValue={setRealEstateOperationValue}></RealEstateOperation>
                     </div>
                     <div>
-                        <span style={{fontWeight:"700"}}>Tipo inmueble:</span>
+                        <span style={{ fontWeight: "700" }}>Tipo inmueble:</span>
                         <RealEstateType realEstateTypeValue={realEstateTypeValue} setRealEstateTypeValue={setRealEstateTypeValue}></RealEstateType>
                     </div>
                     <div>
-                        <span style={{fontWeight:"700"}}>Población:</span>
+                        <span style={{ fontWeight: "700" }}>Población:</span>
                         <input className={styles.location} type="text" value={realEstateLocationValue} onChange={handlerLocationOnChange}></input>
                     </div>
                     <div>
-                        <span style={{fontWeight:"700"}}>Precio:</span>
+                        <span style={{ fontWeight: "700" }}>Precio:</span>
                         <RealEstatePrices priceMin={priceMin} setPriceMin={setPriceMin} priceMax={priceMax} setPriceMax={setPriceMax}></RealEstatePrices>
                     </div>
-                     <div>
-                        <span style={{fontWeight:"700"}}>Estado:</span>
+                    <div>
+                        <span style={{ fontWeight: "700" }}>Estado:</span>
                         <RealEstateStates realEstateStates={realEstateStates} setRealEstateStates={setRealEstateStates}></RealEstateStates>
                     </div>
                     <div>
-                        <span style={{fontWeight:"700"}}>Habitaciones:</span>
+                        <span style={{ fontWeight: "700" }}>Habitaciones:</span>
                         <RealEstateNumber fields={4} number={rooms} setNumber={setRooms}></RealEstateNumber>
                     </div>
                     <div>
-                        <span style={{fontWeight:"700"}}>Baños:</span>
+                        <span style={{ fontWeight: "700" }}>Baños:</span>
                         <RealEstateNumber fields={4} number={bathrooms} setNumber={setBathrooms}></RealEstateNumber>
                     </div>
                     <div>
                         <Link to={getListQueryString()}><button className={styles.search} onClick={handlerSearchOnClick}>Buscar</button></Link>
-                    </div>                    
+                    </div>
                 </div>
                 <div className={styles.list}>
-                    { query.data.map(e => <RealEstateListElement key={e._id} realEstate={e}></RealEstateListElement>)}
-                </div>                
+                    {query.data.map(e => <RealEstateListElement key={e._id} realEstate={e} onFavorite={() => setFavorite(e)}></RealEstateListElement>)}
+                </div>
             </div>
         </div>
-        
+
     )
 }
 
