@@ -20,30 +20,6 @@ const getAll = async (req, res) => {
     }
 };
 
-const getFavorite = async (req, res) => {
-    try {
-        const userId = req.params.id;
-        const favorite = await Favorite.find({ user: userId })
-            .populate("realEstate")
-            .select("-_id")
-            .select("-user")
-            .select("-__v");
-        res.status(200).json(favorite);
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
-}
-
-const deleteFavorite = async (req, res) => {
-    try {
-        const { userId, realEstateId } = req.params;
-        await Favorite.deleteOne({ user: userId, realEstate: realEstateId });
-        res.status(200).json()
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
-}
-
 const getById = async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
@@ -57,6 +33,31 @@ const getById = async (req, res) => {
         res.status(500).send(error.message)
     }
 };
+
+const getFavorite = async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const favorite = await Favorite.find({ user: userId })
+            .populate("realEstate")
+            .select("-_id")
+            .select("-user")
+            .select("-__v");
+        res.status(200).json(favorite);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
+
+const deleteFavorite = async (req, res) => {
+    try {
+        const { userId, realEstateId } = req.params;
+        await Favorite.deleteOne({ user: userId, realEstate: realEstateId });
+        res.status(200).json()
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
+
 
 const update = async (req, res) => {
     try {

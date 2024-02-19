@@ -10,8 +10,8 @@ function UserContextProvider({children}) {
     const currentUser = JSON.parse(localStorage.getItem("user"))||null;
     const [user,setUser] = useState(currentUser)
     const [error, setError] = useState(null)
-    const [isLoggedIn,setIsLoggedIn] = useState(false);
-    const [loading,setLoading] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const onRegister = async(data) =>{

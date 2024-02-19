@@ -9,7 +9,7 @@ const DropDownNav = ({img,text,onClick}) =>{
         <div className={styles.listanav}>
             <li onClick={onClick}className={styles.item}>
             <img src={img}/>
-            <a>{text}</a>
+            <p>{text}</p>
             </li>
         </div>
             
