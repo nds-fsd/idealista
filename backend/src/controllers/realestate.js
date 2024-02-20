@@ -58,7 +58,7 @@ const getId = async(req, res) => {
 const create = async(req, res) => {
     try {
         const newRealEstate = new RealEstate(req.body);
-        newRealEstate.user = req.user.id;
+        newRealEstate.user = req.user._id;
         await newRealEstate.save();
         return res.status(201).json("RealEstate successfully created");
 

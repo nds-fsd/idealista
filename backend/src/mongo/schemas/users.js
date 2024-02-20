@@ -12,6 +12,10 @@ const userSchema = new Schema({
     province: { type: String },
     aboutMe: { type: String },
     isValidated: { type: Boolean, default: true },
+    realestate: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'realestate'
+    }
 });
 
 userSchema.pre('save', function (next) {
