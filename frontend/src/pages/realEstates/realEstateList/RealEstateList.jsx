@@ -95,7 +95,7 @@ function RealEstateList() {
 
             <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                 <div>
-                    <h2>{operation + " > " + realEstateType + " > " + localization + " (" + query.data.length + ")"}</h2>
+                    <h3>{operation + " > " + realEstateType + " > " + localization + " (" + query.data.length + ")"}</h3>
                 </div>
                 <div>
                     <ul>
