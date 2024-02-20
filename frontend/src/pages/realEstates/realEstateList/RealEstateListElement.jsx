@@ -19,13 +19,13 @@ function RealEstateListElement({ realEstate, onFavorite }) {
 
     return (
         <div className={styles.card}>
-            <div>
+            <div style={{width:"260px"}}>
                 <Link to={`/realestates/${realEstate._id}`}>
                     <img className={styles.image} src={realEstate.images[0]} alt="Imagen inmueble" />
                     
                 </Link>
             </div>
-            <div>
+            <div style={{width:"645px"}}>
                 <div style={{ marginTop: "5px" }}>
                     <Link className={styles.link} to={`/realestates/${realEstate._id}`}>
                         <span style={{ fontSize: "20px", fontWeight: "700", textDecoration: "none" }}>{realEstate.roadName + ", " + realEstate.roadNumber + " (" + realEstate.location + ')'}</span>
@@ -43,7 +43,7 @@ function RealEstateListElement({ realEstate, onFavorite }) {
                 <div>{realEstate.shortDescription}</div>
                 <div style={{ marginTop: "5px", fontWeight: "700" }}>{realEstate.state.replace("-"," ")}</div>
             </div>
-            <div>
+            <div style={{width:"35"}}>
                 <UseAnimation animation={heart} reverse={realEstate.fav} fillColor="#CFE2FF" size={35} onClick={() => onFavorite && onFavorite(realEstate)} />
             </div>
         </div>
