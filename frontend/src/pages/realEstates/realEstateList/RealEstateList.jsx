@@ -1,22 +1,21 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 
 import realEstateApi from "../../../utils/apis/realEstateApi";
 import favoriteApi from "../../../utils/apis/favoriteApi";
 import RealEstateListElement from "./RealEstateListElement";
 import RealEstateNumber from "../../../components/realestates/RealEstateNumber";
 import RealEstateOperation from "../../../components/realestates/RealEstateOperations";
-import RealEstatePrice from "../../../components/realestates/RealEstatePrices";
+import RealEstatePrices from "../../../components/realestates/RealEstatePrices";
 import RealEstateStates from "../../../components/realestates/RealEstateStates";
 import RealEstateType from "../../../components/realestates/RealEstateType";
-
 
 import styles from "./RealEstateList.module.css";
 import imageList from "../../../assets/lista.svg";
 import imageMap from "../../../assets/marcador.svg";
-import RealEstatePrices from "../../../components/realestates/RealEstatePrices";
 import UserContext from "../../../context/UserContext";
+
 
 
 function RealEstateList() {
