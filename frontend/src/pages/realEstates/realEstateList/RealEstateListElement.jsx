@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import UseAnimation from "react-useanimations";
 import heart from "react-useanimations/lib/heart";
 
+import Carrusel from "../realEstateDetails/RealEstateDetailsCarousel"
+
 import styles from "./RealEstateList.module.css"
 import house_image from "../../../assets/pexels-aaron-cook-19277901 1.png"
 import imageBathrooms from "../../../assets/bano.svg"
@@ -13,11 +15,14 @@ import imageRooms from "../../../assets/cama.svg"
 
 function RealEstateListElement({ realEstate, onFavorite }) {
 
+    if (realEstate.images.length === 0) realEstate.images.push(house_image);
+
     return (
         <div className={styles.card}>
             <div>
                 <Link to={`/realestates/${realEstate._id}`}>
-                    <img className={styles.image} src={house_image} alt="Imagen inmueble" />
+                    <img className={styles.image} src={realEstate.images[0]} alt="Imagen inmueble" />
+                    
                 </Link>
             </div>
             <div>
