@@ -13,13 +13,11 @@ import imageLogin from "../../../assets/iconsSVG/house-chimney-user-svgrepo-com.
 import imageFavoritos from "../../../assets/iconsSVG/heart-svgrepo-com.svg";
 import imageSession from "../../../assets/iconsSVG/house-chimney-blank-svgrepo-com.svg";
 import UserContext from "../../../context/UserContext";
-// import imageLupa from "../../../assets/xxxx.svg"; no tenemos esta imagen
 
 const AppNav = () => {
     const { user, logOut } = useContext(UserContext)
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
-
 
     if (user) {
 
@@ -30,7 +28,7 @@ const AppNav = () => {
                         <div><img className={styles.logo} src={imageLogo} alt="Logo Realista" /></div>
                     </Link>
                     <Link to="/realestates/create" className={styles.navcontent}>
-                        <button className={styles.buttonad} onClick={() => navigate("http://localhost:3000/realestates/create")}>
+                        <button className={styles.buttonad}>
                             Publica gratis tu anuncio
                         </button>
                     </Link>
@@ -62,7 +60,9 @@ const AppNav = () => {
 
                         <div className={`${styles.dropdown} ${styles[!open ? 'inactive' : 'active']}`}>
                             <ul>
-                                <DropDownNav img={userProfile} text={"Mi perfil"} />
+                                <Link to="/profile" className={styles.profilelink}>
+                                    <DropDownNav img={userProfile} text={"Mi perfil"} />
+                                </Link>
                                 <DropDownNav img={settings} text={"Mis ajustes"} />
                                 <DropDownNav onClick={logOut} img={logOutimg} text={"Cerrar sesión"} />
                             </ul>
@@ -82,7 +82,7 @@ const AppNav = () => {
                         <div><img className={styles.logo} src={imageLogo} alt="Logo Realista" /></div>
                     </Link>
                     <Link to="/realestates/create" className={styles.navcontent}>
-                        <button className={styles.buttonad} onClick={() => navigate("http://localhost:3000/realestates/create")}>
+                        <button className={styles.buttonad}>
                             Publica gratis tu anuncio
                         </button>
                     </Link>
