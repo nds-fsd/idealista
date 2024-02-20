@@ -2,7 +2,6 @@ import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
-
 import realEstateApi from "../../../utils/apis/realEstateApi";
 import Carousel from "./RealEstateDetailsCarousel";
 import GoogleMapsReactWrapper from "../../../components/googleMaps/reactWrapper/GoogleMapsReactWrapper";
