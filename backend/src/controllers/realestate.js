@@ -2,6 +2,7 @@ const express = require('express');
 const RealEstate  = require('../mongo/schemas/realestate');
 
 
+
 const formatQuery = (queryParams) => {
     if (queryParams === "") return "";
 
