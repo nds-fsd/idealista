@@ -5,18 +5,21 @@ import imageM2 from "../../../assets/m2.svg"
 import imageRooms from "../../../assets/cama.svg"
 
 
-
 function GoogleMapsMarker (options) {
     const {map, realestate, markerRef} = options;
     const markerOptions = {map: map, position: realestate.publicposition, optimized: false}
     const [marker, setMarker] = useState();
     const realEstateLink = "/realestates/"+realestate._id;
+    
+    const urlDefaultImg = "https://img3.idealista.com/blur/WEB_DETAIL_TOP-L-L/0/id.pro.es.image.master/fd/b9/4c/1044663570.jpg";
+    if (realestate.images.length === 0) realestate.images.push(urlDefaultImg);
+    console.log("marker.images:", realestate.images[0])
 
     const contentString =
       '<div>'+
         '<div>'+
           '<a style="text-decoration:none" href='+realEstateLink+' target="_blank">'+
-            '<img style="height:170px; width=170px" src="https://img3.idealista.com/blur/WEB_DETAIL_TOP-L-L/0/id.pro.es.image.master/fd/b9/4c/1044663570.jpg" alt="Imagen inmueble"/>'+
+            '<img style="height:170px; width=170px; margin:auto;" src='+realestate.images[0]+' alt="Imagen inmueble"/>'+
             '<div style="margin-top:10px; font-size:16px; font-weight:400">'+realestate.roadName+", "+realestate.roadNumber+" ("+realestate.location+')'+'</div>'+
           '</a>'+
         '</div>'+
