@@ -10,7 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Carousel = (props) => {
     const {height, width, images} = props || []
-    if (images.length === 0) images.push = house_image;
+    if (images.length === 0) images.push(house_image);
 
     const settings = {
         useCSS: true,
