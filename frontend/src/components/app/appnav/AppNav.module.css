@@ -165,6 +165,11 @@
     align-content: center;
 }
 
+.profilelink{
+    text-decoration: none;
+    color: #000;
+}
+
 /*Hovers*/
 
 .buttonad:hover{
@@ -172,10 +177,6 @@
     cursor: pointer;
 }
 
-.logincontent:hover{
-    background-color:var(--color-background-hover);
-    cursor: pointer;
-}
 
 .menuvertical:hover{
     background-color:var(--color-background-hover);

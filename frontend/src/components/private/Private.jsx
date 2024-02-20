@@ -9,8 +9,11 @@ export default function Private({ children }) {
     return <p>Loading ...</p>;
   }
 
-  if (!isLoggedIn) {
+  if (isLoggedIn) {
     return <Navigate to="/login" />;
+  }
+  if (user) {
+    return <Navigate to="/" />;
   } else {
     return children;
   }
