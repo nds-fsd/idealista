@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
@@ -16,6 +16,10 @@ import likeImag from "../../../assets/me-gusta.png"
 const RealEstateDetails = () => {
     const { id } = useParams();
     const { data, isLoading } = useQuery('realEstateDetail', () => realEstateApi.GetRealEstate(id));
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
 
     const sendMessageToAdvisor = (messageContent) => {
         alert("Mensaje enviado")
