@@ -36,7 +36,7 @@ function RealEstateListElement({ realEstate, onFavorite }) {
                     <div style={{ marginLeft: "10px" }}>{realEstate.metersBuilt} m2</div>
                 </div>
                 <div>{realEstate.shortDescription}</div>
-                <div style={{ marginTop: "5px", fontWeight: "700" }}>{realEstate.state}</div>
+                <div style={{ marginTop: "5px", fontWeight: "700" }}>{realEstate.state.replace("-"," ")}</div>
             </div>
             <div>
                 <UseAnimation animation={heart} reverse={realEstate.fav} fillColor="#CFE2FF" size={35} onClick={() => onFavorite && onFavorite(realEstate)} />
