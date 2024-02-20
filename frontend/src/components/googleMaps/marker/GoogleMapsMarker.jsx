@@ -33,7 +33,7 @@ function GoogleMapsMarker (options) {
           '<label styles="font-size:16px; font-weight:400">'+realestate.metersBuilt+' m2</label>'+
         '</div>'+
         '<div style="margin-top:10px; font-size:16px; font-weight:400; width:300px">'+realestate.shortDescription+'</div>'+
-        '<div style="margin-top:10px; font-size:16px; font-weight:700">'+realestate.state+'</div>'
+        '<div style="margin-top:10px; font-size:16px; font-weight:700">'+realestate.state.replace("-"," ")+'</div>'
       '</div>'
 
     const infowindow = new google.maps.InfoWindow({
