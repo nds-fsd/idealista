@@ -25,6 +25,7 @@ li{
 /*Hover*/
 
 .listanav:hover{
-    background-color: #dde9f7;
+    background-color:#dde9f7;
+    border-radius: 10px;
     cursor: pointer;
 }
