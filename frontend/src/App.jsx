@@ -1,8 +1,9 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useContext } from "react";
 
 import AppLayout from "./components/app/appLayout/AppLayout";
+import Login from "./pages/login/Login";
 import RealEstateSearcher from "./pages/realEstates/realEstateSearcher/RealEstateSearcher";
 import RealEstateDetails from "./pages/realEstates/realEstateDetails/RealEstateDetails";
 import RealEstateForm from "./pages/realEstates/realEstateForm/realEstateForm";
@@ -14,8 +15,6 @@ import Private from "./components/private/Private";
 import UserProfile from "./pages/profile/UserProfile/UserProfile";
 import UserContext from "./context/UserContext";
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Favorite from "./pages/favoritos/Favorite";
 
 function App() {
