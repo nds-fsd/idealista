@@ -10,7 +10,6 @@ import RealEstateForm from "./pages/realEstates/realEstateForm/realEstateForm";
 import RealEstateList from "./pages/realEstates/realEstateList/RealEstateList";
 import RealEstateListMap from "./pages/realEstates/realEstateListMap/RealEstateListMap";
 import Register from "./pages/register/Register";
-import Login from "./pages/login/Login";
 import Private from "./components/private/Private";
 import UserProfile from "./pages/profile/UserProfile/UserProfile";
 import UserContext from "./context/UserContext";
