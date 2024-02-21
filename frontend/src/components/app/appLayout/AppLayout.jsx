@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-import AppNav from "../appnav/AppNav";
+import AppNav from "../appNav/AppNav";
 import AppFooter from "../appFooter/AppFooter";
 
 
