@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
+import React, { useEffect } from "react";
+
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import UserContext from "../../../context/UserContext";
 
-
 import realEstateApi from "../../../utils/apis/realEstateApi";
-import TextArea from "./TextArea";
 import Carousel from "./RealEstateDetailsCarousel";
-
 import GoogleMapsReactWrapper from "../../../components/googleMaps/reactWrapper/GoogleMapsReactWrapper";
 import GoogleMapsIndividual from "../../../components/googleMaps/map/GoogleMapsIndividual";
 
@@ -21,6 +19,10 @@ const RealEstateDetails = () => {
     const { id } = useParams();
     const { data, isLoading } = useQuery('realEstateDetail', () => realEstateApi.GetRealEstate(id));
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
     const sendMessageToAdvisor = (messageContent) => {
         alert("Mensaje enviado")
     }
@@ -29,43 +31,47 @@ const RealEstateDetails = () => {
     if (!data) return <div> Something went wrong</div>;
 
     return (
-        <div>
+        <div style={{width:"1140px", margin:"auto"}}>
             <div className={styles.carousel_container}>
-                <Carousel height={500} width={1082} />
+                <Carousel height={"500px"} width={"1140px"} images={data.images} />
+            </div>
+
+            <div className={styles.buttons}>
+                <div style={{display:"flex", flexDirection:"row", alignItems:"center"}}>
+                    <img style={{ height: "16px", width: "16px" }} src={likeImag} />
+                    <span style={{marginLeft:"5px"}}>Me gusta</span>
+                </div>
+                <div style={{display:"flex", flexDirection:"row", alignItems:"center"}}>
+                    <img style={{ height: "16px", width: "16px" }} src={compartir} />
+                    <span style={{marginLeft:"5px"}}>Compartir</span>
+                </div>                
+                <h4 style={{ color: "#6D96FF" }} >
+                    {data?.price} €
+                </h4>
+                <button className={styles.contact_button} onClick={() => {
+                            contactar(input);
+                            setInput("");}}>Contactar con anunciante
+                </button>
+            </div>
+
+            <div className={styles.container_text}>
+                <h3> {data?.shortDescription} </h3>
+                <h3> {data?.location}</h3>
+                <textarea style={{fontSize:"16px", border:"none", outline:"none",
+                                    minHeight:"550px", 
+                                    minWidth:"1140px", maxWidth:"1140px"}}
+                        readOnly
+                        value={data?.description}/>
             </div>
 
             <div className={styles.columnContainer}>
                 <div className={styles.leftColumn}>
-                    <div className={styles.buttons}>
-                        <div>
-                            <img style={{ height: "16px", width: "16px" }} src={likeImag} /> Me gusta
-                        </div>
-                        <div>
-                            <img style={{ height: "16px", width: "16px" }} src={compartir} /> Compartir
-                        </div>
-                        <h4 style={{ color: "#6D96FF" }} >
-                            {data?.price} €
-                        </h4>
-                    </div>
-
-                    <div className={styles.container_text}>
-                        <h2> {data?.shortDescription} </h2>
-                        <h3> {data?.location}</h3>
-                        <textarea style={{
-                            fontSize: "16px", border: "none", outline: "none",
-                            minHeight: "300px",
-                            minWidth: "650px", maxWidth: "650px"
-                        }}
-                            readOnly
-                            value={data?.description} />
-                    </div>
-
                     <div className={styles.caracteristicas}>
                         <h2>Características básicas</h2>
                         <div>
                             <p>{data?.realEstateType + ": " + data?.realEstateSubtype}</p>
                             <p>{data?.properties.map((element) => {
-                                return <span>{element + " "}</span>
+                                return <span key={element}>{element+" "}</span>
                             })}</p>
                             <p>{data?.metersBuilt + " m2"}</p>
                             <p>{data?.state}</p>
