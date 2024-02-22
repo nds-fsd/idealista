@@ -3,6 +3,7 @@ const jwt = require('../security/jwToken');
 
 const socketMiddleware = async (socket, next) => {
     const token = socket.handshake.headers.authorization;
+    console.log(token)
     const userInfo = await isValid(token)
     if (userInfo) {
         socket.auth = userInfo;
