@@ -6,8 +6,6 @@
   flex-direction: row;
   align-items: flex-start;
   background-color: #cfe2ff;
-  border-radius: 4%;
-  height: 500px;
   justify-content: center;
   font-family: "Poppins", sans-serif;
   width: fit-content;
@@ -16,10 +14,10 @@
   overflow: hidden;
 }
 
-.text_login{
+.text_register{
   position: absolute;
-  top: 21px;
-  right: 312px;
+  top: 26px;
+  right: 133px;
   font-size: 40px;
   font-weight: bold;
   color: #ffffff;

@@ -30,7 +30,7 @@ const Register = () => {
   return (
     <div className={styles.container}>
       <div className={styles.image_container}>
-        <div className={styles.text_login}>
+        <div className={styles.text_register}>
           <span>Nuevo Usuario</span>
         </div>
         <img style={{ overflow: "auto" }} src={hand} />
