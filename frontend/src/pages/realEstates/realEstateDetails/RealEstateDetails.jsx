@@ -14,14 +14,17 @@ import styles from "./RealEstateDetails.module.css"
 import compartir from "../../../assets/compartir.png"
 import likeImag from "../../../assets/me-gusta.png"
 
-
+import UseAnimation from "react-useanimations";
+import heart from "react-useanimations/lib/heart";
+import favoriteApi from "../../../utils/apis/favoriteApi";
 
 const RealEstateDetails = () => {
     const { id } = useParams();
+    const { user } = useContext(UserContext);
     const { data, isLoading } = useQuery('realEstateDetail', () => realEstateApi.GetRealEstate(id));
 
-    const sendMessageToAdvisor = (messageContent) => {
-        alert("Mensaje enviado")
+    const setFavorite = async ({ _id }) => {
+        favoriteApi.addFavorite({ userId: user._id, realestateId: _id })
     }
 
     if (isLoading) return <div>Is Loading...</div>;
@@ -37,7 +40,7 @@ const RealEstateDetails = () => {
                 <div className={styles.leftColumn}>
                     <div className={styles.buttons}>
                         <div>
-                            <img style={{ height: "16px", width: "16px" }} src={likeImag} /> Me gusta
+                            <UseAnimation animation={heart} reverse={data.fav} fillColor="#CFE2FF" size={35} onClick={() => setFavorite(data)} /> Me gusta
                         </div>
                         <div>
                             <img style={{ height: "16px", width: "16px" }} src={compartir} /> Compartir
@@ -50,11 +53,13 @@ const RealEstateDetails = () => {
                     <div className={styles.container_text}>
                         <h2> {data?.shortDescription} </h2>
                         <h3> {data?.location}</h3>
-                        <textarea style={{fontSize:"16px", border:"none", outline:"none",
-                                          minHeight:"300px", 
-                                          minWidth:"650px", maxWidth:"650px"}}
-                                readOnly
-                                value={data?.description}/>
+                        <textarea style={{
+                            fontSize: "16px", border: "none", outline: "none",
+                            minHeight: "300px",
+                            minWidth: "650px", maxWidth: "650px"
+                        }}
+                            readOnly
+                            value={data?.description} />
                     </div>
 
                     <div className={styles.caracteristicas}>
@@ -62,7 +67,7 @@ const RealEstateDetails = () => {
                         <div>
                             <p>{data?.realEstateType + ": " + data?.realEstateSubtype}</p>
                             <p>{data?.properties.map((element) => {
-                                return <span>{element+" "}</span>
+                                return <span>{element + " "}</span>
                             })}</p>
                             <p>{data?.metersBuilt + " m2"}</p>
                             <p>{data?.state}</p>
@@ -87,7 +92,7 @@ const RealEstateDetails = () => {
                     </GoogleMapsReactWrapper>
                 </div>
             </div>
-        </div>        
+        </div>
     )
 }
 
