@@ -55,14 +55,24 @@ const getId = async(req, res) => {
     }
 }
 
+const getByUserId = async (req,res)=>{
+    try {
+        const userId = req.params.id;
+        const realestates = await RealEstate.find({user:userId}).populate("user");
+        if (realestates) res.status(200).json(realestates) 
+        else res.status(404).send()
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+
+};
+
 const create = async(req, res) => {
     try {
         const newRealEstateData = req.body;
-        const userId = req.params.id;
 
         const newRealEstate = new RealEstate({
             ...newRealEstateData,
-            user:userId
         });
 
         await newRealEstate.save()
@@ -96,4 +106,4 @@ const remove = async(req, res) => {
     }
 }
 
-module.exports = { getAll, getId, create, update, remove };
+module.exports = { getAll, getId, create, update, remove,getByUserId };
