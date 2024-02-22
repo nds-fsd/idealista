@@ -19,8 +19,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Favorite from "./pages/favoritos/Favorite";
 
 function App() {
-  const { user } = useContext(UserContext);
-
   return (
     <Routes>
       <Route path="/" element={<AppLayout />}>

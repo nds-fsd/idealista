@@ -16,12 +16,22 @@
   overflow: hidden;
 }
 
+.text_login{
+  position: absolute;
+  top: 21px;
+  right: 312px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #ffffff;
+  }
+
 .image_container {
   flex: 0 0 auto;
   width: 50%;
   display: flex;
   align-items: flex-start;
   flex-direction: row-reverse;
+  position: relative;
 }
 
 .form_container {
