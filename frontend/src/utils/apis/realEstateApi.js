@@ -77,6 +77,10 @@ export const CreateRealEstate = async (data) => {
         const coordinates = await getCoordinates(data.address);
         const publicCoordinates = await getPublicCoordinates(data.publicAddress);
 
+        console.log("Coordenadas:", coordinates, publicCoordinates)
+        data.realposition = (coordinates > 0) ? {lat: coordinates[0], lng: coordinates[1] } : {}
+        data.publicposition = (publicCoordinates > 0) ? {lat: publicCoordinates[0], lng: publicCoordinates[1] } : {}
+
         data.mapLocation = {
         type: "Point",
         coordinates: coordinates,
