@@ -55,9 +55,38 @@ const getId = async (req, res) => {
     }
 }
 
+const getByUserId = async (req,res)=>{
+    try {
+        const userId = req.params.id;
+        const realestates = await RealEstate.find({user:userId}).populate("user");
+        if (realestates) res.status(200).json(realestates) 
+        else res.status(404).send()
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+
+};
+
+const getByUserId = async (req,res)=>{
+    try {
+        const userId = req.params.id;
+        const realestates = await RealEstate.find({user:userId}).populate("user");
+        if (realestates) res.status(200).json(realestates) 
+        else res.status(404).send()
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+
+};
+
 const create = async (req, res) => {
     try {
-        const newRealEstate = new RealEstate(req.body);
+        const newRealEstateData = req.body;
+
+        const newRealEstate = new RealEstate({
+            ...newRealEstateData,
+        });
+
         await newRealEstate.save()
         return res.status(201).json("RealEstate successfully created")
 
@@ -89,4 +118,4 @@ const remove = async (req, res) => {
     }
 }
 
-module.exports = { getAll, getId, create, update, remove };
+module.exports = { getAll, getId, create, update, remove,getByUserId };
