@@ -86,9 +86,6 @@ const AppNav = () => {
               <img className={styles.logo} src={imageLogo} alt="Logo Realista" />
             </div>
           </Link>
-          <Link to="/realestates/create" className={styles.navcontent}>
-            <button className={styles.buttonad}>Publica gratis tu anuncio</button>
-          </Link>
           <div className={styles.navcontent}>
             <nav className={styles.nav}>
               <ul className={styles.lunav}>
