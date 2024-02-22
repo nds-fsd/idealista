@@ -1,22 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./RealEstateDetails.module.css"
+import { useNavigate } from "react-router-dom";
 
 
-const TextArea = ({ contactar }) => {
-    const [input, setInput] = useState("");
+const TextArea = ({ toUserId }) => {
+    const navigate = useNavigate();
 
     return (
-        <div>
-            <label>
-                <textarea className={styles.input_area}
-                    placeholder='¿Quieres más información o visitar el inmueble? Pregunta al anunciante'
-                    onChange={e => setInput(e.target.value)}
-                    value={input}></textarea>
-            </label>
-            <button className={styles.contact_button} onClick={() => {
-                contactar(input);
-                setInput("");
-            }}>Contactar con anunciante</button>
+        <div style={{ paddingTop: "20px" }}>
+            <button
+                className={styles.contact_button}
+                onClick={() => { navigate(`/chat?user=${toUserId}`) }}
+            >
+                Contactar con anunciante
+            </button>
         </div>
     )
 }

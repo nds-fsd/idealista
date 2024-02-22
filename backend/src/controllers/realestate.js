@@ -1,5 +1,5 @@
 const express = require('express');
-const RealEstate  = require('../mongo/schemas/realestate');
+const RealEstate = require('../mongo/schemas/realestate');
 
 
 const formatQuery = (queryParams) => {
@@ -14,25 +14,25 @@ const formatQuery = (queryParams) => {
         const priceValues = queryParams.price.split(",");
         const priceMin = priceValues[0];
         const priceMax = priceValues[1];
-        query.price = {"$gte": priceMin, "$lte": priceMax}
+        query.price = { "$gte": priceMin, "$lte": priceMax }
     }
 
     if (queryParams.hasOwnProperty("state")) {
         const stateValues = queryParams.state.split(",");
         const state = [];
-        for(i=0; i<=stateValues.length-1; i++){
-            state.push({"state": stateValues[i]});
+        for (i = 0; i <= stateValues.length - 1; i++) {
+            state.push({ "state": stateValues[i] });
         }
         query.$or = state
     }
 
-    if (queryParams.hasOwnProperty("rooms")) query.rooms = {"$gte": Number(queryParams.rooms)}
-    if (queryParams.hasOwnProperty("bathrooms")) query.bathrooms = {"$gte": Number(queryParams.bathrooms)}
+    if (queryParams.hasOwnProperty("rooms")) query.rooms = { "$gte": Number(queryParams.rooms) }
+    if (queryParams.hasOwnProperty("bathrooms")) query.bathrooms = { "$gte": Number(queryParams.bathrooms) }
 
     return query;
 }
 
-const getAll = async(req, res) => {
+const getAll = async (req, res) => {
     try {
         const queryStrings = req.query || {};
         const response = await RealEstate.find(formatQuery(queryStrings));
@@ -44,10 +44,10 @@ const getAll = async(req, res) => {
     }
 }
 
-const getId = async(req, res) => {
+const getId = async (req, res) => {
     try {
         const response = await RealEstate.findById(req.params.id);
-        if (response) res.status(200).json(response) 
+        if (response) res.status(200).json(response)
         else res.status(404).send()
     } catch (error) {
         console.log("Error in realestate.js getId():", error.message);
@@ -55,7 +55,7 @@ const getId = async(req, res) => {
     }
 }
 
-const create = async(req, res) => {
+const create = async (req, res) => {
     try {
         const newRealEstate = new RealEstate(req.body);
         await newRealEstate.save()
@@ -67,9 +67,9 @@ const create = async(req, res) => {
     }
 }
 
-const update = async(req, res) => {
+const update = async (req, res) => {
     try {
-        const response = await RealEstate.findByIdAndUpdate(req.params.id, req.body, {new: true, upsert: false});
+        const response = await RealEstate.findByIdAndUpdate(req.params.id, req.body, { new: true, upsert: false });
         if (response) res.status(200).json(response)
         else res.status(404).send()
     } catch (error) {
@@ -78,7 +78,7 @@ const update = async(req, res) => {
     }
 }
 
-const remove = async(req, res) => {
+const remove = async (req, res) => {
     try {
         const response = await RealEstate.findByIdAndDelete(req.params.id);
         if (response) res.status(201).json(response)

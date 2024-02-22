@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import UserContext from "../../../context/UserContext";
 
 
 import realEstateApi from "../../../utils/apis/realEstateApi";
@@ -50,11 +51,13 @@ const RealEstateDetails = () => {
                     <div className={styles.container_text}>
                         <h2> {data?.shortDescription} </h2>
                         <h3> {data?.location}</h3>
-                        <textarea style={{fontSize:"16px", border:"none", outline:"none",
-                                          minHeight:"300px", 
-                                          minWidth:"650px", maxWidth:"650px"}}
-                                readOnly
-                                value={data?.description}/>
+                        <textarea style={{
+                            fontSize: "16px", border: "none", outline: "none",
+                            minHeight: "300px",
+                            minWidth: "650px", maxWidth: "650px"
+                        }}
+                            readOnly
+                            value={data?.description} />
                     </div>
 
                     <div className={styles.caracteristicas}>
@@ -62,18 +65,16 @@ const RealEstateDetails = () => {
                         <div>
                             <p>{data?.realEstateType + ": " + data?.realEstateSubtype}</p>
                             <p>{data?.properties.map((element) => {
-                                return <span>{element+" "}</span>
+                                return <span>{element + " "}</span>
                             })}</p>
                             <p>{data?.metersBuilt + " m2"}</p>
                             <p>{data?.state}</p>
                             <br></br>
-                            <p>{data?.realtor}</p>
+
                         </div>
                     </div>
                 </div>
-
                 <div className={styles.rightColumn}>
-                    <TextArea contactar={sendMessageToAdvisor}> </TextArea>
                     <GoogleMapsReactWrapper>
                         <GoogleMapsIndividual
                             center={{
@@ -85,9 +86,11 @@ const RealEstateDetails = () => {
                         >
                         </GoogleMapsIndividual>
                     </GoogleMapsReactWrapper>
+                    <TextArea toUserId={data?.owner}> </TextArea>
                 </div>
             </div>
-        </div>        
+
+        </div>
     )
 }
 

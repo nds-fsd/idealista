@@ -16,6 +16,7 @@ import UserContext from "./context/UserContext";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Favorite from "./pages/favoritos/Favorite";
+import Chat from "./pages/chat/Chat";
 
 
 
@@ -36,6 +37,8 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/favorite" element={<Favorite />}></Route>
         <Route path="/profile" element={<UserProfile />} />
+        <Route path="/chat" element={<Chat />}></Route>
+
       </Route>
     </Routes>
   );

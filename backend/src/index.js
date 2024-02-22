@@ -4,7 +4,7 @@ const router = require('./routers/index.js');
 const cors = require('cors');
 
 const socketMiddleware = require('./middleware/socket.js');
-const { messageEventHandler } = require("./controllers/chat.js")
+const { messageEventHandler, connectionEventhandler } = require("./controllers/chat.js")
 
 const app = express();
 
@@ -30,17 +30,14 @@ io.use(socketMiddleware);
 
 
 io.on('connection', (socket) => {
+    connectionEventhandler(socket);
     const userInfo = socket.auth
-    socket.join(userInfo._id.toString())
-    console.log('User connected:', socket.id);
-    // socket.broadcast.emit('msg', { user: socket.id, text: 'Ha entrado en el chat!' });
 
     socket.on('disconnect', () => {
         console.log('User disconnected:', socket.id);
-        socket.broadcast.emit('msg', { user: socket.id, text: 'Ha salido del chat.' });
     });
 
-    socket.on('msg', (message) => messageEventHandler(message, io, userInfo))
+    socket.on('msg', (message, callback) => messageEventHandler(message, io, userInfo, callback))
 });
 
 httpServer.listen(8080, () => {

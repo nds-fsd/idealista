@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap");
+
+.chatContainer {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: stretch;
+    gap: 24px;
+    background: #CFE2FF;
+    margin: auto;
+    max-width: 1250px;
+    width: 100%;
+    border-radius: 12px;
+}
+
+.messagesContainer {
+    flex: 0.6667;
+}
+
+.chatList {
+    flex: 0.3333;
+}
+
+.separator {
+    border-right: 1px solid gainsboro;
+}
+
+.chatbox {
+    display: flex;
+    flex-direction: row;
+    background: whitesmoke;
+    height: 75px;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.contact_button {
+    border-radius: 100%;
+    background: #eeefa7;
+    transition: ease 0.3s all;
+    height: fit-content;
+    width: fit-content;
+    padding: 15px;
+    border: thin;
+    font-family: "Poppins", sans-serif;
+}
+
+.contact_button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.message {
+    border-radius: 8px;
+    background: transparent;
+    outline: none;
+    border: none;
+    flex: 1;
+    width: auto;
+    max-width: none;
+    min-height: auto;
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: auto;
+}
