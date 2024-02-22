@@ -64,4 +64,6 @@
     margin: 0;
     padding: 0;
     min-height: auto;
+    min-width: none;
+    height: auto;
 }

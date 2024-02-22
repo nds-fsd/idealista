@@ -12,6 +12,7 @@ import GoogleMapsIndividual from "../../../components/googleMaps/map/GoogleMapsI
 import styles from "./RealEstateDetails.module.css"
 import compartir from "../../../assets/compartir.png"
 import likeImag from "../../../assets/me-gusta.png"
+import TextArea from "./TextArea"
 
 
 
@@ -23,45 +24,42 @@ const RealEstateDetails = () => {
         window.scrollTo(0, 0);
     }, [])
 
-    const sendMessageToAdvisor = (messageContent) => {
-        alert("Mensaje enviado")
-    }
+
 
     if (isLoading) return <div>Is Loading...</div>;
     if (!data) return <div> Something went wrong</div>;
 
     return (
-        <div style={{width:"1140px", margin:"auto"}}>
+        <div style={{ width: "1140px", margin: "auto" }}>
             <div className={styles.carousel_container}>
                 <Carousel height={"500px"} width={"1140px"} images={data.images} />
             </div>
 
             <div className={styles.buttons}>
-                <div style={{display:"flex", flexDirection:"row", alignItems:"center"}}>
+                <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
                     <img style={{ height: "16px", width: "16px" }} src={likeImag} />
-                    <span style={{marginLeft:"5px"}}>Me gusta</span>
+                    <span style={{ marginLeft: "5px" }}>Me gusta</span>
                 </div>
-                <div style={{display:"flex", flexDirection:"row", alignItems:"center"}}>
+                <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
                     <img style={{ height: "16px", width: "16px" }} src={compartir} />
-                    <span style={{marginLeft:"5px"}}>Compartir</span>
-                </div>                
+                    <span style={{ marginLeft: "5px" }}>Compartir</span>
+                </div>
                 <h4 style={{ color: "#6D96FF" }} >
                     {data?.price} €
                 </h4>
-                <button className={styles.contact_button} onClick={() => {
-                            contactar(input);
-                            setInput("");}}>Contactar con anunciante
-                </button>
+                <TextArea toUserId={data?.user}> </TextArea>
             </div>
 
             <div className={styles.container_text}>
                 <h3> {data?.shortDescription} </h3>
                 <h3> {data?.location}</h3>
-                <textarea style={{fontSize:"16px", border:"none", outline:"none",
-                                    minHeight:"550px", 
-                                    minWidth:"1140px", maxWidth:"1140px"}}
-                        readOnly
-                        value={data?.description}/>
+                <textarea style={{
+                    fontSize: "16px", border: "none", outline: "none",
+                    minHeight: "550px",
+                    minWidth: "1140px", maxWidth: "1140px"
+                }}
+                    readOnly
+                    value={data?.description} />
             </div>
 
             <div className={styles.columnContainer}>
@@ -71,7 +69,7 @@ const RealEstateDetails = () => {
                         <div>
                             <p>{data?.realEstateType + ": " + data?.realEstateSubtype}</p>
                             <p>{data?.properties.map((element) => {
-                                return <span key={element}>{element+" "}</span>
+                                return <span key={element}>{element + " "}</span>
                             })}</p>
                             <p>{data?.metersBuilt + " m2"}</p>
                             <p>{data?.state}</p>
@@ -92,7 +90,7 @@ const RealEstateDetails = () => {
                         >
                         </GoogleMapsIndividual>
                     </GoogleMapsReactWrapper>
-                    <TextArea toUserId={data?.owner}> </TextArea>
+
                 </div>
             </div>
 
