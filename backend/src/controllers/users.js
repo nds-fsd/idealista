@@ -2,6 +2,7 @@ const express = require('express');
 const User = require("../mongo/schemas/users");
 const { sendWelcomeEmail } = require('../service/email-service/index');
 const Favorite = require('../mongo/schemas/favorite');
+const RealEstate = require("../mongo/schemas/realestate");
 
 
 
@@ -46,6 +47,18 @@ const getFavorite = async (req, res) => {
     } catch (error) {
         res.status(500).send(error.message);
     }
+};
+
+const getRealEstates = async (req,res)=>{
+    try {
+        const userId = req.params.id;
+        const realestates = await RealEstate.find({user:userId}).populate("user");
+        if (realestates) res.status(200).json(realestates) 
+        else res.status(404).send()
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+
 };
 
 const deleteFavorite = async (req, res) => {
@@ -122,9 +135,11 @@ const create = async (req, res) => {
 module.exports = {
     getAll,
     getById,
+    getRealEstates,
     update,
     remove,
     create,
     getFavorite,
     deleteFavorite
+
 }

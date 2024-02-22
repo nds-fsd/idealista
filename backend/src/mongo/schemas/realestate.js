@@ -31,6 +31,7 @@ const realEstateSchema = new Schema({
     images: {type: Array, required: false},
     realposition: {type: Object, required: false},
     publicposition: {type: Object, required: false},
+    user: {type: Schema.Types.ObjectId, ref:"user",required:true},
     mapLocation: {
             type: {
                 type: String,

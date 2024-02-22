@@ -57,7 +57,14 @@ const getId = async(req, res) => {
 
 const create = async(req, res) => {
     try {
-        const newRealEstate = new RealEstate(req.body);
+        const newRealEstateData = req.body;
+        const userId = req.params.id;
+
+        const newRealEstate = new RealEstate({
+            ...newRealEstateData,
+            user:userId
+        });
+
         await newRealEstate.save()
         return res.status(201).json("RealEstate successfully created")
 
