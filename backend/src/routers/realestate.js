@@ -5,7 +5,7 @@ const realestateRouter = express.Router();
 
 realestateRouter.get('/', realestateController.getAll)
 realestateRouter.get('/:id', realestateController.getId);
-realestateRouter.post('/', realestateController.create);
+realestateRouter.post('/:id', realestateController.create);
 realestateRouter.patch('/:id', realestateController.update);
 realestateRouter.delete('/:id', realestateController.remove);
 

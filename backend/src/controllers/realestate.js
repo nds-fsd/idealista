@@ -45,8 +45,9 @@ const getAll = async(req, res) => {
 }
 
 const getId = async(req, res) => {
+    const userId = req.params.id
     try {
-        const response = await RealEstate.findById(req.params.id);
+        const response = await RealEstate.find({user:userId}).populate("user");
         if (response) res.status(200).json(response) 
         else res.status(404).send()
     } catch (error) {
@@ -57,7 +58,14 @@ const getId = async(req, res) => {
 
 const create = async(req, res) => {
     try {
-        const newRealEstate = new RealEstate(req.body);
+        const newRealEstateData = req.body;
+        const userId = req.params.id;
+
+        const newRealEstate = new RealEstate({
+            ...newRealEstateData,
+            user:userId
+        });
+
         await newRealEstate.save()
         return res.status(201).json("RealEstate successfully created")
 
