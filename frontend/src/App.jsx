@@ -13,12 +13,10 @@ import Register from "./pages/register/Register";
 import Private from "./components/private/Private";
 import UserProfile from "./pages/profile/UserProfile/UserProfile";
 import UserContext from "./context/UserContext";
-
+import Anuncios from "./pages/anuncios/Anuncios";
 import Favorite from "./pages/favoritos/Favorite";
 
 function App() {
-  const { user } = useContext(UserContext);
-
   return (
     <Routes>
       <Route path="/" element={<AppLayout />}>
@@ -44,7 +42,8 @@ function App() {
           }
         ></Route>
         <Route path="/favorite" element={<Favorite />}></Route>
-        <Route path="/profile" element={<UserProfile />} />
+        <Route path="/anuncios" element={<Anuncios />}></Route>
+        <Route path="/profile" element={<UserProfile />}></Route>
       </Route>
     </Routes>
   );
