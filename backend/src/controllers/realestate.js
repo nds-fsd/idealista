@@ -45,9 +45,8 @@ const getAll = async(req, res) => {
 }
 
 const getId = async(req, res) => {
-    const userId = req.params.id
     try {
-        const response = await RealEstate.find({user:userId}).populate("user");
+        const response = await RealEstate.findById(req.params.id);
         if (response) res.status(200).json(response) 
         else res.status(404).send()
     } catch (error) {
