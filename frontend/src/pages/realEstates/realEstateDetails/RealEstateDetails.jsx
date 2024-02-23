@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
@@ -14,12 +14,18 @@ import compartir from "../../../assets/compartir.png"
 import likeImag from "../../../assets/me-gusta.png"
 import TextArea from "./TextArea"
 
-
+import UseAnimation from "react-useanimations";
+import heart from "react-useanimations/lib/heart";
+import favoriteApi from "../../../utils/apis/favoriteApi";
 
 const RealEstateDetails = () => {
     const { id } = useParams();
+    const { user } = useContext(UserContext);
     const { data, isLoading } = useQuery('realEstateDetail', () => realEstateApi.GetRealEstate(id));
 
+    const setFavorite = async ({ _id }) => {
+        favoriteApi.addFavorite({ userId: user._id, realestateId: _id })
+    }
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [])
@@ -37,12 +43,8 @@ const RealEstateDetails = () => {
 
             <div className={styles.buttons}>
                 <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-                    <img style={{ height: "16px", width: "16px" }} src={likeImag} />
+                    <UseAnimation animation={heart} reverse={data.fav} fillColor="#CFE2FF" size={35} onClick={() => setFavorite(data)} />
                     <span style={{ marginLeft: "5px" }}>Me gusta</span>
-                </div>
-                <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-                    <img style={{ height: "16px", width: "16px" }} src={compartir} />
-                    <span style={{ marginLeft: "5px" }}>Compartir</span>
                 </div>
                 <h4 style={{ color: "#6D96FF" }} >
                     {data?.price} €
@@ -93,7 +95,6 @@ const RealEstateDetails = () => {
 
                 </div>
             </div>
-
         </div>
     )
 }
