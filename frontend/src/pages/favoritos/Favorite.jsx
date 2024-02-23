@@ -42,7 +42,7 @@ const Favorite = () => {
           <div className={styles.imghead}>
             <img src={imageFavoritos} alt="imagen Mis Favoritos" />
             <div className={styles.text_misanuncios}>
-              <span>Mis favoritos</span>
+              <h1>Mis favoritos</h1>
             </div>
           </div>
         </div>

@@ -1,18 +1,20 @@
 import { useContext } from "react";
 import UserContext from "../../context/UserContext";
 import { Navigate } from "react-router-dom";
-import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Private({ children }) {
   const { user, isLoggedIn, loading } = useContext(UserContext);
 
   if (loading) {
-    return <CircularProgress />;
+    return <p>Loading ...</p>;
   }
 
-  if (!user) {
+  if (isLoggedIn) {
     return <Navigate to="/login" />;
   }
-
-  return children;
+  if (user) {
+    return <Navigate to="/" />;
+  } else {
+    return children;
+  }
 }
