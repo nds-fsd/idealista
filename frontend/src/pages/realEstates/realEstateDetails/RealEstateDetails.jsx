@@ -46,10 +46,6 @@ const RealEstateDetails = () => {
                     <UseAnimation animation={heart} reverse={data.fav} fillColor="#CFE2FF" size={35} onClick={() => setFavorite(data)} />
                     <span style={{ marginLeft: "5px" }}>Me gusta</span>
                 </div>
-                <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-                    <img style={{ height: "16px", width: "16px" }} src={compartir} />
-                    <span style={{ marginLeft: "5px" }}>Compartir</span>
-                </div>
                 <h4 style={{ color: "#6D96FF" }} >
                     {data?.price} €
                 </h4>
