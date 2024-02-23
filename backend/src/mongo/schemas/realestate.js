@@ -2,8 +2,8 @@ const { model, Schema } = require('mongoose');
 
 
 const realEstateSchema = new Schema({
-    realEstateType: {type: String, required: true},
-    realEstateSubtype: {type: String, required: true},
+    realEstateType: { type: String, required: true },
+    realEstateSubtype: { type: String, required: true },
     datestamp: { type: Date, default: Date.now },
     operation: {type: String, required: true},
     shortDescription: {type: String, required: true},
@@ -33,28 +33,28 @@ const realEstateSchema = new Schema({
     publicposition: {type: Object, required: false},
     user: {type: Schema.Types.ObjectId, ref:"user",required:true},
     mapLocation: {
-            type: {
-                type: String,
-                enum: ['Point'],
-                required: true
-            },
-            coordinates: {
-                type: [Number],
-                required: true
-            }
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
         },
-    publicMapLocation : {
-            type: {
-                type: String,
-                enum: ['Point'],
-                required: true
-            },
-            coordinates: {
-                type: [Number],
-                required: true
-            }
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    },
+    publicMapLocation: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
         },
-    });
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    },
+});
 
 
 const RealEstate = model("realestate", realEstateSchema);

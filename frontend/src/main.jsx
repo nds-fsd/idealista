@@ -9,17 +9,20 @@ import UserContextProvider from './context/UserContextProvider';
 
 import App from "./App";
 import './index.css'
+import ChatContextProvider from './context/ChatContextProvider';
 
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-  <UserContextProvider>
-  <Toaster />
-    <QueryClientProvider client={queryClient}>
-      <App />
-      <ReactQueryDevtools ></ReactQueryDevtools>
-    </QueryClientProvider>
-  </UserContextProvider>
+    <UserContextProvider>
+      <ChatContextProvider>
+        <Toaster />
+        <QueryClientProvider client={queryClient}>
+          <App />
+          <ReactQueryDevtools ></ReactQueryDevtools>
+        </QueryClientProvider>
+      </ChatContextProvider>
+    </UserContextProvider>
   </BrowserRouter>
 )

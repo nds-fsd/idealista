@@ -15,6 +15,7 @@ import UserProfile from "./pages/profile/UserProfile/UserProfile";
 import UserContext from "./context/UserContext";
 import Anuncios from "./pages/anuncios/Anuncios";
 import Favorite from "./pages/favoritos/Favorite";
+import Chat from "./pages/chat/Chat";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <Route path="/favorite" element={<Favorite />}></Route>
         <Route path="/anuncios" element={<Anuncios />}></Route>
         <Route path="/profile" element={<UserProfile />}></Route>
+        <Route path="/chat" element={<Chat />}></Route>
       </Route>
     </Routes>
   );
