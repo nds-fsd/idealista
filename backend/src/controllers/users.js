@@ -3,8 +3,6 @@ const User = require("../mongo/schemas/users");
 const { sendWelcomeEmail } = require('../service/email-service/index');
 const Favorite = require('../mongo/schemas/favorite');
 
-
-
 const getAll = async (req, res) => {
     try {
         const queryStrings = req.query || {};
@@ -127,4 +125,5 @@ module.exports = {
     create,
     getFavorite,
     deleteFavorite
+
 }

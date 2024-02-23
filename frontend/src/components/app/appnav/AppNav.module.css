@@ -13,6 +13,7 @@
     display: flex; 
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     margin: auto;
     width: 1300px;
 }
@@ -48,9 +49,7 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    height: 68px;
     align-content: center;
-    width: 35%;
     text-decoration: none;
 }
 
@@ -100,14 +99,6 @@
     justify-content: center;
     align-items: center;
     border-radius: 9px;
-}
-
-.profilelink {
-    text-decoration: none;
-}
-
-a:visited {
-    color: rgb(0, 0, 0);
 }
 
 .iniciasession{
@@ -174,6 +165,11 @@ a:visited {
     align-content: center;
 }
 
+.profilelink{
+    text-decoration: none;
+    color: #000;
+}
+
 /*Hovers*/
 
 .buttonad:hover{
@@ -181,10 +177,6 @@ a:visited {
     cursor: pointer;
 }
 
-.logincontent:hover{
-    background-color:var(--color-background-hover);
-    cursor: pointer;
-}
 
 .menuvertical:hover{
     background-color:var(--color-background-hover);

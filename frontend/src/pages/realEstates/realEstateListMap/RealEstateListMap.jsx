@@ -36,7 +36,7 @@ function RealEstateListMap(){
       <div style={{ margin: "auto", width: "1140px", height: "100vh"}}>
           <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
               <div>
-                  <h2>{operation + " > " + realEstateType + " > " + localization}</h2>
+                  <h3>{operation + " > " + realEstateType + " > " + localization}</h3>
               </div>
               <div>
                   <ul>
