@@ -77,3 +77,14 @@
     font-size: 20px;
     font-weight: 700;
 }
+
+.iconfavoritos{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.iconfavoritos img{
+    height: 60px;
+    fill: blue;
+}

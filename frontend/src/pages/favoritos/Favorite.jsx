@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import UserContext from "../../context/UserContext";
 import styles from "./Favorite.module.css";
 import imageFavoritos from "../../assets/Favoritos.jpg";
+import iconFavoritos from "../../assets/iconsSVG/heart-svgrepo-com.svg";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const Favorite = () => {
@@ -74,7 +75,12 @@ const Favorite = () => {
               <span>{user.name}</span> tus favoritos están vacíos.
             </p>
             <div style={{ height: "20px" }}></div>
-            <span> Explora nuestra selección y marca tus propiedades favoritas con un simple clic</span>
+            <span>
+              Explora nuestra selección y marca tus propiedades favoritas con un simple clic
+              <div className={styles.iconfavoritos}>
+                <img src={iconFavoritos} alt="icon favoritos" />
+              </div>
+            </span>
           </div>
         </div>
       </div>
