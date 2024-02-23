@@ -8,6 +8,12 @@ const GetRealEstate = (id) => {
         .catch((e) => console.log(e));
 }
 
+const GetByUserId= (id)=>{
+    return api.get(`realestates/user/${id}`)
+    .then((res)=>res.data)
+    .catch((e)=>console.log(e))
+}
+
 const ListRealState = (query) => {
     let q = "?"
     if (query.operation)
@@ -130,7 +136,8 @@ const GetRealEstateTypes = () => {
 }
 
 export default { 
-    GetRealEstate, 
+    GetRealEstate,
+    GetByUserId, 
     ListRealState, 
     GetRealEstateBuyOperations, 
     GetRealEstateStates, 
