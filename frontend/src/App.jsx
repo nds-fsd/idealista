@@ -15,6 +15,7 @@ import UserProfile from "./pages/profile/UserProfile/UserProfile";
 import UserContext from "./context/UserContext";
 
 import Favorite from "./pages/favoritos/Favorite";
+import Chat from "./pages/chat/Chat";
 
 function App() {
   const { user } = useContext(UserContext);
@@ -45,6 +46,8 @@ function App() {
         ></Route>
         <Route path="/favorite" element={<Favorite />}></Route>
         <Route path="/profile" element={<UserProfile />} />
+        <Route path="/chat" element={<Chat />}></Route>
+
       </Route>
     </Routes>
   );
