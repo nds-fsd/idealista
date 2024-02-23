@@ -66,7 +66,9 @@ const Anuncios = () => {
         <div className={styles.listrealestates}>
           <div className={styles.nodata}>
             <h2>¡Hazlo real en Realista!</h2>
-            <p>Aún no has publicado ningún anuncio.</p>
+            <p>
+              <span>{user.name}</span> todavía no has publicado ningún anuncio.
+            </p>
             <div style={{ height: "20px" }}></div>
             <span>¡Es hora de mostrar tus propiedades al mundo!</span>
             <Link to="/realestates/create" className={styles.navcontent}>
