@@ -8,8 +8,15 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   min-height: 100vh;
+  display: flex;
+  align-content: flex-end;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 1920px;
+  
 }
 
 body {
   height: 100vh;
+  box-sizing: border-box;
 }
