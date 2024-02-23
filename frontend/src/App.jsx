@@ -24,28 +24,49 @@ function App() {
         <Route path="/" element={<RealEstateSearcher />} />
         <Route path="/realestates" element={<RealEstateList />} />
         <Route path="/realestates/:id" element={<RealEstateDetails />} />
-        <Route path="/realestates/create" element={<RealEstateForm />} />
+        <Route
+          path="/realestates/create"
+          element={
+            <Private>
+              <RealEstateForm />
+            </Private>
+          }
+        />
         <Route path="/realestates/map" element={<RealEstateListMap />}></Route>
+        <Route path="/register" element={<Register />}></Route>
+        <Route path="/login" element={<Login />}></Route>
         <Route
-          path="/register"
+          path="/favorite"
           element={
             <Private>
-              <Register />
+              <Favorite />
             </Private>
           }
         ></Route>
         <Route
-          path="/login"
+          path="/anuncios"
           element={
             <Private>
-              <Login />
+              <Anuncios />
             </Private>
           }
         ></Route>
-        <Route path="/favorite" element={<Favorite />}></Route>
-        <Route path="/anuncios" element={<Anuncios />}></Route>
-        <Route path="/profile" element={<UserProfile />}></Route>
-        <Route path="/chat" element={<Chat />}></Route>
+        <Route
+          path="/profile"
+          element={
+            <Private>
+              <UserProfile />
+            </Private>
+          }
+        ></Route>
+        <Route
+          path="/chat"
+          element={
+            <Private>
+              <Chat />
+            </Private>
+          }
+        ></Route>
       </Route>
     </Routes>
   );
