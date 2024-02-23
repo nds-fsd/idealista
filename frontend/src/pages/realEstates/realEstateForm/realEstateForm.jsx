@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { CreateRealEstate } from '../../../utils/apis/realEstateApi.js';
 import ClaudinaryApi from '../../../utils/apis/claudinaryApi.js';
 import FileUploader from '../../../components/fileSystem/fileUploader/FileUploader.jsx';
+import UserContext from "../../../context/UserContext.jsx"
 
 
 import styles from './realEstateForm.module.css';
@@ -12,14 +13,16 @@ import styles from './realEstateForm.module.css';
 
 const RealEstateForm = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const context = useContext(UserContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [files, setFiles] = useState([]);
-
+  
   const onSubmit = async (data) => {
     const images = await ClaudinaryApi.uploadFiles(files);
     const address = `${data.location || ''}, ${data.roadName || ''}, ${data.roadNumber || ''}, ${data.floor || ''}, ${data.door || ''}, ${data.urbanization || ''}, ${data.district || ''}}`;
     const publicAddress = `${data.location}, ${data.urbanization || ''}, ${data.district || ''}`;
-    await CreateRealEstate({ ...data, images, address, publicAddress });
+    const user = context.user._id;
+    await CreateRealEstate({ ...data, user, images, address, publicAddress });
     setIsSubmitted(true);
   };
 
