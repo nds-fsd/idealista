@@ -13,9 +13,16 @@
   justify-content: center;
   flex-direction: column;
   max-width: 1920px;
+  
+  display: flex;
+  align-content: flex-end;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 1920px;
 }
 
 body {
   box-sizing: border-box;
   height: 100vh;
+  box-sizing: border-box;
 }

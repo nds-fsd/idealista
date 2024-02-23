@@ -13,7 +13,7 @@ import Register from "./pages/register/Register";
 import Private from "./components/private/Private";
 import UserProfile from "./pages/profile/UserProfile/UserProfile";
 import UserContext from "./context/UserContext";
-
+import Anuncios from "./pages/anuncios/Anuncios";
 import Favorite from "./pages/favoritos/Favorite";
 import Chat from "./pages/chat/Chat";
 
@@ -43,9 +43,9 @@ function App() {
           }
         ></Route>
         <Route path="/favorite" element={<Favorite />}></Route>
-        <Route path="/profile" element={<UserProfile />} />
+        <Route path="/anuncios" element={<Anuncios />}></Route>
+        <Route path="/profile" element={<UserProfile />}></Route>
         <Route path="/chat" element={<Chat />}></Route>
-
       </Route>
     </Routes>
   );

@@ -8,7 +8,7 @@ import logOutimg from "../../../assets/iconsSVG/logout-svgrepo-com.svg";
 import menuVertical from "../../../assets/iconsSVG/menu-vertical-svgrepo-com.svg";
 import userProfile from "../../../assets/iconsSVG/user-2-svgrepo-com.svg";
 import settings from "../../../assets/iconsSVG/options-svgrepo-com.svg";
-import imageBuscar from "../../../assets/iconsSVG/search-svgrepo-com.svg";
+import imageAnuncios from "../../../assets/iconsSVG/text-files-svgrepo-com.svg";
 import imageLogin from "../../../assets/iconsSVG/house-chimney-user-svgrepo-com.svg";
 import imageFavoritos from "../../../assets/iconsSVG/heart-svgrepo-com.svg";
 import imageSession from "../../../assets/iconsSVG/house-chimney-blank-svgrepo-com.svg";
@@ -41,8 +41,10 @@ const AppNav = () => {
                   </Link>
                 </div>
                 <div className={styles.navli}>
-                  <img className={styles.user} src={imageBuscar} alt="Mis busquedas" />
-                  <li className={styles.li}>Mis búsquedas</li>
+                  <img className={styles.user} src={imageAnuncios} alt="Mis anuncios" />
+                  <Link to="/anuncios" style={{ textDecoration: "none" }}>
+                    <li className={styles.li}>Mis anuncios</li>
+                  </Link>
                 </div>
               </ul>
             </nav>

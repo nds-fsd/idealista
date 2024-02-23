@@ -78,6 +78,11 @@
     width: 190px;
 }
 
+.li{
+    text-decoration: none;
+    color: #000;
+}
+
 .buttonad {
     color: #000;
     font-family: Poppins;
