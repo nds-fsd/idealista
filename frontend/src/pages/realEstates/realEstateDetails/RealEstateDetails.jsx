@@ -81,7 +81,7 @@ const RealEstateDetails = () => {
                             <span style={{}}>Me gusta</span>
                         </div>
                         <div style={{ display: "flex", alignItems: "center", marginRight: "30px" }}>
-                            <h4 style={{ color: "#6D96FF" }}>{data?.price} €</h4>
+                            <h4 style={{ color: "#6D96FF" }}>{data?.price.toLocaleString()} €</h4>
                         </div>
                     </div>
                     <div style={{ height: "100%" }}>
