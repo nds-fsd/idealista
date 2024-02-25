@@ -67,6 +67,10 @@ const RealEstateDetails = () => {
                 </div>
             </div>
         );
+    
+    
+    const descripcion = data.description.split("\n");
+    console.log("descripcion:", descripcion);
 
     return (
         <div style={{ width: "1300px", margin: "auto" }}>
@@ -92,7 +96,16 @@ const RealEstateDetails = () => {
                             <h1>{data?.shortDescription}</h1>
                         </div>
                         <div style={{ margin: "10px 30px 10px 30px" }}>
-                            <p style={{ textAlign: "justify", lineHeight: "1.6", maxHeight: mostrarCompleto ? "none" : "95px", overflow: "hidden" }}>{data?.description}</p>
+                            <p style={{ textAlign: "justify", lineHeight: "1.6", maxHeight: mostrarCompleto ? "none" : "95px", overflow: "hidden" }}>
+                                {descripcion.map((paragraph) => {
+                                    return (
+                                        <>
+                                            <p style={{ marginBottom: "10px", textAlign: "justify", lineHeight: "1.6", maxHeight: mostrarCompleto ? "none" : "95px", overflow: "hidden" }}>{paragraph}</p>
+                                        </>                                        
+                                    )
+                                })}
+                            </p>
+
                             {!mostrarCompleto && (
                                 <button className={styles.buttonread} onClick={toggleMostrarCompleto}>
                                     Leer más
