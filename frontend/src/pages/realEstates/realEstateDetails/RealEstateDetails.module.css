@@ -8,15 +8,13 @@
     margin-top: 30px;
 }
 
-.container{
+.container {
     display: flex;
     margin-top: 50px;
     width: 1300px;
-    min-height: 956px;
-    max-height: 986px;
+    height: 606px;
     flex-wrap: wrap;
 }
-
 .container1{
     width: 70%;
     height: 400px;
@@ -46,23 +44,17 @@ font-weight: 600;
 .caracteristicas h2{
     font-size: 30px;
     margin-bottom: 33px;
-    margin-top: 45px;
+    margin-top: 27px;
 }
 
-.buttons {
-    width: 100%;
-    border: 1px solid red ;
-    display: flex;
-    margin-top: 45px;
-}
 
 .contact_button {
     border-radius: 16px;
-    background: #eeefa7;
+    background-color: #eeefa7;
     transition: ease 0.3s all;
     width: 260px;
     height: 65px;
-    border: thin;
+    border: none;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     margin-bottom: 10px;
@@ -89,6 +81,21 @@ font-weight: 600;
 
 .columnlist{
     display: flex;
+}
+
+.buttonread{
+    border:none;
+    margin-top: 30px;
+    border-radius: 16px;
+    width: 100px;
+    height: 40px;
+    font-family: "Poppins", sans-serif;
+    background-color: #eeefa7
+}
+
+.buttonread:hover{
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 
@@ -126,8 +133,6 @@ p {
     line-height: normal;
 }
 
-
-
 .justify_center {
     justify-content: center;
 }
@@ -146,6 +151,39 @@ p {
 }
 
 
+.containerdata{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+
+    height: 606px;
+    flex-wrap: wrap;
+}
 
 
+.nodata{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1300px;
+    height: 400px;
+}
 
+.nodata h2{
+    font-size: 2rem;
+
+}
+
+.nodata p{
+    font-size: 20px;
+}
+
+.nodata span {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.iconError img{
+height: 40px;
+}
