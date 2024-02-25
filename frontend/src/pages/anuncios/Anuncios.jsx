@@ -46,7 +46,7 @@ const Anuncios = () => {
         <div className={styles.listrealestates}>
           <div className={styles.anunciosContainer}>
             {data.map((realEstate) => (
-              <RealEstateListElement key={realEstate._id} realEstate={realEstate} />
+              <RealEstateListElement key={realEstate._id} realEstate={realEstate} showFavorite={false} />
             ))}
           </div>
         </div>

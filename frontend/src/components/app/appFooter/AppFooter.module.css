@@ -21,6 +21,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    margin-top:14px
 }
 
 .list{
@@ -59,8 +60,11 @@
     text-decoration: none;
     box-sizing: border-box;
     width: 48%;
-    padding: 2px;
     font-weight: 500;
+}
+
+.li{
+    margin: 4px;
 }
 
 ul{
