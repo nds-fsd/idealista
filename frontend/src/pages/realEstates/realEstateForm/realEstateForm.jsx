@@ -36,12 +36,12 @@ const RealEstateForm = () => {
       {isSuccessful ? (
         <div className={styles.container}>
           <p className={styles.successMessage}>¡Tu anuncio ha sido publicado exitosamente!</p>
+          <a href="/anuncios" className={styles.link}>Ver todos tus anuncios</a>
           <a href="/" className={styles.link}>Volver a la página de inicio</a>
-            <a href="/anuncios" className={styles.link}>Ver todos tus anuncios</a>
         </div>
       ) : isSuccessful === false ? (
         <div className={styles.container}>
-          <p className={styles.errorMessage}>Ha ocurrido un error al publicar el anuncio. Por favor, intenta nuevamente.</p>
+          <p className={styles.successMessage}>Ha ocurrido un error al publicar el anuncio. Por favor, intenta nuevamente.</p>
         </div>
       ) : null}
 
