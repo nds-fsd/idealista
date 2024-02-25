@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap");
+
+.container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.header {
+    width: 100%;
+    max-width: 1300px;
+    height: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.imghead {
+    height: 170%;
+    position: absolute;
+    top:-150px;
+}
+
+.listrealestates {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1300px;
+    margin-top: 70px;
+}
+
+.texto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+}
+
+.texto h2 {
+    font-size: 2rem;
+    margin-bottom: 60px;
+}
+
+.texto p {
+    font-size: 18px;
+    text-align: justify;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+
+.texto .keyword {
+    
+    font-weight: bold; 
+}
+
+
+
+.texto .lastPhrase {
+
+    font-weight: bold;
+}

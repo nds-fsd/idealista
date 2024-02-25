@@ -27,7 +27,7 @@ function RealEstateListElement({ realEstate, onFavorite, showFavorite = true }) 
             <span style={{ fontSize: "20px", fontWeight: "700", textDecoration: "none" }}>{realEstate.roadName + ", " + realEstate.roadNumber + " (" + realEstate.location + ")"}</span>
           </Link>
         </div>
-        <div style={{ fontSize: "20px", fontWeight: "700" }}>{realEstate.price + " €"}</div>
+        <div style={{ fontSize: "20px", fontWeight: "700" }}>{realEstate.price.toLocaleString() + " €"}</div>
         <div style={{ marginTop: "5px", display: "flex", flexDirection: "row" }}>
           <div>
             <img style={{ height: "24px", width: "24px" }} src={imageRooms} alt="Número de habitaciones" />
