@@ -12,18 +12,22 @@ import styles from './realEstateForm.module.css';
 
 
 const RealEstateForm = () => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const context = useContext(UserContext);
-  const [isSuccessful, setIsSuccessful] = useState(false);
+  const [isSuccessful, setIsSuccessful] = useState(null);
   const [files, setFiles] = useState([]);
   
   const onSubmit = async (data) => {
-    const images = await ClaudinaryApi.uploadFiles(files);
-    const address = `${data.location || ''}, ${data.roadName || ''}, ${data.roadNumber || ''}, ${data.floor || ''}, ${data.door || ''}, ${data.urbanization || ''}, ${data.district || ''}}`;
-    const publicAddress = `${data.location}, ${data.urbanization || ''}, ${data.district || ''}`;
-    const user = context.user._id;
-    await CreateRealEstate({ ...data, user, images, address, publicAddress });
-    setIsSuccessful(true);
+    try {
+      const images = await ClaudinaryApi.uploadFiles(files);
+      const address = `${data.location || ''}, ${data.roadName || ''}, ${data.roadNumber || ''}, ${data.floor || ''}, ${data.door || ''}, ${data.urbanization || ''}, ${data.district || ''}}`;
+      const publicAddress = `${data.location}, ${data.urbanization || ''}, ${data.district || ''}`;
+      const user = context.user._id;
+      await CreateRealEstate({ ...data, user, images, address, publicAddress });
+      setIsSuccessful(true);
+    } catch (error) {
+      setIsSuccessful(false);
+    }
   };
 
   return (
@@ -35,7 +39,11 @@ const RealEstateForm = () => {
           <a href="/" className={styles.link}>Volver a la página de inicio</a>
           <a href="/realestates/create" className={styles.link}>Crear otro anuncio</a>
         </div>
-      ) : (
+      ) : isSuccessful === false ? (
+        <div className={styles.container}>
+          <p className={styles.errorMessage}>Ha ocurrido un error al publicar el anuncio. Por favor, intenta nuevamente.</p>
+        </div>
+      ) : null}
 
         <div>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
@@ -280,9 +288,9 @@ const RealEstateForm = () => {
 
                     </form>
                   </div>
-                )}
-              </div>
+            </div>
             );
           };
+
 
           export default RealEstateForm;

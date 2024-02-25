@@ -87,21 +87,24 @@ export const CreateRealEstate = async (data) => {
         data.publicposition = (publicCoordinates.length > 0) ? {lat: publicCoordinates[0], lng: publicCoordinates[1] } : {}
 
         data.mapLocation = {
-        type: "Point",
-        coordinates: coordinates,
+            type: "Point",
+            coordinates: coordinates,
         };
 
         data.publicMapLocation = {
-        type: "Point",
-        coordinates: publicCoordinates,
+            type: "Point",
+            coordinates: publicCoordinates,
         };
 
-        return api
-        .post(`/realestates`, data)
-        .then((res) => res.data)
-        .catch((e) => console.log(e));
-    } catch (e) {
-        console.log(e);
+        const response = await api.post(`/realestates`, data);
+
+        if (response.status >= 200 && response.status < 300) {
+            return response.data;
+        } else {
+            throw new Error(`HTTP request failed with status code ${response.status}`);
+        }
+    } catch (error) {
+        throw error;
     }
 };
 
