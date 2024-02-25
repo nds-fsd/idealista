@@ -4,15 +4,16 @@
 }
 
 .input {
-    width: 100%;
+    width:15rem; /* Set width to 5rem */
     display: flex;
-    flex-direction: row;
+    flex-direction: column; /* Change from "row" to "column" */
     border-radius: 4px;
 }
 
 .label {
-    text-align: right;
+    text-align: left;
     margin-right: 10px;
+    font-weight: 500;
 }
 
 .field {
