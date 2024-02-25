@@ -35,7 +35,11 @@ const formatQuery = (queryParams) => {
 const getAll = async (req, res) => {
     try {
         const queryStrings = req.query || {};
-        const response = await RealEstate.find(formatQuery(queryStrings));
+
+        const response = await RealEstate.find(formatQuery(queryStrings))
+                                         .populate("favorites")
+//                                         .select("-user")
+//                                         .select("-__v");
         if (response) res.status(200).json(response)
         else res.status(400).send()
     } catch (error) {

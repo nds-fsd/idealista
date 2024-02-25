@@ -6,6 +6,7 @@ let mongodb;
 
 exports.connectDB = async () => {
     mongoose.set("strictQuery", false);
+    mongoose.set('strictPopulate', false);
 
     try {
         await mongoose.connect(dbUrl);
