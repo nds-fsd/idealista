@@ -12,7 +12,7 @@ import imageM2 from "../../../assets/m2.svg";
 import imageRooms from "../../../assets/cama.svg";
 
 function RealEstateListElement({ realEstate, onFavorite, showFavorite = true }) {
-  if (realEstate.images.length === 0) realEstate.images.push(house_image);
+  if (realEstate.images?.length === 0) realEstate.images.push(house_image);
 
   return (
     <div className={styles.card}>

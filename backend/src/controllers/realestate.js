@@ -48,9 +48,10 @@ const getAll = async (req, res) => {
         console.log("favoritos:", favorite);
 
         const response2 = response.map((realEstate) => {
-            realEstate.isFavorite = favorite.includes(realEstate._id) ? true : false;
-            console.log("inmueble favorito:", realEstate)
-            return realEstate
+            const toObject = realEstate.toObject();
+            toObject.isFavorite = favorite.includes(realEstate._id) ? true : false;
+            console.log("inmueble favorito:", toObject)
+            return toObject
         })
         console.log("favoritos:", response2);
 
