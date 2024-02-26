@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import { useParams, useNavigate } from "react-router-dom";
 import UserContext from "../../../context/UserContext";
 
-import realEstateApi from "../../../utils/apis/realEstateApi";
+import { GetRealEstate } from "../../../utils/apis/realEstateApi";
 import Carousel from "./RealEstateDetailsCarousel";
 import GoogleMapsReactWrapper from "../../../components/googleMaps/reactWrapper/GoogleMapsReactWrapper";
 import GoogleMapsIndividual from "../../../components/googleMaps/map/GoogleMapsIndividual";
@@ -22,7 +22,7 @@ import { ifCondition } from "@cloudinary/url-gen/actions/conditional";
 const RealEstateDetails = () => {
     const { id } = useParams();
     const { user } = useContext(UserContext);
-    const { data, isLoading } = useQuery("realEstateDetail", () => realEstateApi.GetRealEstate(id));
+    const { data, isLoading } = useQuery("realEstateDetail", () => GetRealEstate(id));
     const [mostrarCompleto, setMostrarCompleto] = useState(false);
     const [containerHeight, setContainerHeight] = useState(660);
 
@@ -72,7 +72,7 @@ const RealEstateDetails = () => {
     
     
     const descripcion = data.description.split("\n");
-    console.log("descripcion:", descripcion);
+    // console.log("descripcion:", descripcion);
 
     const handleUpdate = () => {
         navigate(`/realestates/create/${data._id}`);

@@ -2,7 +2,7 @@ import api from "./apiWrapper";
 import axios from "axios";
 
 
-const GetRealEstate = (id) => {
+export const GetRealEstate = (id) => {
     return api.get(`realestates/${id}`)
         .then((res) => res.data)
         .catch((e) => console.log(e));
@@ -167,10 +167,9 @@ const GetRealEstateTypes = () => {
     }
 }
 
-export default { 
-    GetRealEstate,
+export default {
     GetByUserId, 
-    ListRealState, 
+    ListRealState,
     GetRealEstateBuyOperations, 
     GetRealEstateStates, 
     GetRealEstateTypes,

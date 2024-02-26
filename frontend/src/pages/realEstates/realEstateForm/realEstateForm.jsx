@@ -1,7 +1,7 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
-import { CreateRealEstate, UpdateRealEstate } from '../../../utils/apis/realEstateApi';
+import { CreateRealEstate, UpdateRealEstate, GetRealEstate } from '../../../utils/apis/realEstateApi';
 import ClaudinaryApi from '../../../utils/apis/claudinaryApi.js';
 import FileUploader from '../../../components/fileSystem/fileUploader/FileUploader.jsx';
 import UserContext from "../../../context/UserContext.jsx"
@@ -17,15 +17,33 @@ const RealEstateForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [files, setFiles] = useState([]);
   const { id } = useParams();
+  const [realEstate, setRealEstate] = useState(null);
+
+  useEffect(() => {
+    const fetchRealEstate = async () => {
+      if (id) {
+        const fetchedRealEstate = await GetRealEstate(id);
+        setRealEstate(fetchedRealEstate);
+      }
+    };
+
+  fetchRealEstate();
+}, [id]);
   
   const onSubmit = async (data) => {
     const images = await ClaudinaryApi.uploadFiles(files);
     const address = `${data.location || ''}, ${data.roadName || ''}, ${data.roadNumber || ''}, ${data.floor || ''}, ${data.door || ''}, ${data.urbanization || ''}, ${data.district || ''}}`;
     const publicAddress = `${data.location}, ${data.urbanization || ''}, ${data.district || ''}`;
     const user = context.user._id;
+
+  if (id) {
+    await UpdateRealEstate(id, { ...data, user, images, address, publicAddress });
+  } else {
     await CreateRealEstate({ ...data, user, images, address, publicAddress });
-    setIsSubmitted(true);
-  };
+  }
+
+  setIsSubmitted(true);
+};
 
   return (
     <div>
@@ -276,7 +294,7 @@ const RealEstateForm = () => {
           </div>
 
           <div style={{marginTop: "20px", width:"97%"}}>
-            <input type="submit" value="Enviar" className={styles.submit} />
+            <input type="submit" value={id ? 'Enviar' : 'Actualizar'} className={styles.submit} />
           </div>            
 
           </form>
