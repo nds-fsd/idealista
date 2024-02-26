@@ -23,12 +23,13 @@ const RealEstateForm = () => {
     const fetchRealEstate = async () => {
       if (id) {
         const fetchedRealEstate = await GetRealEstate(id);
+        console.log(fetchedRealEstate); 
         setRealEstate(fetchedRealEstate);
       }
     };
-
   fetchRealEstate();
 }, [id]);
+
   
   const onSubmit = async (data) => {
     const images = await ClaudinaryApi.uploadFiles(files);
