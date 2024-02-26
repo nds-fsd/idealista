@@ -96,14 +96,42 @@ export const CreateRealEstate = async (data) => {
         coordinates: publicCoordinates,
         };
 
+        const response = await api.post(`/realestates`, data);
+
+        if (response.status >= 200 && response.status < 300) {
+            return response.data;
+        } else {
+            throw new Error(`HTTP request failed with status code ${response.status}`);
+    } catch (error) {
+        throw error;
+    }
+}};
+
+export const UpdateRealEstate = async (id, data) => {
+    try {
+        const coordinates = await getCoordinates(data.address);
+        const publicCoordinates = await getPublicCoordinates(data.publicAddress);
+
+        data.realposition = (coordinates.length > 0) ? {lat: coordinates[0], lng: coordinates[1] } : {}
+        data.publicposition = (publicCoordinates.length > 0) ? {lat: publicCoordinates[0], lng: publicCoordinates[1] } : {}
+
+        data.mapLocation = {
+        type: "Point",
+        coordinates: coordinates,
+        };
+
+        data.publicMapLocation = {
+        type: "Point",
+        coordinates: publicCoordinates,
+        };
+
         return api
-        .post(`/realestates`, data)
+        .put(`/realestates/${id}`, data)
         .then((res) => res.data)
         .catch((e) => console.log(e));
     } catch (e) {
         console.log(e);
     }
-};
 
 const GetRealEstateBuyOperations = () => {
     try {

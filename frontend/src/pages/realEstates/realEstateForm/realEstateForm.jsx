@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-
-import { CreateRealEstate } from '../../../utils/apis/realEstateApi.js';
+import { useParams } from 'react-router-dom';
+import { CreateRealEstate, UpdateRealEstate } from '../../../utils/apis/realEstateApi';
 import ClaudinaryApi from '../../../utils/apis/claudinaryApi.js';
 import FileUploader from '../../../components/fileSystem/fileUploader/FileUploader.jsx';
 import UserContext from "../../../context/UserContext.jsx"
@@ -16,6 +16,7 @@ const RealEstateForm = () => {
   const context = useContext(UserContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [files, setFiles] = useState([]);
+  const { id } = useParams();
   
   const onSubmit = async (data) => {
     const images = await ClaudinaryApi.uploadFiles(files);
