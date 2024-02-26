@@ -102,10 +102,11 @@ export const CreateRealEstate = async (data) => {
             return response.data;
         } else {
             throw new Error(`HTTP request failed with status code ${response.status}`);
+        }
     } catch (error) {
         throw error;
     }
-}};
+};
 
 export const UpdateRealEstate = async (id, data) => {
     try {
@@ -125,13 +126,16 @@ export const UpdateRealEstate = async (id, data) => {
         coordinates: publicCoordinates,
         };
 
-        return api
-        .put(`/realestates/${id}`, data)
-        .then((res) => res.data)
-        .catch((e) => console.log(e));
-    } catch (e) {
-        console.log(e);
-    }
+        const response = await api.patch(`/realestates/${id}`, data);
+
+        if (response.status >= 200 && response.status < 300) {
+            return response.data;
+        } else {
+            throw new Error(`HTTP request failed with status code ${response.status}`);
+        }
+    } catch (error) {
+        throw error;
+    }};
 
 const GetRealEstateBuyOperations = () => {
     try {
