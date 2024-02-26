@@ -12,26 +12,90 @@ import styles from './realEstateForm.module.css';
 
 
 const RealEstateForm = () => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, watch, formState: { errors } } = useForm();
   const context = useContext(UserContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [files, setFiles] = useState([]);
   const { id } = useParams();
+  const [realEstateType, setRealEstateType] = useState('');
+  const [realEstateSubtype, setRealEstateSubtype] = useState('');
+  const [datestamp, setDatestamp] = useState('');
+  const [operation, setOperation] = useState('');
+  const [shortDescription, setShortDescription] = useState('');
+  const [description, setDescription] = useState('');
+  const [location, setLocation] = useState('');
+  const [roadName, setRoadName] = useState('');
+  const [roadNumber, setRoadNumber] = useState('');
+  const [block, setBlock] = useState('');
+  const [portal, setPortal] = useState('');
+  const [floor, setFloor] = useState('');
+  const [door, setDoor] = useState('');
+  const [urbanization, setUrbanization] = useState('');
+  const [district, setDistrict] = useState('');
+  const [state, setState] = useState('');
+  const [address, setAddress] = useState('');
+  const [publicAddress, setPublicAddress] = useState('');
+  const [metersBuilt, setMetersBuilt] = useState(0);
+  const [usefulMeter, setUsefulMeter] = useState(0);
+  const [rooms, setRooms] = useState(0);
+  const [bathrooms, setBathrooms] = useState(0);
+  const [properties, setProperties] = useState([]);
+  const [price, setPrice] = useState(0);
+  const [realtor, setRealtor] = useState('');
+  const [images, setImages] = useState([]);
+  const [realposition, setRealposition] = useState({});
+  const [publicposition, setPublicposition] = useState({});
+  const [user, setUser] = useState('');
+  const [mapLocation, setMapLocation] = useState({ type: 'Point', coordinates: [] });
+  const [publicMapLocation, setPublicMapLocation] = useState({ type: 'Point', coordinates: [] });
   const [realEstate, setRealEstate] = useState(null);
+
+
 
   useEffect(() => {
     const fetchRealEstate = async () => {
       if (id) {
-        const fetchedRealEstate = await GetRealEstate(id);
-        console.log(fetchedRealEstate); 
-        setRealEstate(fetchedRealEstate);
+      const fetchedRealEstate = await GetRealEstate(id);
+      setRealEstateType(fetchedRealEstate.realEstateType);
+      setRealEstateSubtype(fetchedRealEstate.realEstateSubtype);
+      setDatestamp(fetchedRealEstate.datestamp);
+      setOperation(fetchedRealEstate.operation);
+      setShortDescription(fetchedRealEstate.shortDescription);
+      setDescription(fetchedRealEstate.description);
+      setLocation(fetchedRealEstate.location);
+      setRoadName(fetchedRealEstate.roadName);
+      setRoadNumber(fetchedRealEstate.roadNumber);
+      setBlock(fetchedRealEstate.block);
+      setPortal(fetchedRealEstate.portal);
+      setFloor(fetchedRealEstate.floor);
+      setDoor(fetchedRealEstate.door);
+      setUrbanization(fetchedRealEstate.urbanization);
+      setDistrict(fetchedRealEstate.district);
+      setState(fetchedRealEstate.state);
+      setAddress(fetchedRealEstate.address);
+      setPublicAddress(fetchedRealEstate.publicAddress);
+      setMetersBuilt(fetchedRealEstate.metersBuilt);
+      setUsefulMeter(fetchedRealEstate.usefulMeter);
+      setRooms(fetchedRealEstate.rooms);
+      setBathrooms(fetchedRealEstate.bathrooms);
+      setProperties(fetchedRealEstate.properties);
+      setPrice(fetchedRealEstate.price);
+      setRealtor(fetchedRealEstate.realtor);
+      setImages(fetchedRealEstate.images);
+      setRealposition(fetchedRealEstate.realposition);
+      setPublicposition(fetchedRealEstate.publicposition);
+      setUser(fetchedRealEstate.user);
+      setMapLocation(fetchedRealEstate.mapLocation);
+      setPublicMapLocation(fetchedRealEstate.publicMapLocation);
+      console.log(fetchedRealEstate); 
+      setRealEstate(fetchedRealEstate);
       }
     };
   fetchRealEstate();
 }, [id]);
 
   
-  const onSubmit = async (data) => {
+  const handleSubmit = async (data) => {
     const images = await ClaudinaryApi.uploadFiles(files);
     const address = `${data.location || ''}, ${data.roadName || ''}, ${data.roadNumber || ''}, ${data.floor || ''}, ${data.door || ''}, ${data.urbanization || ''}, ${data.district || ''}}`;
     const publicAddress = `${data.location}, ${data.urbanization || ''}, ${data.district || ''}`;
@@ -58,7 +122,7 @@ const RealEstateForm = () => {
       ) : (
 
         <div>
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
+        <form onSubmit={handleSubmit} className={styles.container}>
 
           <div className={styles.title}>Publica tu anuncio</div>
           <small>*Campos obligatorios</small>
@@ -103,7 +167,7 @@ const RealEstateForm = () => {
           <div style={{marginTop: "10px", display: "flex"}}>
             <div style={{width: "33%"}}>
               <label type="text" htmlFor="location" className={styles.label}>Población *</label>
-              <input {...register("location", { required: true })} className={styles.input} />
+              <input {...register("location", { required: true })} onChange={e => setLocation(e.target.value)} className={styles.input} />
               {errors.location && <p className={styles.error}>Este campo es obligatorio</p>}
             </div>
             <div style={{width: "33%"}}>
