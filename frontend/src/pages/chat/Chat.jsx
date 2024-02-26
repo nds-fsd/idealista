@@ -29,8 +29,9 @@ const Chat = () => {
         socketContext?.socket.on('connect', () => {
         });
 
-        socketContext?.socket.on('msg', (message) => {
-            setContactList(async (contacts) => await fillContactList(message, user, contacts));
+        socketContext?.socket.on('msg', async (message) => {
+            const contacts = await fillContactList(message, user, contactList)
+            setContactList(contacts);
             setMessages((messages) => [...messages, message]);
         });
 
@@ -53,7 +54,7 @@ const Chat = () => {
     // this function will create a list from (1) list of contact, message and logged user. By adding the receiever or sender id to the (1) list of contact
     const fillContactList = async (message, loggedUser, contactList) => {
         let userToAdd = null;
-        if (message.userReceiver == loggedUser._id) {
+        if (message.userReceiver === loggedUser._id) {
             userToAdd = message.userSender;
         }
         else {
@@ -66,6 +67,7 @@ const Chat = () => {
         else
             return [...contactList];
     }
+
 
     const handleClick = async () => {
         if (!toUser || !textToSend) return;
