@@ -64,6 +64,8 @@ function RealEstateList() {
     if (!query.data) return <div className={styles.errormessage}> Something went wrong </div>
     const mensajeerror = (query.data.length <= 0) ? "No se ha encontrado inmuebles" : "";
 
+    console.log("inmuebles:", query.data)
+
 
     const getListQueryString = () => {
         const states = getStatesQueryString();
