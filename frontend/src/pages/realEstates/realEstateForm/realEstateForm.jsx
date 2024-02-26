@@ -4,15 +4,12 @@ import { useParams } from 'react-router-dom';
 import { CreateRealEstate, UpdateRealEstate, GetRealEstate } from '../../../utils/apis/realEstateApi';
 import ClaudinaryApi from '../../../utils/apis/claudinaryApi.js';
 import FileUploader from '../../../components/fileSystem/fileUploader/FileUploader.jsx';
-import UserContext from "../../../context/UserContext.jsx"
-
+import UserContext from "../../../context/UserContext.jsx";
 
 import styles from './realEstateForm.module.css';
 
-
-
 const RealEstateForm = () => {
-  const { register, watch, formState: { errors } } = useForm();
+  const { register, watch, formState: { errors }, setValue } = useForm();
   const context = useContext(UserContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [files, setFiles] = useState([]);
@@ -51,42 +48,42 @@ const RealEstateForm = () => {
   const [realEstate, setRealEstate] = useState(null);
 
 
-
   useEffect(() => {
     const fetchRealEstate = async () => {
       if (id) {
       const fetchedRealEstate = await GetRealEstate(id);
+      setValue("location", fetchedRealEstate.location);
+      setValue("realEstateType", fetchedRealEstate.realEstateType);
+      setValue("realEstateSubtype", fetchedRealEstate.realEstateSubtype);
+      setValue("datestamp", fetchedRealEstate.datestamp);
+      setValue("operation", fetchedRealEstate.operation);
+      setValue("shortDescription", fetchedRealEstate.shortDescription);
+      setValue("description", fetchedRealEstate.description);
+      setValue("roadName", fetchedRealEstate.roadName);
+      setValue("roadNumber", fetchedRealEstate.roadNumber);
+      setValue("block", fetchedRealEstate.block);
+      setValue("portal", fetchedRealEstate.portal);
+      setValue("floor", fetchedRealEstate.floor);
+      setValue("door", fetchedRealEstate.door);
+      setValue("urbanization", fetchedRealEstate.urbanization);
+      setValue("district", fetchedRealEstate.district);
+      setValue("state", fetchedRealEstate.state);
+      setValue("address", fetchedRealEstate.address);
+      setValue("publicAddress", fetchedRealEstate.publicAddress);
+      setValue("metersBuilt", fetchedRealEstate.metersBuilt);
+      setValue("usefulMeter", fetchedRealEstate.usefulMeter);
+      setValue("rooms", fetchedRealEstate.rooms);
+      setValue("bathrooms", fetchedRealEstate.bathrooms);
+      setValue("properties", fetchedRealEstate.properties);
+      setValue("price", fetchedRealEstate.price);
+      setValue("realtor", fetchedRealEstate.realtor);
+      setValue("images", fetchedRealEstate.images);
+      setValue("realposition", fetchedRealEstate.realposition);
+      setValue("publicposition", fetchedRealEstate.publicposition);
+      setValue("user", fetchedRealEstate.user);
+      setValue("mapLocation", fetchedRealEstate.mapLocation);
+      setValue("publicMapLocation", fetchedRealEstate.publicMapLocation);
       setRealEstateType(fetchedRealEstate.realEstateType);
-      setRealEstateSubtype(fetchedRealEstate.realEstateSubtype);
-      setDatestamp(fetchedRealEstate.datestamp);
-      setOperation(fetchedRealEstate.operation);
-      setShortDescription(fetchedRealEstate.shortDescription);
-      setDescription(fetchedRealEstate.description);
-      setLocation(fetchedRealEstate.location);
-      setRoadName(fetchedRealEstate.roadName);
-      setRoadNumber(fetchedRealEstate.roadNumber);
-      setBlock(fetchedRealEstate.block);
-      setPortal(fetchedRealEstate.portal);
-      setFloor(fetchedRealEstate.floor);
-      setDoor(fetchedRealEstate.door);
-      setUrbanization(fetchedRealEstate.urbanization);
-      setDistrict(fetchedRealEstate.district);
-      setState(fetchedRealEstate.state);
-      setAddress(fetchedRealEstate.address);
-      setPublicAddress(fetchedRealEstate.publicAddress);
-      setMetersBuilt(fetchedRealEstate.metersBuilt);
-      setUsefulMeter(fetchedRealEstate.usefulMeter);
-      setRooms(fetchedRealEstate.rooms);
-      setBathrooms(fetchedRealEstate.bathrooms);
-      setProperties(fetchedRealEstate.properties);
-      setPrice(fetchedRealEstate.price);
-      setRealtor(fetchedRealEstate.realtor);
-      setImages(fetchedRealEstate.images);
-      setRealposition(fetchedRealEstate.realposition);
-      setPublicposition(fetchedRealEstate.publicposition);
-      setUser(fetchedRealEstate.user);
-      setMapLocation(fetchedRealEstate.mapLocation);
-      setPublicMapLocation(fetchedRealEstate.publicMapLocation);
       console.log(fetchedRealEstate); 
       setRealEstate(fetchedRealEstate);
       }
@@ -172,7 +169,7 @@ const RealEstateForm = () => {
             </div>
             <div style={{width: "33%"}}>
               <label htmlFor="roadName" className={styles.label}>Nombre de la calle *</label>
-              <input type="text" {...register("roadName", { required: true })} className={styles.input} />
+              <input type="text" {...register("roadName", { required: true })} onChange={e => setRoadName(e.target.value)} className={styles.input} />
               {errors.roadName && <p className={styles.error}>Este campo es oblicatorio</p>}
             </div>
             <div style={{width: "33%"}}>
