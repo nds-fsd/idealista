@@ -149,7 +149,7 @@ const RealEstateDetails = () => {
 
                 <div className={styles.container2}>
                     {user && user._id === data?.user && (
-                        <div style={{ display: "flex", height: "120px", justifyContent: "center" }}>
+                        <div style={{ display: "flex", height: "10%", justifyContent: "center" }}>
                             <button className={styles.contact_button} onClick={handleUpdate}>
                                 Actualizar
                             </button>
