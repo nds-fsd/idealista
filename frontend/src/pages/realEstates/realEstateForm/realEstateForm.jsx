@@ -9,42 +9,11 @@ import UserContext from "../../../context/UserContext.jsx";
 import styles from './realEstateForm.module.css';
 
 const RealEstateForm = () => {
-  const { register, watch, formState: { errors }, setValue } = useForm();
+  const { register, formState: { errors }, setValue } = useForm();
   const context = useContext(UserContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [files, setFiles] = useState([]);
   const { id } = useParams();
-  const [realEstateType, setRealEstateType] = useState('');
-  const [realEstateSubtype, setRealEstateSubtype] = useState('');
-  const [datestamp, setDatestamp] = useState('');
-  const [operation, setOperation] = useState('');
-  const [shortDescription, setShortDescription] = useState('');
-  const [description, setDescription] = useState('');
-  const [location, setLocation] = useState('');
-  const [roadName, setRoadName] = useState('');
-  const [roadNumber, setRoadNumber] = useState('');
-  const [block, setBlock] = useState('');
-  const [portal, setPortal] = useState('');
-  const [floor, setFloor] = useState('');
-  const [door, setDoor] = useState('');
-  const [urbanization, setUrbanization] = useState('');
-  const [district, setDistrict] = useState('');
-  const [state, setState] = useState('');
-  const [address, setAddress] = useState('');
-  const [publicAddress, setPublicAddress] = useState('');
-  const [metersBuilt, setMetersBuilt] = useState(0);
-  const [usefulMeter, setUsefulMeter] = useState(0);
-  const [rooms, setRooms] = useState(0);
-  const [bathrooms, setBathrooms] = useState(0);
-  const [properties, setProperties] = useState([]);
-  const [price, setPrice] = useState(0);
-  const [realtor, setRealtor] = useState('');
-  const [images, setImages] = useState([]);
-  const [realposition, setRealposition] = useState({});
-  const [publicposition, setPublicposition] = useState({});
-  const [user, setUser] = useState('');
-  const [mapLocation, setMapLocation] = useState({ type: 'Point', coordinates: [] });
-  const [publicMapLocation, setPublicMapLocation] = useState({ type: 'Point', coordinates: [] });
   const [realEstate, setRealEstate] = useState(null);
 
 
