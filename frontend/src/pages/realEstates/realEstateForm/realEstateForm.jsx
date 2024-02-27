@@ -9,7 +9,7 @@ import UserContext from "../../../context/UserContext.jsx";
 import styles from './realEstateForm.module.css';
 
 const RealEstateForm = () => {
-  const { register, formState: { errors }, setValue } = useForm();
+  const { register, formState: { errors }, setValue, handleSubmit } = useForm();
   const context = useContext(UserContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [files, setFiles] = useState([]);
@@ -58,7 +58,10 @@ const RealEstateForm = () => {
   fetchRealEstate();
 }, [id]);
   
-  const handleSubmit = async (data) => {
+  const onSubmit = async (data) => {
+    console.log(realEstate);
+    console.log(setValue)
+    console.log(data);
     try {
       console.log(data);
       const images = await ClaudinaryApi.uploadFiles(files);
@@ -96,7 +99,7 @@ const RealEstateForm = () => {
 
         <div>
 
-        <form onSubmit={handleSubmit} className={styles.container}>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
 
           <div className={styles.title}>
             {id ? "Actualiza tu anuncio" : "Publica tu anuncio"}
