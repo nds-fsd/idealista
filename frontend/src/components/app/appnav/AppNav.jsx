@@ -73,7 +73,9 @@ const AppNav = () => {
                                     <DropDownNav img={userProfile} text={"Mi perfil"} />
                                 </Link>
 
-                                <DropDownNav img={imageChat} text={"Mis chats"} />
+                                <Link to={`/chat?user=${user._id}`}>
+                                    <DropDownNav img={imageChat} text={"Mis chats"} />
+                                </Link>
 
                                 <DropDownNav onClick={logOut} img={logOutimg} text={"Cerrar sesión"} />
                             </ul>
