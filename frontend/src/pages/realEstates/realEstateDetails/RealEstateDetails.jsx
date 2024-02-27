@@ -76,7 +76,7 @@ const RealEstateDetails = () => {
 
     const handleUpdate = () => {
         navigate(`/realestates/update/${data._id}`);
-      };
+    };
 
     return (
         <div style={{ width: "1300px", margin: "auto" }}>
@@ -148,9 +148,13 @@ const RealEstateDetails = () => {
                 {/*Esta es la parte de la columna derecha de Mapa y contactar */}
 
                 <div className={styles.container2}>
-                    <div style={{ display: "flex", height: "120px", justifyContent: "center" }}>
-                    <button  className={styles.contact_button} onClick={handleUpdate}>Actualizar</button>
-                    </div>
+                    {user && user._id === data?.user && (
+                        <div style={{ display: "flex", height: "120px", justifyContent: "center" }}>
+                            <button className={styles.contact_button} onClick={handleUpdate}>
+                                Actualizar
+                            </button>
+                        </div>
+                    )}
                     <div style={{ display: "flex", height: "120px", justifyContent: "center" }}>
                         <TextArea toUserId={data?.user}> </TextArea>
                     </div>
