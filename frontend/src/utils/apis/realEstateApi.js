@@ -87,13 +87,13 @@ export const CreateRealEstate = async (data) => {
         data.publicposition = (publicCoordinates.length > 0) ? {lat: publicCoordinates[0], lng: publicCoordinates[1] } : {}
 
         data.mapLocation = {
-        type: "Point",
-        coordinates: coordinates,
+            type: "Point",
+            coordinates: coordinates,
         };
 
         data.publicMapLocation = {
-        type: "Point",
-        coordinates: publicCoordinates,
+            type: "Point",
+            coordinates: publicCoordinates,
         };
 
         const response = await api.post(`/realestates`, data);

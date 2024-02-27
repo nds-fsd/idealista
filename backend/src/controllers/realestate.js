@@ -69,6 +69,9 @@ const getByUserId = async (req, res) => {
 
 const create = async (req, res) => {
     try {
+        // Simulate an unsuccessful POST request
+        // throw new Error("Failed to create RealEstate");
+
         const newRealEstateData = req.body;
 
         const newRealEstate = new RealEstate({
