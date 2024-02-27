@@ -1,4 +1,3 @@
-const express = require('express');
 const RealEstate = require('../mongo/schemas/realestate');
 const Favorite = require('../mongo/schemas/favorite');
 
@@ -38,26 +37,21 @@ const getAll = async (req, res) => {
     try {
         const queryStrings = req.query || {};
 
-        const response = await RealEstate.find(formatQuery(queryStrings))
-        const favorite = await Favorite.find({ user: "65d45549b530a1a9173bb21d" })
+        const responseRealEstates = await RealEstate.find(formatQuery(queryStrings))
+        const responseFavorites = await Favorite.find({ user: "65d45549b530a1a9173bb21d" })
             .populate("realEstate")
             .select("-_id")
             .select("-user")
             .select("-__v");
+        const realestatesIds = responseFavorites.map((favorite) => {return (favorite.realEstate._id.toString())})
 
-        console.log("favoritos:", favorite);
-
-        const response2 = response.map((realEstate) => {
+        const response = responseRealEstates.map((realEstate) => {
             const toObject = realEstate.toObject();
-            toObject.isFavorite = favorite.includes(realEstate._id) ? true : false;
-            console.log("inmueble favorito:", toObject)
+            toObject.isFavorite = realestatesIds.includes(realEstate._id.toString())
             return toObject
         })
-        console.log("favoritos:", response2);
-
-
-
-        if (response) res.status(200).json(response2)
+        
+        if (response) res.status(200).json(response)
         else res.status(400).send()
     } catch (error) {
         console.log("Error in realestate.js getAll():", error.message);
