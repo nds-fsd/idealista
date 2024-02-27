@@ -75,7 +75,7 @@ const RealEstateDetails = () => {
     // console.log("descripcion:", descripcion);
 
     const handleUpdate = () => {
-        navigate(`/realestates/create/${data._id}`);
+        navigate(`/realestates/update/${data._id}`);
       };
 
     return (

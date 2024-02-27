@@ -119,9 +119,14 @@ const RealEstateForm = () => {
       ) : (
 
         <div>
-        <form onSubmit={handleSubmit} className={styles.container}>
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit()
+        }} className={styles.container}>
 
-          <div className={styles.title}>Publica tu anuncio</div>
+          <div className={styles.title}>
+            {id ? "Actualiza tu anuncio" : "Publica tu anuncio"}
+          </div>
           <small>*Campos obligatorios</small>
           <div className={styles.tabselected}>Datos básicos</div>
 
@@ -164,12 +169,12 @@ const RealEstateForm = () => {
           <div style={{marginTop: "10px", display: "flex"}}>
             <div style={{width: "33%"}}>
               <label type="text" htmlFor="location" className={styles.label}>Población *</label>
-              <input {...register("location", { required: true })} onChange={e => setLocation(e.target.value)} className={styles.input} />
+              <input {...register("location", { required: true })} className={styles.input} />
               {errors.location && <p className={styles.error}>Este campo es obligatorio</p>}
             </div>
             <div style={{width: "33%"}}>
               <label htmlFor="roadName" className={styles.label}>Nombre de la calle *</label>
-              <input type="text" {...register("roadName", { required: true })} onChange={e => setRoadName(e.target.value)} className={styles.input} />
+              <input type="text" {...register("roadName", { required: true })} className={styles.input} />
               {errors.roadName && <p className={styles.error}>Este campo es oblicatorio</p>}
             </div>
             <div style={{width: "33%"}}>
@@ -356,7 +361,7 @@ const RealEstateForm = () => {
           </div>
 
           <div style={{marginTop: "20px", width:"97%"}}>
-            <input type="submit" value={id ? 'Enviar' : 'Actualizar'} className={styles.submit} />
+            <input type="submit" value={id ? 'Actualizar' : 'Enviar'} className={styles.submit} />
           </div>            
 
           </form>
