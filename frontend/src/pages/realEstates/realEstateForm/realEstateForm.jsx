@@ -59,8 +59,6 @@ const RealEstateForm = () => {
 }, [id]);
   
   const onSubmit = async (data) => {
-    try {
-      console.log(data);
       try {
       const images = await ClaudinaryApi.uploadFiles(files);
       if (data && data.location) {
@@ -82,9 +80,9 @@ const RealEstateForm = () => {
     } catch (error) {
       setIsSuccessful(false);
     }
-  };
+  }
 
-  return (
+return (
     <div>
 
       {isSuccessful ? (
@@ -347,7 +345,7 @@ const RealEstateForm = () => {
                   </div>
             </div>
             );
-          };
+          }
 
 
-          export default RealEstateForm;
+export default RealEstateForm;
