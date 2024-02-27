@@ -25,8 +25,8 @@ const PersonalData = ({ userData, handleUpdateUser }) => {
     const onSubmit = (data) => {
         handleUpdateUser(data);
         setEditMode(false);
-    };
-    
+    };    
+
 
     // Set initial values for the form fields
     useEffect(() => {

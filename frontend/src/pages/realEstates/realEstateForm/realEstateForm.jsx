@@ -95,7 +95,9 @@ const RealEstateForm = () => {
       ) : (
 
         <div>
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
+
+        <form onSubmit={handleSubmit} className={styles.container}>
+
           <div className={styles.title}>
             {id ? "Actualiza tu anuncio" : "Publica tu anuncio"}
           </div>
