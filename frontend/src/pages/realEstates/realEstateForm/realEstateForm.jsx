@@ -83,29 +83,36 @@ const RealEstateForm = () => {
       setValue("user", fetchedRealEstate.user);
       setValue("mapLocation", fetchedRealEstate.mapLocation);
       setValue("publicMapLocation", fetchedRealEstate.publicMapLocation);
-      setRealEstateType(fetchedRealEstate.realEstateType);
-      console.log(fetchedRealEstate); 
       setRealEstate(fetchedRealEstate);
       }
     };
   fetchRealEstate();
 }, [id]);
-
   
   const handleSubmit = async (data) => {
-    const images = await ClaudinaryApi.uploadFiles(files);
-    const address = `${data.location || ''}, ${data.roadName || ''}, ${data.roadNumber || ''}, ${data.floor || ''}, ${data.door || ''}, ${data.urbanization || ''}, ${data.district || ''}}`;
-    const publicAddress = `${data.location}, ${data.urbanization || ''}, ${data.district || ''}`;
-    const user = context.user._id;
+    try {
+      console.log(data);
+      const images = await ClaudinaryApi.uploadFiles(files);
+      if (data && data.location) {
+        console.log(data.location);
+      } else {
+        console.log('data or data.location is undefined');
+      }
+      const address = `${data.location || ''}, ${data.roadName || ''}, ${data.roadNumber || ''}, ${data.floor || ''}, ${data.door || ''}, ${data.urbanization || ''}, ${data.district || ''}}`;
+      const publicAddress = `${data.location}, ${data.urbanization || ''}, ${data.district || ''}`;
+      const user = context.user._id;
 
-  if (id) {
-    await UpdateRealEstate(id, { ...data, user, images, address, publicAddress });
-  } else {
-    await CreateRealEstate({ ...data, user, images, address, publicAddress });
-  }
+      if (id) {
+        await UpdateRealEstate(id, { ...data, user, images, address, publicAddress });
+      } else {
+        await CreateRealEstate({ ...data, user, images, address, publicAddress });
+      }
 
-  setIsSubmitted(true);
-};
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  };
 
   return (
     <div>
@@ -119,11 +126,7 @@ const RealEstateForm = () => {
       ) : (
 
         <div>
-        <form onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmit()
-        }} className={styles.container}>
-
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
           <div className={styles.title}>
             {id ? "Actualiza tu anuncio" : "Publica tu anuncio"}
           </div>
