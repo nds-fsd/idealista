@@ -7,7 +7,7 @@ import { getUserSession, setUserSession, removeSession } from "../utils/apis/loc
 
 
 function UserContextProvider({ children }) {
-    const currentUser = JSON.parse(localStorage.getItem("userData")) || null;
+    const currentUser = JSON.parse(localStorage.getItem("user")) || null;
     const [token, setToken] = useState(getUserSession()?.token)
     const [user, setUser] = useState(currentUser)
     const [error, setError] = useState(null)
