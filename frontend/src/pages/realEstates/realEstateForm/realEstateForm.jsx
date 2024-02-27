@@ -59,9 +59,6 @@ const RealEstateForm = () => {
 }, [id]);
   
   const onSubmit = async (data) => {
-    console.log(realEstate);
-    console.log(setValue)
-    console.log(data);
     try {
       console.log(data);
       const images = await ClaudinaryApi.uploadFiles(files);
