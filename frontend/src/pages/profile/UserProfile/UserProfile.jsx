@@ -5,6 +5,7 @@ import UserContext from "../../../context/UserContext";
 import PersonalData from "../PersonalData/PersonalData";
 import MyAds from "../MyAds/MyAds";
 import MyFavorites from "../MyFavorites/MyFavorites";
+// import { Tooltip } from 'react-tooltip'
 
 const UserProfile = () => {
   const [userData, setUserData] = useState(null);
@@ -24,10 +25,6 @@ const UserProfile = () => {
     fetchUserData();
   }, []);
 
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-  };
-
   const handleUpdateUser = async (data) => {
     try {
       const response = await updateUser(user._id, data);
@@ -38,6 +35,14 @@ const UserProfile = () => {
       }
     } catch (error) {
       console.error("Error updating user data:", error);
+    }
+  };
+
+  const handleTabClick = (tab) => {
+    if (tab === "publications" || tab === "favorites") {
+      alert("Lanzamiento planeado próximamente");
+    } else {
+      setActiveTab(tab);
     }
   };
 
@@ -63,7 +68,7 @@ const UserProfile = () => {
                 : styles.navlink
             }
             href="#"
-            onClick={() => handleTabClick("personalData")}
+            onClick={() => setActiveTab("personalData")}
           >
             Datos personales
           </a>
@@ -71,7 +76,7 @@ const UserProfile = () => {
         <li
           className={
             activeTab === "publications"
-              ? styles.navitemselected
+              ? `${styles.navitemselected} ${styles.disabled}`
               : styles.navitem
           }
         >
@@ -84,12 +89,14 @@ const UserProfile = () => {
             href="#"
             onClick={() => handleTabClick("publications")}
           >
-            Mis publicaciones
+            Mis logros
           </a>
         </li>
         <li
           className={
-            activeTab === "favorites" ? styles.navitemselected : styles.navitem
+            activeTab === "favorites"
+              ? `${styles.navitemselected} ${styles.disabled}`
+              : styles.navitem
           }
         >
           <a
@@ -99,10 +106,14 @@ const UserProfile = () => {
             href="#"
             onClick={() => handleTabClick("favorites")}
           >
-            Mis favoritos
+            Mi privacidad
           </a>
         </li>
       </ul>
+
+      {/* <Tooltip id="publications" />
+      <Tooltip id="favorites" /> */}
+
       {/* Tab content */}
       <div className={styles.tabcontent}>
         {activeTab === "personalData" && (
@@ -121,6 +132,7 @@ const UserProfile = () => {
           />
         )}
       </div>
+
     </div>
   );
 };
