@@ -14,11 +14,11 @@
 }
 
 .left {
-    background: #e9e9df;
+    background: #ebebeb;
     align-self: start;
 }
 
 .right {
-    background: #abec61;
+    background: #cfe2ff;
     align-self: end;
 }

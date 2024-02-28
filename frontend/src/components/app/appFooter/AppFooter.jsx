@@ -28,7 +28,6 @@ function AppFooter() {
                             <Link className={styles.li} to="/realestates/create">
                                 Publica tu inmueble
                             </Link>
-                            <Link className={styles.li}>Contacta con Realista</Link>
                             <Link className={styles.li} to="/privacity">
                                 Política de privacidad
                             </Link>
