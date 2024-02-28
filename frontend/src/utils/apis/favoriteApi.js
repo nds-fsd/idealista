@@ -6,6 +6,7 @@ const addFavorite = async ({ userId, realestateId }) => {
             userId: userId,
             realestateId: realestateId
         });
+        addAchievement({ id: 3, title: 'Favorite Added', description: 'You added a favorite!', completed: true, user: userId});
         return response.data;
     } catch (error) {
         console.error("Favorite error", error.message);

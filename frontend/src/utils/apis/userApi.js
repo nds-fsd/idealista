@@ -43,11 +43,16 @@ export const updateUser = async (id, data) => {
     try {
         const response = await api.put(`users/${id}`, data);
         console.log("Update user response", response);
+        
+        // Unlock achievement code goes here
+        const achievement = { id: 2, title: 'Profile Updated', description: 'You updated your profile!', completed: true };
+        response.data.achievement = achievement;
+        
         return response;
     } catch (error) {
         console.error("Update user error", error.message);
-       throw error;
+        throw error;
     }
-}
+};
 
 export { RegisterUser, loginUser }

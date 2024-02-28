@@ -12,6 +12,13 @@ const userSchema = new Schema({
     province: { type: String },
     aboutMe: { type: String },
     isValidated: { type: Boolean, default: true },
+    achievements: [
+        {
+          title: String,
+          description: String,
+          completed: Boolean,
+        },
+      ],
 });
 
 userSchema.pre('save', function (next) {

@@ -87,19 +87,22 @@ export const CreateRealEstate = async (data) => {
         data.publicposition = (publicCoordinates.length > 0) ? {lat: publicCoordinates[0], lng: publicCoordinates[1] } : {}
 
         data.mapLocation = {
-        type: "Point",
-        coordinates: coordinates,
+            type: "Point",
+            coordinates: coordinates,
         };
 
         data.publicMapLocation = {
-        type: "Point",
-        coordinates: publicCoordinates,
+            type: "Point",
+            coordinates: publicCoordinates,
         };
 
+        // Add logic to add achievement for the user
+        addAchievement({ id: 1, title: 'Post an Ad', description: 'You posted an ad!', completed: true, user: data.user.id});
+
         return api
-        .post(`/realestates`, data)
-        .then((res) => res.data)
-        .catch((e) => console.log(e));
+            .post(`/realestates`, data)
+            .then((res) => res.data)
+            .catch((e) => console.log(e));
     } catch (e) {
         console.log(e);
     }
