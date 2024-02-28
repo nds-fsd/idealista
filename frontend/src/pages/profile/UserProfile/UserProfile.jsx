@@ -7,22 +7,34 @@ import MyAds from "../MyAds/MyAds";
 import MyFavorites from "../MyFavorites/MyFavorites";
 
 const UserProfile = () => {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState({});
   const [activeTab, setActiveTab] = useState("personalData");
 
   const { user } = useContext(UserContext);
 
   useEffect(() => {
+    const sessionData = JSON.parse(localStorage.getItem("session"));
+    setUserData(sessionData.user);
+  }, []);
+
+  useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await getUser(user._id);
-        setUserData(response.data);
+        if (response) {
+          setUserData(response.data);
+        } else {
+          console.error("No response from getUser");
+        }
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
-    fetchUserData();
-  }, []);
+  
+    if (user) {
+      fetchUserData();
+    }
+  }, [user?._id]);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
