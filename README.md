@@ -47,18 +47,48 @@ Realista es una  aplicación web sin anuncios tradicionales de inmobiliarias, aq
 
 <img width="585" alt="Screenshot 2024-02-27 at 9 42 39 PM" src="https://github.com/nds-fsd/idealista/assets/70909932/8e6e1f0e-73bc-4f07-932b-7081965ba078">
 
-**_Chat:_** Los usuarios podrán contactar directamente al anunciante de un inmueble y conversar a través del chat. 
+**_Anuncios Publicados:_** Se visualizan todos los anuncios publicados y el usuario puede hacer su búsqueda mediante los filtros. 
+
+<img width="860" alt="Screenshot 2024-02-28 at 7 01 33 PM" src="https://github.com/nds-fsd/idealista/assets/70909932/3c5fd82d-244c-43ec-95dc-2b5c046f9f33">
+
+**_Mis Anuncios:_** El usuario puede ver los anuncios que ha publicado.
+
+<img width="976" alt="Screenshot 2024-02-28 at 7 03 58 PM" src="https://github.com/nds-fsd/idealista/assets/70909932/845043ac-bf64-4d74-96fc-554da29741ba">
+
 
  # Pasos para utilizar el proyecto
 
  ### Requisitos previos
 
-
-
+Para ejecutar Realista en tu máquina local, debes tener instalado lo siguiente:
+- Node.Js
+- MongoDB
 
   ### Configuración 
 
+1. Clona el poyecto:
 
-  2. 
+   ```git clone https://github.com/nds-fsd/idealista.git```
 
+3. Navega a Frontend y Backend del proyecto:
+
+cd Frontend
+cd Backend
+   
+3. En la terminal inicia el proyecto de la siquiente manera:
+`npm run dev`
+
+4. Si quieres iniciar el frontend y el backend por separado puedes hacerlo de la siguiente manera:
+
+ **Frontend:**  `npm run start:frontend`
+ **Backend:**  `npm run start:backend`
+
+ 5. Abre tu navegador web y navega a `http://localhost:3000` para ver la aplicación.
+
+#Creadores
+
+- Carla León [https://github.com/clmirabent]
+- Xavi López  [ https://github.com/xlopezmin]
+- Harold Pozo [https://github.com/haroldtpozo]
+- Filip Galetic [https://github.com/fgaletic]
 
