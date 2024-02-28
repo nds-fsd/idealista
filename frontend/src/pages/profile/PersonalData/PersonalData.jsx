@@ -28,7 +28,6 @@ const PersonalData = ({ userData, handleUpdateUser }) => {
     };
     
 
-    // Set initial values for the form fields
     useEffect(() => {
         if (userData) {
             setValue("name", userData.name);
@@ -61,54 +60,84 @@ const PersonalData = ({ userData, handleUpdateUser }) => {
                 {editMode ? (
                     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
                         <div className={styles.container}>
-                            <div className={styles.input}>
-                                <label htmlFor="name" className={styles.label}>Nombre:</label>
-                                <input {...register("name")} id="name" className={styles.field} />
+                            <div className={styles.column}>
+                                <div className={styles.input}>
+                                    <label htmlFor="name" className={styles.label}>Nombre:</label>
+                                    <input {...register("name")} id="name" className={styles.field} />
+                                </div>
+                                <div className={styles.input}>
+                                    <label htmlFor="email" className={styles.label}>Email:</label>
+                                    <input {...register("email")} id="email" className={styles.field} />
+                                </div>
+                                <div className={styles.input}>
+                                    <label htmlFor="location" className={styles.label}>Ubicación:</label>
+                                    <input {...register("location")} id="location" className={styles.field} />
+                                </div>
                             </div>
-                            <div className={styles.input}>
-                                <label htmlFor="email" className={styles.label}>Email:</label>
-                                <input {...register("email")} id="email" className={styles.field} />
+                            <div className={styles.column}>
+                                <div className={styles.input}>
+                                    <label htmlFor="street" className={styles.label}>Calle:</label>
+                                    <input {...register("street")} id="street" className={styles.field} />
+                                </div>
+                                <div className={styles.input}>
+                                    <label htmlFor="streetNumber" className={styles.label}>Número de Calle:</label>
+                                    <input {...register("streetNumber")} id="streetNumber" className={styles.field} />
+                                </div>
+                                <div className={styles.input}>
+                                    <label htmlFor="postalCode" className={styles.label}>Código Postal:</label>
+                                    <input {...register("postalCode")} id="postalCode" className={styles.field} />
+                                </div>
                             </div>
-                            <div className={styles.input}>
-                                <label htmlFor="location" className={styles.label}>Ubicación:</label>
-                                <input {...register("location")} id="location" className={styles.field} />
+                            <div className={styles.column}>
+                                <div className={styles.input}>
+                                    <label htmlFor="province" className={styles.label}>Provincia:</label>
+                                    <input {...register("province")} id="province" className={styles.field} />
+                                </div>
+                                <div className={styles.input}>
+                                    <label htmlFor="aboutMe" className={styles.label}>Sobre mí:</label>
+                                    <textarea {...register("aboutMe")} id="aboutMe" className={styles.field} />
+                                </div>
                             </div>
-                            <div className={styles.input}>
-                                <label htmlFor="street" className={styles.label}>Calle:</label>
-                                <input {...register("street")} id="street" className={styles.field} />
-                            </div>
-                            <div className={styles.input}>
-                                <label htmlFor="streetNumber" className={styles.label}>Número de Calle:</label>
-                                <input {...register("streetNumber")} id="streetNumber" className={styles.field} />
-                            </div>
-                            <div className={styles.input}>
-                                <label htmlFor="postalCode" className={styles.label}>Código Postal:</label>
-                                <input {...register("postalCode")} id="postalCode" className={styles.field} />
-                            </div>
-                            <div className={styles.input}>
-                                <label htmlFor="province" className={styles.label}>Provincia:</label>
-                                <input {...register("province")} id="province" className={styles.field} />
-                            </div>
-                            <div className={styles.input}>
-                                <label htmlFor="aboutMe" className={styles.label}>Sobre mí:</label>
-                                <input {...register("aboutMe")} id="aboutMe" className={styles.field} />
-                            </div>
-                            <div className={styles.buttoncontainer}>
+                        </div>
+                        <div className={styles.buttoncontainer}>
                             <button className={styles.btn} type="submit">Guardar</button>
                             <button className={styles.btn} onClick={handleCancel}>Cancelar</button>
-                            </div>
                         </div>
                     </form>
                 ) : (
                     <div className={styles.data}>
-                        <p>Nombre: {userData.name}</p>
-                        <p>Correo electrónico: {userData.email}</p>
-                        <p>Ubicación: {userData.location}</p>
-                        <p>Calle: {userData?.street || ""}</p>
-                        <p>Número de Calle: {userData?.streetNumber || ""}</p>
-                        <p>Código Postal: {userData?.postalCode || ""}</p>
-                        <p>Provincia: {userData?.province || ""}</p>
-                        <p>Sobre mí: {userData?.aboutMe || ""}</p>
+                        <div className={styles.column}>
+                            <p className={styles.label}>Nombre:</p>
+                            <p className={styles.value}>{userData.name}</p>
+                        </div>
+                        <div className={styles.column}>
+                            <p className={styles.label}>Correo electrónico:</p>
+                            <p className={styles.value}>{userData.email}</p>
+                        </div>
+                        <div className={styles.column}>
+                            <p className={styles.label}>Ubicación:</p>
+                            <p className={styles.value}>{userData.location}</p>
+                        </div>
+                        <div className={styles.column}>
+                            <p className={styles.label}>Calle:</p>
+                            <p className={styles.value}>{userData?.street || ""}</p>
+                        </div>
+                        <div className={styles.column}>
+                            <p className={styles.label}>Número de Calle:</p>
+                            <p className={styles.value}>{userData?.streetNumber || ""}</p>
+                        </div>
+                        <div className={styles.column}>
+                            <p className={styles.label}>Código Postal:</p>
+                            <p className={styles.value}>{userData?.postalCode || ""}</p>
+                        </div>
+                        <div className={styles.column}>
+                            <p className={styles.label}>Provincia:</p>
+                            <p className={styles.value}>{userData?.province || ""}</p>
+                        </div>
+                        <div className={styles.column}>
+                            <p className={styles.label}>Sobre mí:</p>
+                            <p className={styles.value}>{userData?.aboutMe || ""}</p>
+                        </div>
                         <button className={styles.btn} onClick={handleEdit}>
                             Editar
                         </button>
