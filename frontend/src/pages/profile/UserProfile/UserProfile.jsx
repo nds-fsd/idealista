@@ -7,7 +7,7 @@ import MyAds from "../MyAds/MyAds";
 import MyFavorites from "../MyFavorites/MyFavorites";
 
 const UserProfile = () => {
-  const [userDataserData, setUserData] = useState(null);
+  const [userData, setUserData] = useState(null);
   const [activeTab, setActiveTab] = useState("personalData");
 
   const { user } = useContext(UserContext);
