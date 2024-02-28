@@ -3,7 +3,7 @@ import styles from "./UserProfile.module.css";
 import { getUser, updateUser } from "../../../utils/apis/userApi";
 import UserContext from "../../../context/UserContext";
 import PersonalData from "../PersonalData/PersonalData";
-import MyAds from "../MyAds/MyAds";
+import MyAchievements from "../MyAchievements/MyAchievements";
 import MyFavorites from "../MyFavorites/MyFavorites";
 
 const UserProfile = () => {
@@ -84,7 +84,7 @@ const UserProfile = () => {
             href="#"
             onClick={() => handleTabClick("publications")}
           >
-            Mis publicaciones
+            Mis logros
           </a>
         </li>
         <li
@@ -112,7 +112,10 @@ const UserProfile = () => {
           />
         )}
         {activeTab === "publications" && (
-          <MyAds ads={userData?.ads} emptyMessage="No tienes ningún anuncio" />
+          <MyAchievements
+            achievements={userData?.achievements}
+            emptyMessage="No tienes ningún logro"
+          />
         )}
         {activeTab === "favorites" && (
           <MyFavorites
