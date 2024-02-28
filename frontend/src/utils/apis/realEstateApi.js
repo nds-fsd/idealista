@@ -2,8 +2,11 @@ import api from "./apiWrapper";
 import axios from "axios";
 
 
-const GetRealEstate = (id) => {
-    return api.get(`realestates/${id}`)
+const GetRealEstate = (id, userid) => {
+    const param = (userid) ? `?userid=${query.userid}` : ""
+    console.log("GetRealEstate:", id, param)
+
+    return api.get(`realestates/${id}${param}`)
         .then((res) => res.data)
         .catch((e) => console.log(e));
 }
@@ -30,6 +33,10 @@ const ListRealState = (query) => {
         q += `&rooms=${query.rooms}`
     if (query.bathrooms)
         q += `&bathrooms=${query.bathrooms}`
+    if (query.userid)
+        q += `&userid=${query.userid}`
+
+    console.log("query:", `realestates${q}`)
 
     return api.get(`realestates${q}`)
         .then(res => res.data)

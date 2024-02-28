@@ -11,8 +11,11 @@ import imageBathrooms from "../../../assets/bano.svg";
 import imageM2 from "../../../assets/m2.svg";
 import imageRooms from "../../../assets/cama.svg";
 
-function RealEstateListElement({ realEstate, onFavorite, showFavorite = true }) {
+function RealEstateListElement({ realEstate, onFavorite, showFavorite = true}) {
   if (realEstate.images?.length === 0) realEstate.images.push(house_image);
+  const backgroundFavorite = (realEstate.isFavorite) ? "#CFE2FF" : "#FFFFFF";
+
+  console.log("realestate.element.isfavorite:", realEstate.roadName, realEstate.isFavorite, backgroundFavorite)
 
   return (
     <div className={styles.card}>
@@ -45,7 +48,10 @@ function RealEstateListElement({ realEstate, onFavorite, showFavorite = true }) 
         <div>{realEstate.shortDescription}</div>
         <div style={{ marginTop: "5px", fontWeight: "700" }}>{realEstate.state.replace("-", " ")}</div>
       </div>
-      <div style={{ width: "35" }}>{showFavorite && <UseAnimation animation={heart} reverse={realEstate.fav} fillColor="#CFE2FF" size={35} onClick={() => onFavorite && onFavorite(realEstate)} />}</div>
+      <div style={{ width: "35" }}>
+        {showFavorite && <UseAnimation animation={heart} reverse={realEstate.fav} fillColor="#CFE2FF" size={35} 
+                                       onClick={() => onFavorite && onFavorite(realEstate)} />}
+      </div>
     </div>
   );
 }

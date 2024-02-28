@@ -35,6 +35,7 @@ function RealEstateList() {
     const [bathrooms, setBathrooms] = useState(1);
 
     const { user } = useContext(UserContext)
+    const userIdFilter = (user) ? "userid: " + user._id : "";
 
     useEffect(() => {
         setRealEstateOperationValue(operation);
@@ -59,13 +60,12 @@ function RealEstateList() {
         return states;
     }
 
-    const query = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType, price: getPriceQueryString(), states: getStatesQueryString(), rooms: rooms, bathrooms: bathrooms }))
+    const query = useQuery("realEstateList", () => realEstateApi.ListRealState({ operation, location: localization, realestatetype: realEstateType, price: getPriceQueryString(), states: getStatesQueryString(), rooms: rooms, bathrooms: bathrooms, userIdFilter }))
     if (query.isLoading || query.isFetching) return <div className={styles.errormessage}> Loading... </div>
     if (!query.data) return <div className={styles.errormessage}> Something went wrong </div>
     const mensajeerror = (query.data.length <= 0) ? "No se ha encontrado inmuebles" : "";
 
-    console.log("inmuebles:", query.data)
-
+    query.data.map((e) => e.fav = e.isFavorite || false)
 
     const getListQueryString = () => {
         const states = getStatesQueryString();
@@ -150,6 +150,7 @@ function RealEstateList() {
                 </div>
                 <div className={styles.list}>
                     {query.data.map(e => <RealEstateListElement key={e._id} realEstate={e} onFavorite={() => setFavorite(e)}></RealEstateListElement>)}
+                    
                 </div>
             </div>
         </div>

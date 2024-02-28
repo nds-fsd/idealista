@@ -21,7 +21,8 @@ import favoriteApi from "../../../utils/apis/favoriteApi";
 const RealEstateDetails = () => {
     const { id } = useParams();
     const { user } = useContext(UserContext);
-    const { data, isLoading } = useQuery('realEstateDetail', () => realEstateApi.GetRealEstate(id));
+
+    const { data, isLoading } = useQuery('realEstateDetail', () => realEstateApi.GetRealEstate(id, user._id));
 
     const setFavorite = async ({ _id }) => {
         favoriteApi.addFavorite({ userId: user._id, realestateId: _id })
@@ -30,10 +31,9 @@ const RealEstateDetails = () => {
         window.scrollTo(0, 0);
     }, [])
 
-
-
     if (isLoading) return <div>Is Loading...</div>;
     if (!data) return <div> Something went wrong</div>;
+    data.fav = data.isFavorite;
 
     return (
         <div style={{ width: "1140px", margin: "auto" }}>

@@ -33,17 +33,31 @@ const formatQuery = (queryParams) => {
     return query;
 }
 
+const getRealEstateIdsFavoritesByUserId = async (userId) => {
+    try {
+        const responseFavorites = await Favorite.find({ user: userId })
+        const realestatesIds = responseFavorites.map((favorite) => {return (favorite.realEstate._id.toString())})
+        return realestatesIds;
+    } catch(error) {
+        console.log("Error in realestate.js getRealEstateIdsFavoritesByUserId():", error.message);
+        return []
+    }
+}
+
 const getAll = async (req, res) => {
     try {
         const queryStrings = req.query || {};
+        let queryUser = req.query.userid || {}
+
+        console.log("getall.userid:", req.query);
+        // queryUser = "65d45549b530a1a9173bb21d";
 
         const responseRealEstates = await RealEstate.find(formatQuery(queryStrings))
-        const responseFavorites = await Favorite.find({ user: "65d45549b530a1a9173bb21d" })
-            .populate("realEstate")
-            .select("-_id")
-            .select("-user")
-            .select("-__v");
-        const realestatesIds = responseFavorites.map((favorite) => {return (favorite.realEstate._id.toString())})
+
+        let realestatesIds = [];
+        if (queryUser) {            
+            realestatesIds = await getRealEstateIdsFavoritesByUserId(queryUser) || [];
+        }        
 
         const response = responseRealEstates.map((realEstate) => {
             const toObject = realEstate.toObject();
@@ -54,14 +68,21 @@ const getAll = async (req, res) => {
         if (response) res.status(200).json(response)
         else res.status(400).send()
     } catch (error) {
-        console.log("Error in realestate.js getAll():", error.message);
+        console.log("Error in realestate.js getAll():", error);
         res.status(500).send(error.message);
     }
 }
 
 const getId = async (req, res) => {
     try {
-        const response = await RealEstate.findById(req.params.id);
+        const responseRealEstate = await RealEstate.findById(req.params.id);
+
+        let queryUser = req.query.userid || {}
+        const realestatesIds = await getRealEstateIdsFavoritesByUserId(queryUser) || [];
+        
+        const response = responseRealEstate.toObject();
+        response.isFavorite = realestatesIds.includes(responseRealEstate._id.toString())
+
         if (response) res.status(200).json(response)
         else res.status(404).send()
     } catch (error) {
