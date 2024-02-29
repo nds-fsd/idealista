@@ -74,7 +74,7 @@ a {
     border-radius: 0 0 0.5rem 0.5rem;
 }
 
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+.tabnav li:nth-child(2) .navlink,
+.tabnav li:nth-child(3) .navlink {
+    color: #808080;
 }
