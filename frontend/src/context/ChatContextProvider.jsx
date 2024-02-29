@@ -6,7 +6,7 @@ import UserContext from "./UserContext";
 const ChatContextProvider = ({ children }) => {
     const { token } = useContext(UserContext)
     if (token) {
-        const socket = io('ws://localhost:8080', { extraHeaders: { authorization: token } });
+        const socket = io(process.env.WEB_SOCKET_BASE_URL, { extraHeaders: { authorization: token } });
 
         return (
             <ChatContext.Provider value={{ socket }}>
