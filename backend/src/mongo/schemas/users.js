@@ -11,6 +11,7 @@ const userSchema = new Schema({
     postalCode: { type: String },
     province: { type: String },
     aboutMe: { type: String },
+    datestamp: { type: Date, default: Date.now },
     isValidated: { type: Boolean, default: true },
 });
 

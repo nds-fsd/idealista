@@ -139,7 +139,7 @@ const RealEstateForm = () => {
                 <label htmlFor="operation" className={styles.label}>Operación *</label>
                 <select {...register("operation", { required: true })} className={styles.select}>
                   <option value="Comprar">Vender</option>
-                  <option value="Alquiler">Alquiler</option>
+                  <option value="Alquilar">Alquiler</option>
                   <option value="Compartir">Compartir</option>
                 </select>
                 {errors.operation && <p className={styles.error}>Este campo es obligatorio</p>}
