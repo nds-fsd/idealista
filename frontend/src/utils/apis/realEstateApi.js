@@ -2,10 +2,16 @@ import api from "./apiWrapper";
 import axios from "axios";
 
 
-const GetRealEstate = (id) => {
+export const GetRealEstate = (id) => {
     return api.get(`realestates/${id}`)
         .then((res) => res.data)
         .catch((e) => console.log(e));
+}
+
+const GetByUserId= (id)=>{
+    return api.get(`realestates/user/${id}`)
+    .then((res)=>res.data)
+    .catch((e)=>console.log(e))
 }
 
 const ListRealState = (query) => {
@@ -77,6 +83,39 @@ export const CreateRealEstate = async (data) => {
         const coordinates = await getCoordinates(data.address);
         const publicCoordinates = await getPublicCoordinates(data.publicAddress);
 
+        data.realposition = (coordinates.length > 0) ? {lat: coordinates[0], lng: coordinates[1] } : {}
+        data.publicposition = (publicCoordinates.length > 0) ? {lat: publicCoordinates[0], lng: publicCoordinates[1] } : {}
+
+        data.mapLocation = {
+            type: "Point",
+            coordinates: coordinates,
+        };
+
+        data.publicMapLocation = {
+            type: "Point",
+            coordinates: publicCoordinates,
+        };
+
+        const response = await api.post(`/realestates`, data);
+
+        if (response.status >= 200 && response.status < 300) {
+            return response.data;
+        } else {
+            throw new Error(`HTTP request failed with status code ${response.status}`);
+        }
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const UpdateRealEstate = async (id, data) => {
+    try {
+        const coordinates = await getCoordinates(data.address);
+        const publicCoordinates = await getPublicCoordinates(data.publicAddress);
+
+        data.realposition = (coordinates.length > 0) ? {lat: coordinates[0], lng: coordinates[1] } : {}
+        data.publicposition = (publicCoordinates.length > 0) ? {lat: publicCoordinates[0], lng: publicCoordinates[1] } : {}
+
         data.mapLocation = {
         type: "Point",
         coordinates: coordinates,
@@ -87,14 +126,16 @@ export const CreateRealEstate = async (data) => {
         coordinates: publicCoordinates,
         };
 
-        return api
-        .post(`/realestates`, data)
-        .then((res) => res.data)
-        .catch((e) => console.log(e));
-    } catch (e) {
-        console.log(e);
-    }
-};
+        const response = await api.patch(`/realestates/${id}`, data);
+
+        if (response.status >= 200 && response.status < 300) {
+            return response.data;
+        } else {
+            throw new Error(`HTTP request failed with status code ${response.status}`);
+        }
+    } catch (error) {
+        throw error;
+    }};
 
 const GetRealEstateBuyOperations = () => {
     try {
@@ -126,9 +167,9 @@ const GetRealEstateTypes = () => {
     }
 }
 
-export default { 
-    GetRealEstate, 
-    ListRealState, 
+export default {
+    GetByUserId, 
+    ListRealState,
     GetRealEstateBuyOperations, 
     GetRealEstateStates, 
     GetRealEstateTypes,

@@ -7,44 +7,53 @@ import imageFacebook from "../../../assets/socialLogos/facebook.svg";
 import imageInstagram from "../../../assets/socialLogos/instagram.svg";
 import imageX from "../../../assets/socialLogos/x.svg";
 
-
-function AppFooter(){
-
-    return(
+function AppFooter() {
+    return (
         <div className={styles.principal}>
             <div className={styles.container}>
                 <div>
                     <Link to="/" className={styles.logocontent}>
-                        <div><img className={styles.logo} src={imageLogo} alt="Logo Realista"/></div>
+                        <div>
+                            <img className={styles.logo} src={imageLogo} alt="Logo Realista" />
+                        </div>
                     </Link>
                 </div>
 
                 <div className={styles.containerfoot}>
                     <div className={styles.list}>
                         <ul>
-                            <Link><li>Sobre Nosotros</li></Link>
-                            <Link to="/realestates/create"> <li>Publica tu inmueble</li></Link>
-                            <Link><li>Buscador de agencias</li></Link>
-                            <Link><li>Tasación de inmuebles</li></Link>
-                            <Link><li>Buscador de hipotecas</li></Link>
-                            <Link> <li>Preguntas frecuentes (FAQs)</li></Link>
-                            <Link><li>Contacta con Realista</li></Link>
-                            <Link><li>Política de privacidad</li></Link>
-                            <Link><li>Políticas de cookies</li></Link>
-                            <Link><li>Condiciones generales</li></Link>
+                            <Link className={styles.li} to="/about">
+                                Sobre Nosotros
+                            </Link>
+                            <Link className={styles.li} to="/realestates/create">
+                                Publica tu inmueble
+                            </Link>
+                            <Link className={styles.li} to="/privacity">
+                                Política de privacidad
+                            </Link>
+                            <Link className={styles.li} to="/cookie">
+                                Políticas de cookies
+                            </Link>
+                            <Link className={styles.li} to="/terms">
+                                Condiciones generales
+                            </Link>
                         </ul>
                     </div>
                     <div className={styles.social}>
-                        <Link to="/"><img src={imageFacebook} alt="logo facebook" /></Link>
-                        <Link to="/"><img src={imageInstagram} alt="logo instagram" /></Link>
-                        <Link to="/"><img src={imageX} alt="logo X" /></Link>
+                        <Link to="/">
+                            <img src={imageFacebook} alt="logo facebook" />
+                        </Link>
+                        <Link to="/">
+                            <img src={imageInstagram} alt="logo instagram" />
+                        </Link>
+                        <Link to="/">
+                            <img src={imageX} alt="logo X" />
+                        </Link>
                     </div>
-
                 </div>
-                
-            </div>            
+            </div>
         </div>
-    )
+    );
 }
 
 export default AppFooter;

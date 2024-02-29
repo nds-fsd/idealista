@@ -6,6 +6,12 @@ const userSchema = new Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
     location: { type: String },
+    street: { type: String },
+    streetNumber: { type: String },
+    postalCode: { type: String },
+    province: { type: String },
+    aboutMe: { type: String },
+    datestamp: { type: Date, default: Date.now },
     isValidated: { type: Boolean, default: true },
 });
 
