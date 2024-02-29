@@ -25,8 +25,8 @@ const PersonalData = ({ userData, handleUpdateUser }) => {
     const onSubmit = (data) => {
         handleUpdateUser(data);
         setEditMode(false);
-    };
-    
+    };    
+
 
     useEffect(() => {
         if (userData) {

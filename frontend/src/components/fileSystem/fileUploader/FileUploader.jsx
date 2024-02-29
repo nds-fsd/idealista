@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 import imageDelete from "../../../assets/basura.svg"
 
@@ -44,7 +44,7 @@ const FileUploader = (props) => {
                 <ul>
                     {files.map((file, index) => (
                         <li key={index} style={{display:"flex", flexDirection:"column"}}>
-                            <img src={URL.createObjectURL(file)} alt="Imagen inmueble" 
+                            <img src={typeof(file) === 'string' ? file : URL.createObjectURL(file)} alt="Imagen inmueble" 
                                  style={{height:"137px", width:"137px"}}/>
                             <button type="button" onClick={() => handleRemoveFile(index)} 
                                     style={{marginTop:"5px", backgroundColor:"#EEEFA7", border:"none", display:"flex"}}>

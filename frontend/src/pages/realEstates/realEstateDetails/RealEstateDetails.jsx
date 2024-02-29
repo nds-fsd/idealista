@@ -1,10 +1,10 @@
 import React, { useEffect, useContext, useState } from "react";
 
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import UserContext from "../../../context/UserContext";
 
-import realEstateApi from "../../../utils/apis/realEstateApi";
+import { GetRealEstate } from "../../../utils/apis/realEstateApi";
 import Carousel from "./RealEstateDetailsCarousel";
 import GoogleMapsReactWrapper from "../../../components/googleMaps/reactWrapper/GoogleMapsReactWrapper";
 import GoogleMapsIndividual from "../../../components/googleMaps/map/GoogleMapsIndividual";
@@ -22,7 +22,7 @@ import { ifCondition } from "@cloudinary/url-gen/actions/conditional";
 const RealEstateDetails = () => {
     const { id } = useParams();
     const { user } = useContext(UserContext);
-    const { data, isLoading } = useQuery("realEstateDetail", () => realEstateApi.GetRealEstate(id));
+    const { data, isLoading } = useQuery("realEstateDetail", () => GetRealEstate(id));
     const [mostrarCompleto, setMostrarCompleto] = useState(false);
     const [containerHeight, setContainerHeight] = useState(660);
 
@@ -41,6 +41,8 @@ const RealEstateDetails = () => {
     const setFavorite = async ({ _id }) => {
         favoriteApi.addFavorite({ userId: user._id, realestateId: _id });
     };
+
+    const navigate = useNavigate();
 
     const toggleMostrarCompleto = () => {
         setMostrarCompleto(!mostrarCompleto);
@@ -70,7 +72,11 @@ const RealEstateDetails = () => {
     
     
     const descripcion = data.description.split("\n");
-    console.log("descripcion:", descripcion);
+    // console.log("descripcion:", descripcion);
+
+    const handleUpdate = () => {
+        navigate(`/realestates/update/${data._id}`);
+    };
 
     return (
         <div style={{ width: "1300px", margin: "auto" }}>
@@ -142,6 +148,13 @@ const RealEstateDetails = () => {
                 {/*Esta es la parte de la columna derecha de Mapa y contactar */}
 
                 <div className={styles.container2}>
+                    {user && user._id === data?.user && (
+                        <div style={{ display: "flex", height: "10%", justifyContent: "center" }}>
+                            <button className={styles.contact_button} onClick={handleUpdate}>
+                                Actualizar
+                            </button>
+                        </div>
+                    )}
                     <div style={{ display: "flex", height: "120px", justifyContent: "center" }}>
                         <TextArea toUserId={data?.user}> </TextArea>
                     </div>
