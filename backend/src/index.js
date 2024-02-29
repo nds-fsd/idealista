@@ -4,6 +4,7 @@ const router = require('./routers/index.js');
 const cors = require('cors');
 
 const socketMiddleware = require('./middleware/socket.js');
+const {Server}  = require('socket.io')
 const { messageEventHandler, connectionEventhandler } = require("./controllers/chat.js")
 
 const app = express();
@@ -17,15 +18,12 @@ connectDB().then(() => console.log("Connected to database!"))
 
 const port = process.env.PORT || 3001;
 
-app.listen(port, () => {
-    console.log(`Server is up and running on port ${port} ⚡`);
-});
+
 
 const httpServer = require("http").createServer(app)
-const io = require("socket.io")(httpServer, {
-    cors: { origins: ["*"] }
-})
 
+
+const io = new Server(httpServer, {cors: {origins: ["*"]}});
 io.use(socketMiddleware);
 
 
@@ -40,6 +38,6 @@ io.on('connection', (socket) => {
     socket.on('msg', (message, callback) => messageEventHandler(message, io, userInfo, callback))
 });
 
-httpServer.listen(8080, () => {
-    console.log(`WS Server is up and running on port 8080 ⚡`);
-})
+httpServer.listen(port, () => {
+    console.log(`HTTP and WS server is up and running on port ${port} ⚡`);
+});
