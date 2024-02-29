@@ -7,7 +7,7 @@ import MyAds from "../MyAds/MyAds";
 import MyFavorites from "../MyFavorites/MyFavorites";
 
 const UserProfile = () => {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState({});
   const [activeTab, setActiveTab] = useState("personalData");
 
   const { user } = useContext(UserContext);
@@ -16,13 +16,18 @@ const UserProfile = () => {
     const fetchUserData = async () => {
       try {
         const response = await getUser(user._id);
-        setUserData(response.data);
+        if (response) {
+          setUserData(response.data);
+        } else {
+          console.error("No response from getUser");
+        }
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
+
     fetchUserData();
-  }, []);
+  }, [user?._id]);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -43,10 +48,8 @@ const UserProfile = () => {
 
   return (
     <div className={styles.userProfile}>
-      <>
-        <h1>{userData?.name}</h1>
-        <h2>{userData?.email}</h2>
-      </>
+      <h1>{userData?.name}</h1>
+      <h2>{userData?.email}</h2>
       {/* Tab nav */}
       <ul className={styles.tabnav}>
         <li
@@ -111,15 +114,11 @@ const UserProfile = () => {
             handleUpdateUser={handleUpdateUser}
           />
         )}
-        {activeTab === "publications" && (
-          <MyAds ads={userData?.ads} emptyMessage="No tienes ningún anuncio" />
-        )}
-        {activeTab === "favorites" && (
-          <MyFavorites
-            favorites={userData?.favorites}
-            emptyMessage="No tienes ningún favorito"
-          />
-        )}
+        <MyAds ads={userData?.ads} emptyMessage="No tienes ningún anuncio" />
+        <MyFavorites
+          favorites={userData?.favorites}
+          emptyMessage="No tienes ningún favorito"
+        />
       </div>
     </div>
   );
