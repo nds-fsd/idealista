@@ -38,6 +38,19 @@ Puedes hacer un pequeño tour por la aplicación y visitar nuestro video de demo
 https://youtu.be/ZoCQC8MAHoA
 
 
+# Roadmap
+- Dibujar la zona de búsqueda
+- Zona de propietario
+- Gestion de contratos
+- Simulador de hipotecas
+- Simulador de tasación
+- Analítica
+- Responsive
+- Portal vacacional
+- Integración con el catastro y otras integraciones
+- Internacionalización
+
+
 # Librerías y tecnologías utilizadas
 
 **Cliente:** 
