@@ -32,6 +32,9 @@ Los usuarios pueden publicar y buscar inmuebles, contactar directamente con el p
 <img width="585" alt="Screenshot 2024-02-28 at 7 03 58 PM" src="https://github.com/nds-fsd/idealista/assets/70909932/845043ac-bf64-4d74-96fc-554da29741ba">
 
 
+ # Demo
+
+ 
 
 # Librerías y tecnologías utilizadas
 
@@ -61,10 +64,6 @@ Los usuarios pueden publicar y buscar inmuebles, contactar directamente con el p
 - Bcrypt
 - JsonWebToken
 
-
- # Demo
-
- 
 
  # Diagrama de entidades
 
