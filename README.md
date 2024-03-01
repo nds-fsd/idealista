@@ -1,32 +1,8 @@
 # Realista
 
-Realista es una  aplicación web sin anuncios tradicionales de inmobiliarias, aquí priman los precios reales y la transparencia del mercado. Los usuarios se puedes conectar directamente con los propietarios a través de nuestro chat, sin intermediarios. Explorar propiedades por ubicación, visualizarlas en el mapa y sumergirse en sus detalles con fotos y descripciones detalladas. 
+Realista es una  aplicación web exclusiva para particulares y sin anuncios tradicionales de los portales inmobiliarios. En nuestro sitio  priman los precios realistas y la transparencia del mercado. 
 
-# Librerías y tecnologías utilizadas
-
-**Client:** 
-
-- React
-- React hook forms
-- React router dom
-- JWT decode
-- Cloudinary
-- Socket.io Client 
-- React micro-animations library
-- React icons
-- Mui
-
-**Server:** 
-
-- Node
-- Express
-- Socket.io
-- Mongoose
-- Mailgun
-- Bcrypt
-- JsonWebToken
-
- # Diagrama de entidades
+Los usuarios puden publicar y buscar inmuebles y pueden contactar directamente con el propietario a través de nuestro chat, sin intermediarios. Explorar propiedades por ubicación, visualizarlas en el mapa y sumergirse en sus detalles con fotos y descripciones detalladas. 
 
 
  # User Interface 
@@ -56,39 +32,93 @@ Realista es una  aplicación web sin anuncios tradicionales de inmobiliarias, aq
 <img width="976" alt="Screenshot 2024-02-28 at 7 03 58 PM" src="https://github.com/nds-fsd/idealista/assets/70909932/845043ac-bf64-4d74-96fc-554da29741ba">
 
 
- # Pasos para utilizar el proyecto
 
- ### Requisitos previos
+# Librerías y tecnologías utilizadas
+
+**Cliente:** 
+
+- React
+- React hook forms
+- React router dom
+- JWT decode
+- Cloudinary React 
+- Claudinary url-gen
+- Socket.io Client 
+- React micro-animations library
+- React icons
+- Mui
+- @googlemaps/js-api-loader 
+- @googlemaps/react-wrapper"
+- Bcrypt
+
+**Servidor:** 
+
+- Node
+- Express
+- Socket.io
+- Mongoose
+- Mailgun
+- Bcrypt
+- JsonWebToken
+
+
+ # Demo
+
+ 
+
+ # Diagrama de entidades
+
+
+
+# Pasos para utilizar el proyecto
+
+### Requisitos previos
 
 Para ejecutar Realista en tu máquina local, debes tener instalado lo siguiente:
 - Node.Js
-- MongoDB
+- MongoDB (si quieres utilizar una base de datos local)
 
-  ### Configuración 
+### Configuración 
 
-1. Clona el poyecto:
+1. Clona el poyecto: 
 
    ```git clone https://github.com/nds-fsd/idealista.git```
 
-3. Navega a Frontend y Backend del proyecto:
+2. Navega a Frontend y Backend del proyecto e instala las dependencias:
 
-cd Frontend
-cd Backend
-   
-3. En la terminal inicia el proyecto de la siquiente manera:
+Desde carpeta idealista: cd frontend
+
+```npm install```
+
+Desde carpeta idealista: cd backend
+
+```npm install```
+
+3. Configura las siguientes variables en el fichero .env
+
+`MONGO_URL`
+`GOOGLE_APIKEY`
+`JWT_SECRET`
+`JWT_EXPIRES_IN`
+`REACT_APP_BACKEND_URL`
+`MAILGUN_API_KEY`
+`MAILGUN_DOMAIN`
+
+
+4. En la terminal inicia el proyecto de la siquiente manera:
 `npm run dev`
 
-4. Si quieres iniciar el frontend y el backend por separado puedes hacerlo de la siguiente manera:
+5. Si quieres iniciar el frontend y el backend por separado puedes hacerlo de la siguiente manera:
 
  **Frontend:**  `npm run start:frontend`
  **Backend:**  `npm run start:backend`
 
- 5. Abre tu navegador web y navega a `http://localhost:3000` para ver la aplicación.
+6. Abre tu navegador web y navega a `http://localhost:3000` para ver la aplicación.
 
-#Creadores
+
+# Authors
 
 - Carla León [https://github.com/clmirabent]
-- Xavi López  [ https://github.com/xlopezmin]
-- Harold Pozo [https://github.com/haroldtpozo]
 - Filip Galetic [https://github.com/fgaletic]
-
+- Harold Pozo [https://github.com/haroldtpozo]
+- Xavi López  [ https://github.com/xlopezmin]
