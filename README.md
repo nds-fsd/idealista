@@ -63,7 +63,7 @@ Los usuarios pueden publicar y buscar inmuebles, contactar directamente con el p
 
 
  # Diagrama de entidades
-![Uploading Realista-DataModel.svg…]()
+![Realista-DataModel](https://github.com/nds-fsd/idealista/assets/146576217/57cea54e-6a4f-4edb-bc03-dfb33f0eb314)
 
 
 
