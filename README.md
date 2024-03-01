@@ -2,7 +2,7 @@
 
 Realista es una  aplicación web exclusiva para particulares y sin anuncios tradicionales de los portales inmobiliarios. En nuestro sitio  priman los precios realistas y la transparencia del mercado. 
 
-Los usuarios puden publicar y buscar inmuebles y pueden contactar directamente con el propietario a través de nuestro chat, sin intermediarios. Explorar propiedades por ubicación, visualizarlas en el mapa y sumergirse en sus detalles con fotos y descripciones detalladas. 
+Los usuarios pueden publicar y buscar inmuebles, contactar directamente con el propietario a través de nuestro chat, sin intermediarios. Explorar propiedades por ubicación, visualizarlas en el mapa y sumergirse en sus detalles con fotos y descripciones detalladas. 
 
 
  # User Interface 
@@ -11,11 +11,11 @@ Los usuarios puden publicar y buscar inmuebles y pueden contactar directamente c
 
 <img width="585" alt="Screenshot 2024-02-27 at 8 45 56 PM" src="https://github.com/nds-fsd/idealista/assets/70909932/6716b6f7-148e-489c-b329-16688083b779">
 
-**_Login:_** El usuario se puede loguear para comenzar a guardar sus inmubeles favoritos, conversar con un propietario y/o publicar sus anuncios. Si el usuario no tiene una cuenta en Realista, puede crearse una cuenta desde el botón que se encuentra aquí.
+**_Login:_** El usuario se puede loguear para comenzar a guardar sus inmuebles favoritos, conversar con un propietario y/o publicar sus anuncios. Si el usuario no tiene una cuenta en Realista, puede crearse una cuenta desde el botón que se encuentra aquí.
 
 <img width="585" alt="Screenshot 2024-02-27 at 8 46 43 PM" src="https://github.com/nds-fsd/idealista/assets/70909932/26379e23-0078-4365-b548-442b6ae43ae3">
 
-**_Registro:_** El usuario puede crear una cuenta llenando los campos requeridos, si el usuario no acepta las políticas de privacidad, no podrá crearse una cuenta, las cuales puede acceder directamente desde ese link. 
+**_Registro:_** El usuario puede crear una cuenta llenando los campos requeridos, si el usuario no acepta las políticas de privacidad, no podrá crearse una cuenta, las cuales puede acceder directamente desde el link. 
 
 <img width="585" alt="Screenshot 2024-02-27 at 8 50 13 PM" src="https://github.com/nds-fsd/idealista/assets/70909932/8a46f5b7-d33e-4b29-99dc-11b6e5b0b496">
 
@@ -25,11 +25,11 @@ Los usuarios puden publicar y buscar inmuebles y pueden contactar directamente c
 
 **_Anuncios Publicados:_** Se visualizan todos los anuncios publicados y el usuario puede hacer su búsqueda mediante los filtros. 
 
-<img width="860" alt="Screenshot 2024-02-28 at 7 01 33 PM" src="https://github.com/nds-fsd/idealista/assets/70909932/3c5fd82d-244c-43ec-95dc-2b5c046f9f33">
+<img width="585" alt="Screenshot 2024-02-28 at 7 01 33 PM" src="https://github.com/nds-fsd/idealista/assets/70909932/3c5fd82d-244c-43ec-95dc-2b5c046f9f33">
 
 **_Mis Anuncios:_** El usuario puede ver los anuncios que ha publicado.
 
-<img width="976" alt="Screenshot 2024-02-28 at 7 03 58 PM" src="https://github.com/nds-fsd/idealista/assets/70909932/845043ac-bf64-4d74-96fc-554da29741ba">
+<img width="585" alt="Screenshot 2024-02-28 at 7 03 58 PM" src="https://github.com/nds-fsd/idealista/assets/70909932/845043ac-bf64-4d74-96fc-554da29741ba">
 
 
 
