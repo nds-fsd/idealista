@@ -6,8 +6,6 @@
   flex-direction: row;
   align-items: flex-start;
   background-color: #cfe2ff;
-  border-radius: 4%;
-  height: 500px;
   justify-content: center;
   font-family: "Poppins", sans-serif;
   width: fit-content;
@@ -16,12 +14,22 @@
   overflow: hidden;
 }
 
+.text_register{
+  position: absolute;
+  top: 26px;
+  right: 133px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #ffffff;
+  }
+
 .image_container {
   flex: 0 0 auto;
   width: 50%;
   display: flex;
   align-items: flex-start;
   flex-direction: row-reverse;
+  position: relative;
 }
 
 .form_container {

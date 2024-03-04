@@ -1,0 +1,11 @@
+.avatar-div {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: lightskyblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+

@@ -1,7 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap");
+
+
+.carousel_container {
+    width: 1140px;
+    height: 510px;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.container {
+    display: flex;
+    margin-top: 50px;
+    width: 1300px;
+    height: 606px;
+    flex-wrap: wrap;
+}
+.container1{
+    width: 70%;
+    height: 400px;
+}
+
+.container2{
+    width: 30%;
+    height: 620px;
+}
+
+.title{
+    margin-left: 30px;
+    margin-right: 30px;
+    height: 82px;
+}
+.title p{
+font-size: 20px;
+font-weight: 600;
+}
+
+.title h1{
+    font-size: 35px;
+    margin-top:25px;
+
+}
+
+.caracteristicas h2{
+    font-size: 30px;
+    margin-bottom: 33px;
+    margin-top: 27px;
+}
+
+
+.contact_button {
+    border-radius: 16px;
+    background-color: #eeefa7;
+    transition: ease 0.3s all;
+    width: 260px;
+    height: 65px;
+    border: none;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.contact_button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
 .container_text {
     display: flex;
     flex-direction: column;
     width: 100%;
+}
+
+.columnContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: start;
+    margin-top: 45px;
+}
+
+.columnlist{
+    display: flex;
+}
+
+.buttonread{
+    border:none;
+    margin-top: 30px;
+    border-radius: 16px;
+    width: 100px;
+    height: 40px;
+    font-family: "Poppins", sans-serif;
+    background-color: #eeefa7
+}
+
+.buttonread:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+
+.leftColumn {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.rightColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.caracteristicas {
+    display: flex;
+    flex-direction: column;
+}
+
+
+h4 {
+    margin: 0;
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+p {
+    margin: 0;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 .justify_center {
@@ -21,112 +150,40 @@
     flex-direction: column;
 }
 
-.map_image {
-    width: 80%;
-    height: 80%;
-    flex-shrink: 2;
-    border-radius: 29px;
-    background: #CFE2FF;
-    margin: 10px;
-    margin-left: 20px;
-}
 
-.columnContainer {
+.containerdata{
     display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: start;
     justify-content: center;
+    margin-top: 50px;
+
+    height: 606px;
+    flex-wrap: wrap;
 }
 
-.input_area {
-    display: flex;
-    width: 380px;
-    height: 227px;
-    border-radius: 19px;
-    background: #FFF;
-    margin: 20px;
-    padding: 10px;
-}
 
-.contact_button {
-    border-radius: 16px;
-    background: #eeefa7;
-    transition: ease 0.3s all;
-    width: 200px;
-    height: 47px;
-    border: thin;
-    font-family: "Poppins", sans-serif;
-    margin-left: 20px;
-    margin-bottom: 10px;
-}
-
-.contact_button:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-}
-
-.carousel_container {
-    width: 1082px;
-    height: 500px;
-    margin: auto;
-    margin-top: 30px;
-}
-
-.leftColumn {
-    width: 100%;
-    max-width: 50%;
+.nodata{
     display: flex;
     flex-direction: column;
-    margin-top: 50px;
-}
-
-.rightColumn {
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    margin-top: 50px;
+    justify-content: center;
     align-items: center;
+    width: 1300px;
+    height: 400px;
 }
 
-.buttons {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+.nodata h2{
+    font-size: 2rem;
+
 }
 
-.details_container {
-    margin: auto;
-    width: 1140px;
+.nodata p{
+    font-size: 20px;
 }
 
-h4 {
-    margin: 0;
-    font-size: 33px;
-    font-style: normal;
+.nodata span {
+    font-size: 20px;
     font-weight: 700;
-    line-height: normal;
 }
 
-.caracteristicas {
-    display: flex;
-    flex-direction: column;
-}
-
-p {
-    margin: 0;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-h2, h3 {
-    line-height: 1.1;
-}
-
-h2 {
-    margin-top: 50px;
+.iconError img{
+height: 40px;
 }
